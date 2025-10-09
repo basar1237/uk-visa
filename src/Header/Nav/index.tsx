@@ -13,7 +13,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
 
   return (
-    <nav className="flex gap-5 items-center">
+    <nav className="flex gap-5 items-center text-gray-900">
       {navItems.map((navItem, i) => {
         const { link, hasDropdown, dropdownItems } = navItem
 
@@ -38,13 +38,15 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             }}
           >
             <div className="flex items-center space-x-1 mb-3">
-              <CMSLink 
-                {...link} 
-                appearance="link"
-                className="transition-colors"
-              />
+              {link && (
+                <CMSLink 
+                  {...link} 
+                  appearance="link"
+                  className="transition-colors text-gray-900 hover:text-blue-600"
+                />
+              )}
               {hasDropdown && (
-                <ChevronDown className="w-6 h-6" />
+                <ChevronDown className="w-6 h-6 text-gray-900" />
               )}
             </div>
             {hasDropdown && dropdownItems && activeDropdown === i && (
@@ -82,14 +84,17 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                       {dropdownItem.hasSubDropdown && dropdownItem.items && (
                         <div className="absolute top-0 left-full ml-2 bg-gray-700 rounded-lg shadow-lg p-3 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                           <ul className="space-y-2">
-                            {dropdownItem.items.map((item, k) => (
-                              <li key={k}>
-                                <CMSLink
-                                  {...item.link}
-                                  className="text-gray-300 hover:text-white transition-colors text-sm block py-1"
-                                />
-                              </li>
-                            ))}
+                            {dropdownItem.items.map((item, k) => {
+                              if (!item.link) return null
+                              return (
+                                <li key={k}>
+                                  <CMSLink
+                                    {...item.link}
+                                    className="text-gray-300 hover:text-white transition-colors text-sm block py-1"
+                                  />
+                                </li>
+                              )
+                            })}
                           </ul>
                         </div>
                       )}

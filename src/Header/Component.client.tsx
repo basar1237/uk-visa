@@ -31,23 +31,25 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20 text-lg" {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo />
-        </Link>
-        <HeaderNav data={data} />
-        <div className="flex items-center space-x-4">
-          <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-            <Search className="w-5 h-5" />
-          </button>
-          <a 
-            href={`tel:${data?.phoneNumber || '07858780841'}`}
-            className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors whitespace-nowrap"
-          >
-            <Phone className="w-4 h-4 inline mr-2" />
-            CALL US FREE ON: {data?.phoneNumber || '07858780841'}
-          </a>
+    <header className="bg-white shadow-sm text-lg text-gray-900" {...(theme ? { 'data-theme': theme } : {})}>
+      <div className="container mx-auto">
+        <div className="py-4 flex justify-between items-center">
+          <Link href="/">
+            <Logo />
+          </Link>
+          <HeaderNav data={data} />
+          <div className="flex items-center space-x-4">
+            <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
+              <Search className="w-5 h-5" />
+            </button>
+            <a 
+              href={`tel:${data?.phoneNumber || '07858780841'}`}
+              className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors whitespace-nowrap"
+            >
+              <Phone className="w-4 h-4 inline mr-2" />
+              CALL US FREE ON: {data?.phoneNumber || '07858780841'}
+            </a>
+          </div>
         </div>
       </div>
     </header>

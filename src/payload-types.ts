@@ -150,6 +150,14 @@ export interface Page {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    /**
+     * Metin hizalamasını seçin
+     */
+    textAlignment?: ('left' | 'center' | 'right') | null;
+    /**
+     * Metin rengini seçin
+     */
+    textColor?: ('white' | 'black' | 'blue' | 'green' | 'red' | 'yellow' | 'gray') | null;
     richText?: {
       root: {
         type: string;
@@ -191,7 +199,15 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | FeaturesGridBlock
+    | ServicesGridBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -745,6 +761,202 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesGridBlock".
+ */
+export interface FeaturesGridBlock {
+  /**
+   * Ana başlık (opsiyonel, örn: "Why Choose UK Legal Solutions?")
+   */
+  title?: string | null;
+  /**
+   * Başlık rengini seçin
+   */
+  titleColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
+  /**
+   * İçerik metin rengini seçin
+   */
+  textColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
+  features?:
+    | {
+        /**
+         * Vize ve göç ile alakalı ikon seçin
+         */
+        icon:
+          | 'globe'
+          | 'phone'
+          | 'clock'
+          | 'scales'
+          | 'passport'
+          | 'document'
+          | 'filetext'
+          | 'filecheck'
+          | 'stamp'
+          | 'clipboardcheck'
+          | 'receipt'
+          | 'house'
+          | 'heart'
+          | 'users'
+          | 'crown'
+          | 'justice'
+          | 'briefcase'
+          | 'building'
+          | 'building2'
+          | 'landmark'
+          | 'university'
+          | 'plane'
+          | 'mappin'
+          | 'navigation'
+          | 'compass'
+          | 'map'
+          | 'flag'
+          | 'graduation'
+          | 'bookopen'
+          | 'mail'
+          | 'lock'
+          | 'shield'
+          | 'handcuffs'
+          | 'checkcircle'
+          | 'checkcircle2'
+          | 'usercheck'
+          | 'badgecheck'
+          | 'thumbsup'
+          | 'star'
+          | 'award'
+          | 'rocket'
+          | 'zap'
+          | 'trending'
+          | 'trendingdown'
+          | 'target'
+          | 'sparkles'
+          | 'banknote'
+          | 'wallet'
+          | 'creditcard'
+          | 'calendar'
+          | 'calendarcheck'
+          | 'timer'
+          | 'hourglass'
+          | 'barchart'
+          | 'piechart'
+          | 'languages';
+        /**
+         * Özellik başlığı
+         */
+        title: string;
+        /**
+         * Açıklama metni
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuresGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesGridBlock".
+ */
+export interface ServicesGridBlock {
+  /**
+   * Ana başlık (örn: "Our Immigration Services")
+   */
+  title?: string | null;
+  /**
+   * Başlık rengini seçin
+   */
+  titleColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
+  /**
+   * Hizmet başlık rengini seçin
+   */
+  textColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
+  services?:
+    | {
+        /**
+         * İkon seçin
+         */
+        icon:
+          | 'globe'
+          | 'phone'
+          | 'clock'
+          | 'scales'
+          | 'passport'
+          | 'document'
+          | 'filetext'
+          | 'filecheck'
+          | 'stamp'
+          | 'clipboardcheck'
+          | 'receipt'
+          | 'house'
+          | 'heart'
+          | 'users'
+          | 'crown'
+          | 'justice'
+          | 'briefcase'
+          | 'building'
+          | 'building2'
+          | 'landmark'
+          | 'university'
+          | 'plane'
+          | 'mappin'
+          | 'navigation'
+          | 'compass'
+          | 'map'
+          | 'flag'
+          | 'graduation'
+          | 'bookopen'
+          | 'mail'
+          | 'lock'
+          | 'shield'
+          | 'handcuffs'
+          | 'checkcircle'
+          | 'checkcircle2'
+          | 'usercheck'
+          | 'badgecheck'
+          | 'thumbsup'
+          | 'star'
+          | 'award'
+          | 'rocket'
+          | 'zap'
+          | 'trending'
+          | 'trendingdown'
+          | 'target'
+          | 'sparkles'
+          | 'banknote'
+          | 'wallet'
+          | 'creditcard'
+          | 'calendar'
+          | 'calendarcheck'
+          | 'timer'
+          | 'hourglass'
+          | 'barchart'
+          | 'piechart'
+          | 'languages';
+        /**
+         * Hizmet başlığı
+         */
+        title: string;
+        /**
+         * Hizmet açıklaması
+         */
+        description: string;
+        /**
+         * Buton metni
+         */
+        buttonText?: string | null;
+        /**
+         * Buton linki (opsiyonel)
+         */
+        buttonLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1008,6 +1220,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        textAlignment?: T;
+        textColor?: T;
         richText?: T;
         links?:
           | T
@@ -1034,6 +1248,8 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        featuresGrid?: T | FeaturesGridBlockSelect<T>;
+        servicesGrid?: T | ServicesGridBlockSelect<T>;
       };
   meta?:
     | T
@@ -1130,6 +1346,46 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesGridBlock_select".
+ */
+export interface FeaturesGridBlockSelect<T extends boolean = true> {
+  title?: T;
+  titleColor?: T;
+  textColor?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesGridBlock_select".
+ */
+export interface ServicesGridBlockSelect<T extends boolean = true> {
+  title?: T;
+  titleColor?: T;
+  textColor?: T;
+  services?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

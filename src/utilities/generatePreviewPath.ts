@@ -17,10 +17,13 @@ export const generatePreviewPath = ({ collection, slug }: Props) => {
     return null
   }
 
+  // Handle home page specifically
+  const path = slug === 'home' ? '/' : `${collectionPrefixMap[collection]}/${slug}`
+
   const encodedParams = new URLSearchParams({
     slug,
     collection,
-    path: `${collectionPrefixMap[collection]}/${slug}`,
+    path,
     previewSecret: process.env.PREVIEW_SECRET || '',
   })
 
