@@ -8,6 +8,7 @@ import { Search, Phone } from 'lucide-react'
 import type { Header } from '@/payload-types'
 
 import { HeaderNav } from './Nav'
+import { Logo } from '@/components/Logo/Logo'
 
 interface HeaderClientProps {
   data: Header
@@ -33,15 +34,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     <header className="container relative z-20 text-lg" {...(theme ? { 'data-theme': theme } : {})}>
       <div className="py-8 flex justify-between">
         <Link href="/">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-              <div className="w-6 h-6 bg-white rounded-full"></div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">UK LEGAL</span>
-              <span className="text-sm font-normal text-gray-600 -mt-1">SOLUTIONS</span>
-            </div>
-          </div>
+          <Logo />
         </Link>
         <HeaderNav data={data} />
         <div className="flex items-center space-x-4">

@@ -49,7 +49,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             </div>
             {hasDropdown && dropdownItems && activeDropdown === i && (
                 <div 
-                  className="absolute top-full left-0 w-56 bg-gray-600 hover:bg-gray-400 rounded-lg shadow-xl z-50"
+                  className="absolute top-full left-0 min-w-56 w-auto bg-gray-600 rounded-lg shadow-xl z-50"
                 onMouseEnter={() => {
                   if (hoverTimeout) {
                     clearTimeout(hoverTimeout)
@@ -65,17 +65,17 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 }}
                 style={{ marginTop: '0px', paddingTop: '8px' }}
               >
-                <div className="flex items-center p-4">
+                <div className="p-4">
                   {dropdownItems.map((dropdownItem, j) => (
-                    <div key={j} className="relative group">
+                    <div key={j} className="relative group mb-3 last:mb-0">
                       {dropdownItem.titleLink?.link && (
-                        <div className="flex items-center space-x-1">
+                        <div className="flex items-center justify-between gap-4 px-3 py-2 rounded-md hover:bg-gray-500 transition-colors cursor-pointer">
                           <CMSLink
                             {...dropdownItem.titleLink.link}
                             className="text-white font-medium text-sm block whitespace-nowrap"
                           />
                           {dropdownItem.hasSubDropdown && (
-                            <ChevronRight className="w-4 h-4 text-white" />
+                            <ChevronRight className="w-4 h-4 text-white flex-shrink-0" />
                           )}
                         </div>
                       )}

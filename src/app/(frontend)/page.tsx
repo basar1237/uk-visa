@@ -1,7 +1,4 @@
 import type { Metadata } from 'next'
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import { generateMeta } from '@/utilities/generateMeta'
 import { QuickRecommendationForm } from '@/components/QuickRecommendationForm'
 import {
   FileText,
@@ -14,15 +11,9 @@ import {
   Star,
 } from 'lucide-react'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config: configPromise })
-  const page = await payload.find({
-    collection: 'pages',
-    where: { slug: { equals: 'home' } },
-    limit: 1,
-  })
-
-  return generateMeta({ doc: page.docs?.[0] })
+export const metadata: Metadata = {
+  title: 'UK Immigration Service | Professional Visa Advice',
+  description: 'Professional UK Immigration Service and Advice. 7 day visa service by immigration lawyers and advisors. Contact us for expert immigration assistance.',
 }
 
 const services = [
@@ -58,8 +49,12 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-[#4A3B7A] text-white py-20 relative">
-        <div className="container mx-auto px-4">
+      <section 
+        className="bg-[#4A3B7A] text-white py-20 relative bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/uk-hero-main.webp')" }}
+      >
+        <div className="absolute inset-0 bg-[#4A3B7A]/30" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Side - Content */}
             <div className="flex flex-col justify-center space-y-6">
