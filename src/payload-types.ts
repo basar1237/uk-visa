@@ -150,14 +150,6 @@ export interface Page {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    /**
-     * Metin hizalamasını seçin
-     */
-    textAlignment?: ('left' | 'center' | 'right') | null;
-    /**
-     * Metin rengini seçin
-     */
-    textColor?: ('white' | 'black' | 'blue' | 'green' | 'red' | 'yellow' | 'gray') | null;
     richText?: {
       root: {
         type: string;
@@ -768,14 +760,6 @@ export interface FeaturesGridBlock {
    * Ana başlık (opsiyonel, örn: "Why Choose UK Legal Solutions?")
    */
   title?: string | null;
-  /**
-   * Başlık rengini seçin
-   */
-  titleColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
-  /**
-   * İçerik metin rengini seçin
-   */
-  textColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
   features?:
     | {
         /**
@@ -862,14 +846,6 @@ export interface ServicesGridBlock {
    * Ana başlık (örn: "Our Immigration Services")
    */
   title?: string | null;
-  /**
-   * Başlık rengini seçin
-   */
-  titleColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
-  /**
-   * Hizmet başlık rengini seçin
-   */
-  textColor?: ('blue' | 'green' | 'red' | 'yellow' | 'black' | 'gray') | null;
   services?:
     | {
         /**
@@ -1220,8 +1196,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
-        textAlignment?: T;
-        textColor?: T;
         richText?: T;
         links?:
           | T
@@ -1355,8 +1329,6 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface FeaturesGridBlockSelect<T extends boolean = true> {
   title?: T;
-  titleColor?: T;
-  textColor?: T;
   features?:
     | T
     | {
@@ -1374,8 +1346,6 @@ export interface FeaturesGridBlockSelect<T extends boolean = true> {
  */
 export interface ServicesGridBlockSelect<T extends boolean = true> {
   title?: T;
-  titleColor?: T;
-  textColor?: T;
   services?:
     | T
     | {
