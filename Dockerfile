@@ -30,6 +30,17 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+# Build args for environment variables needed at build time
+ARG DATABASE_URI
+ARG PAYLOAD_SECRET
+ARG BLOB_READ_WRITE_TOKEN
+ARG NEXT_PUBLIC_SERVER_URL
+
+ENV DATABASE_URI=${DATABASE_URI}
+ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
+ENV BLOB_READ_WRITE_TOKEN=${BLOB_READ_WRITE_TOKEN}
+ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
@@ -59,6 +70,9 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy package.json for Payload CMS
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 
 USER nextjs
 
