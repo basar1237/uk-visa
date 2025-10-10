@@ -40,17 +40,19 @@ const columnFields: Field[] = [
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5', 'h6'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]
         },
     }),
     label: false,
+    required: false,
   },
   {
     name: 'enableLink',
     type: 'checkbox',
+    defaultValue: false,
   },
   link({
     overrides: {
@@ -74,6 +76,8 @@ export const Content: Block = {
         initCollapsed: true,
       },
       fields: columnFields,
+      minRows: 0,
+      maxRows: 4,
     },
   ],
 }

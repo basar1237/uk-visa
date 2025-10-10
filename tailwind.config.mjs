@@ -25,6 +25,14 @@ const config = {
     'bg-success/30',
     'border-warning',
     'bg-warning/30',
+    // RichText renk sınıfları
+    'text-blue-500',
+    'text-blue-600',
+    'text-blue-700',
+    'text-blue-800',
+    'text-green-600',
+    'text-green-700',
+    'text-green-800',
   ],
   theme: {
     container: {
@@ -104,6 +112,17 @@ const config = {
           750: '#2d3748',
           800: '#1f2937',
           900: '#111827',
+        },
+        blue: {
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+        },
+        green: {
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
         },
       },
       fontFamily: {

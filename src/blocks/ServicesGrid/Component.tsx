@@ -154,7 +154,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, serv
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         {title && (
-          <h2 className="text-4xl font-bold text-center text-blue-600 mb-12">
+          <h2 className="text-3xl font-bold text-blue-800 mb-5">
             {title}
           </h2>
         )}
@@ -164,30 +164,35 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, serv
             const IconComponent = iconMap[service.icon] || FileText
             
             return (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <IconComponent className="w-6 h-6 text-blue-600" />
+              <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-md transition-shadow flex flex-col h-full">
+                <div className="flex items-start space-x-4 mb-4 flex-1">
+                  <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
+                    <IconComponent className="w-6 h-6 text-blue-800" />
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-green-600 mb-2">
+                    <h3 className="text-lg font-semibold text-green-600 mb-2">
                       {service.title}
                     </h3>
                     
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-gray-800 text-sm">
                       {service.description}
                     </p>
-                    
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4 mt-auto">
+                  <div className="w-[60px] flex-shrink-0"></div>
+                  <div className="flex-1">
                     {service.buttonLink ? (
                       <Link 
                         href={service.buttonLink}
-                        className="inline-block bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors"
+                        className="inline-block bg-blue-800 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors"
                       >
                         {service.buttonText || 'More Info'}
                       </Link>
                     ) : (
-                      <button className="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
+                      <button className="bg-blue-800 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
                         {service.buttonText || 'More Info'}
                       </button>
                     )}

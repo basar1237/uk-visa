@@ -25,6 +25,7 @@ export const Archive: Block = {
         },
       }),
       label: 'Intro Content',
+      required: false,
     },
     {
       name: 'populateBy',
@@ -65,6 +66,7 @@ export const Archive: Block = {
       hasMany: true,
       label: 'Categories To Show',
       relationTo: 'categories',
+      required: false,
     },
     {
       name: 'limit',
@@ -85,6 +87,7 @@ export const Archive: Block = {
       hasMany: true,
       label: 'Selection',
       relationTo: ['posts'],
+      required: false,
     },
   ],
   labels: {

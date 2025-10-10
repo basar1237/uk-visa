@@ -153,28 +153,28 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
     <section className="py-5 bg-white">
       <div className="container mx-auto px-4">
         {title && (
-          <h2 className="text-4xl font-bold text-center text-blue-600 mb-12">
+          <h2 className="text-3xl font-bold text-blue-800 mb-12">
             {title}
           </h2>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {features?.map((feature, index) => {
             const IconComponent = iconMap[feature.icon] || Globe
             
             return (
-              <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
+              <div key={index} className="w-full sm:w-auto sm:min-w-[250px] max-w-[300px] flex flex-col">
+                <div className="flex justify-start mb-4">
                   <div className="bg-blue-100 p-4 rounded-full">
-                    <IconComponent className="w-8 h-8 text-blue-600" />
+                    <IconComponent className="w-8 h-8 text-blue-800" />
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-blue-600 mb-3">
+                <h3 className="text-lg font-bold text-blue-800 mb-3">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-600">
+                <p className="text-gray-800 text-sm text-start flex-1">
                   {feature.description}
                 </p>
               </div>
