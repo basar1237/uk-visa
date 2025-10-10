@@ -8,6 +8,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { notFound } from 'next/navigation'
+import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 export const revalidate = 600
 
@@ -19,7 +20,7 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { pageNumber } = await paramsPromise
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadInstance()
 
   const sanitizedPageNumber = Number(pageNumber)
 

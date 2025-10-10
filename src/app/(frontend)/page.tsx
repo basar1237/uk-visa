@@ -11,6 +11,7 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -58,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadInstance()
 
   const result = await payload.find({
     collection: 'pages',

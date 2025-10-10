@@ -1,11 +1,10 @@
 import { getServerSideSitemap } from 'next-sitemap'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
+import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 const getPagesSitemap = unstable_cache(
   async () => {
-    const payload = await getPayload({ config })
+    const payload = await getPayloadInstance()
     const SITE_URL =
       process.env.NEXT_PUBLIC_SERVER_URL ||
       process.env.VERCEL_PROJECT_PRODUCTION_URL ||

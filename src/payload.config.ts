@@ -63,6 +63,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      max: 10, // Maksimum bağlantı sayısı
+      idleTimeoutMillis: 30000, // Boşta kalan bağlantıların timeout süresi
+      connectionTimeoutMillis: 2000, // Bağlantı timeout süresi
     },
   }),
   collections: [Pages, Posts, Media, Categories, Users],

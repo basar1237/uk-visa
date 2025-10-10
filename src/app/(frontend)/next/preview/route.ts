@@ -1,14 +1,12 @@
 import type { CollectionSlug, PayloadRequest } from 'payload'
-import { getPayload } from 'payload'
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { NextRequest } from 'next/server'
-
-import configPromise from '@payload-config'
+import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 export async function GET(req: NextRequest): Promise<Response> {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadInstance()
 
   const { searchParams } = new URL(req.url)
 
