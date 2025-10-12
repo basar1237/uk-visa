@@ -63,10 +63,13 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
-      max: 10, // Maksimum bağlantı sayısı
-      idleTimeoutMillis: 30000, // Boşta kalan bağlantıların timeout süresi
-      connectionTimeoutMillis: 2000, // Bağlantı timeout süresi
+      max: 5, // Supabase için daha az bağlantı (pgbouncer limitleri)
+      min: 0, // Minimum bağlantı sayısı
+      idleTimeoutMillis: 60000, // 60 saniye
+      connectionTimeoutMillis: 20000, // 20 saniye (Supabase için daha uzun)
+      allowExitOnIdle: true, // Boşta kalan bağlantıları kapat
     },
+    push: true, // Schema değişikliklerini otomatik push et (dev mode)
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),

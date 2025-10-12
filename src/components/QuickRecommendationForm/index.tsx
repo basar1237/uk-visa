@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 type FormData = {
   isOver18: string
@@ -10,6 +10,7 @@ type FormData = {
 
 export function QuickRecommendationForm() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [isVisible, setIsVisible] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     isOver18: '',
     hasCriminalRecord: '',
@@ -17,6 +18,14 @@ export function QuickRecommendationForm() {
   })
 
   const totalSteps = 3
+
+  // Sayfa yüklendiğinde animasyonu başlat
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 100) // Küçük bir gecikme ile başlat
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleNext = () => {
     if (currentStep === 1 && !formData.isOver18) return
@@ -158,7 +167,13 @@ export function QuickRecommendationForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-xl min-h-[400px] flex flex-col">
+    <div 
+      className={`bg-white p-8 rounded-lg shadow-xl min-h-[400px] flex flex-col transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 -translate-y-12'
+      }`}
+    >
       <div className="flex-1 space-y-6">
         {/* Header */}
         <div>

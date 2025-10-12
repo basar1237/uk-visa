@@ -164,7 +164,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, serv
             const IconComponent = iconMap[service.icon] || FileText
             
             return (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-md transition-shadow flex flex-col h-full">
+              <div key={index} className="bg-white rounded-lg border-gray-400 p-6 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full cursor-pointer">
                 <div className="flex items-start space-x-4 mb-4 flex-1">
                   <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
                     <IconComponent className="w-6 h-6 text-blue-800" />

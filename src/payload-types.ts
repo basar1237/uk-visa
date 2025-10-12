@@ -200,6 +200,7 @@ export interface Page {
     | FeaturesGridBlock
     | ServicesGridBlock
     | LandingBlock
+    | FAQBlock
   )[];
   meta?: {
     title?: string | null;
@@ -996,6 +997,28 @@ export interface LandingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  title?: string | null;
+  description?: string | null;
+  /**
+   * Soru ve cevapları buraya ekleyin
+   */
+  faqs?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  displayStyle?: ('accordion' | 'list' | 'grid') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1288,6 +1311,7 @@ export interface PagesSelect<T extends boolean = true> {
         featuresGrid?: T | FeaturesGridBlockSelect<T>;
         servicesGrid?: T | ServicesGridBlockSelect<T>;
         landingBlock?: T | LandingBlockSelect<T>;
+        faqBlock?: T | FAQBlockSelect<T>;
       };
   meta?:
     | T
@@ -1458,6 +1482,24 @@ export interface LandingBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  displayStyle?: T;
   id?: T;
   blockName?: T;
 }

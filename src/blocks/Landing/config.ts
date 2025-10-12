@@ -38,6 +38,7 @@ const columnFields: Field[] = [
     type: 'array',
     label: 'Badges',
     required: false,
+    defaultValue: [],
     fields: [
       {
         name: 'text',
@@ -74,6 +75,7 @@ const columnFields: Field[] = [
     type: 'array',
     label: 'Links',
     required: false,
+    defaultValue: [],
     fields: [
       link(),
     ],
@@ -107,6 +109,7 @@ export const LandingBlock: Block = {
     {
       name: 'columns',
       type: 'array',
+      defaultValue: [],
       admin: {
         initCollapsed: true,
       },

@@ -14,7 +14,14 @@ import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
+  // Build sırasında veritabanı bağlantısı yoksa atla
+  if (!process.env.DATABASE_URI || process.env.SKIP_STATIC_GENERATION === 'true') {
+    return []
+  }
+  
   try {
     const payload = await getPayload({ config: configPromise })
     const pages = await payload.find({
@@ -37,10 +44,9 @@ export async function generateStaticParams() {
       })
 
     return params || []
-  } catch (error) {
+  } catch (_error) {
     // If database is not available during build (e.g., missing DATABASE_URI),
     // return empty array and pages will be generated on-demand
-    console.warn('Could not generate static params for pages:', error)
     return []
   }
 }

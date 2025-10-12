@@ -11,6 +11,7 @@ import { notFound } from 'next/navigation'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 export const revalidate = 600
+export const dynamicParams = true
 
 type Args = {
   params: Promise<{
@@ -71,19 +72,30 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
-  const { totalDocs } = await payload.count({
-    collection: 'posts',
-    overrideAccess: false,
-  })
-
-  const totalPages = Math.ceil(totalDocs / 10)
-
-  const pages: { pageNumber: string }[] = []
-
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push({ pageNumber: String(i) })
+  // Build sırasında veritabanı bağlantısı yoksa atla
+  if (!process.env.DATABASE_URI || process.env.SKIP_STATIC_GENERATION === 'true') {
+    return []
   }
+  
+  try {
+    const payload = await getPayload({ config: configPromise })
+    const { totalDocs } = await payload.count({
+      collection: 'posts',
+      overrideAccess: false,
+    })
 
-  return pages
+    const totalPages = Math.ceil(totalDocs / 10)
+
+    const pages: { pageNumber: string }[] = []
+
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push({ pageNumber: String(i) })
+    }
+
+    return pages
+  } catch (_error) {
+    // Veritabanı bağlantısı yoksa boş array döndür
+    // Sayfalar talep anında oluşturulacak (dynamicParams = true)
+    return []
+  }
 }

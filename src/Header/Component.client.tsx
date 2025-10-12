@@ -30,6 +30,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
 
+  if (!data) {
+    console.error('HeaderClient - No data provided')
+    return null
+  }
+
   return (
     <header className="bg-white shadow-sm text-lg text-gray-900" {...(theme ? { 'data-theme': theme } : {})}>
       <div className="container mx-auto">

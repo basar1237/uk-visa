@@ -5,6 +5,7 @@ import type { Page } from '@/payload-types'
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
+import { FAQBlockComponent } from '@/blocks/FAQBlock/Component'
 import { FeaturesGridComponent } from '@/blocks/FeaturesGrid/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { LandingBlock } from '@/blocks/Landing/Component'
@@ -15,6 +16,7 @@ const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
+  faqBlock: FAQBlockComponent,
   featuresGrid: FeaturesGridComponent,
   formBlock: FormBlock,
   landingBlock: LandingBlock,

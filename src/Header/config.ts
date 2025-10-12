@@ -26,8 +26,9 @@ export const Header: GlobalConfig = {
           name: 'dropdownItems',
           type: 'array',
           label: 'Dropdown Menü Öğeleri',
+          defaultValue: [],
           admin: {
-            condition: (_, siblingData) => siblingData.hasDropdown,
+            condition: (_, siblingData) => siblingData?.hasDropdown === true,
           },
           fields: [
             {
@@ -50,8 +51,9 @@ export const Header: GlobalConfig = {
               name: 'items',
               type: 'array',
               label: 'Alt Öğeler',
+              defaultValue: [],
               admin: {
-                condition: (_, siblingData) => siblingData.hasSubDropdown,
+                condition: (_, siblingData) => siblingData?.hasSubDropdown === true,
               },
               fields: [
                 link({

@@ -7,200 +7,277 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
-import { Button } from '@/components/ui/button'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   const { setHeaderTheme } = useHeaderTheme()
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<{[key: number]: string}>({})
+  const [isVisible, setIsVisible] = useState(false)
+  const [currentStep, setCurrentStep] = useState(1)
+  const [formData, setFormData] = useState({
+    isOver18: '',
+    hasCriminalRecord: '',
+    isApplyingForSelf: '',
+  })
+
+  const totalSteps = 3
 
   useEffect(() => {
     setHeaderTheme('dark')
-  })
-
-  const visaQuestions = [
-    {
-      id: 1,
-      question: "Are you over the age of 18?",
-      options: ["Yes", "No"]
-    },
-    {
-      id: 2,
-      question: "What is your English language level?",
-      options: ["B1 and above", "A2", "Beginner level"]
-    },
-    {
-      id: 3,
-      question: "Do you have sufficient financial resources for visa application?",
-      options: ["Yes", "No", "Uncertain"]
-    },
-    {
-      id: 4,
-      question: "Have you traveled to the UK before?",
-      options: ["Yes", "No"]
-    },
-    {
-      id: 5,
-      question: "What type of visa are you planning to apply for?",
-      options: ["Tourist visa", "Student visa", "Work visa", "Family visa"]
-    }
-  ]
-
-  const handleAnswer = (questionId: number, answer: string) => {
-    setAnswers(prev => ({
-      ...prev,
-      [questionId]: answer
-    }))
-  }
+    // Animasyon için
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleNext = () => {
-    if (currentQuestion < visaQuestions.length - 1) {
-      setCurrentQuestion(prev => prev + 1)
-    } else {
-      // Test tamamlandı, sonuçları göster
-      console.log('Test tamamlandı:', answers)
+    if (currentStep === 1 && !formData.isOver18) return
+    if (currentStep === 2 && !formData.hasCriminalRecord) return
+    if (currentStep === 3 && !formData.isApplyingForSelf) return
+
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1)
     }
   }
 
-  const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(prev => prev - 1)
+  const renderStep = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-500 mb-2">
+                Step {currentStep} of {totalSteps}
+              </p>
+              <h3 className="text-xl font-semibold mb-2">Are you over the age of 18?</h3>
+              <p className="text-sm text-gray-600">
+                Do You Meet The Minimum Requirements Of The Visa Type That You Want To Apply For?
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="isOver18"
+                  value="yes"
+                  checked={formData.isOver18 === 'yes'}
+                  onChange={(e) => setFormData({ ...formData, isOver18: e.target.value })}
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="isOver18"
+                  value="no"
+                  checked={formData.isOver18 === 'no'}
+                  onChange={(e) => setFormData({ ...formData, isOver18: e.target.value })}
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+        )
+
+      case 2:
+        return (
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-500 mb-2">
+                Step {currentStep} of {totalSteps}
+              </p>
+              <h3 className="text-xl font-semibold mb-2">
+                Do you have a criminal or unspent conviction in the UK or any other country?
+              </h3>
+            </div>
+
+            <div className="space-y-3">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="hasCriminalRecord"
+                  value="yes"
+                  checked={formData.hasCriminalRecord === 'yes'}
+                  onChange={(e) => setFormData({ ...formData, hasCriminalRecord: e.target.value })}
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="hasCriminalRecord"
+                  value="no"
+                  checked={formData.hasCriminalRecord === 'no'}
+                  onChange={(e) => setFormData({ ...formData, hasCriminalRecord: e.target.value })}
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+        )
+
+      case 3:
+        return (
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-500 mb-2">
+                Step {currentStep} of {totalSteps}
+              </p>
+              <h3 className="text-xl font-semibold mb-2">
+                Are you the person applying or are you applying on behalf of someone?
+              </h3>
+            </div>
+
+            <div className="space-y-3">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="isApplyingForSelf"
+                  value="self"
+                  checked={formData.isApplyingForSelf === 'self'}
+                  onChange={(e) =>
+                    setFormData({ ...formData, isApplyingForSelf: e.target.value })
+                  }
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>I&apos;m applying for myself</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="isApplyingForSelf"
+                  value="behalf"
+                  checked={formData.isApplyingForSelf === 'behalf'}
+                  onChange={(e) =>
+                    setFormData({ ...formData, isApplyingForSelf: e.target.value })
+                  }
+                  className="w-4 h-4 text-purple-600"
+                />
+                <span>I&apos;m applying on behalf of someone</span>
+              </label>
+            </div>
+          </div>
+        )
+
+      default:
+        return null
     }
   }
 
   return (
-    <div
-      className="relative grid items-center justify-center text-white"
+    <section
+      className="relative bg-[#4A3B7A] text-white py-10"
       data-theme="dark"
     >
-      {/* Background Media with Dark Overlay */}
+      {/* Background Media with Overlay */}
       <div className="absolute inset-0 z-0">
         {media && typeof media === 'object' && (
-          <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
+          <Media fill imgClassName="object-cover" priority resource={media} />
         )}
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black opacity-60" />
+        {/* Purple Overlay */}
+        <div className="absolute inset-0 bg-[#4A3B7A]/30" />
       </div>
 
-      <div className="container mb-3 py-3 z-10 relative flex items-center justify-between gap-8">
-        <div className="max-w-[40.5rem] md:text-start">
-          {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
-          {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex md:justify-center gap-4">
-              {links.map(({ link }, i) => {
-                if (!link) return null
-                return (
-                  <li key={i}>
-                    <CMSLink {...link} />
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-        </div>
-
-        {/* UK Visa Eligibility Test */}
-        <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full text-gray-800">
-          <div className="flex items-center gap-2 mb-4">
-            <h3 className="text-xl font-bold text-gray-800">UK Visa</h3>
-            <h3 className="text-2xl font-bold text-purple-600">Eligibility Test</h3>
-            <div className="w-6 h-6 border-2 border-gray-800 rounded flex items-center justify-center ml-auto">
-              <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Left Side - Content */}
+          <div className="flex flex-col justify-center space-y-6">
+            <div className="inline-block w-fit">
+              <span className="bg-orange-500 text-white px-4 py-2 rounded-lg text-lg font-semibold">
+                UK&apos;s Only 7 Day Visa Service
+              </span>
             </div>
+
+            {richText && (
+              <div className="text-white">
+                <RichText data={richText} enableGutter={false} />
+              </div>
+            )}
+
+            
+            {/* Action Buttons */}
+            <div className="flex gap-4 flex-wrap items-center">
+              <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-3 py-4  font-bold text-sm shadow-2xl hover:shadow-blue-500/50 rounded-xl transition-all transform hover:scale-105">
+                Book Free Consultation
+              </button>
+              <button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-3 py-4  font-bold text-sm shadow-2xl hover:shadow-teal-500/50 rounded-xl transition-all transform hover:scale-105">
+                Check Eligibility
+              </button>
+              <a 
+                href="tel:07858780841"
+                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-3 py-4  font-bold text-sm shadow-2xl hover:shadow-red-500/50 rounded-xl transition-all transform hover:scale-105 inline-flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                Urgent Help: 07858 780841
+              </a>
+            </div>
+
+            {Array.isArray(links) && links.length > 0 && (
+              <ul className="flex gap-4 flex-wrap">
+                {links.map(({ link }, i) => {
+                  if (!link) return null
+                  return (
+                    <li key={i}>
+                      <CMSLink {...link} />
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
+
+          {/* Right Side - Eligibility Test */}
+          <div className="flex items-center justify-center">
+            <div
+              className={`bg-white p-8 rounded-lg shadow-xl min-h-[400px] flex flex-col transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'
+              }`}
+            >
+              <div className="flex-1 space-y-6">
+                {/* Header */}
+                <div>
+                  <div className="inline-block bg-gradient-to-r from-purple-600 to-purple-800 text-white px-4 py-2 rounded-lg mb-2">
+                    UK Visa Eligibility Test
+            </div>
+                  <p className="text-xs text-gray-500">Immigration Solicitor Helpline</p>
           </div>
           
-          <p className="text-sm text-gray-600 mb-2">
-            Do You Meet The Minimum Requirements Of The Visa Type That You Want To Apply For?
-          </p>
-          <p className="text-sm text-gray-600 mb-6">
-            Answer The Questions Below To Get Your Results.
-          </p>
+                <div className="border-t border-gray-200" />
 
-          <div className="mb-6">
-            <h4 className="font-semibold text-gray-800 mb-4">
-              {visaQuestions[currentQuestion].question}
-            </h4>
-            
-            <div className="space-y-3">
-              {visaQuestions[currentQuestion].options.map((option, index) => (
-                <label key={index} className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name={`question-${currentQuestion}`}
-                    value={option}
-                    checked={answers[visaQuestions[currentQuestion].id] === option}
-                    onChange={(e) => handleAnswer(visaQuestions[currentQuestion].id, e.target.value)}
-                    className="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
-                  />
-                  <span className="text-gray-700">{option}</span>
-                </label>
-              ))}
+                {/* Step Content */}
+                <div className="flex-1 text-gray-800">{renderStep()}</div>
+
+                {/* Progress Bar */}
+                <div>
+                  <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mb-3">
+                    <div
+                      className="h-full bg-purple-600 transition-all duration-300"
+                      style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+                    />
             </div>
+                  <p className="text-xs text-center text-gray-500">
+                    {currentStep} / {totalSteps} completed
+                  </p>
           </div>
 
-          <div className="flex justify-center">
+                {/* Next Button */}
             <button
               onClick={handleNext}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                  className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-purple-900 transition-all"
             >
-              {currentQuestion === visaQuestions.length - 1 ? 'Complete' : 'Next'}
+                  {currentStep === totalSteps ? 'Submit' : 'Next'}
             </button>
           </div>
-
-          {currentQuestion > 0 && (
-            <div className="flex justify-center mt-3">
-              <button
-                onClick={handlePrevious}
-                className="text-gray-500 hover:text-gray-700 text-sm"
-              >
-                ← Previous
-              </button>
             </div>
-          )}
-
-          <div className="mt-4 text-center">
-            <span className="text-xs text-gray-500">
-              Question {currentQuestion + 1} / {visaQuestions.length}
-            </span>
           </div>
         </div>
       </div>
-      {/* Three Action Buttons - Full Width Below Content */}
-      <div className="w-full mb-8 z-10 relative">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-9 gap-4">
-            {/* Book Free Consultation */}
-            <Button 
-              variant="default" 
-              size="lg"
-              className="bg-blue-600 py-4 hover:bg-blue-700 text-white col-span-2"
-            >
-              Book Free Consultation
-            </Button>
-            
-            {/* Check Eligibility */}
-            <Button 
-              variant="default" 
-              size="lg"
-              className="bg-teal-600 hover:bg-teal-700 text-white col-span-2"
-            >
-              Check Eligibility
-            </Button>
-            
-            {/* Urgent Help */}
-            <Button 
-              variant="destructive" 
-              size="lg"
-              className="bg-red-600 hover:bg-red-700 text-white col-span-2 gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-              </svg>
-              Urgent Help: 07858 780841
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   )
 }
