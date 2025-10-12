@@ -127,6 +127,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
     linkResult.fields.push({
       name: 'appearance',
       type: 'select',
+      dbName: 'appear',
       admin: {
         description: 'Choose how the link should be rendered.',
       },

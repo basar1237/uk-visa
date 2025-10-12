@@ -7,6 +7,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FeaturesGridComponent } from '@/blocks/FeaturesGrid/Component'
 import { FormBlock } from '@/blocks/Form/Component'
+import { LandingBlock } from '@/blocks/Landing/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
 
@@ -16,6 +17,7 @@ const blockComponents = {
   cta: CallToActionBlock,
   featuresGrid: FeaturesGridComponent,
   formBlock: FormBlock,
+  landingBlock: LandingBlock,
   mediaBlock: MediaBlock,
   servicesGrid: ServicesGridComponent,
 }

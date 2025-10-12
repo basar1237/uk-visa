@@ -30,9 +30,16 @@ const config = {
     'text-blue-600',
     'text-blue-700',
     'text-blue-800',
+    'text-blue-900',
     'text-green-600',
     'text-green-700',
     'text-green-800',
+    // Landing Block özel sınıfları
+    'bg-gradient-to-r',
+    'from-blue-500',
+    'to-green-500',
+    'bg-blue-100',
+    'bg-gray-100',
   ],
   theme: {
     container: {
@@ -114,12 +121,15 @@ const config = {
           900: '#111827',
         },
         blue: {
+          100: '#dbeafe',
           500: '#3b82f6',
           600: '#2563eb',
           700: '#1d4ed8',
           800: '#1e40af',
+          900: '#1e3a8a',
         },
         green: {
+          500: '#22c55e',
           600: '#16a34a',
           700: '#15803d',
           800: '#166534',

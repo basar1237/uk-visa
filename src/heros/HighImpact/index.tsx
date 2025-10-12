@@ -73,6 +73,15 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
       className="relative grid items-center justify-center text-white"
       data-theme="dark"
     >
+      {/* Background Media with Dark Overlay */}
+      <div className="absolute inset-0 z-0">
+        {media && typeof media === 'object' && (
+          <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
+        )}
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black opacity-60" />
+      </div>
+
       <div className="container mb-3 py-3 z-10 relative flex items-center justify-between gap-8">
         <div className="max-w-[40.5rem] md:text-start">
           {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
@@ -191,11 +200,6 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
             </Button>
           </div>
         </div>
-      </div>
-      <div className="select-none">
-        {media && typeof media === 'object' && (
-          <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
-        )}
       </div>
     </div>
   )

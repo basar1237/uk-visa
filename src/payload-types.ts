@@ -199,6 +199,7 @@ export interface Page {
     | FormBlock
     | FeaturesGridBlock
     | ServicesGridBlock
+    | LandingBlock
   )[];
   meta?: {
     title?: string | null;
@@ -933,6 +934,68 @@ export interface ServicesGridBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LandingBlock".
+ */
+export interface LandingBlock {
+  backgroundStyle?: ('gradient' | 'white' | 'gray') | null;
+  columns?:
+    | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        badges?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        title?: string | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+                /**
+                 * Choose how the link should be rendered.
+                 */
+                appearance?: ('default' | 'outline') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'landingBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1224,6 +1287,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         featuresGrid?: T | FeaturesGridBlockSelect<T>;
         servicesGrid?: T | ServicesGridBlockSelect<T>;
+        landingBlock?: T | LandingBlockSelect<T>;
       };
   meta?:
     | T
@@ -1354,6 +1418,44 @@ export interface ServicesGridBlockSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
         buttonLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LandingBlock_select".
+ */
+export interface LandingBlockSelect<T extends boolean = true> {
+  backgroundStyle?: T;
+  columns?:
+    | T
+    | {
+        size?: T;
+        badges?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        title?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
         id?: T;
       };
   id?: T;

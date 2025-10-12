@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
 import { QuickRecommendationForm } from '@/components/QuickRecommendationForm'
 import {
   FileText,
