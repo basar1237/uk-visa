@@ -1,6 +1,7 @@
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
+import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import type { LandingBlock as LandingBlockProps, Page, Post } from '@/payload-types'
 
@@ -28,7 +29,7 @@ type Column = {
   size?: 'oneThird' | 'half' | 'twoThirds' | 'full'
   badges?: Badge[] | null
   title?: string | null
-  richText?: Record<string, unknown>
+  richText?: DefaultTypedEditorState
   links?: LinkItem[] | null
   id?: string | null
 }
