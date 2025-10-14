@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 type FormData = {
   isOver18: string
@@ -10,7 +10,6 @@ type FormData = {
 
 export function QuickRecommendationForm() {
   const [currentStep, setCurrentStep] = useState(1)
-  const [isVisible, setIsVisible] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     isOver18: '',
     hasCriminalRecord: '',
@@ -18,14 +17,6 @@ export function QuickRecommendationForm() {
   })
 
   const totalSteps = 3
-
-  // Sayfa yüklendiğinde animasyonu başlat
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100) // Küçük bir gecikme ile başlat
-    return () => clearTimeout(timer)
-  }, [])
 
   const handleNext = () => {
     if (currentStep === 1 && !formData.isOver18) return
@@ -41,7 +32,7 @@ export function QuickRecommendationForm() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4 animate-fade-in">
             <div>
               <p className="text-sm text-gray-500 mb-2">
                 Step {currentStep} of {totalSteps}
@@ -81,7 +72,7 @@ export function QuickRecommendationForm() {
 
       case 2:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4 animate-fade-in">
             <div>
               <p className="text-sm text-gray-500 mb-2">
                 Step {currentStep} of {totalSteps}
@@ -120,7 +111,7 @@ export function QuickRecommendationForm() {
 
       case 3:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4 animate-fade-in">
             <div>
               <p className="text-sm text-gray-500 mb-2">
                 Step {currentStep} of {totalSteps}
@@ -167,13 +158,7 @@ export function QuickRecommendationForm() {
   }
 
   return (
-    <div 
-      className={`bg-white p-8 rounded-lg shadow-xl min-h-[400px] flex flex-col transition-all duration-1000 ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 -translate-y-12'
-      }`}
-    >
+    <div className="bg-white p-8 rounded-lg shadow-xl min-h-[400px] flex flex-col">
       <div className="flex-1 space-y-6">
         {/* Header */}
         <div>
@@ -186,7 +171,9 @@ export function QuickRecommendationForm() {
         <div className="border-t border-gray-200" />
 
         {/* Step Content */}
-        <div className="flex-1">{renderStep()}</div>
+        <div className="flex-1" key={currentStep}>
+          {renderStep()}
+        </div>
 
         {/* Progress Bar */}
         <div>

@@ -11,6 +11,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { LandingBlock } from '@/blocks/Landing/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
+import { LongGridsBlock } from '@/blocks/LongGrids/Components'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -21,6 +22,7 @@ const blockComponents = {
   formBlock: FormBlock,
   landingBlock: LandingBlock,
   mediaBlock: MediaBlock,
+  longGrids:LongGridsBlock,
   servicesGrid: ServicesGridComponent,
 }
 

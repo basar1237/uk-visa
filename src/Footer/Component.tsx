@@ -1,34 +1,48 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import Link from 'next/link'
 import React from 'react'
 
 import type { Footer } from '@/payload-types'
 
-import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
-import { Logo } from '@/components/Logo/Logo'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
 
-  const navItems = footerData?.navItems || []
+  const columns = footerData?.columns || []
+  const columnRows = []
+  for (let i = 0; i < columns.length; i += 5) {
+    columnRows.push(columns.slice(i, i + 5))
+  }
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
-        <Link className="flex items-center" href="/">
-          <Logo />
-        </Link>
-
-        <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
-          <ThemeSelector />
-          <nav className="flex flex-col md:flex-row gap-4">
-            {navItems.map(({ link }, i) => {
-              if (!link) return null
-              return <CMSLink className="text-white" key={i} {...link} />
-            })}
-          </nav>
-        </div>
+    <footer className="mt-auto bg-gradient-to-br from-gray-50 to-green-50/30 text-gray-800">
+      {/* Ana İçerik Alanı */}
+      <div className="container mx-auto px-4 py-12">
+        {/* Kolonlar */}
+        {columnRows.map((row, rowIndex) => (
+          <div key={rowIndex} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+            {row.map((column, colIndex) => (
+              <div key={colIndex} className="space-y-3">
+                <h3 className="font-bold text-blue-600 text-lg">
+                  {column.title}
+                </h3>
+                <ul className="space-y-2">
+                  {column.navItems?.map(({ link }, i) => {
+                    if (!link) return null
+                    return (
+                      <li key={i}>
+                        <CMSLink 
+                          className="text-gray-700 hover:text-blue-600 transition-colors duration-200" 
+                          {...link} 
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </footer>
   )

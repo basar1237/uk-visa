@@ -1,17 +1,102 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronRight, ChevronUp } from 'lucide-react'
 
 import type { Header as HeaderType } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 
-export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
+interface HeaderNavProps {
+  data: HeaderType
+  isMobile?: boolean
+}
+
+export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) => {
   const navItems = data?.navItems || []
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
+  const [mobileOpenDropdowns, setMobileOpenDropdowns] = useState<Set<number>>(new Set())
 
+  const toggleMobileDropdown = (index: number) => {
+    const newOpenDropdowns = new Set(mobileOpenDropdowns)
+    if (newOpenDropdowns.has(index)) {
+      newOpenDropdowns.delete(index)
+    } else {
+      newOpenDropdowns.add(index)
+    }
+    setMobileOpenDropdowns(newOpenDropdowns)
+  }
+
+  if (isMobile) {
+    return (
+      <nav className="flex flex-col space-y-4">
+        {navItems.map((navItem, i) => {
+          const { link, hasDropdown, dropdownItems } = navItem
+          const isDropdownOpen = mobileOpenDropdowns.has(i)
+
+          return (
+            <div key={i} className="border-b border-gray-200 pb-4 last:border-b-0">
+              {link && (
+                <div className="flex items-center justify-between">
+                  <CMSLink 
+                    {...link} 
+                    appearance="link"
+                    className="transition-colors text-gray-900 hover:text-blue-600 text-lg font-medium"
+                  />
+                  {hasDropdown && (
+                    <button
+                      onClick={() => toggleMobileDropdown(i)}
+                      className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                      {isDropdownOpen ? (
+                        <ChevronUp className="w-5 h-5" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5" />
+                      )}
+                    </button>
+                  )}
+                </div>
+              )}
+              
+              {hasDropdown && dropdownItems && isDropdownOpen && (
+                <div className="mt-4 ml-4 space-y-4">
+                  {dropdownItems.map((dropdownItem, j) => (
+                    <div key={j}>
+                      {dropdownItem.titleLink?.link && (
+                        <div className="mb-2">
+                          <CMSLink
+                            {...dropdownItem.titleLink.link}
+                            className="text-gray-700 font-medium text-base block py-2"
+                          />
+                        </div>
+                      )}
+                      {dropdownItem.hasSubDropdown && dropdownItem.items && (
+                        <div className="ml-4 space-y-2">
+                          {dropdownItem.items.map((item, k) => {
+                            if (!item.link) return null
+                            return (
+                              <CMSLink
+                                key={k}
+                                {...item.link}
+                                className="text-gray-600 hover:text-blue-600 transition-colors text-sm block py-1"
+                              />
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </nav>
+    )
+  }
+
+  // Desktop version
   return (
     <nav className="flex gap-5 items-center text-gray-900">
       {navItems.map((navItem, i) => {

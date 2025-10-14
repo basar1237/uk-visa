@@ -201,6 +201,7 @@ export interface Page {
     | ServicesGridBlock
     | LandingBlock
     | FAQBlock
+    | LongGridsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1019,6 +1020,27 @@ export interface FAQBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LongGridsBlock".
+ */
+export interface LongGridsBlock {
+  gridItems?:
+    | {
+        title: string;
+        description: string;
+        item?: string | null;
+        link?: {
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'longGrids';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1312,6 +1334,7 @@ export interface PagesSelect<T extends boolean = true> {
         servicesGrid?: T | ServicesGridBlockSelect<T>;
         landingBlock?: T | LandingBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
+        longGrids?: T | LongGridsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1500,6 +1523,28 @@ export interface FAQBlockSelect<T extends boolean = true> {
         id?: T;
       };
   displayStyle?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LongGridsBlock_select".
+ */
+export interface LongGridsBlockSelect<T extends boolean = true> {
+  gridItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        item?: T;
+        link?:
+          | T
+          | {
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2005,23 +2050,29 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  columns?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        title: string;
+        navItems?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -2091,17 +2142,23 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  columns?:
     | T
     | {
-        link?:
+        title?: T;
+        navItems?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
             };
         id?: T;
       };
