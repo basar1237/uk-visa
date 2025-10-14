@@ -17,7 +17,7 @@ export const LongGridsBlock: React.FC<LongGridsBlockType> = ({ gridItems }) => {
             >
               {/* Logo Icon - Sol tarafta, kutunun üzerinde */}
               <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10">
-                <div className="w-34 h-34 bg-white rounded-xl shadow-xl flex items-center justify-center">
+                <div className="w-30 h-34 bg-white rounded-xl shadow-xl flex items-center justify-center py-8 px-2">
                   <Image 
                     src="/uk-logo.webp" 
                     alt="UK Logo" 
