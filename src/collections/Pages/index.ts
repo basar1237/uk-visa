@@ -11,6 +11,8 @@ import { FormBlock } from '../../blocks/Form/config'
 import { LandingBlock } from '../../blocks/Landing/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ServicesGrid } from '../../blocks/ServicesGrid/config'
+import { StatsBoxesBlock } from '../../blocks/StatsBoxesBlock/config'
+import { TestimonialsBlock } from '../../blocks/TestimonialsBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -77,7 +79,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeaturesGrid, ServicesGrid, LandingBlock, FAQBlock,LongGrids],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeaturesGrid, ServicesGrid, LandingBlock, FAQBlock, LongGrids, StatsBoxesBlock, TestimonialsBlock],
               required: true,
               admin: {
                 initCollapsed: true,

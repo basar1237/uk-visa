@@ -202,6 +202,8 @@ export interface Page {
     | LandingBlock
     | FAQBlock
     | LongGridsBlock
+    | StatsBoxesBlock
+    | TestimonialsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1041,6 +1043,53 @@ export interface LongGridsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBoxesBlock".
+ */
+export interface StatsBoxesBlock {
+  title: string;
+  description?: string | null;
+  /**
+   * İstatistik kutularını buraya ekleyin
+   */
+  stats?:
+    | {
+        value: string;
+        label: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'statsBoxesBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  title: string;
+  description?: string | null;
+  /**
+   * Müşteri yorumlarını buraya ekleyin
+   */
+  testimonials?:
+    | {
+        name: string;
+        role: string;
+        content: string;
+        avatar?: (number | null) | Media;
+        rating?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  autoplay?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonialsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1335,6 +1384,8 @@ export interface PagesSelect<T extends boolean = true> {
         landingBlock?: T | LandingBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
         longGrids?: T | LongGridsBlockSelect<T>;
+        statsBoxesBlock?: T | StatsBoxesBlockSelect<T>;
+        testimonialsBlock?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1545,6 +1596,45 @@ export interface LongGridsBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBoxesBlock_select".
+ */
+export interface StatsBoxesBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        content?: T;
+        avatar?: T;
+        rating?: T;
+        id?: T;
+      };
+  autoplay?: T;
   id?: T;
   blockName?: T;
 }

@@ -12,6 +12,8 @@ import { LandingBlock } from '@/blocks/Landing/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
 import { LongGridsBlock } from '@/blocks/LongGrids/Components'
+import { StatsBoxesBlockComponent } from '@/blocks/StatsBoxesBlock/Component'
+import { TestimonialsBlockComponent } from '@/blocks/TestimonialsBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +26,8 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   longGrids:LongGridsBlock,
   servicesGrid: ServicesGridComponent,
+  statsBoxesBlock: StatsBoxesBlockComponent,
+  testimonialsBlock: TestimonialsBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{

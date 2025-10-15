@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown } from 'lucide-react'
 
 type FAQ = {
@@ -22,7 +23,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   faqs,
   displayStyle,
 }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -30,45 +31,79 @@ export const FAQBlockClient: React.FC<Props> = ({
 
   if (displayStyle === 'accordion') {
     return (
-      <section className="py-5 bg-white container">
-        <div className="container mx-auto px-4">
-          {title && (
-            <h2 className="text-3xl md:text-4xl font-bold text-start mb-4 text-gray-900">
-              {title}
-            </h2>
-          )}
-          {description && (
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              {description}
-            </p>
-          )}
-          <div className="container mx-auto space-y-4 border-gray-500 p-5 shadow rounded-2xl">
+      <section className="py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            {title && (
+              <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p className="text-foreground/70 text-lg max-w-2xl mx-auto">
+                {description}
+              </p>
+            )}
+          </motion.div>
+
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div
+              <motion.div
                 key={faq.id}
-                className="border border-gray-200 rounded-3xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group overflow-hidden rounded-2xl border border-border bg-background transition-all hover:border-brand hover:shadow-lg"
               >
-                <button
+                <motion.button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-4 text-left bg-white hover:bg-indigo-200 transition-colors flex justify-between items-center gap-4  rounded-t-3xl"
+                  className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-background/50"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
-                  <span className="font-semibold text-gray-900 text-lg">
+                  <h3 className="text-foreground text-lg font-semibold pr-4">
                     {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${
-                      openIndex === index ? 'transform rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                {openIndex === index && (
-                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                    <div className="prose max-w-none text-gray-700">
-                      <p className="whitespace-pre-wrap">{faq.answer}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  </h3>
+                  <motion.div
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex-shrink-0"
+                  >
+                    <ChevronDown className="h-5 w-5 text-foreground/60" />
+                  </motion.div>
+                </motion.button>
+
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <motion.div
+                        initial={{ y: -10 }}
+                        animate={{ y: 0 }}
+                        exit={{ y: -10 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                        className="px-6 pb-6"
+                      >
+                        <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -78,31 +113,46 @@ export const FAQBlockClient: React.FC<Props> = ({
 
   if (displayStyle === 'grid') {
     return (
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          {title && (
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-              {title}
-            </h2>
-          )}
-          {description && (
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              {description}
-            </p>
-          )}
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            {title && (
+              <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p className="text-foreground/70 text-lg max-w-2xl mx-auto">
+                {description}
+              </p>
+            )}
+          </motion.div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {faqs.map((faq) => (
-              <div
+            {faqs.map((faq, index) => (
+              <motion.div
                 key={faq.id}
-                className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group overflow-hidden rounded-2xl border border-border bg-background transition-all hover:border-brand hover:shadow-lg"
               >
-                <h3 className="font-semibold text-lg mb-3 text-gray-900">
-                  {faq.question}
-                </h3>
-                <div className="prose prose-sm max-w-none text-gray-600">
-                  <p className="whitespace-pre-wrap">{faq.answer}</p>
+                <div className="p-6">
+                  <h3 className="text-foreground text-lg font-semibold mb-3">
+                    {faq.question}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
+                    {faq.answer}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -112,35 +162,57 @@ export const FAQBlockClient: React.FC<Props> = ({
 
   // List style
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        {title && (
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-            {title}
-          </h2>
-        )}
-        {description && (
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            {description}
-          </p>
-        )}
-        <div className="max-w-4xl mx-auto space-y-8">
-          {faqs.map((faq) => (
-            <div key={faq.id} className="border-b border-gray-200 pb-8 last:border-b-0">
+    <section className="py-20">
+      <div className="mx-auto max-w-4xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          {title && (
+            <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">
+              {title}
+            </h2>
+          )}
+          {description && (
+            <p className="text-foreground/70 text-lg max-w-2xl mx-auto">
+              {description}
+            </p>
+          )}
+        </motion.div>
+        
+        <div className="space-y-8">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={faq.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="border-b border-border pb-8 last:border-b-0"
+            >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  viewport={{ once: true }}
+                  className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold text-sm"
+                >
                   Q
-                </div>
+                </motion.div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-xl mb-3 text-gray-900">
+                  <h3 className="text-foreground font-semibold text-xl mb-3">
                     {faq.question}
                   </h3>
-                  <div className="prose max-w-none text-gray-600">
-                    <p className="whitespace-pre-wrap">{faq.answer}</p>
-                  </div>
+                  <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
