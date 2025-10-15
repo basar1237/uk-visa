@@ -1,15 +1,7 @@
 import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
-type HomeArgs = {
-  heroImage: Media
-  metaImage: Media
-}
-
-export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+export const home: () => RequiredDataFromCollectionSlug<'pages'> = () => {
   return {
     slug: 'home',
     _status: 'published',
@@ -33,7 +25,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           },
         },
       ],
-      media: heroImage.id,
+      // media: heroImage.id, // Demo resim kaldırıldı
       richText: {
         root: {
           type: 'root',
@@ -508,11 +500,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           },
         ],
       },
-      {
-        blockName: 'Media Block',
-        blockType: 'mediaBlock',
-        media: metaImage.id,
-      },
+      // Media Block kaldırıldı - demo resim yok
       {
         blockName: 'Archive Block',
         blockType: 'archive',
@@ -667,7 +655,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
     ],
     meta: {
       description: 'Professional UK Immigration Service and Advice.',
-      image: heroImage.id,
+      // image: heroImage.id, // Demo resim kaldırıldı
       title: 'UK Solutions',
     },
     title: 'Home',

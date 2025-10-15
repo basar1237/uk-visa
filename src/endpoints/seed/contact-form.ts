@@ -36,7 +36,7 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
   emails: [
     {
       emailFrom: '"Payload" \u003Cdemo@payloadcms.com\u003E',
-      emailTo: '{{email}}',
+      emailTo: 'basaryldrm1237@gmail.com',
       message: {
         root: {
           type: 'root',

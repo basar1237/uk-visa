@@ -4,7 +4,6 @@ import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { type RequiredDataFromCollectionSlug } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
@@ -23,10 +22,6 @@ export default async function HomePage() {
     slug,
   })
 
-  // Remove this code once your website is seeded
-  if (!page) {
-    page = homeStatic
-  }
 
   if (!page) {
     return <PayloadRedirects url={url} />

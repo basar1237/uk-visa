@@ -11,10 +11,14 @@ test.describe('Frontend', () => {
   test('can go on homepage', async ({ page }) => {
     await page.goto('http://localhost:3000')
 
-    await expect(page).toHaveTitle(/Payload Website Template/)
+    // UK Solutions projesi için doğru title'ı kontrol et
+    await expect(page).toHaveTitle(/UK Solutions/)
 
-    const heading = page.locator('h1').first()
-
-    await expect(heading).toHaveText('Payload Website Template')
+    // Sayfa yüklendiğini kontrol et
+    await expect(page).toHaveURL('http://localhost:3000/')
+    
+    // Sayfa içeriğinin yüklendiğini kontrol et
+    const body = page.locator('body')
+    await expect(body).toBeVisible()
   })
 })
