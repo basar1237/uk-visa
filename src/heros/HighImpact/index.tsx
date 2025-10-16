@@ -1,17 +1,19 @@
 'use client'
+import { motion } from "motion/react"
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect, useState } from 'react'
+import { ArrowDownRight } from "lucide-react"
 
 import type { Page } from '@/payload-types'
-
-import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { Button } from '@/components/ui/button'
+import { AnimatedGroup } from '@/components/landing/animated-group'
+import { AnimatedText } from '@/components/landing/animated-text'
 import Link from 'next/link'
 
-export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
+export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
   const { setHeaderTheme } = useHeaderTheme()
-  const [isVisible, setIsVisible] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     isOver18: '',
@@ -25,7 +27,6 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
 
   useEffect(() => {
     setHeaderTheme('dark')
-    setTimeout(() => setIsVisible(true), 100)
   }, [setHeaderTheme])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -186,66 +187,57 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
   }
 
   return (
-    <section
-      className="relative py-16 flex items-center"
-      data-theme="dark"
-    >
-      {/* Background Media with Overlay */}
-      <div className="absolute inset-0 z-0">
-        {media && typeof media === 'object' && (
-          <Media fill imgClassName="object-cover blur-[2px]" priority resource={media} />
-        )}
-        <div className="absolute inset-0 bg-black/30" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Left Side - Content */}
-          <div 
-            className={`flex flex-col justify-center space-y-6 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+    <main>
+      <motion.section
+        className="relative overflow-hidden"
+        initial={{ opacity: 0, scale: 1.04, filter: "blur(12px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ type: "spring", bounce: 0.32, duration: 0.9 }}
+      >
+        {/* Background Media with Overlay */}
+        <div className="absolute inset-0 z-0">
+          {media && typeof media === 'object' && (
+            <Media fill imgClassName="object-cover blur-[2px]" priority resource={media} />
+          )}
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 mt-16 pt-16 pb-10 lg:grid-cols-2 lg:gap-20 relative z-10">
+          <AnimatedGroup
+            preset="blur-slide"
+            className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
           >
-            {/* Main Heading - CMS Content */}
-            <div className="text-white">
+            <AnimatedText
+              as="h1"
+              className="my-6 text-4xl font-bold text-pretty lg:text-6xl xl:text-7xl"
+            >
               {richText ? (
                 <div className="hero-content">
                   <RichText data={richText} enableGutter={false} />
                 </div>
               ) : (
-                <h1 className="text-2xl lg:text-3xl font-bold leading-tight mb-4 hero-content">
+                <>
                   Welcome to <span className="font-bold">First Migration</span>, a London<br />
                   Based Immigration Consultancy. We<br />
                   Specialise in <span className="font-bold">UK Work and Family<br />
                   Visas.</span>
-                </h1>
+                </>
               )}
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <Link
-                href="/consultation"
-                className="bg-blue-600 rounded-xl hover:bg-blue-700 text-white font-bold py-4 px-6 transition-all duration-300 shadow-lg hover:shadow-xl text-center text-sm"
-              >
-                Book Free Consultation
-              </Link>
-              <Link
-                href="/eligibility"
-                className="bg-teal-600 rounded-xl hover:bg-teal-700 text-white font-bold py-4 px-3 transition-all duration-300 shadow-lg hover:shadow-xl text-center text-sm"
-              >
-                Check Eligibility
-              </Link>
-              <a
-                href="tel:07858780841"
-                className="bg-red-600 rounded-xl hover:bg-red-700 text-white font-bold py-4 px-6 transition-all duration-300 shadow-lg  text-sm hover:shadow-xl text-center flex items-center justify-center gap-1"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                Urgent Help: 07858 780841
-              </a>
-            </div>
+            </AnimatedText>
+            <AnimatedGroup
+              preset="slide"
+              className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start"
+            >
+              <Button asChild variant="candy" className="w-full rounded-xl sm:w-auto">
+                <Link href="/consultation">Book Free Consultation</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full rounded-xl sm:w-auto">
+                <Link href="/eligibility">
+                  Check Eligibility
+                  <ArrowDownRight className="size-4" />
+                </Link>
+              </Button>
+            </AnimatedGroup>
+          </AnimatedGroup>
 
             {/* Social Proof Section*/}
             {/* <div className="space-y-3 hero-social-proof">
@@ -306,26 +298,14 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
               </div>
             </div>  */}
 
-            {Array.isArray(links) && links.length > 0 && (
-              <ul className="flex gap-4 flex-wrap">
-                {links.map(({ link }, i) => {
-                  if (!link) return null
-                  return (
-                    <li key={i}>
-                      <CMSLink {...link} />
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
-          </div>
 
           {/* Right Side - UK Visa Eligibility Test */}
-          <div className="flex items-center justify-center hero-form">
-            <div
-              className={`bg-white/70  rounded-xl shadow-2xl w-full max-w-lg transition-all duration-1000 ease-out form-container ${
-                isVisible ? 'opacity-90 translate-y-0' : 'opacity-0 -translate-y-12'
-              }`}
+          <div className="flex mt-5">
+            <motion.div
+              className="bg-white/70 rounded-xl shadow-2xl w-full max-w-lg backdrop-blur-sm"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
             >
               {/* Form Header */}
               <div className="bg-purple-600/90 text-white px-6 py-4 rounded-t-xl text-center shadow-lg backdrop-blur-sm">
@@ -375,10 +355,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </motion.section>
+    </main>
   )
 }
