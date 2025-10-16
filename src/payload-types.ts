@@ -419,6 +419,10 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   richText?: {
     root: {
       type: string;
@@ -467,6 +471,10 @@ export interface CallToActionBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   columns?:
     | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
@@ -517,6 +525,10 @@ export interface ContentBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   media: number | Media;
   id?: string | null;
   blockName?: string | null;
@@ -561,6 +573,10 @@ export interface ArchiveBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   form: number | Form;
   enableIntro?: boolean | null;
   introContent?: {
@@ -762,6 +778,10 @@ export interface Form {
  */
 export interface FeaturesGridBlock {
   /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
+  /**
    * Ana başlık (opsiyonel, örn: "Why Choose UK Legal Solutions?")
    */
   title?: string | null;
@@ -847,6 +867,10 @@ export interface FeaturesGridBlock {
  * via the `definition` "ServicesGridBlock".
  */
 export interface ServicesGridBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   /**
    * Ana başlık (örn: "Our Immigration Services")
    */
@@ -941,6 +965,10 @@ export interface ServicesGridBlock {
  * via the `definition` "LandingBlock".
  */
 export interface LandingBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   backgroundStyle?: ('gradient' | 'white' | 'gray') | null;
   columns?:
     | {
@@ -1003,6 +1031,10 @@ export interface LandingBlock {
  * via the `definition` "FAQBlock".
  */
 export interface FAQBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   title?: string | null;
   description?: string | null;
   /**
@@ -1046,6 +1078,10 @@ export interface LongGridsBlock {
  * via the `definition` "StatsBoxesBlock".
  */
 export interface StatsBoxesBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   title: string;
   description?: string | null;
   /**
@@ -1068,6 +1104,10 @@ export interface StatsBoxesBlock {
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
   title: string;
   description?: string | null;
   /**
@@ -1406,6 +1446,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
+  isActive?: T;
   richText?: T;
   links?:
     | T
@@ -1430,6 +1471,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  isActive?: T;
   columns?:
     | T
     | {
@@ -1456,6 +1498,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaBlock_select".
  */
 export interface MediaBlockSelect<T extends boolean = true> {
+  isActive?: T;
   media?: T;
   id?: T;
   blockName?: T;
@@ -1479,6 +1522,7 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
  * via the `definition` "FormBlock_select".
  */
 export interface FormBlockSelect<T extends boolean = true> {
+  isActive?: T;
   form?: T;
   enableIntro?: T;
   introContent?: T;
@@ -1490,6 +1534,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "FeaturesGridBlock_select".
  */
 export interface FeaturesGridBlockSelect<T extends boolean = true> {
+  isActive?: T;
   title?: T;
   features?:
     | T
@@ -1507,6 +1552,7 @@ export interface FeaturesGridBlockSelect<T extends boolean = true> {
  * via the `definition` "ServicesGridBlock_select".
  */
 export interface ServicesGridBlockSelect<T extends boolean = true> {
+  isActive?: T;
   title?: T;
   services?:
     | T
@@ -1526,6 +1572,7 @@ export interface ServicesGridBlockSelect<T extends boolean = true> {
  * via the `definition` "LandingBlock_select".
  */
 export interface LandingBlockSelect<T extends boolean = true> {
+  isActive?: T;
   backgroundStyle?: T;
   columns?:
     | T
@@ -1564,6 +1611,7 @@ export interface LandingBlockSelect<T extends boolean = true> {
  * via the `definition` "FAQBlock_select".
  */
 export interface FAQBlockSelect<T extends boolean = true> {
+  isActive?: T;
   title?: T;
   description?: T;
   faqs?:
@@ -1604,6 +1652,7 @@ export interface LongGridsBlockSelect<T extends boolean = true> {
  * via the `definition` "StatsBoxesBlock_select".
  */
 export interface StatsBoxesBlockSelect<T extends boolean = true> {
+  isActive?: T;
   title?: T;
   description?: T;
   stats?:
@@ -1622,6 +1671,7 @@ export interface StatsBoxesBlockSelect<T extends boolean = true> {
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
+  isActive?: T;
   title?: T;
   description?: T;
   testimonials?:

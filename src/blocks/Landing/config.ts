@@ -8,6 +8,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { blockToggleField } from '@/fields/blockToggle'
 
 const columnFields: Field[] = [
   {
@@ -86,6 +87,7 @@ export const LandingBlock: Block = {
   slug: 'landingBlock',
   interfaceName: 'LandingBlock',
   fields: [
+    blockToggleField,
     {
       name: 'backgroundStyle',
       type: 'select',

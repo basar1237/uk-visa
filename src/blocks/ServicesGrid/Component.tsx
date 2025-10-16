@@ -159,45 +159,47 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, serv
           </h2>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {services?.map((service, index) => {
             const IconComponent = iconMap[service.icon] || FileText
             
             return (
-              <div key={index} className="bg-white rounded-lg border-gray-400 p-6 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full cursor-pointer">
-                <div className="flex items-start space-x-4 mb-4 flex-1">
-                  <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                    <IconComponent className="w-6 h-6 text-blue-800" />
+              <div key={index} className="bg-white rounded-xl hover:bg-blue-50 border-gray-400 p-4 shadow-lg hover:shadow-xl hover:-translate-y-3 transition-all duration-300 cursor-pointer aspect-square flex flex-col justify-center">
+                {service.buttonLink ? (
+                  <Link href={service.buttonLink} className="h-full flex flex-col justify-center text-center">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-blue-100 p-2 rounded-lg">
+                        <IconComponent className="w-12 h-12 text-blue-800" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-green-600 mb-2">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-gray-800  leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="h-full flex flex-col justify-center text-center">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-blue-100 p-2 rounded-lg">
+                        <IconComponent className="w-8 h-8 text-blue-800" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-green-600 mb-2">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-gray-800 text-sm leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-green-600 mb-2">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-gray-800 text-sm">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4 mt-auto">
-                  <div className="w-[60px] flex-shrink-0"></div>
-                  <div className="flex-1">
-                    {service.buttonLink ? (
-                      <Link 
-                        href={service.buttonLink}
-                        className="inline-block bg-blue-800 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors"
-                      >
-                        {service.buttonText || 'More Info'}
-                      </Link>
-                    ) : (
-                      <button className="bg-blue-800 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
-                        {service.buttonText || 'More Info'}
-                      </button>
-                    )}
-                  </div>
-                </div>
+                )}
               </div>
             )
           })}

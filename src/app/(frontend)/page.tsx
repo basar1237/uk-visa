@@ -16,9 +16,7 @@ export default async function HomePage() {
   const slug = 'home'
   const url = '/'
 
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
-
-  page = await queryPageBySlug({
+  const page: RequiredDataFromCollectionSlug<'pages'> | null = await queryPageBySlug({
     slug,
   })
 

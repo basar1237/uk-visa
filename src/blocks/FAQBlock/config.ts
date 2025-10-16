@@ -1,9 +1,11 @@
 import type { Block } from 'payload'
+import { blockToggleField } from '@/fields/blockToggle'
 
 export const FAQBlock: Block = {
   slug: 'faqBlock',
   interfaceName: 'FAQBlock',
   fields: [
+    blockToggleField,
     {
       name: 'title',
       type: 'text',

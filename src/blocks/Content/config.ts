@@ -8,6 +8,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { blockToggleField } from '@/fields/blockToggle'
 
 const columnFields: Field[] = [
   {
@@ -69,6 +70,7 @@ export const Content: Block = {
   slug: 'content',
   interfaceName: 'ContentBlock',
   fields: [
+    blockToggleField,
     {
       name: 'columns',
       type: 'array',

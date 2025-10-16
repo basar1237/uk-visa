@@ -43,6 +43,11 @@ export const RenderBlocks: React.FC<{
         {blocks.map((block, index) => {
           const { blockType } = block
 
+          // isActive field'ını kontrol et - eğer false ise bloğu render etme
+          if (block && 'isActive' in block && block.isActive === false) {
+            return null
+          }
+
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
 
