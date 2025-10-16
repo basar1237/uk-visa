@@ -98,7 +98,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
 
   // Desktop version
   return (
-    <nav className="flex gap-5 items-center text-gray-900">
+    <nav className="flex gap-3 items-center">
       {navItems.map((navItem, i) => {
         const { link, hasDropdown, dropdownItems } = navItem
 
@@ -122,7 +122,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
               setHoverTimeout(timeout)
             }}
           >
-            <div className="flex items-center space-x-1 mb-3">
+            <div className="flex items-center space-x-1">
               {link && (
                 <CMSLink 
                   {...link} 
@@ -131,7 +131,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
                 />
               )}
               {hasDropdown && (
-                <ChevronDown className="w-6 h-6 text-gray-900" />
+                <ChevronDown className="w-4 h-4 text-gray-900" />
               )}
             </div>
             {hasDropdown && dropdownItems && activeDropdown === i && (

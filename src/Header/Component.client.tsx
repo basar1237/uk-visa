@@ -33,7 +33,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between h-12">
+        <div className="flex items-center justify-between h-12 gap-2">
           {/* Logo */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
