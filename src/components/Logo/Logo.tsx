@@ -17,12 +17,12 @@ export const Logo = (props: Props) => {
     /* eslint-disable @next/next/no-img-element */
     <img
       alt="UK Visa Logo"
-      width={240}
+      width={207}
       height={44}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('w-[240px] h-auto', className)}
+      className={clsx('w-[207px] h-auto', className)}
       src="/uk-logo.webp"
     />
   )
