@@ -134,8 +134,38 @@
   }
 }
 
-/* Header responsive styles */
+/* Touch and Mobile Optimizations */
 @media (max-width: 768px) {
+  /* Touch target minimum size */
+  button, 
+  a, 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="radio"], 
+  input[type="checkbox"],
+  select,
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on input focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Header responsive styles */
   .header-top-bar {
     flex-direction: column;
     gap: 0.5rem;
@@ -154,5 +184,82 @@
   .header-assessment-button {
     font-size: 0.75rem;
     padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Touch feedback */
+.touch-feedback {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.touch-feedback:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Swipe gestures support */
+.swipe-container {
+  touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Mobile-specific animations */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-fade-in {
+    animation: mobileFadeIn 0.3s ease-out;
+  }
+}
+
+@keyframes mobileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accordion animations */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.accordion-content.closed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* LongGrids mobile accordion specific styles */
+.longgrid-accordion-header {
+  transition: all 0.2s ease;
+}
+
+.longgrid-accordion-header:active {
+  transform: scale(0.98);
+}
+
+.longgrid-accordion-content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -10,9 +10,10 @@ import { CMSLink } from '@/components/Link'
 interface HeaderNavProps {
   data: HeaderType
   isMobile?: boolean
+  onLinkClick?: () => void
 }
 
-export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) => {
+export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, onLinkClick }) => {
   const navItems = data?.navItems || []
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
@@ -43,10 +44,19 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
                     {...link} 
                     appearance="link"
                     className="transition-colors text-gray-900 hover:text-blue-600 text-lg font-medium"
+                    onClick={hasDropdown ? (e) => {
+                      e?.preventDefault()
+                      e?.stopPropagation()
+                      toggleMobileDropdown(i)
+                    } : onLinkClick}
                   />
                   {hasDropdown && (
                     <button
-                      onClick={() => toggleMobileDropdown(i)}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        toggleMobileDropdown(i)
+                      }}
                       className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
                     >
                       {isDropdownOpen ? (
@@ -68,6 +78,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
                           <CMSLink
                             {...dropdownItem.titleLink.link}
                             className="text-gray-700 font-medium text-base block py-2"
+                            onClick={onLinkClick}
                           />
                         </div>
                       )}
@@ -80,6 +91,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false }) 
                                 key={k}
                                 {...item.link}
                                 className="text-gray-600 hover:text-blue-600 transition-colors text-sm block py-1"
+                                onClick={onLinkClick}
                               />
                             )
                           })}

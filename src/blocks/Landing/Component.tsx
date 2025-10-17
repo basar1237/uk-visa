@@ -62,8 +62,8 @@ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
   }
 
   return (
-    <div className="container my-10">
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16 p-5">
+    <div className="container my-6 sm:my-8 lg:my-10 px-4 sm:px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-5">
         {columns && Array.isArray(columns) && columns.length > 0 &&
           columns.map((col, index) => {
             if (!col) return null
@@ -75,11 +75,12 @@ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
             return (
               <div
                 className={cn(
-                  `col-span-4 lg:col-span-${colSpanClass}`,
-                  'rounded-2xl shadow-lg p-6',
+                  `col-span-1 sm:col-span-2 lg:col-span-${colSpanClass}`,
+                  'rounded-2xl shadow-lg p-4 sm:p-6',
                   getBackgroundClass(),
                   {
-                    'md:col-span-2': colSize !== 'full',
+                    'sm:col-span-1': colSize === 'full',
+                    'sm:col-span-2': colSize !== 'full',
                   }
                 )}
                 key={index}
