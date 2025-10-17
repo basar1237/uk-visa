@@ -6,7 +6,7 @@ import React from 'react'
 import type { Page, Post } from '@/payload-types'
 
 type CMSLinkType = {
-  appearance?: 'inline' | ButtonProps['variant']
+  appearance?: 'inline' | ButtonProps['variant'] | 'default' | 'outline' | 'red' | 'blue' | 'green'
   children?: React.ReactNode
   className?: string
   label?: string | null
@@ -47,6 +47,26 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const size = appearance === 'link' ? 'default' : sizeFromProps
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
+  // Map appearance values to Button variants
+  const getButtonVariant = (appearance: string | null): ButtonProps['variant'] => {
+    if (!appearance) return 'default'
+    
+    switch (appearance) {
+      case 'default':
+        return 'default'
+      case 'outline':
+        return 'outline'
+      case 'red':
+        return 'red'
+      case 'blue':
+        return 'blue'
+      case 'green':
+        return 'green'
+      default:
+        return appearance as ButtonProps['variant']
+    }
+  }
+
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
@@ -58,7 +78,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   }
 
   return (
-    <Button asChild className={className} size={size} variant={appearance}>
+    <Button asChild className={className} size={size} variant={getButtonVariant(appearance)}>
       <Link className={cn(className)} href={href || url || ''} onClick={(e) => onClick?.(e)} {...newTabProps}>
         {label && label}
         {children && children}

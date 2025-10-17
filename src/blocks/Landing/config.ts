@@ -17,22 +17,37 @@ const columnFields: Field[] = [
     defaultValue: 'oneThird',
     options: [
       {
-        label: 'One Third',
+        label: 'One Fourth (1/4)',
+        value: 'oneFourth',
+      },
+      {
+        label: 'One Third (1/3)',
         value: 'oneThird',
       },
       {
-        label: 'Half',
+        label: 'Half (1/2)',
         value: 'half',
       },
       {
-        label: 'Two Thirds',
+        label: 'Two Thirds (2/3)',
         value: 'twoThirds',
+      },
+      {
+        label: 'Three Fourths (3/4)',
+        value: 'threeFourths',
       },
       {
         label: 'Full',
         value: 'full',
       },
     ],
+  },
+  {
+    name: 'media',
+    type: 'upload',
+    relationTo: 'media',
+    required: false,
+    label: 'Image',
   },
   {
     name: 'badges',

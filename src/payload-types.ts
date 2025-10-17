@@ -184,7 +184,7 @@ export interface Page {
             /**
              * Choose how the link should be rendered.
              */
-            appearance?: ('default' | 'outline') | null;
+            appearance?: ('default' | 'outline' | 'red' | 'blue' | 'green') | null;
           };
           id?: string | null;
         }[]
@@ -511,7 +511,7 @@ export interface ContentBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'outline' | 'red' | 'blue' | 'green') | null;
         };
         id?: string | null;
       }[]
@@ -972,7 +972,8 @@ export interface LandingBlock {
   backgroundStyle?: ('gradient' | 'white' | 'gray') | null;
   columns?:
     | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        size?: ('oneFourth' | 'oneThird' | 'half' | 'twoThirds' | 'threeFourths' | 'full') | null;
+        media?: (number | null) | Media;
         badges?:
           | {
               text: string;
@@ -1014,7 +1015,7 @@ export interface LandingBlock {
                 /**
                  * Choose how the link should be rendered.
                  */
-                appearance?: ('default' | 'outline') | null;
+                appearance?: ('default' | 'outline' | 'red' | 'blue' | 'green') | null;
               };
               id?: string | null;
             }[]
@@ -1578,6 +1579,7 @@ export interface LandingBlockSelect<T extends boolean = true> {
     | T
     | {
         size?: T;
+        media?: T;
         badges?:
           | T
           | {
