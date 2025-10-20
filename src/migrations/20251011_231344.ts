@@ -977,6 +977,13 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_archive" ADD CONSTRAINT "pages_blocks_archive_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  -- Önce geçersiz kayıtları temizle - features_grid_features
+  DELETE FROM "pages_blocks_features_grid_features" 
+  WHERE "_parent_id" IS NULL 
+     OR "_parent_id" NOT IN (
+       SELECT "id" FROM "pages_blocks_features_grid" WHERE "id" IS NOT NULL
+     );
+  
   ALTER TABLE "pages_blocks_features_grid_features" ADD CONSTRAINT "pages_blocks_features_grid_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_features_grid"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_features_grid" ADD CONSTRAINT "pages_blocks_features_grid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_services_grid_services" ADD CONSTRAINT "pages_blocks_services_grid_services_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_services_grid"("id") ON DELETE cascade ON UPDATE no action;
@@ -1002,8 +1009,23 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_features_grid_features" ADD CONSTRAINT "_pages_v_blocks_features_grid_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_features_grid"("id") ON DELETE cascade ON UPDATE no action;
+  -- Önce tüm geçersiz kayıtları temizle
+  DELETE FROM "_pages_v_blocks_features_grid" 
+  WHERE "_parent_id" IS NULL 
+     OR "_parent_id" NOT IN (
+       SELECT "id" FROM "_pages_v" WHERE "id" IS NOT NULL
+     );
+  
+  -- Sonra foreign key kısıtlamasını ekle
   ALTER TABLE "_pages_v_blocks_features_grid" ADD CONSTRAINT "_pages_v_blocks_features_grid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_services_grid_services" ADD CONSTRAINT "_pages_v_blocks_services_grid_services_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_services_grid"("id") ON DELETE cascade ON UPDATE no action;
+  -- Önce geçersiz kayıtları temizle
+  DELETE FROM "_pages_v_blocks_services_grid" 
+  WHERE "_parent_id" NOT IN (
+    SELECT "id" FROM "_pages_v"
+  );
+  
+  -- Sonra foreign key kısıtlamasını ekle
   ALTER TABLE "_pages_v_blocks_services_grid" ADD CONSTRAINT "_pages_v_blocks_services_grid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_bdgs_v" ADD CONSTRAINT "_bdgs_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cols_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_lnks_v" ADD CONSTRAINT "_lnks_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cols_v"("id") ON DELETE cascade ON UPDATE no action;

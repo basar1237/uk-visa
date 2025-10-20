@@ -231,7 +231,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 <Link href="/consultation">Book Free Consultation</Link>
               </Button>
               <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-sm sm:text-base hover:translate-y-[-3px] transition-all duration-200 py-3 sm:py-6">
-                <Link href="/eligibility">
+                <Link href="/eligibility-check">
                   Check Eligibility
                   <ArrowDownRight className="size-4" />
                 </Link>

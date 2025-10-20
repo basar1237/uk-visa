@@ -204,6 +204,7 @@ export interface Page {
     | LongGridsBlock
     | StatsBoxesBlock
     | TestimonialsBlock
+    | KnowledgeBaseBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1131,6 +1132,100 @@ export interface TestimonialsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "KnowledgeBaseBlock".
+ */
+export interface KnowledgeBaseBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
+  /**
+   * Ana başlık (örn: "UK Visa Knowledge Base")
+   */
+  title: string;
+  /**
+   * Açıklama metni
+   */
+  description: string;
+  knowledgeItems?:
+    | {
+        /**
+         * Kart görseli
+         */
+        image: number | Media;
+        /**
+         * Kart başlığı
+         */
+        title: string;
+        /**
+         * Kart linki (opsiyonel)
+         */
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * UK Visa Eligibility Test alanı
+   */
+  eligibilityTest: {
+    /**
+     * Eligibility test başlığı
+     */
+    title: string;
+    /**
+     * Eligibility test açıklaması
+     */
+    description: string;
+    /**
+     * Buton metni
+     */
+    buttonText: string;
+    /**
+     * Test sayfası linki
+     */
+    link: string;
+  };
+  /**
+   * Immigration Solicitor Helpline alanı
+   */
+  solicitorHelpline: {
+    /**
+     * Solicitor helpline başlığı
+     */
+    title: string;
+    /**
+     * Solicitor helpline açıklaması
+     */
+    description: string;
+    /**
+     * Telefon numarası
+     */
+    phoneNumber: string;
+    /**
+     * Buton metni
+     */
+    buttonText: string;
+    /**
+     * İletişim sayfası linki
+     */
+    link: string;
+  };
+  ctaButton: {
+    /**
+     * Buton metni
+     */
+    text: string;
+    /**
+     * Buton linki (opsiyonel)
+     */
+    link?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'knowledgeBase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1427,6 +1522,7 @@ export interface PagesSelect<T extends boolean = true> {
         longGrids?: T | LongGridsBlockSelect<T>;
         statsBoxesBlock?: T | StatsBoxesBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
+        knowledgeBase?: T | KnowledgeBaseBlockSelect<T>;
       };
   meta?:
     | T
@@ -1687,6 +1783,48 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         id?: T;
       };
   autoplay?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "KnowledgeBaseBlock_select".
+ */
+export interface KnowledgeBaseBlockSelect<T extends boolean = true> {
+  isActive?: T;
+  title?: T;
+  description?: T;
+  knowledgeItems?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        link?: T;
+        id?: T;
+      };
+  eligibilityTest?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        link?: T;
+      };
+  solicitorHelpline?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        phoneNumber?: T;
+        buttonText?: T;
+        link?: T;
+      };
+  ctaButton?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+      };
   id?: T;
   blockName?: T;
 }
