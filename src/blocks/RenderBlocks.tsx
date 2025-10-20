@@ -14,6 +14,7 @@ import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
 import { LongGridsBlock } from '@/blocks/LongGrids/Components'
 import { StatsBoxesBlockComponent } from '@/blocks/StatsBoxesBlock/Component'
 import { TestimonialsBlockComponent } from '@/blocks/TestimonialsBlock/Component'
+import { KnowledgeBaseComponent } from '@/blocks/KnowledgeBase/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +23,7 @@ const blockComponents = {
   faqBlock: FAQBlockComponent,
   featuresGrid: FeaturesGridComponent,
   formBlock: FormBlock,
+  knowledgeBase: KnowledgeBaseComponent,
   landingBlock: LandingBlock,
   mediaBlock: MediaBlock,
   longGrids:LongGridsBlock,

@@ -35,6 +35,7 @@ export default async function HomePage() {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
+
       <RenderBlocks blocks={layout} />
     </article>
   )
