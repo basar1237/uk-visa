@@ -401,14 +401,14 @@ export const VisaProcessComponent: React.FC = () => {
                 </span>
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Complete guide to UK visa application process. Follow our interactive steps to understand the entire journey from start to finish.
+                UK visa applications are complex and require expert guidance. Don&apos;t risk rejection - let our qualified immigration solicitors handle your application professionally.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => setCurrentStep(1)}
                   className="px-8 py-4 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg"
                 >
-                  Start Process Guide
+                  View Process Overview
                 </button>
                 <Link
                   href="/eligibility-check"
@@ -466,6 +466,67 @@ export const VisaProcessComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Selected Visa Type Details */}
+      {selectedVisaType && (
+        <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-100">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              {(() => {
+                const selectedVisa = visaTypes.find(v => v.id === selectedVisaType)
+                return selectedVisa ? (
+                  <div className="bg-white rounded-2xl shadow-xl p-8">
+                    <div className="flex items-center mb-6">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                        <selectedVisa.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{selectedVisa.name}</h3>
+                        <p className="text-gray-600">{selectedVisa.description}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Processing Time</h4>
+                        <p className="text-blue-600 font-medium">{selectedVisa.duration}</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Requirements</h4>
+                        <ul className="text-sm text-gray-700 space-y-1">
+                          {selectedVisa.requirements.slice(0, 3).map((req, index) => (
+                            <li key={index} className="flex items-start">
+                              <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                              {req}
+                            </li>
+                          ))}
+                          {selectedVisa.requirements.length > 3 && (
+                            <li className="text-gray-500">+{selectedVisa.requirements.length - 3} more requirements</li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <p className="text-gray-600 mb-4">
+                        Ready to apply for your <strong>{selectedVisa.name}</strong>? 
+                        Let our experts handle the entire process for you.
+                      </p>
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                      >
+                        Get Professional Help
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </div>
+                  </div>
+                ) : null
+              })()}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Process Timeline */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -483,6 +544,15 @@ export const VisaProcessComponent: React.FC = () => {
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+              
+              {/* Progress Line - Blue part showing current progress */}
+              <div 
+                className="absolute left-8 top-0 w-0.5 bg-blue-600 transition-all duration-1000 ease-out"
+                style={{ 
+                  height: `${((currentStep - 1) / (processSteps.length - 1)) * 100}%`,
+                  maxHeight: currentStep === 1 ? '0%' : '100%'
+                }}
+              ></div>
 
               {processSteps.map((step, index) => {
                 const status = getStepStatus(step.id)
@@ -651,66 +721,16 @@ export const VisaProcessComponent: React.FC = () => {
         </div>
       </section>
 
-      {/* Progress Summary */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Your Progress Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">{currentStep}</div>
-                  <div className="text-blue-100">Current Step</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">{processSteps.length}</div>
-                  <div className="text-blue-100">Total Steps</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">
-                    {Math.round((currentStep / processSteps.length) * 100)}%
-                  </div>
-                  <div className="text-blue-100">Complete</div>
-                </div>
-              </div>
-              <div className="w-full bg-white/20 rounded-full h-2 mb-4">
-                <div 
-                  className="bg-white h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${(currentStep / processSteps.length) * 100}%` }}
-                ></div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
-                  disabled={currentStep === 1}
-                  className="px-6 py-3 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2 inline" />
-                  Previous Step
-                </button>
-                <button
-                  onClick={() => setCurrentStep(Math.min(processSteps.length, currentStep + 1))}
-                  disabled={currentStep === processSteps.length}
-                  className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Next Step
-                  <ArrowRight className="w-4 h-4 ml-2 inline" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Help Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Need Help with Your Application?
+              Don&apos;t Risk Your Application - Get Professional Help
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our expert team is here to guide you through every step of the process.
+              UK visa applications have a high rejection rate when done independently. Our qualified immigration solicitors ensure your application is handled correctly from start to finish.
             </p>
           </div>
 
@@ -719,13 +739,13 @@ export const VisaProcessComponent: React.FC = () => {
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Phone className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Expert Consultation</h3>
-              <p className="text-gray-600 mb-6">Get personalized advice from qualified immigration solicitors.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Professional Application Service</h3>
+              <p className="text-gray-600 mb-6">Let our qualified solicitors handle your entire visa application process.</p>
               <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
               >
-                Book Consultation
+                Get Professional Help
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
@@ -734,8 +754,8 @@ export const VisaProcessComponent: React.FC = () => {
               <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Eligibility Check</h3>
-              <p className="text-gray-600 mb-6">Take our free assessment to check your visa eligibility.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Free Eligibility Assessment</h3>
+              <p className="text-gray-600 mb-6">Check your eligibility first, then let us handle your application professionally.</p>
               <Link
                 href="/eligibility-check"
                 className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300"
@@ -749,16 +769,60 @@ export const VisaProcessComponent: React.FC = () => {
               <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <FileText className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Document Review</h3>
-              <p className="text-gray-600 mb-6">Let us review your documents before submission.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Complete Document Preparation</h3>
+              <p className="text-gray-600 mb-6">We prepare all required documents and ensure everything is submission-ready.</p>
               <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-300"
               >
-                Get Review
+                Start Document Prep
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Warning Section */}
+      <section className="py-16 bg-orange-50 border-l-4 border-orange-400">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-orange-900 mb-4">
+              ⚠️ Important Notice
+            </h2>
+            <p className="text-lg text-orange-800 max-w-4xl mx-auto mb-8">
+              <strong>UK visa applications have a 30-40% rejection rate when submitted independently.</strong> 
+              Even small mistakes can lead to rejection, additional fees, and delays. Our qualified immigration solicitors 
+              have a 95%+ success rate and handle every detail professionally.
+            </p>
+            <div className="bg-white rounded-lg p-6 shadow-lg max-w-2xl mx-auto mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Why Choose Professional Help?</h3>
+              <ul className="text-left text-gray-700 space-y-2">
+                <li className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span>95%+ success rate vs 60-70% independent applications</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span>Qualified immigration solicitors with years of experience</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span>Complete document preparation and review</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span>No stress - we handle everything for you</span>
+                </li>
+              </ul>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-8 py-4 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors duration-300 text-lg shadow-lg"
+            >
+              Get Professional Help Now
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </div>
         </div>
       </section>

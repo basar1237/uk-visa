@@ -6,6 +6,18 @@ export const LongGrids: Block ={
      interfaceName:'LongGridsBlock',
      fields :[
           {
+               name:'title',
+               type:'text',
+               label:'Section Title',
+               required:false,
+          },
+          {
+               name:'description',
+               type:'textarea',
+               label:'Section Description',
+               required:false,
+          },
+          {
                name:'gridItems',
                type:'array',
                label:'Grid Items',
