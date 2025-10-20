@@ -1059,6 +1059,8 @@ export interface FAQBlock {
  * via the `definition` "LongGridsBlock".
  */
 export interface LongGridsBlock {
+  title?: string | null;
+  description?: string | null;
   gridItems?:
     | {
         title: string;
@@ -1728,6 +1730,8 @@ export interface FAQBlockSelect<T extends boolean = true> {
  * via the `definition` "LongGridsBlock_select".
  */
 export interface LongGridsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   gridItems?:
     | T
     | {

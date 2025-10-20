@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import type { LongGridsBlock as LongGridsBlockType } from '@/payload-types'
 
-export const LongGridsBlock: React.FC<LongGridsBlockType> = ({ gridItems }) => {
+export const LongGridsBlock: React.FC<LongGridsBlockType> = ({ title, description, gridItems }) => {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set())
 
   if (!gridItems || gridItems.length === 0) return null
@@ -22,6 +22,22 @@ export const LongGridsBlock: React.FC<LongGridsBlockType> = ({ gridItems }) => {
   return (
     <section className="py-6 bg-gray-50">
       <div className="container px-4 sm:px-6 lg:px-20 mx-auto">
+        {/* Section Header */}
+        {(title || description) && (
+          <div className="text-center mb-8 sm:mb-12">
+            {title && (
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                {description}
+              </p>
+            )}
+          </div>
+        )}
+        
         <div className="space-y-4 sm:space-y-8">
           {gridItems.map((item, index) => {
             const isOpen = openItems.has(index)

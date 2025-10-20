@@ -397,7 +397,9 @@ export const EligibilityCheckComponent: React.FC = () => {
   const currentStepQuestions = questions.filter(q => q.step === currentStep)
   const currentQuestion = currentStepQuestions[currentQuestionIndex]
   const totalSteps = 5
-  const progress = ((currentStep - 1) / totalSteps) * 100
+  const totalQuestions = questions.length
+  const currentQuestionNumber = questions.findIndex(q => q.id === currentQuestion?.id) + 1
+  const progress = (currentQuestionNumber / totalQuestions) * 100
 
   const handleAnswerChange = (questionId: number, value: string) => {
     setAnswers(prev => ({
@@ -561,7 +563,7 @@ export const EligibilityCheckComponent: React.FC = () => {
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
-            <p className="text-sm text-gray-600">Step {currentStep} of {totalSteps} - {currentQuestion?.category}</p>
+             <p className="text-sm text-gray-600">Question {currentQuestionNumber} of {totalQuestions} - {currentQuestion?.category}</p>
           </div>
 
           {/* Question Card */}
