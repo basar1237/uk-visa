@@ -594,7 +594,7 @@ export const EnglishTestComponent: React.FC = () => {
             <div className="bg-white rounded-lg p-6 text-center shadow-lg">
               <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-1">Instant Results</h3>
-              <p className="text-sm text-gray-600">Get your score immediately</p>
+              <p className="text-sm text-gray-600">Get your score imediately</p>
             </div>
             <div className="bg-white rounded-lg p-6 text-center shadow-lg">
               <Globe className="w-8 h-8 text-purple-600 mx-auto mb-3" />
