@@ -17,7 +17,7 @@ export async function Header() {
       // Fallback default header
       const defaultHeader: Partial<Header> = {
         navItems: [],
-        phoneNumber: '07858780841',
+        phoneNumber: ' 02037288948',
       }
       return <HeaderClient data={defaultHeader as Header} />
     }
@@ -28,7 +28,7 @@ export async function Header() {
     // Fallback on error
     const defaultHeader: Partial<Header> = {
       navItems: [],
-      phoneNumber: '07858780841',
+      phoneNumber: ' 02037288948',
     }
     return <HeaderClient data={defaultHeader as Header} />
   }

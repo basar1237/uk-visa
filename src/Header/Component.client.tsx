@@ -113,12 +113,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           >
             <div className="flex flex-col space-y-3 mb-4">
               <a 
-                href={`tel:${data?.phoneNumber || '02031782048'}`}
+                href={`tel:${data?.phoneNumber || '02037288948'}`}
                 onClick={closeMobileMenu}
                 className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">{data?.phoneNumber || '0203 178 2048'}</span>
+                <span className="text-sm font-medium">{data?.phoneNumber || '02037288948'}</span>
               </a>
               <Link 
                 href="/consultation"

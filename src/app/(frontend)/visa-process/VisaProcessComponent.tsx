@@ -834,7 +834,7 @@ export const VisaProcessComponent: React.FC = () => {
             <div className="flex flex-col items-center">
               <Phone className="w-8 h-8 text-blue-400 mb-3" />
               <h3 className="text-white font-semibold mb-2">Call Us</h3>
-              <p className="text-gray-400">+44 20 7123 4567</p>
+              <p className="text-gray-400">+02037288948</p>
             </div>
             <div className="flex flex-col items-center">
               <Mail className="w-8 h-8 text-blue-400 mb-3" />

@@ -10542,7 +10542,7 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": false,
-          "default": "'07858780841'"
+          "default": "' 02037288948'"
         },
         "updated_at": {
           "name": "updated_at",

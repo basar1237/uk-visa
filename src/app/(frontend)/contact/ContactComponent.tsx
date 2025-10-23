@@ -98,7 +98,7 @@ export const ContactComponent: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <Phone className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Phone</h3>
-                <p className="text-blue-100">+44 20 7123 4567</p>
+                <p className="text-blue-100">+02037288948</p>
                 <p className="text-blue-200 text-sm">Mon-Fri 9AM-6PM</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -387,7 +387,7 @@ export const ContactComponent: React.FC = () => {
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                       <Phone className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                       <h4 className="font-semibold text-gray-900">Phone</h4>
-                      <p className="text-sm text-gray-600">+44 20 7123 4567</p>
+                      <p className="text-sm text-gray-600">+02037288948</p>
                     </div>
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                       <Mail className="w-6 h-6 text-blue-600 mx-auto mb-2" />
@@ -408,7 +408,7 @@ export const ContactComponent: React.FC = () => {
                 </p>
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-red-600 mr-2" />
-                  <span className="font-semibold text-gray-900">+44 20 7123 4568</span>
+                  <span className="font-semibold text-gray-900">02037288948</span>
                 </div>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-lg">

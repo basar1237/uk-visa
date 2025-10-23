@@ -126,7 +126,7 @@ export const KnowledgeBase: Block = {
           name: 'phoneNumber',
           type: 'text',
           required: true,
-          defaultValue: '+44 20 7123 4567',
+          defaultValue: '+02037288948',
           admin: {
             description: 'Telefon numarası',
           },

@@ -928,7 +928,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   CREATE TABLE "header" (
   	"id" serial PRIMARY KEY NOT NULL,
-  	"phone_number" varchar DEFAULT '07858780841',
+  	"phone_number" varchar DEFAULT ' 02037288948',
   	"updated_at" timestamp(3) with time zone,
   	"created_at" timestamp(3) with time zone
   );

@@ -60,11 +60,11 @@ export function HeroHeader() {
             transition={{ delay: 0.4 }}
           >
             <a 
-              href="tel:02031782048"
+              href="tel:02037288948"
               className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">0203 178 2048</span>
+              <span className="text-sm font-medium">02037288948</span>
             </a>
             <Link 
               href="/consultation"
@@ -111,11 +111,11 @@ export function HeroHeader() {
               </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
                 <a 
-                  href="tel:02031782048"
+                  href="tel:02037288948"
                   className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  <span className="text-sm font-medium">0203 178 2048</span>
+                  <span className="text-sm font-medium">02037288948</span>
                 </a>
                 <Link 
                   href="/consultation"

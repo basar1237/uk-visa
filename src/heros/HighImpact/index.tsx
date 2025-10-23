@@ -36,7 +36,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           )}
           <div className="absolute inset-0 bg-black/30" />
         </div>
-        <div className="mx-auto grid max-w-7xl items-start gap-6 mt-16 pt-16 pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[600px]">
+        <div className="mx-auto grid max-w-7xl items-start gap-6 mt-16 pt-16 pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[500px]">
           <AnimatedGroup
             preset="blur-slide"
             className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
@@ -72,7 +72,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 </Link>
               </Button>
               <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base py-3 sm:py-6">
-                <Link href="tel:07858780841">☎ Urgent Help: 07858 780841</Link>
+                <Link href="tel: 02037288948">☎ Urgent Help: 02037288948</Link>
               </Button>
             </AnimatedGroup>
           </AnimatedGroup>
