@@ -36,24 +36,6 @@ export default async function HomePage() {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-
-      {/* Eligibility Check Form */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                UK Visa Eligibility Check
-              </h2>
-              <p className="text-lg text-gray-600">
-                Find out if you&apos;re eligible for a UK visa in just a few minutes
-              </p>
-            </div>
-            <EligibilityCheckComponent />
-          </div>
-        </div>
-      </section>
-
       <RenderBlocks blocks={layout} />
     </article>
   )
