@@ -45,7 +45,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <motion.header 
-      className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-gray-200/50 py-2 sm:py-3"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/40 backdrop-blur-xl py-2 sm:py-3"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -80,14 +80,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
-            <a 
-              href={`tel:${data?.phoneNumber || '02031782048'}`}
-              className="flex items-center space-x-2 bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-blue-800 transition-colors min-h-[44px]"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-xs sm:text-sm font-medium hidden sm:inline">{data?.phoneNumber || '0203 178 2048'}</span>
-              <span className="text-xs sm:text-sm font-medium sm:hidden">Call</span>
-            </a>
             <Link 
               href="/consultation"
               className="flex items-center space-x-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-green-700 transition-colors min-h-[44px]"

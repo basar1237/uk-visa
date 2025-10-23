@@ -12,6 +12,9 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { ContactSubmissions } from './collections/ContactSubmissions'
+import { EligibilitySubmissions } from './collections/EligibilitySubmissions'
+import { EnglishTestSubmissions } from './collections/EnglishTestSubmissions'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -71,7 +74,7 @@ export default buildConfig({
     },
     push: true, // Schema değişikliklerini otomatik push et (dev mode)
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, ContactSubmissions, EligibilitySubmissions, EnglishTestSubmissions],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

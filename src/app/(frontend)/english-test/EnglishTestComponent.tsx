@@ -349,7 +349,7 @@ export const EnglishTestComponent: React.FC = () => {
     setSelectedAnswer(answerIndex)
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (selectedAnswer !== null) {
       const newAnswers = [...answers, selectedAnswer]
       setAnswers(newAnswers)
@@ -359,6 +359,10 @@ export const EnglishTestComponent: React.FC = () => {
         setSelectedAnswer(null)
         setShowExplanation(false)
       } else {
+        // Test completed - save to database
+        const score = calculateScore()
+        const result = getTestResult(score, questions.length)
+        await saveEnglishTestSubmission(score, result)
         setShowResult(true)
       }
     }
@@ -366,6 +370,49 @@ export const EnglishTestComponent: React.FC = () => {
 
   const handleShowExplanation = () => {
     setShowExplanation(true)
+  }
+
+  const saveEnglishTestSubmission = async (score: number, result: TestResult) => {
+    try {
+      // Test verilerini collection'a gönder
+      const submissionData = {
+        fullName: 'Test User', // Bu kısmı daha sonra form ile alabiliriz
+        email: 'test@example.com', // Bu kısmı daha sonra form ile alabiliriz
+        phone: '',
+        score,
+        totalQuestions: questions.length,
+        percentage: Math.round((score / questions.length) * 100),
+        level: result.level,
+        description: result.description,
+        visaEligibility: result.visaEligibility,
+        recommendations: result.recommendations.map(rec => ({ recommendation: rec })),
+        correctAnswers: score,
+        wrongAnswers: questions.length - score,
+        testDuration: 5
+      }
+
+      console.log('Sending English test submission data:', submissionData)
+
+      const response = await fetch('/api/english-test-submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        console.log('English test submission saved successfully:', data)
+      } else {
+        const errorData = await response.json()
+        console.error('Failed to save English test submission:', errorData)
+        alert('Test sonucu kaydedilirken hata oluştu. Lütfen tekrar deneyin.')
+      }
+    } catch (error) {
+      console.error('English test submission error:', error)
+      alert('Test sonucu kaydedilirken hata oluştu. Lütfen tekrar deneyin.')
+    }
   }
 
   const calculateScore = () => {

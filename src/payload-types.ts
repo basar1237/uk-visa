@@ -72,6 +72,9 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    'contact-submissions': ContactSubmission;
+    'eligibility-submissions': EligibilitySubmission;
+    'english-test-submissions': EnglishTestSubmission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +91,9 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
+    'eligibility-submissions': EligibilitySubmissionsSelect<false> | EligibilitySubmissionsSelect<true>;
+    'english-test-submissions': EnglishTestSubmissionsSelect<false> | EnglishTestSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -1228,6 +1234,102 @@ export interface KnowledgeBaseBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string | null;
+  visaType: 'visitor' | 'student' | 'work' | 'spouse' | 'parent' | 'other';
+  subject: string;
+  message: string;
+  preferredContact: 'email' | 'phone' | 'both';
+  urgency: 'normal' | 'urgent' | 'very-urgent';
+  status?: ('new' | 'in-progress' | 'resolved' | 'closed') | null;
+  adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eligibility-submissions".
+ */
+export interface EligibilitySubmission {
+  id: number;
+  fullName: string;
+  dateOfBirth: string;
+  nationality: string;
+  gender: string;
+  email: string;
+  phone: string;
+  passportNumber: string;
+  passportExpiry: string;
+  passportIssuedBy: string;
+  visaType: string;
+  applicationFor: string;
+  visitPurpose: string;
+  previousUKVisa: string;
+  visaRefusal: string;
+  criminalConvictions: string;
+  sufficientFunds: string;
+  familyInUK: string;
+  familyRelationship?: string | null;
+  ukSponsor: string;
+  additionalInfo?: string | null;
+  eligible: boolean;
+  score: number;
+  level: string;
+  description: string;
+  recommendations?:
+    | {
+        recommendation: string;
+        id?: string | null;
+      }[]
+    | null;
+  nextSteps?:
+    | {
+        step: string;
+        id?: string | null;
+      }[]
+    | null;
+  status?: ('new' | 'in-progress' | 'contacted' | 'closed') | null;
+  adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "english-test-submissions".
+ */
+export interface EnglishTestSubmission {
+  id: number;
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  level: string;
+  description?: string | null;
+  visaEligibility?: string | null;
+  recommendations?:
+    | {
+        recommendation: string;
+        id?: string | null;
+      }[]
+    | null;
+  correctAnswers: number;
+  wrongAnswers: number;
+  testDuration?: number | null;
+  status: 'new' | 'reviewed' | 'contacted';
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1418,6 +1520,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
+      } | null)
+    | ({
+        relationTo: 'eligibility-submissions';
+        value: number | EligibilitySubmission;
+      } | null)
+    | ({
+        relationTo: 'english-test-submissions';
+        value: number | EnglishTestSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1998,6 +2112,99 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  visaType?: T;
+  subject?: T;
+  message?: T;
+  preferredContact?: T;
+  urgency?: T;
+  status?: T;
+  adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eligibility-submissions_select".
+ */
+export interface EligibilitySubmissionsSelect<T extends boolean = true> {
+  fullName?: T;
+  dateOfBirth?: T;
+  nationality?: T;
+  gender?: T;
+  email?: T;
+  phone?: T;
+  passportNumber?: T;
+  passportExpiry?: T;
+  passportIssuedBy?: T;
+  visaType?: T;
+  applicationFor?: T;
+  visitPurpose?: T;
+  previousUKVisa?: T;
+  visaRefusal?: T;
+  criminalConvictions?: T;
+  sufficientFunds?: T;
+  familyInUK?: T;
+  familyRelationship?: T;
+  ukSponsor?: T;
+  additionalInfo?: T;
+  eligible?: T;
+  score?: T;
+  level?: T;
+  description?: T;
+  recommendations?:
+    | T
+    | {
+        recommendation?: T;
+        id?: T;
+      };
+  nextSteps?:
+    | T
+    | {
+        step?: T;
+        id?: T;
+      };
+  status?: T;
+  adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "english-test-submissions_select".
+ */
+export interface EnglishTestSubmissionsSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phone?: T;
+  score?: T;
+  totalQuestions?: T;
+  percentage?: T;
+  level?: T;
+  description?: T;
+  visaEligibility?: T;
+  recommendations?:
+    | T
+    | {
+        recommendation?: T;
+        id?: T;
+      };
+  correctAnswers?: T;
+  wrongAnswers?: T;
+  testDuration?: T;
+  status?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

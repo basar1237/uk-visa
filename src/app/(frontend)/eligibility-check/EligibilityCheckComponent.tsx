@@ -6,7 +6,7 @@ import { CheckCircle, Clock, Award, FileText, Globe, Users, TrendingUp, Star, Ar
 interface Question {
   id: number
   question: string
-  type: 'text' | 'email' | 'date' | 'select' | 'radio' | 'textarea'
+  type: 'text' | 'email' | 'date' | 'select' | 'radio' | 'textarea' | 'tel' | 'passport' | 'passport-date'
   options?: string[]
   required: boolean
   step: number
@@ -172,7 +172,7 @@ const questions: Question[] = [
   {
     id: 6,
     question: "What is your contact phone number?",
-    type: 'text',
+    type: 'tel',
     required: true,
     step: 1,
     category: "Personal Information"
@@ -182,7 +182,7 @@ const questions: Question[] = [
   {
     id: 7,
     question: "What is your passport number?",
-    type: 'text',
+    type: 'passport',
     required: true,
     step: 2,
     category: "Passport Information"
@@ -190,7 +190,7 @@ const questions: Question[] = [
   {
     id: 8,
     question: "When does your passport expire?",
-    type: 'date',
+    type: 'passport-date',
     required: true,
     step: 2,
     category: "Passport Information"
@@ -413,7 +413,7 @@ export const EligibilityCheckComponent: React.FC = () => {
     return emailRegex.test(email)
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     // Email validation for email type questions
     if (currentQuestion?.type === 'email' && answers[currentQuestion.id]) {
       if (!isValidEmail(answers[currentQuestion.id])) {
@@ -428,7 +428,68 @@ export const EligibilityCheckComponent: React.FC = () => {
       setCurrentStep(currentStep + 1)
       setCurrentQuestionIndex(0)
     } else {
+      // Test completed - save to database
+      const result = getEligibilityResult(answers)
+      await saveEligibilitySubmission(answers, result)
       setShowResult(true)
+    }
+  }
+
+  const saveEligibilitySubmission = async (answers: Record<number, string>, result: EligibilityResult) => {
+    try {
+      // Form verilerini collection'a gönder
+      const submissionData = {
+        fullName: answers[1],
+        dateOfBirth: answers[2],
+        nationality: answers[3],
+        gender: answers[4],
+        email: answers[5],
+        phone: answers[6],
+        passportNumber: answers[7],
+        passportExpiry: answers[8],
+        passportIssuedBy: answers[9],
+        visaType: answers[10],
+        applicationFor: answers[11],
+        visitPurpose: answers[12],
+        previousUKVisa: answers[13],
+        visaRefusal: answers[14],
+        criminalConvictions: answers[15],
+        sufficientFunds: answers[16],
+        familyInUK: answers[17],
+        familyRelationship: answers[18],
+        ukSponsor: answers[19],
+        additionalInfo: answers[20],
+        eligible: result.eligible,
+        score: result.score,
+        level: result.level,
+        description: result.description,
+        recommendations: result.recommendations.map(rec => ({ recommendation: rec })),
+        nextSteps: result.nextSteps.map(step => ({ step }))
+      }
+
+      console.log('Sending eligibility submission data:', submissionData)
+
+      const response = await fetch('/api/eligibility-submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        console.log('Eligibility submission saved successfully:', data)
+      } else {
+        const errorData = await response.json()
+        console.error('Failed to save eligibility submission:', errorData)
+        console.error('Response status:', response.status)
+        console.error('Response headers:', response.headers)
+        alert(`Form kaydedilirken hata oluştu: ${errorData.details || errorData.error || 'Bilinmeyen hata'}`)
+      }
+    } catch (error) {
+      console.error('Error saving eligibility submission:', error)
+      alert('Form kaydedilirken hata oluştu. Lütfen tekrar deneyin.')
     }
   }
 
@@ -594,7 +655,42 @@ export const EligibilityCheckComponent: React.FC = () => {
                   onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
                   className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
                   placeholder="Enter your email address..."
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                />
+              )}
+
+              {currentQuestion?.type === 'tel' && (
+                <input
+                  type="tel"
+                  value={answers[currentQuestion.id] || ''}
+                  onChange={(e) => {
+                    let value = e.target.value.replace(/\D/g, '') // Sadece rakamları al
+                    if (value.length > 0 && !value.startsWith('0')) {
+                      value = '0' + value // Başında 0 yoksa ekle
+                    }
+                    if (value.length > 11) {
+                      value = value.substring(0, 11) // Maksimum 11 karakter
+                    }
+                    // Format: 0 5XX XXX XX XX
+                    if (value.length > 1) {
+                      value = value.replace(/(\d)(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5')
+                    }
+                    handleAnswerChange(currentQuestion.id, value)
+                  }}
+                  className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                  placeholder="Enter your phone number (e.g., 0 546 531 49 10)"
+                  maxLength={15}
+                />
+              )}
+
+              {currentQuestion?.type === 'passport' && (
+                <input
+                  type="text"
+                  value={answers[currentQuestion.id] || ''}
+                  onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
+                  className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                  placeholder="Enter your passport number (e.g., A1234567)"
+                  pattern="[A-Za-z0-9]+"
+                  style={{ textTransform: 'uppercase' }}
                 />
               )}
 
@@ -604,6 +700,19 @@ export const EligibilityCheckComponent: React.FC = () => {
                   value={answers[currentQuestion.id] || ''}
                   onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
                   className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                  min={new Date().toISOString().split('T')[0]}
+                  max="2050-12-31"
+                />
+              )}
+
+              {currentQuestion?.type === 'passport-date' && (
+                <input
+                  type="date"
+                  value={answers[currentQuestion.id] || ''}
+                  onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
+                  className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                  min="2030-01-01"
+                  max="2050-12-31"
                 />
               )}
 
@@ -693,3 +802,5 @@ export const EligibilityCheckComponent: React.FC = () => {
     </div>
   )
 }
+
+export default EligibilityCheckComponent

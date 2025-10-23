@@ -63,7 +63,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
               className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:items-start lg:justify-start"
             >
               <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base py-3 sm:py-6">
-                <Link href="/consultation">Book Free Consultation</Link>
+                <Link href="/contact">Book Free Consultation</Link>
               </Button>
               <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-sm sm:text-base hover:translate-y-[-3px] transition-all duration-200 py-3 sm:py-6">
                 <Link href="/eligibility-check">
@@ -72,7 +72,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 </Link>
               </Button>
               <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base py-3 sm:py-6">
-                <Link href="/consultation">☎ Urgent Help: 07858 780841</Link>
+                <Link href="tel:07858780841">☎ Urgent Help: 07858 780841</Link>
               </Button>
             </AnimatedGroup>
           </AnimatedGroup>
