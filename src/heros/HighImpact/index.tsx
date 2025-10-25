@@ -31,7 +31,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           )}
           <div className="absolute inset-0 bg-black/30" />
         </div>
-        <div className="mx-auto grid max-w-7xl items-start gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 pt-8 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
+        <div className="mx-auto grid max-w-7xl items-start gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
           <AnimatedGroup
             preset="blur-slide"
             className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
