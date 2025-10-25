@@ -344,9 +344,17 @@ export const EnglishTestComponent: React.FC = () => {
   const [showResult, setShowResult] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [userInfo, setUserInfo] = useState({
+    fullName: '',
+    email: '',
+    phone: ''
+  })
+  const [showUserForm, setShowUserForm] = useState(true)
 
   const handleAnswerSelect = (answerIndex: number) => {
     setSelectedAnswer(answerIndex)
+    // Cevap seçildikten sonra otomatik olarak açıklamayı göster
+    setShowExplanation(true)
   }
 
   const handleNext = async () => {
@@ -372,13 +380,44 @@ export const EnglishTestComponent: React.FC = () => {
     setShowExplanation(true)
   }
 
+  const handleUserInfoSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (userInfo.fullName && userInfo.email) {
+      setShowUserForm(false)
+    } else {
+      alert('Lütfen ad-soyad ve email alanlarını doldurun.')
+    }
+  }
+
+  const handleUserInfoChange = (field: string, value: string) => {
+    setUserInfo(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
+
   const saveEnglishTestSubmission = async (score: number, result: TestResult) => {
     try {
+      // Her sorunun detaylı bilgilerini hazırla
+      const questionDetails = questions.map((question, index) => {
+        const selectedAnswer = answers[index]
+        return {
+          questionId: question.id,
+          question: question.question,
+          options: question.options.map(option => ({ option })),
+          correctAnswer: question.correctAnswer,
+          selectedAnswer: selectedAnswer,
+          isCorrect: selectedAnswer === question.correctAnswer,
+          explanation: question.explanation,
+          category: question.category
+        }
+      })
+
       // Test verilerini collection'a gönder
       const submissionData = {
-        fullName: 'Test User', // Bu kısmı daha sonra form ile alabiliriz
-        email: 'test@example.com', // Bu kısmı daha sonra form ile alabiliriz
-        phone: '',
+        fullName: userInfo.fullName,
+        email: userInfo.email,
+        phone: userInfo.phone,
         score,
         totalQuestions: questions.length,
         percentage: Math.round((score / questions.length) * 100),
@@ -388,7 +427,8 @@ export const EnglishTestComponent: React.FC = () => {
         recommendations: result.recommendations.map(rec => ({ recommendation: rec })),
         correctAnswers: score,
         wrongAnswers: questions.length - score,
-        testDuration: 5
+        testDuration: 5,
+        questionDetails: questionDetails
       }
 
       console.log('Sending English test submission data:', submissionData)
@@ -417,7 +457,11 @@ export const EnglishTestComponent: React.FC = () => {
 
   const calculateScore = () => {
     return answers.reduce((score, answer, index) => {
-      return score + (answer === questions[index].correctAnswer ? 1 : 0)
+      // questions dizisinin sınırları içinde olduğundan emin ol
+      if (index < questions.length) {
+        return score + (answer === questions[index].correctAnswer ? 1 : 0)
+      }
+      return score
     }, 0)
   }
 
@@ -440,6 +484,12 @@ export const EnglishTestComponent: React.FC = () => {
     setShowResult(false)
     setShowExplanation(false)
     setSelectedAnswer(null)
+    setShowUserForm(true)
+    setUserInfo({
+      fullName: '',
+      email: '',
+      phone: ''
+    })
   }
 
   if (showResult) {
@@ -552,6 +602,83 @@ export const EnglishTestComponent: React.FC = () => {
     )
   }
 
+  // Kullanıcı bilgi formunu göster
+  if (showUserForm) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
+                <BookOpen className="w-10 h-10 text-blue-600" />
+              </div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">English Language Test</h1>
+              <p className="text-xl text-gray-600 mb-6">Test your English proficiency level with our comprehensive assessment</p>
+            </div>
+
+            {/* User Info Form */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Test Bilgileriniz</h2>
+              <form onSubmit={handleUserInfoSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                    Ad Soyad *
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    value={userInfo.fullName}
+                    onChange={(e) => handleUserInfoChange('fullName', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Adınızı ve soyadınızı girin"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Adresi *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={userInfo.email}
+                    onChange={(e) => handleUserInfoChange('email', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Email adresinizi girin"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Telefon Numarası
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={userInfo.phone}
+                    onChange={(e) => handleUserInfoChange('phone', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Telefon numaranızı girin (opsiyonel)"
+                  />
+                </div>
+                
+                <button
+                  type="submit"
+                  className="w-full px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Teste Başla
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const question = questions[currentQuestion]
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
@@ -588,42 +715,86 @@ export const EnglishTestComponent: React.FC = () => {
 
             {/* Answer Options */}
             <div className="space-y-4 mb-8">
-              {question.options.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerSelect(index)}
-                  className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
-                    selectedAnswer === index
-                      ? 'border-blue-500 bg-blue-50 text-blue-900'
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <span className="font-semibold mr-3">{String.fromCharCode(65 + index)}.</span>
-                  {option}
-                </button>
-              ))}
+              {question.options.map((option, index) => {
+                const isCorrectAnswer = index === question.correctAnswer
+                const isSelected = selectedAnswer === index
+                const isAnswered = selectedAnswer !== null
+                
+                let buttonClass = 'w-full p-4 text-left rounded-lg border-2 transition-all '
+                
+                if (isAnswered) {
+                  // Cevap verildikten sonra doğru cevabı yeşil çerçeveyle göster
+                  if (isCorrectAnswer) {
+                    buttonClass += 'border-green-500 bg-green-50 text-green-900'
+                  } else if (isSelected && !isCorrectAnswer) {
+                    // Seçilen yanlış cevabı kırmızı çerçeveyle göster
+                    buttonClass += 'border-red-500 bg-red-50 text-red-900'
+                  } else {
+                    // Diğer seçenekleri gri göster
+                    buttonClass += 'border-gray-200 bg-gray-50 text-gray-500'
+                  }
+                } else {
+                  // Henüz cevap verilmediğinde normal durum
+                  buttonClass += isSelected
+                    ? 'border-blue-500 bg-blue-50 text-blue-900'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }
+                
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerSelect(index)}
+                    disabled={isAnswered}
+                    className={buttonClass}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <span className="font-semibold mr-3">{String.fromCharCode(65 + index)}.</span>
+                        {option}
+                      </div>
+                      {isAnswered && isCorrectAnswer && (
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      )}
+                      {isAnswered && isSelected && !isCorrectAnswer && (
+                        <span className="w-5 h-5 text-red-600 text-xl">✗</span>
+                      )}
+                    </div>
+                  </button>
+                )
+              })}
             </div>
 
             {/* Explanation */}
-            {showExplanation && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
-                <h3 className="font-semibold text-yellow-800 mb-2">Explanation:</h3>
-                <p className="text-yellow-700">{question.explanation}</p>
+            {showExplanation && selectedAnswer !== null && (
+              <div className={`border rounded-lg p-6 mb-6 ${
+                selectedAnswer === question.correctAnswer 
+                  ? 'bg-green-50 border-green-200' 
+                  : 'bg-red-50 border-red-200'
+              }`}>
+                <div className="flex items-center mb-3">
+                  {selectedAnswer === question.correctAnswer ? (
+                    <>
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+                      <h3 className="font-semibold text-green-800">Correct Answer!</h3>
+                    </>
+                  ) : (
+                    <>
+                      <span className="w-5 h-5 text-red-600 text-xl mr-2">✗</span>
+                      <h3 className="font-semibold text-red-800">Incorrect Answer</h3>
+                    </>
+                  )}
+                </div>
+                <p className={selectedAnswer === question.correctAnswer ? 'text-green-700' : 'text-red-700'}>
+                  {question.explanation}
+                </p>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-between">
-              <button
-                onClick={handleShowExplanation}
-                className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors"
-              >
-                Show Explanation
-              </button>
-              
+            <div className="flex justify-end">
               <button
                 onClick={handleNext}
-                disabled={selectedAnswer === null}
+                disabled={selectedAnswer === null || !showExplanation}
                 className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 {currentQuestion === questions.length - 1 ? 'Finish Test' : 'Next Question'}

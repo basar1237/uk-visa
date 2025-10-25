@@ -19,6 +19,7 @@ import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { default as default_6c5bf594d2c35711724743e400b71709 } from '@/components/ContactSubmissionExportField'
 import { default as default_1655ac9683233eb9bb7c620906651bfb } from '@/components/EligibilitySubmissionExportField'
+import { default as default_d296aa95a39284ba29280e3820473534 } from '@/components/EnglishTestSubmissionExportField'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
@@ -49,6 +50,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/components/ContactSubmissionExportField#default": default_6c5bf594d2c35711724743e400b71709,
   "@/components/EligibilitySubmissionExportField#default": default_1655ac9683233eb9bb7c620906651bfb,
+  "@/components/EnglishTestSubmissionExportField#default": default_d296aa95a39284ba29280e3820473534,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,

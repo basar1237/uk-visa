@@ -10,10 +10,14 @@ export function HeroHeader() {
 
   return (
     <motion.header 
-      className="fixed top-0 left-0 right-0 z-50 bg-white/90 my-2 backdrop-blur-md border-b border-gray-200/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 my-2 backdrop-blur-md border-b border-gray-200/50 motion-safe"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ 
+        duration: 0.8, 
+        ease: [0.25, 0.46, 0.45, 0.94],
+        type: "tween"
+      }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -21,7 +25,11 @@ export function HeroHeader() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ 
+              delay: 0.3, 
+              duration: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           >
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -36,7 +44,11 @@ export function HeroHeader() {
             className="hidden md:flex items-center space-x-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ 
+              delay: 0.4, 
+              duration: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           >
             <Link href="/services" className="text-gray-700 hover:text-blue-600 transition-colors">
               Services
@@ -57,7 +69,11 @@ export function HeroHeader() {
             className="hidden md:flex items-center space-x-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ 
+              delay: 0.5, 
+              duration: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           >
             <a 
               href="tel:02037288948"
@@ -81,7 +97,11 @@ export function HeroHeader() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            transition={{ 
+              delay: 0.4, 
+              duration: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -94,7 +114,10 @@ export function HeroHeader() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ 
+              duration: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           >
             <nav className="flex flex-col space-y-4">
               <Link href="/services" className="text-gray-700 hover:text-blue-600 transition-colors">

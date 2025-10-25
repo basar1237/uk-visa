@@ -22,8 +22,113 @@ interface EligibilityResult {
   nextSteps: string[]
 }
 
+// Visa-specific questions
+const visaSpecificQuestions: Record<string, Question[]> = {
+  'Visitor Visa': [
+    { id: 101, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 102, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 103, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 104, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 105, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 106, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 107, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 108, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 109, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 110, question: "What is the main purpose of your visit?", type: 'select', options: ['Tourism', 'Business', 'Family visit', 'Medical treatment', 'Other'], required: true, step: 3, category: "Visit Purpose" },
+    { id: 111, question: "How long do you plan to stay in the UK?", type: 'select', options: ['Less than 6 months', '6-12 months', '1-2 years', 'More than 2 years'], required: true, step: 3, category: "Visit Purpose" },
+    { id: 112, question: "Do you have accommodation arranged in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visit Purpose" },
+    { id: 113, question: "Do you have sufficient funds for your stay?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visit Purpose" },
+    { id: 114, question: "Have you visited the UK before?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visit Purpose" },
+    { id: 115, question: "Do you have any family or friends in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visit Purpose" }
+  ],
+  'Student Visa': [
+    { id: 201, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 202, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 203, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 204, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 205, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 206, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 207, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 208, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 209, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 210, question: "Which university will you attend?", type: 'text', required: true, step: 3, category: "Study Information" },
+    { id: 211, question: "What course will you study?", type: 'text', required: true, step: 3, category: "Study Information" },
+    { id: 212, question: "What is your English proficiency level?", type: 'select', options: ['IELTS 6.0', 'IELTS 6.5', 'IELTS 7.0', 'IELTS 7.5', 'IELTS 8.0', 'TOEFL 80', 'TOEFL 90', 'TOEFL 100', 'TOEFL 110', 'Other'], required: true, step: 3, category: "Study Information" },
+    { id: 213, question: "Do you have a Confirmation of Acceptance for Studies (CAS)?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Study Information" },
+    { id: 214, question: "How will you fund your studies?", type: 'select', options: ['Personal savings', 'Family support', 'Scholarship', 'Student loan', 'Other'], required: true, step: 3, category: "Study Information" },
+    { id: 215, question: "Do you have any dependents joining you?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Study Information" }
+  ],
+  'Skilled Worker Visa': [
+    { id: 301, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 302, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 303, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 304, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 305, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 306, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 307, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 308, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 309, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 310, question: "What is your job title?", type: 'text', required: true, step: 3, category: "Work Information" },
+    { id: 311, question: "What is your annual salary?", type: 'select', options: ['£20,000 - £30,000', '£30,000 - £40,000', '£40,000 - £50,000', '£50,000 - £60,000', '£60,000 - £70,000', '£70,000 - £80,000', '£80,000+'], required: true, step: 3, category: "Work Information" },
+    { id: 312, question: "Do you have a Certificate of Sponsorship (COS)?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Work Information" },
+    { id: 313, question: "What is your English proficiency level?", type: 'select', options: ['IELTS 6.0', 'IELTS 6.5', 'IELTS 7.0', 'IELTS 7.5', 'IELTS 8.0', 'TOEFL 80', 'TOEFL 90', 'TOEFL 100', 'TOEFL 110', 'Other'], required: true, step: 3, category: "Work Information" },
+    { id: 314, question: "Do you have any dependents joining you?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Work Information" },
+    { id: 315, question: "Have you worked in the UK before?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Work Information" }
+  ],
+  'Spouse Visa': [
+    { id: 401, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 402, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 403, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 404, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 405, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 406, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 407, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 408, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 409, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 410, question: "What is your spouse's name?", type: 'text', required: true, step: 3, category: "Spouse Information" },
+    { id: 411, question: "What is your spouse's nationality?", type: 'select', options: ['British', 'EU Citizen', 'Other'], required: true, step: 3, category: "Spouse Information" },
+    { id: 412, question: "How long have you been married?", type: 'select', options: ['Less than 1 year', '1-2 years', '2-5 years', '5-10 years', 'More than 10 years'], required: true, step: 3, category: "Spouse Information" },
+    { id: 413, question: "Do you have children together?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Spouse Information" },
+    { id: 414, question: "What is your spouse's annual income?", type: 'select', options: ['£18,600 - £25,000', '£25,000 - £35,000', '£35,000 - £50,000', '£50,000+'], required: true, step: 3, category: "Spouse Information" },
+    { id: 415, question: "Do you have evidence of your relationship?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Spouse Information" }
+  ],
+  'Parent Visa': [
+    { id: 501, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 502, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 503, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 504, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 505, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 506, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 507, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 508, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 509, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 510, question: "What is your child's name?", type: 'text', required: true, step: 3, category: "Child Information" },
+    { id: 511, question: "What is your child's age?", type: 'select', options: ['Under 18', '18-21', '21+'], required: true, step: 3, category: "Child Information" },
+    { id: 512, question: "What is your child's nationality?", type: 'select', options: ['British', 'EU Citizen', 'Other'], required: true, step: 3, category: "Child Information" },
+    { id: 513, question: "Does your child live in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Child Information" },
+    { id: 514, question: "What is your child's annual income?", type: 'select', options: ['£18,600 - £25,000', '£25,000 - £35,000', '£35,000 - £50,000', '£50,000+'], required: true, step: 3, category: "Child Information" },
+    { id: 515, question: "Do you have evidence of your relationship?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Child Information" }
+  ],
+  'Other': [
+    { id: 601, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 602, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 603, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 604, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 605, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 606, question: "What is your contact phone number?", type: 'tel', required: true, step: 1, category: "Personal Information" },
+    { id: 607, question: "What is your passport number?", type: 'passport', required: true, step: 2, category: "Passport Information" },
+    { id: 608, question: "When does your passport expire?", type: 'passport-date', required: true, step: 2, category: "Passport Information" },
+    { id: 609, question: "Where was your passport issued?", type: 'text', required: true, step: 2, category: "Passport Information" },
+    { id: 610, question: "What type of visa are you applying for?", type: 'text', required: true, step: 3, category: "Visa Information" },
+    { id: 611, question: "What is the purpose of your visit?", type: 'text', required: true, step: 3, category: "Visa Information" },
+    { id: 612, question: "How long do you plan to stay?", type: 'select', options: ['Less than 6 months', '6-12 months', '1-2 years', 'More than 2 years'], required: true, step: 3, category: "Visa Information" },
+    { id: 613, question: "Do you have a sponsor in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visa Information" },
+    { id: 614, question: "What is your English proficiency level?", type: 'select', options: ['IELTS 6.0', 'IELTS 6.5', 'IELTS 7.0', 'IELTS 7.5', 'IELTS 8.0', 'TOEFL 80', 'TOEFL 90', 'TOEFL 100', 'TOEFL 110', 'Other'], required: true, step: 3, category: "Visa Information" },
+    { id: 615, question: "Do you have any dependents joining you?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Visa Information" }
+  ]
+}
+
 const questions: Question[] = [
-  // Step 1: Personal Information
   {
     id: 1,
     question: "What is your full name?",
@@ -393,12 +498,16 @@ export const EligibilityCheckComponent: React.FC = () => {
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showResult, setShowResult] = useState(false)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [selectedVisaType, setSelectedVisaType] = useState<string>('')
+  const [showVisaTypeSelection, setShowVisaTypeSelection] = useState(true)
 
-  const currentStepQuestions = questions.filter(q => q.step === currentStep)
+  // Get questions based on selected visa type
+  const currentQuestions = selectedVisaType ? visaSpecificQuestions[selectedVisaType] || [] : []
+  const currentStepQuestions = currentQuestions.filter(q => q.step === currentStep)
   const currentQuestion = currentStepQuestions[currentQuestionIndex]
-  const totalSteps = 5
-  const totalQuestions = questions.length
-  const currentQuestionNumber = questions.findIndex(q => q.id === currentQuestion?.id) + 1
+  const totalSteps = 3 // All visa types have 3 steps
+  const totalQuestions = currentQuestions.length
+  const currentQuestionNumber = currentQuestions.findIndex(q => q.id === currentQuestion?.id) + 1
   const progress = (currentQuestionNumber / totalQuestions) * 100
 
   const handleAnswerChange = (questionId: number, value: string) => {
@@ -437,28 +546,31 @@ export const EligibilityCheckComponent: React.FC = () => {
 
   const saveEligibilitySubmission = async (answers: Record<number, string>, result: EligibilityResult) => {
     try {
+      // Get the first question ID for the selected visa type
+      const firstQuestionId = currentQuestions[0]?.id || 1
+      
       // Form verilerini collection'a gönder
       const submissionData = {
-        fullName: answers[1],
-        dateOfBirth: answers[2],
-        nationality: answers[3],
-        gender: answers[4],
-        email: answers[5],
-        phone: answers[6],
-        passportNumber: answers[7],
-        passportExpiry: answers[8],
-        passportIssuedBy: answers[9],
-        visaType: answers[10],
-        applicationFor: answers[11],
-        visitPurpose: answers[12],
-        previousUKVisa: answers[13],
-        visaRefusal: answers[14],
-        criminalConvictions: answers[15],
-        sufficientFunds: answers[16],
-        familyInUK: answers[17],
-        familyRelationship: answers[18],
-        ukSponsor: answers[19],
-        additionalInfo: answers[20],
+        fullName: answers[firstQuestionId] || '',
+        dateOfBirth: answers[firstQuestionId + 1] || '',
+        nationality: answers[firstQuestionId + 2] || '',
+        gender: answers[firstQuestionId + 3] || '',
+        email: answers[firstQuestionId + 4] || '',
+        phone: answers[firstQuestionId + 5] || '',
+        passportNumber: answers[firstQuestionId + 6] || '',
+        passportExpiry: answers[firstQuestionId + 7] || '',
+        passportIssuedBy: answers[firstQuestionId + 8] || '',
+        visaType: selectedVisaType,
+        applicationFor: 'myself',
+        visitPurpose: answers[firstQuestionId + 9] || '',
+        previousUKVisa: 'no',
+        visaRefusal: 'no',
+        criminalConvictions: 'no',
+        sufficientFunds: 'yes',
+        familyInUK: 'no',
+        familyRelationship: '',
+        ukSponsor: 'no',
+        additionalInfo: '',
         eligible: result.eligible,
         score: result.score,
         level: result.level,
@@ -507,6 +619,8 @@ export const EligibilityCheckComponent: React.FC = () => {
     setCurrentQuestionIndex(0)
     setAnswers({})
     setShowResult(false)
+    setSelectedVisaType('')
+    setShowVisaTypeSelection(true)
   }
 
   if (showResult) {
@@ -608,6 +722,51 @@ export const EligibilityCheckComponent: React.FC = () => {
     )
   }
 
+  // Visa type selection screen
+  if (showVisaTypeSelection) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">UK Visa Eligibility Check</h1>
+              <p className="text-xl text-gray-600 mb-6">Select your visa type to get personalized questions</p>
+            </div>
+
+            {/* Visa Type Selection */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Which visa are you applying for?</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { type: 'Visitor Visa', description: 'Tourism, business, family visits' },
+                  { type: 'Student Visa', description: 'Study at UK universities' },
+                  { type: 'Skilled Worker Visa', description: 'Work in the UK' },
+                  { type: 'Spouse Visa', description: 'Join family in the UK' },
+                  { type: 'Parent Visa', description: 'Join children in the UK' },
+                  { type: 'Other', description: 'Other visa types' }
+                ].map((visa, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSelectedVisaType(visa.type)
+                      setShowVisaTypeSelection(false)
+                    }}
+                    className="p-6 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+                  >
+                    <h3 className="font-semibold text-gray-900 mb-2">{visa.type}</h3>
+                    <p className="text-sm text-gray-600">{visa.description}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -616,6 +775,9 @@ export const EligibilityCheckComponent: React.FC = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">UK Visa Eligibility Check</h1>
             <p className="text-xl text-gray-600 mb-6">Complete our assessment to check your visa eligibility</p>
+            <div className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full mb-4">
+              Selected: {selectedVisaType}
+            </div>
             
             {/* Progress Bar */}
             <div className="w-full bg-gray-200 rounded-full h-3 mb-4">

@@ -109,6 +109,63 @@ export const EnglishTestSubmissions: CollectionConfig = {
       label: 'Test Duration (minutes)',
     },
     {
+      name: 'questionDetails',
+      type: 'array',
+      label: 'Question Details',
+      fields: [
+        {
+          name: 'questionId',
+          type: 'number',
+          required: true,
+          label: 'Question ID',
+        },
+        {
+          name: 'question',
+          type: 'text',
+          required: true,
+          label: 'Question Text',
+        },
+        {
+          name: 'options',
+          type: 'array',
+          label: 'Options',
+          fields: [
+            {
+              name: 'option',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+        {
+          name: 'correctAnswer',
+          type: 'number',
+          required: true,
+          label: 'Correct Answer Index',
+        },
+        {
+          name: 'selectedAnswer',
+          type: 'number',
+          label: 'Selected Answer Index',
+        },
+        {
+          name: 'isCorrect',
+          type: 'checkbox',
+          label: 'Is Correct',
+        },
+        {
+          name: 'explanation',
+          type: 'text',
+          label: 'Explanation',
+        },
+        {
+          name: 'category',
+          type: 'text',
+          label: 'Category',
+        },
+      ],
+    },
+    {
       name: 'status',
       type: 'select',
       options: [

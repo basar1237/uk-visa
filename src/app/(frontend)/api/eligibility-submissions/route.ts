@@ -6,8 +6,6 @@ export async function POST(request: NextRequest) {
     const payload = await getPayloadInstance()
     const body = await request.json()
 
-    console.log('Received eligibility submission data:', body)
-
     // Form verilerini doğrula
     const {
       fullName,
@@ -55,7 +53,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Eligibility submission'ı oluştur
     const eligibilitySubmission = await payload.create({
       collection: 'eligibility-submissions',
       data: {
@@ -89,18 +86,6 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Email bildirimi gönder (admin'e) - Şimdilik console.log ile test
-    console.log('=== YENİ ELIGIBILITY FORM GÖNDERİMİ ===')
-    console.log('Ad Soyad:', fullName)
-    console.log('Email:', email)
-    console.log('Telefon:', phone || 'Belirtilmemiş')
-    console.log('Uyruk:', nationality)
-    console.log('Visa Tipi:', visaType)
-    console.log('Eligible:', eligible ? 'Evet' : 'Hayır')
-    console.log('Skor:', score)
-    console.log('Seviye:', level)
-    console.log('Gönderim Tarihi:', new Date().toLocaleString('tr-TR'))
-    console.log('=====================================')
 
     return NextResponse.json(
       { 

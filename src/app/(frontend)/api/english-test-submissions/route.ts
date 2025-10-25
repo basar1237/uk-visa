@@ -22,7 +22,8 @@ export async function POST(request: NextRequest) {
       recommendations,
       correctAnswers,
       wrongAnswers,
-      testDuration
+      testDuration,
+      questionDetails
     } = body
 
     // Gerekli alanları kontrol et
@@ -59,6 +60,7 @@ export async function POST(request: NextRequest) {
         correctAnswers,
         wrongAnswers,
         testDuration: testDuration || 5,
+        questionDetails: questionDetails || [],
         status: 'new',
       },
     })

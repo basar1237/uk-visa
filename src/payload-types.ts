@@ -1323,6 +1323,24 @@ export interface EnglishTestSubmission {
   correctAnswers: number;
   wrongAnswers: number;
   testDuration?: number | null;
+  questionDetails?:
+    | {
+        questionId: number;
+        question: string;
+        options?:
+          | {
+              option: string;
+              id?: string | null;
+            }[]
+          | null;
+        correctAnswer: number;
+        selectedAnswer?: number | null;
+        isCorrect?: boolean | null;
+        explanation?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   status: 'new' | 'reviewed' | 'contacted';
   notes?: string | null;
   updatedAt: string;
@@ -2201,6 +2219,24 @@ export interface EnglishTestSubmissionsSelect<T extends boolean = true> {
   correctAnswers?: T;
   wrongAnswers?: T;
   testDuration?: T;
+  questionDetails?:
+    | T
+    | {
+        questionId?: T;
+        question?: T;
+        options?:
+          | T
+          | {
+              option?: T;
+              id?: T;
+            };
+        correctAnswer?: T;
+        selectedAnswer?: T;
+        isCorrect?: T;
+        explanation?: T;
+        category?: T;
+        id?: T;
+      };
   status?: T;
   notes?: T;
   updatedAt?: T;
