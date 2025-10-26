@@ -101,60 +101,6 @@ export const KnowledgeBase: Block = {
       },
     },
     {
-      name: 'solicitorHelpline',
-      type: 'group',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-          defaultValue: 'Immigration Solicitor Helpline',
-          admin: {
-            description: 'Solicitor helpline başlığı',
-          },
-        },
-        {
-          name: 'description',
-          type: 'textarea',
-          required: true,
-          defaultValue: 'Speak directly with qualified immigration solicitors for expert advice on your UK visa application.',
-          admin: {
-            description: 'Solicitor helpline açıklaması',
-          },
-        },
-        {
-          name: 'phoneNumber',
-          type: 'text',
-          required: true,
-          defaultValue: '+02037288948',
-          admin: {
-            description: 'Telefon numarası',
-          },
-        },
-        {
-          name: 'buttonText',
-          type: 'text',
-          required: true,
-          defaultValue: 'Contact Solicitor',
-          admin: {
-            description: 'Buton metni',
-          },
-        },
-        {
-          name: 'link',
-          type: 'text',
-          required: true,
-          defaultValue: '/contact',
-          admin: {
-            description: 'İletişim sayfası linki',
-          },
-        },
-      ],
-      admin: {
-        description: 'Immigration Solicitor Helpline alanı',
-      },
-    },
-    {
       name: 'ctaButton',
       type: 'group',
       fields: [
@@ -183,3 +129,5 @@ export const KnowledgeBase: Block = {
     singular: 'Knowledge Base Block',
   },
 }
+
+

@@ -753,7 +753,7 @@ export const EligibilityCheckComponent: React.FC = () => {
                       setSelectedVisaType(visa.type)
                       setShowVisaTypeSelection(false)
                     }}
-                    className="p-6 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+                    className="p-6 border-2 border-gray-200 rounded-lg hover:border-blue-500 transition-all text-left group bg-gray-50 hover:bg-blue-100"
                   >
                     <h3 className="font-semibold text-gray-900 mb-2">{visa.type}</h3>
                     <p className="text-sm text-gray-600">{visa.description}</p>

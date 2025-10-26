@@ -270,7 +270,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
     return (
       <div className={`bg-white rounded-2xl shadow-xl p-6 ${className}`}>
         <div className="text-center mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Select Your Visa Type</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Select Your Visa Type - Start Check Eligibility</h2>
           <p className="text-gray-600 mb-6">Choose the visa type you&apos;re applying for to get personalized questions</p>
         </div>
 
@@ -289,7 +289,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
                 setSelectedVisaType(visa.type)
                 setShowVisaTypeSelection(false)
               }}
-              className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+              className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500  transition-all text-left group bg-gray-50 hover:bg-blue-100"
             >
               <h3 className="font-semibold text-gray-900 mb-1 text-sm">{visa.type}</h3>
               <p className="text-xs text-gray-600">{visa.description}</p>

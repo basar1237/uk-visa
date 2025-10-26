@@ -882,68 +882,12 @@ export interface ServicesGridBlock {
    * Ana başlık (örn: "Our Immigration Services")
    */
   title?: string | null;
+  /**
+   * Açıklama metni (opsiyonel)
+   */
+  description?: string | null;
   services?:
     | {
-        /**
-         * İkon seçin
-         */
-        icon:
-          | 'globe'
-          | 'phone'
-          | 'clock'
-          | 'scales'
-          | 'passport'
-          | 'document'
-          | 'filetext'
-          | 'filecheck'
-          | 'stamp'
-          | 'clipboardcheck'
-          | 'receipt'
-          | 'house'
-          | 'heart'
-          | 'users'
-          | 'crown'
-          | 'justice'
-          | 'briefcase'
-          | 'building'
-          | 'building2'
-          | 'landmark'
-          | 'university'
-          | 'plane'
-          | 'mappin'
-          | 'navigation'
-          | 'compass'
-          | 'map'
-          | 'flag'
-          | 'graduation'
-          | 'bookopen'
-          | 'mail'
-          | 'lock'
-          | 'shield'
-          | 'handcuffs'
-          | 'checkcircle'
-          | 'checkcircle2'
-          | 'usercheck'
-          | 'badgecheck'
-          | 'thumbsup'
-          | 'star'
-          | 'award'
-          | 'rocket'
-          | 'zap'
-          | 'trending'
-          | 'trendingdown'
-          | 'target'
-          | 'sparkles'
-          | 'banknote'
-          | 'wallet'
-          | 'creditcard'
-          | 'calendar'
-          | 'calendarcheck'
-          | 'timer'
-          | 'hourglass'
-          | 'barchart'
-          | 'piechart'
-          | 'languages';
         /**
          * Hizmet başlığı
          */
@@ -953,13 +897,21 @@ export interface ServicesGridBlock {
          */
         description: string;
         /**
-         * Buton metni
+         * Badge'ler ekleyin
          */
-        buttonText?: string | null;
-        /**
-         * Buton linki (opsiyonel)
-         */
-        buttonLink?: string | null;
+        badges?:
+          | {
+              /**
+               * Badge metni
+               */
+              text: string;
+              /**
+               * Badge linki (opsiyonel)
+               */
+              link?: string | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1190,31 +1142,6 @@ export interface KnowledgeBaseBlock {
     buttonText: string;
     /**
      * Test sayfası linki
-     */
-    link: string;
-  };
-  /**
-   * Immigration Solicitor Helpline alanı
-   */
-  solicitorHelpline: {
-    /**
-     * Solicitor helpline başlığı
-     */
-    title: string;
-    /**
-     * Solicitor helpline açıklaması
-     */
-    description: string;
-    /**
-     * Telefon numarası
-     */
-    phoneNumber: string;
-    /**
-     * Buton metni
-     */
-    buttonText: string;
-    /**
-     * İletişim sayfası linki
      */
     link: string;
   };
@@ -1785,14 +1712,19 @@ export interface FeaturesGridBlockSelect<T extends boolean = true> {
 export interface ServicesGridBlockSelect<T extends boolean = true> {
   isActive?: T;
   title?: T;
+  description?: T;
   services?:
     | T
     | {
-        icon?: T;
         title?: T;
         description?: T;
-        buttonText?: T;
-        buttonLink?: T;
+        badges?:
+          | T
+          | {
+              text?: T;
+              link?: T;
+              id?: T;
+            };
         id?: T;
       };
   id?: T;
@@ -1943,15 +1875,6 @@ export interface KnowledgeBaseBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
-        buttonText?: T;
-        link?: T;
-      };
-  solicitorHelpline?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        phoneNumber?: T;
         buttonText?: T;
         link?: T;
       };

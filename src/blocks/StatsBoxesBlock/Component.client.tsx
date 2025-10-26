@@ -25,7 +25,7 @@ export function StatsBoxesClient({
   const isInView = useInView(ref, { once: true })
 
   return (
-    <section className="py-15 pb-20">
+    <section className="py-5">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -153,7 +153,7 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
     <section className="py-6 sm:py-8 lg:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         {title && (
-          <h2 className="text-2xl sm:text-3xl font-bold text-blue-800 mb-8 sm:mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-900 my-10 text-center">
             {title}
           </h2>
         )}
