@@ -71,7 +71,7 @@ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
 
   return (
     <div className="container my-6 sm:my-8 lg:my-10 px-4 sm:px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 sm:p-5">
         {columns && Array.isArray(columns) && columns.length > 0 &&
           columns.map((col, index) => {
             if (!col) return null
