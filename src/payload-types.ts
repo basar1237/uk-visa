@@ -979,6 +979,24 @@ export interface LandingBlock {
               id?: string | null;
             }[]
           | null;
+        /**
+         * Yeşil seçenek alanının içeriği (opsiyonel)
+         */
+        greenSectionContent?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
         id?: string | null;
       }[]
     | null;
@@ -1765,6 +1783,7 @@ export interface LandingBlockSelect<T extends boolean = true> {
                   };
               id?: T;
             };
+        greenSectionContent?: T;
         id?: T;
       };
   id?: T;

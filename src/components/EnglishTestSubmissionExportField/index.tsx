@@ -22,7 +22,9 @@ const EnglishTestSubmissionExportField: React.FC = () => {
         document.body.appendChild(a)
         a.click()
         window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
+        if (document.body.contains(a)) {
+          document.body.removeChild(a)
+        }
       } else {
         const data = await response.json()
         const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
@@ -33,7 +35,9 @@ const EnglishTestSubmissionExportField: React.FC = () => {
         document.body.appendChild(a)
         a.click()
         window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
+        if (document.body.contains(a)) {
+          document.body.removeChild(a)
+        }
       }
     } catch (error) {
       console.error('Export error:', error)

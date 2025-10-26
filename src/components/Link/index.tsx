@@ -35,14 +35,26 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     onClick,
   } = props
 
-  const href =
-    type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
-      : url
+  const href = (() => {
+    if (type === 'reference' && reference?.value) {
+      // Eğer reference.value bir obje ise (populated)
+      if (typeof reference.value === 'object' && reference.value.slug) {
+        return `${reference.relationTo !== 'pages' ? `/${reference.relationTo}` : ''}/${reference.value.slug}`
+      }
+      // Eğer reference.value bir string/id ise (unpopulated)
+      if (typeof reference.value === 'string' || typeof reference.value === 'number') {
+        // Bu durumda slug bilgisi yok, bu yüzden null döndür
+        console.warn('CMSLink: Reference value is not populated, cannot generate href', reference)
+        return null
+      }
+    }
+    return url
+  })()
 
-  if (!href) return null
+  if (!href) {
+    console.warn('CMSLink: No href generated', { type, reference, url })
+    return null
+  }
 
   const size = appearance === 'link' ? 'default' : sizeFromProps
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}

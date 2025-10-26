@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { CheckCircle, Clock, Award, BookOpen, Globe, Users, TrendingUp, Star } from 'lucide-react'
+import { Breadcrumb } from '@/components/Breadcrumb'
 
 interface Question {
   id: number
@@ -385,7 +386,7 @@ export const EnglishTestComponent: React.FC = () => {
     if (userInfo.fullName && userInfo.email) {
       setShowUserForm(false)
     } else {
-      alert('Lütfen ad-soyad ve email alanlarını doldurun.')
+      alert('Please fill in the full name and email fields.')
     }
   }
 
@@ -447,11 +448,11 @@ export const EnglishTestComponent: React.FC = () => {
       } else {
         const errorData = await response.json()
         console.error('Failed to save English test submission:', errorData)
-        alert('Test sonucu kaydedilirken hata oluştu. Lütfen tekrar deneyin.')
+        alert('An error occurred while saving the test result. Please try again.')
       }
     } catch (error) {
       console.error('English test submission error:', error)
-      alert('Test sonucu kaydedilirken hata oluştu. Lütfen tekrar deneyin.')
+      alert('An error occurred while saving the test result. Please try again.')
     }
   }
 
@@ -619,11 +620,11 @@ export const EnglishTestComponent: React.FC = () => {
 
             {/* User Info Form */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Test Bilgileriniz</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Test Information</h2>
               <form onSubmit={handleUserInfoSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Ad Soyad *
+                    Full Name *
                   </label>
                   <input
                     type="text"
@@ -631,14 +632,14 @@ export const EnglishTestComponent: React.FC = () => {
                     value={userInfo.fullName}
                     onChange={(e) => handleUserInfoChange('fullName', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Adınızı ve soyadınızı girin"
+                    placeholder="Enter your full name"
                     required
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Adresi *
+                    Email Address *
                   </label>
                   <input
                     type="email"
@@ -646,14 +647,14 @@ export const EnglishTestComponent: React.FC = () => {
                     value={userInfo.email}
                     onChange={(e) => handleUserInfoChange('email', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Email adresinizi girin"
+                    placeholder="Enter your email address"
                     required
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Telefon Numarası
+                    Phone Number
                   </label>
                   <input
                     type="tel"
@@ -661,7 +662,7 @@ export const EnglishTestComponent: React.FC = () => {
                     value={userInfo.phone}
                     onChange={(e) => handleUserInfoChange('phone', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Telefon numaranızı girin (opsiyonel)"
+                    placeholder="Enter your phone number (optional)"
                   />
                 </div>
                 
@@ -669,7 +670,7 @@ export const EnglishTestComponent: React.FC = () => {
                   type="submit"
                   className="w-full px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Teste Başla
+                  Start Test
                 </button>
               </form>
             </div>
@@ -683,10 +684,14 @@ export const EnglishTestComponent: React.FC = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Breadcrumb */}
+      <Breadcrumb items={[{ label: 'English Test' }]} />
+      
+      <div className="py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
               <BookOpen className="w-10 h-10 text-blue-600" />
@@ -822,6 +827,7 @@ export const EnglishTestComponent: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

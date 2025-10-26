@@ -81,10 +81,10 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
         </div>
 
         {/* Eligibility Test */}
-        <div className="flex justify-center mb-12">
+        <div className="">
           {/* UK Visa Eligibility Test */}
           {eligibilityTest && (
-            <div className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 max-w-md w-full">
+            <div className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
               <div className="p-8 sm:p-10">
                 {/* İkon ve Başlık */}
                 <div className="flex items-center mb-6">
@@ -128,13 +128,15 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
                 </div>
 
                 {/* Buton */}
-                <Link
-                  href={eligibilityTest.link || '/eligibility-check'}
-                  className="inline-flex items-center justify-center w-full px-6 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300 shadow-lg group-hover:shadow-xl"
-                >
-                  {eligibilityTest.buttonText || 'Start Free Assessment'}
-                  <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
+                <div className="flex justify-center">
+                  <Link
+                    href={eligibilityTest.link || '/eligibility-check'}
+                    className="inline-flex items-center justify-center w-auto px-6 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300 shadow-lg group-hover:shadow-xl"
+                  >
+                    {eligibilityTest.buttonText || 'Start Free Assessment'}
+                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                </div>
               </div>
 
               {/* Hover Effect Overlay */}

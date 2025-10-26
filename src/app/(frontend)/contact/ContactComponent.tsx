@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Breadcrumb } from '@/components/Breadcrumb'
 
 interface FormData {
   firstName: string
@@ -117,6 +118,9 @@ export const ContactComponent: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Breadcrumb */}
+      <Breadcrumb items={[{ label: 'Contact' }]} />
 
       {/* Contact Form Section */}
       <div className="py-16">

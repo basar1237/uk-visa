@@ -96,6 +96,25 @@ const columnFields: Field[] = [
       link(),
     ],
   },
+  {
+    name: 'greenSectionContent',
+    type: 'richText',
+    editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h4', 'h5', 'h6'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+          ]
+        },
+    }),
+    label: 'Yeşil Bölüm İçeriği',
+    required: false,
+    admin: {
+      description: 'Yeşil seçenek alanının içeriği (opsiyonel)',
+    },
+  },
 ]
 
 export const LandingBlock: Block = {

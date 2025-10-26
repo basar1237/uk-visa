@@ -24,6 +24,7 @@ import {
   Target,
   Zap
 } from 'lucide-react'
+import { Breadcrumb } from '@/components/Breadcrumb'
 
 interface ProcessStep {
   id: number
@@ -421,6 +422,9 @@ export const VisaProcessComponent: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <Breadcrumb items={[{ label: 'Visa Process' }]} />
 
       {/* Visa Types Selection */}
       <section className="py-16 bg-white">

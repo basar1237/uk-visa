@@ -37,6 +37,7 @@ type Column = {
   title?: string | null
   richText?: DefaultTypedEditorState
   links?: LinkItem[] | null
+  greenSectionContent?: DefaultTypedEditorState
   id?: string | null
 }
 
@@ -45,7 +46,7 @@ type LandingBlockExtended = LandingBlockProps & {
   backgroundStyle?: 'gradient' | 'white' | 'gray'
 }
 
-export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
+ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
   const { columns = [], backgroundStyle = 'white' } = props as LandingBlockExtended
 
   const colsSpanClasses = {
@@ -77,6 +78,7 @@ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
             if (!col) return null
             
             const { links, richText, size, badges, media } = col
+            const greenSectionContent = (col as any).greenSectionContent
             const colSize = size || 'full'
             const colSpanClass = colsSpanClasses[colSize as keyof typeof colsSpanClasses] || '12'
             const hasMedia = media && typeof media === 'object'
@@ -165,6 +167,19 @@ export const LandingBlock: React.FC<LandingBlockProps> = (props) => {
                               {badgeItem?.text || String(badgeItem)}
                             </span>
                           ))}
+                        </div>
+                      )}
+
+                      {/* Yeşil seçenek alanı - sadece LandingBlock template'inde */}
+                      {(greenSectionContent) && (
+                        <div className="w-full bg-green-200 p-2 rounded-xl mt-4 tet-xs">
+                          <div className="text-center">
+                            {greenSectionContent && (
+                              <div className="text-sm text-green-700">
+                                <RichText data={greenSectionContent} enableGutter={false} />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>

@@ -21,6 +21,7 @@ import {
   MessageCircle,
   UserCheck
 } from 'lucide-react'
+import { Breadcrumb } from '@/components/Breadcrumb'
 
 interface TeamMember {
   id: number
@@ -176,6 +177,9 @@ export const AboutComponent: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <Breadcrumb items={[{ label: 'About Us' }]} />
 
       {/* Statistics Section */}
       <section className="py-16 bg-white">

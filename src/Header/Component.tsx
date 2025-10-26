@@ -9,7 +9,7 @@ export async function Header() {
     const payload = await getPayloadInstance()
     const headerData = await payload.findGlobal({
       slug: 'header',
-      depth: 1,
+      depth: 2, // Reference'ları populate etmek için depth artırıldı
     })
     
     if (!headerData) {
