@@ -158,23 +158,40 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
           </h2>
         )}
         
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+        <div className="flex flex-nowrap justify-center gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
           {features?.map((feature, index) => {
-            const IconComponent = iconMap[feature.icon] || Globe
+            const IconComponent = feature.icon ? iconMap[feature.icon] : null
+            const itemCount = features?.length || 0
+            
+            // Calculate responsive width based on item count - all items stay on same row
+            let itemWidth = 'w-full'
+            if (itemCount === 1) {
+              itemWidth = 'w-full max-w-md flex-shrink-0'
+            } else if (itemCount === 2) {
+              itemWidth = 'w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(50%-1.5rem)] flex-shrink-0'
+            } else if (itemCount === 3) {
+              itemWidth = 'w-[calc(33.333%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.5rem)] flex-shrink-0'
+            } else if (itemCount === 4) {
+              itemWidth = 'w-[calc(25%-0.5rem)] sm:w-[calc(25%-1rem)] lg:w-[calc(25%-1.5rem)] flex-shrink-0'
+            } else if (itemCount === 5) {
+              itemWidth = 'w-[calc(20%-0.5rem)] sm:w-[calc(20%-1rem)] lg:w-[calc(20%-1.5rem)] flex-shrink-0'
+            }
             
             return (
-              <div key={index} className="w-full sm:w-auto sm:min-w-[250px] max-w-[300px] flex flex-col p-4 sm:p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex justify-center sm:justify-start mb-4">
-                  <div className="bg-blue-100 p-3 sm:p-4 rounded-full">
-                    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-blue-800" />
+              <div key={index} className={`${itemWidth} border hover:border-blue-200 transition-all duration-300 flex flex-col p-3 sm:p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl`}>
+                {IconComponent && (
+                  <div className="flex justify-center mb-3 sm:mb-4">
+                    <div className="bg-blue-100 p-2 sm:p-3 lg:p-4 rounded-full">
+                      <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-800" />
+                    </div>
                   </div>
-                </div>
+                )}
                 
-                <h3 className="text-base sm:text-lg font-bold text-blue-800 mb-3 text-center sm:text-left">
+                <h3 className="text-sm sm:text-base lg:text-lg font-bold text-blue-800 mb-2 sm:mb-3 text-center">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-800 text-sm text-center sm:text-left flex-1">
+                <p className="text-gray-800 text-xs sm:text-sm text-center flex-1">
                   {feature.description}
                 </p>
               </div>

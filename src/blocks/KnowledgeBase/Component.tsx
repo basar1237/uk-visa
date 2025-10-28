@@ -42,13 +42,13 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
                 </div>
 
                 {/* İçerik Alanı */}
-                <div className="p-6 sm:p-8 flex flex-col h-full">
+                <div className="p-6 sm:p-8 flex flex-col">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                     {item.title}
                   </h3>
                   
                   {/* Explore Button */}
-                  <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300 mt-auto">
+                  <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300 ms-auto">
                     <span className="mr-2">Explore</span>
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>

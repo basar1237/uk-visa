@@ -88,7 +88,7 @@ type LandingBlockExtended = LandingBlockProps & {
               <div
                 className={cn(
                   `col-span-1 sm:col-span-2 lg:col-span-${colSpanClass}`,
-                  'rounded-2xl shadow-lg overflow-hidden',
+                  'rounded-2xl border shadow-lg overflow-hidden',
                   getBackgroundClass(),
                   {
                     'sm:col-span-1': colSize === 'full',

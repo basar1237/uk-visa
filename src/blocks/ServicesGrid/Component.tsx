@@ -24,7 +24,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services?.map((service, index) => {
             return (
-              <div key={index} className="bg-white rounded-xl border-gray-400 p-4 shadow-lg md:h-65 h-full flex flex-col justify-start">
+              <div key={index} className="bg-white rounded-xl border hover:border-blue-200 transition-all duration-300 p-4 shadow-lg md:h-65 h-full flex flex-col justify-start">
                 <div className="flex flex-col">
                   <h3 className="font-bold text-blue-800 mb-2 text-xl">
                     {service.title}

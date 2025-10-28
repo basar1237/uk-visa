@@ -61,7 +61,17 @@ const getPagesSitemap = unstable_cache(
 )
 
 export async function GET() {
-  const sitemap = await getPagesSitemap()
-
-  return getServerSideSitemap(sitemap)
+  try {
+    const sitemap = await getPagesSitemap()
+    return getServerSideSitemap(sitemap)
+  } catch (error) {
+    console.error('Sitemap generation error:', error)
+    // Fallback sitemap
+    return getServerSideSitemap([
+      {
+        loc: process.env.NEXT_PUBLIC_SERVER_URL || 'https://example.com',
+        lastmod: new Date().toISOString(),
+      },
+    ])
+  }
 }

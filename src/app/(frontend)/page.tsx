@@ -11,6 +11,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 import EligibilityCheckComponent from '@/app/(frontend)/eligibility-check/EligibilityCheckComponent'
+import { StatisticsSection } from '@/components/landing/StatisticsSection'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -36,6 +37,7 @@ export default async function HomePage() {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
+      <StatisticsSection />
       <RenderBlocks blocks={layout} />
     </article>
   )

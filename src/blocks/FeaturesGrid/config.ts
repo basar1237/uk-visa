@@ -18,12 +18,12 @@ export const FeaturesGrid: Block = {
       name: 'features',
       type: 'array',
       minRows: 1,
-      maxRows: 6,
+      maxRows: 5,
       fields: [
         {
           name: 'icon',
           type: 'select',
-          required: true,
+          required: false,
           options: [
             // Temel İkonlar
             { label: '🌐 Globe - Dünya/Uluslararası', value: 'globe' },
@@ -112,7 +112,7 @@ export const FeaturesGrid: Block = {
             { label: '🌍 Languages - Diller', value: 'languages' },
           ],
           admin: {
-            description: 'Vize ve göç ile alakalı ikon seçin',
+            description: 'Vize ve göç ile alakalı ikon seçin (opsiyonel)',
           },
         },
         {

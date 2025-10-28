@@ -9,6 +9,8 @@ import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { TawkToWidget } from '@/components/TawkToWidget'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -26,6 +28,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           {children}
           <Footer />
+          <WhatsAppButton />
+          <TawkToWidget />
         </Providers>
       </body>
     </html>
