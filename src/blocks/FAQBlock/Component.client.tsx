@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 type FAQ = {
   id: string
@@ -24,14 +25,16 @@ export const FAQBlockClient: React.FC<Props> = ({
   displayStyle,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const pathname = usePathname()
+  const effectiveStyle: Props['displayStyle'] = pathname === '/' ? 'accordion' : displayStyle
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
-  if (displayStyle === 'accordion') {
+  if (effectiveStyle === 'accordion') {
     return (
-      <section className="py-20">
+      <section className='pb-40'>
         <div className="mx-auto max-w-4xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -111,9 +114,9 @@ export const FAQBlockClient: React.FC<Props> = ({
     )
   }
 
-  if (displayStyle === 'grid') {
+  if (effectiveStyle === 'grid') {
     return (
-      <section className="py-20">
+      <section className="">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -162,7 +165,7 @@ export const FAQBlockClient: React.FC<Props> = ({
 
   // List style
   return (
-    <section className="py-20">
+    <section className="">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

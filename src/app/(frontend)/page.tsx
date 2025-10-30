@@ -16,6 +16,8 @@ import { WhyTrustSection } from '@/components/landing/WhyTrustSection'
 import { ExecutiveServiceSection } from '@/components/landing/ExecutiveServiceSection'
 import { SimpleSection } from '@/components/landing/SimpleSection'
 import { ContactFormSection } from '@/components/landing/ContactFormSection'
+import { ContactStrip } from '@/components/landing/ContactStrip'
+import { HomeFAQ } from '@/components/landing/HomeFAQ'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -49,6 +51,8 @@ export default async function HomePage() {
       <ExecutiveServiceSection />
       <SimpleSection />
       <ContactFormSection />
+      <HomeFAQ />
+      <ContactStrip />
     </article>
   )
 }

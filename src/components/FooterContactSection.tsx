@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export const FooterContactSection: React.FC = () => {
   return (
-    <div className="bg-gray-50 border-t border-border">
+    <div className="bg-[#0a1b3d] border-t border-transparent">
       <div className="mx-auto max-w-7xl px-6 py-8 md:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,12 +16,12 @@ export const FooterContactSection: React.FC = () => {
           viewport={{ once: true }}
         >
           {/* Main Title */}
-          <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Contact & Location
           </h2>
           
           {/* Subtitle */}
-          <p className="text-gray-700 text-sm md:text-base mb-8">
+          <p className="text-white/80 text-sm md:text-base mb-8">
             Based in Sheffield — assisting clients across the UK and overseas. Remote and in-person appointments available.
           </p>
 

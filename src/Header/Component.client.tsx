@@ -82,14 +82,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           >
              <Link 
               href="tel:02037288948"
-              className="flex items-center space-x-2 bg-blue-700 text-white py-2 px-1 rounded-xl hover:bg-blue-800 transition-colors min-h-[44px]"
+              className="flex items-center space-x-2 bg-blue-700 text-white py-2 px-2 rounded-xl hover:bg-blue-800 transition-colors min-h-[44px]"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-xs sm:text-sm font-medium">Free Assessment</span>
+              <span className="text-xs sm:text-sm font-medium">+44 203 728 8948</span>
             </Link>
             <Link 
               href="/consultation"
-              className="flex items-center space-x-2 bg-green-600 text-white py-2 px-1 rounded-xl hover:bg-green-700 transition-colors min-h-[44px]"
+              className="flex items-center space-x-2 bg-green-600 text-white py-2 px-2 rounded-xl hover:bg-green-700 transition-colors min-h-[44px]"
             >
               <Check className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-medium">Free Assessment</span>

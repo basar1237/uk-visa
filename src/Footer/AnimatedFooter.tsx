@@ -17,7 +17,7 @@ export function AnimatedFooter({ columns, companyName, companyDescription }: Ani
 
   return (
     <>
-      <footer className="border-t border-border bg-background relative z-20">
+      <footer className="border-t border-transparent bg-[#0a1b3d] text-white relative z-20">
         <div className="mx-auto max-w-7xl px-6 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export function AnimatedFooter({ columns, companyName, companyDescription }: Ani
                     viewport={{ once: true }}
                     className={isLastColumn ? "block" : "hidden md:block"}
                   >   
-                    <h4 className="text-foreground mb-4 text-sm font-semibold uppercase tracking-wide">
+                    <h4 className="text-white mb-4 text-sm font-semibold uppercase tracking-wide">
                       {column.title}
                     </h4>
                     <ul className="space-y-3">
@@ -48,7 +48,7 @@ export function AnimatedFooter({ columns, companyName, companyDescription }: Ani
                         return (
                           <li key={i}>
                             <CMSLink 
-                              className="text-foreground/70 hover:text-brand transition-colors text-sm" 
+                              className="text-white/80 hover:text-white transition-colors text-sm" 
                               {...link} 
                             />
                           </li>
@@ -73,9 +73,9 @@ export function AnimatedFooter({ columns, companyName, companyDescription }: Ani
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
         viewport={{ once: true }}
-        className="bg-background border-t border-border py-6 text-center"
+        className="bg-[#0a1b3d] border-t border-transparent py-6 text-center text-white/70"
       >
-        <p className="text-foreground/60 text-sm">
+        <p className="text-white/70 text-sm">
           © 2024 UK Legal Solutions. All rights reserved.
         </p>
       </motion.div>

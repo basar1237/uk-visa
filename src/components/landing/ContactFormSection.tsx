@@ -81,15 +81,62 @@ export const ContactFormSection: React.FC = () => {
   }
 
   return (
-    <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-8 md:py-16 ">
       <div className="container mx-auto px-4 sm:px-4 md:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 p-4 md:p-8 lg:p-12 border border-gray-100">
-            <div className="text-center mb-6 md:mb-8">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 md:mb-4">Send Us a Message</h2>
-              <p className="text-sm md:text-base lg:text-lg text-gray-600">
-                Fill out the form below and we&apos;ll get back to you within 24 hours
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+          {/* Left: Reach Us Cards */}
+          <div>
+            <h3 className="text-xl md:text-3xl font-bold text-blue-900 mb-4">How to Reach Us</h3>
+
+            <div className="space-y-4">
+              {/* Phone Support */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">☎</div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Phone Support</p>
+                    <p className="text-gray-900 font-medium">020 3384 4389</p>
+                    <p className="text-gray-600 text-sm">Speak directly with our specialists</p>
+                    <p className="text-green-700 text-xs mt-1">7 days, 7am-7pm</p>
+                    <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Enquiry */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Email Enquiry</p>
+                    <p className="text-gray-900">info@ukimmigrationsolicitors.co.uk</p>
+                    <p className="text-gray-600 text-sm">Send your questions via email</p>
+                    <p className="text-green-700 text-xs mt-1">Response within 24 hours</p>
+                    <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Online Assessment */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">⏱</div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Online Assessment</p>
+                    <p className="text-gray-900">Free consultation</p>
+                    <p className="text-gray-600 text-sm">Get started with our online form</p>
+                    <p className="text-green-700 text-xs mt-1">Available 24/7</p>
+                    <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Start assessment →</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15),0_12px_24px_-10px_rgba(0,0,0,0.2)] transition-all duration-300 p-4 md:p-8 lg:p-10 border border-gray-100">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 md:mb-3">Send Us a Message</h2>
+              <p className="text-sm md:text-base lg:text-lg text-gray-600">We&apos;ll respond within 24 hours.</p>
             </div>
 
             {/* Success/Error Messages */}
@@ -263,7 +310,7 @@ export const ContactFormSection: React.FC = () => {
                       value="email"
                       checked={formData.preferredContact === 'email'}
                       onChange={handleInputChange}
-                      className="mr-2"
+                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
                     />
                     <span className="text-gray-700">Email</span>
                   </label>
@@ -274,7 +321,7 @@ export const ContactFormSection: React.FC = () => {
                       value="phone"
                       checked={formData.preferredContact === 'phone'}
                       onChange={handleInputChange}
-                      className="mr-2"
+                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
                     />
                     <span className="text-gray-700">Phone</span>
                   </label>
@@ -285,7 +332,7 @@ export const ContactFormSection: React.FC = () => {
                       value="both"
                       checked={formData.preferredContact === 'both'}
                       onChange={handleInputChange}
-                      className="mr-2"
+                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
                     />
                     <span className="text-gray-700">Both</span>
                   </label>

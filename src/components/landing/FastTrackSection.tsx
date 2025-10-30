@@ -31,7 +31,7 @@ export const FastTrackSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mb-8 text-center"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mb-6">
             Fast-Track Your UK Visa Application
@@ -43,9 +43,9 @@ export const FastTrackSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-12 text-center"
         >
-          <p className="text-gray-700 text-sm sm:text-base leading-relaxed max-w-4xl">
+          <p className="text-gray-700 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
             Accelerate the process with our expert support. At UK Legal Solutions, we offer{' '}
             <strong>Super Premium</strong> and <strong>Priority</strong> visa services for clients who need to submit and process their UK visa applications urgently. While these services do not affect the outcome of your application, they can significantly reduce processing times, helping you meet tight deadlines with confidence.
           </p>
