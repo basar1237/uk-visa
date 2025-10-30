@@ -80,9 +80,16 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
+             <Link 
+              href="tel:02037288948"
+              className="flex items-center space-x-2 bg-blue-700 text-white py-2 px-1 rounded-xl hover:bg-blue-800 transition-colors min-h-[44px]"
+            >
+              <Phone className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-medium">Free Assessment</span>
+            </Link>
             <Link 
               href="/consultation"
-              className="flex items-center space-x-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-green-700 transition-colors min-h-[44px]"
+              className="flex items-center space-x-2 bg-green-600 text-white py-2 px-1 rounded-xl hover:bg-green-700 transition-colors min-h-[44px]"
             >
               <Check className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-medium">Free Assessment</span>

@@ -153,34 +153,19 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
     <section className="py-6 sm:py-8 lg:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         {title && (
-          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-900 my-10 text-center">
+           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 text-center mb-8 md:mb-12">
             {title}
           </h2>
         )}
         
-        <div className="flex flex-nowrap justify-center gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
+        <div className="flex flex-nowrap gap-3 md:gap-4 lg:gap-6 overflow-x-auto pb-2 md:pb-0">
           {features?.map((feature, index) => {
             const IconComponent = feature.icon ? iconMap[feature.icon] : null
-            const itemCount = features?.length || 0
-            
-            // Calculate responsive width based on item count - all items stay on same row
-            let itemWidth = 'w-full'
-            if (itemCount === 1) {
-              itemWidth = 'w-full max-w-md flex-shrink-0'
-            } else if (itemCount === 2) {
-              itemWidth = 'w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(50%-1.5rem)] flex-shrink-0'
-            } else if (itemCount === 3) {
-              itemWidth = 'w-[calc(33.333%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.5rem)] flex-shrink-0'
-            } else if (itemCount === 4) {
-              itemWidth = 'w-[calc(25%-0.5rem)] sm:w-[calc(25%-1rem)] lg:w-[calc(25%-1.5rem)] flex-shrink-0'
-            } else if (itemCount === 5) {
-              itemWidth = 'w-[calc(20%-0.5rem)] sm:w-[calc(20%-1rem)] lg:w-[calc(20%-1.5rem)] flex-shrink-0'
-            }
             
             return (
-              <div key={index} className={`${itemWidth} border hover:border-blue-200 transition-all duration-300 flex flex-col p-3 sm:p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl`}>
+              <div key={index} className="min-w-[280px] md:min-w-0 md:flex-1 border hover:border-blue-200 transition-all duration-300 flex flex-col p-4 md:p-5 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl flex-shrink-0">
                 {IconComponent && (
-                  <div className="flex justify-center mb-3 sm:mb-4">
+                  <div className="flex justify-center mb-3 md:mb-4">
                     <div className="bg-blue-100 p-2 sm:p-3 lg:p-4 rounded-full">
                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-800" />
                     </div>

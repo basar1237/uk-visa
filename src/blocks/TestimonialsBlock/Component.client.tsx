@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
+import Image from "next/image"
 
 interface Testimonial {
   id: string
@@ -189,8 +190,10 @@ export function TestimonialsClient({
                           >
                             <div className="ring-foreground/10 size-8 border border-transparent shadow ring-1 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-semibold text-sm">
                               {testimonial.avatar ? (
-                                <img
-                                  src={getAvatarUrl(testimonial.avatar, 64)}
+                                <Image
+                                  src={getAvatarUrl(testimonial.avatar) || ''}
+                                  width={64}
+                                  height={64}
                                   alt={testimonial.name}
                                   className="w-full h-full rounded-full object-cover"
                                 />

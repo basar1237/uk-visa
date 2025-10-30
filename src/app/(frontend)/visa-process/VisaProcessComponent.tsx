@@ -13,7 +13,6 @@ import {
   Upload,
   AlertCircle,
   ArrowRight,
-  ArrowLeft,
   Award,
   Phone,
   Mail,
@@ -558,7 +557,7 @@ export const VisaProcessComponent: React.FC = () => {
                 }}
               ></div>
 
-              {processSteps.map((step, index) => {
+              {processSteps.map((step) => {
                 const status = getStepStatus(step.id)
                 const isExpanded = expandedStep === step.id
                 

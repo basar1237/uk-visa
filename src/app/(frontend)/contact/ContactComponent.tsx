@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { Breadcrumb } from '@/components/Breadcrumb'
+import Link from 'next/link'
 
 interface FormData {
   firstName: string
@@ -410,19 +411,19 @@ export const ContactComponent: React.FC = () => {
                 <p className="text-gray-600 mb-4">
                   For urgent visa matters outside office hours, please call our emergency line.
                 </p>
-                <div className="flex items-center">
+                <a href="tel:02037288948" className="flex items-center hover:text-blue-600 transition-colors">
                   <Phone className="w-5 h-5 text-red-600 mr-2" />
                   <span className="font-semibold text-gray-900">02037288948</span>
-                </div>
+                </a>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Appointment Booking</h3>
                 <p className="text-gray-600 mb-4">
                   Schedule an in-person consultation with our visa experts.
                 </p>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <Link href="/contact" className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center">
                   Book Appointment
-                </button>
+                </Link>
               </div>
             </div>
           </div>

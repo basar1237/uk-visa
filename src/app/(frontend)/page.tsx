@@ -10,8 +10,12 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
-import EligibilityCheckComponent from '@/app/(frontend)/eligibility-check/EligibilityCheckComponent'
 import { StatisticsSection } from '@/components/landing/StatisticsSection'
+import { FastTrackSection } from '@/components/landing/FastTrackSection'
+import { WhyTrustSection } from '@/components/landing/WhyTrustSection'
+import { ExecutiveServiceSection } from '@/components/landing/ExecutiveServiceSection'
+import { SimpleSection } from '@/components/landing/SimpleSection'
+import { ContactFormSection } from '@/components/landing/ContactFormSection'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -31,14 +35,20 @@ export default async function HomePage() {
 
   return (
     <article>
-      {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
+       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-      <StatisticsSection />
+      <div className="hidden">
+        <StatisticsSection />
+      </div>    
       <RenderBlocks blocks={layout} />
+      <WhyTrustSection />
+      <FastTrackSection />
+      <ExecutiveServiceSection />
+      <SimpleSection />
+      <ContactFormSection />
     </article>
   )
 }
