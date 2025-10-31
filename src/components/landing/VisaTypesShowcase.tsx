@@ -236,11 +236,10 @@ export const VisaTypesShowcase: React.FC = () => {
           className="text-center"
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
-            <FileText className="w-8 h-8 text-blue-600" />
-            <div className="text-left">
-              <h3 className="font-bold text-gray-900 mb-1">Not sure which visa is right for you?</h3>
+             <div className="text-left">
+              <h3 className="font-bold text-gray-900 mb-1 justify-center flex">Not sure which visa is right for you?</h3>
               <p className="text-sm text-gray-600 mb-3">Our expert team can assess your eligibility and guide you to the best visa option.</p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <Link
                   href="/eligibility-check"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200"
@@ -248,9 +247,6 @@ export const VisaTypesShowcase: React.FC = () => {
                   Check Your Eligibility Free
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <span className="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-200">
-                  Eligibility Test
-                </span>
               </div>
             </div>
           </div>

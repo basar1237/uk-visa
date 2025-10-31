@@ -88,7 +88,7 @@ export const ContactFormSection: React.FC = () => {
 
             <div className="space-y-4">
               {/* Phone Support */}
-              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">☎</div>
                   <div className="flex-1">
@@ -102,7 +102,7 @@ export const ContactFormSection: React.FC = () => {
               </div>
 
               {/* Email Enquiry */}
-              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
                   <div className="flex-1">
@@ -116,7 +116,7 @@ export const ContactFormSection: React.FC = () => {
               </div>
 
               {/* Online Assessment */}
-              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">⏱</div>
                   <div className="flex-1">
@@ -300,37 +300,37 @@ export const ContactFormSection: React.FC = () => {
                 <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2 md:mb-3">
                   Preferred Contact Method
                 </label>
-                <div className="flex flex-col sm:flex-row gap-2 md:gap-6">
-                  <label className="flex items-center text-sm">
+                <div className="flex gap-4 md:gap-6">
+                  <label className="inline-flex items-center text-sm">
                     <input
                       type="radio"
                       name="preferredContact"
                       value="email"
                       checked={formData.preferredContact === 'email'}
                       onChange={handleInputChange}
-                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
+                      className="mr-2 w-4 h-4 md:w-5 md:h-5"
                     />
                     <span className="text-gray-700">Email</span>
                   </label>
-                  <label className="flex items-center text-sm">
+                  <label className="inline-flex items-center text-sm">
                     <input
                       type="radio"
                       name="preferredContact"
                       value="phone"
                       checked={formData.preferredContact === 'phone'}
                       onChange={handleInputChange}
-                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
+                      className="mr-2 w-4 h-4 md:w-5 md:h-5"
                     />
                     <span className="text-gray-700">Phone</span>
                   </label>
-                  <label className="flex items-center text-sm">
+                  <label className="inline-flex items-center text-sm">
                     <input
                       type="radio"
                       name="preferredContact"
                       value="both"
                       checked={formData.preferredContact === 'both'}
                       onChange={handleInputChange}
-                      className="mr-2 w-4 h-4 sm:w-4 sm:h-4"
+                      className="mr-2 w-4 h-4 md:w-5 md:h-5"
                     />
                     <span className="text-gray-700">Both</span>
                   </label>
