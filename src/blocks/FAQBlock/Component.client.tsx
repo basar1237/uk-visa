@@ -35,7 +35,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   if (effectiveStyle === 'accordion') {
     return (
       <section className='pb-40'>
-        <div className="mx-auto max-w-4xl px-6">
+        <div className="mx-auto max-w-4xl px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ export const FAQBlockClient: React.FC<Props> = ({
             )}
           </motion.div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.id}
@@ -67,7 +67,7 @@ export const FAQBlockClient: React.FC<Props> = ({
               >
                 <motion.button
                   onClick={() => toggleFAQ(index)}
-                  className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-background/50"
+                  className="flex w-full items-center justify-between p-4 md:p-6 text-left transition-colors hover:bg-background/50"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -97,7 +97,7 @@ export const FAQBlockClient: React.FC<Props> = ({
                         animate={{ y: 0 }}
                         exit={{ y: -10 }}
                         transition={{ duration: 0.3, delay: 0.1 }}
-                        className="px-6 pb-6"
+                        className="px-4 md:px-6 pb-4 md:pb-6"
                       >
                         <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
                           {faq.answer}
@@ -117,7 +117,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   if (effectiveStyle === 'grid') {
     return (
       <section className="">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export const FAQBlockClient: React.FC<Props> = ({
             )}
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.id}
@@ -147,7 +147,7 @@ export const FAQBlockClient: React.FC<Props> = ({
                 viewport={{ once: true }}
                 className="group overflow-hidden rounded-2xl border border-border bg-background transition-all hover:border-brand hover:shadow-lg"
               >
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   <h3 className="text-foreground text-lg font-semibold mb-3">
                     {faq.question}
                   </h3>
@@ -166,7 +166,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   // List style
   return (
     <section className="">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-4xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
