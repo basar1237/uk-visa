@@ -1,141 +1,134 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { 
-  Users, 
+  Shield, 
   Award, 
-  Globe, 
-  Clock, 
-  CheckCircle, 
-  Star, 
-  Phone, 
-  Mail, 
+  Users, 
+  FileCheck,
+  Globe,
+  Clock,
+  CheckCircle2,
+  Sparkles,
+  TrendingUp,
+  HeartHandshake,
+  Scale,
+  BookOpen,
+  Phone,
+  Mail,
   MapPin,
   ArrowRight,
-  Heart,
-  Shield,
-  Target,
-  TrendingUp,
-  BookOpen,
+  UserCheck,
   MessageCircle,
-  UserCheck
+  BadgeCheck,
+  Zap,
+  Target
 } from 'lucide-react'
 import { Breadcrumb } from '@/components/Breadcrumb'
-
-interface TeamMember {
-  id: number
-  name: string
-  position: string
-  experience: string
-  specializations: string[]
-  image: string
-  description: string
-}
+import { motion } from 'motion/react'
 
 interface Statistic {
-  icon: React.ComponentType<{ className?: string }>
+  icon: typeof Award
   number: string
   label: string
   description: string
 }
 
-interface Value {
-  icon: React.ComponentType<{ className?: string }>
+interface Feature {
+  icon: typeof Shield
+  title: string
+  description: string
+  highlight?: boolean
+}
+
+interface Certification {
+  icon: typeof BadgeCheck
   title: string
   description: string
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    position: "Senior Immigration Solicitor",
-    experience: "15+ years",
-    specializations: ["Student Visas", "Work Visas", "Family Reunion"],
-    image: "/api/placeholder/300/300",
-    description: "Sarah specializes in complex immigration cases and has helped over 2,000 families reunite in the UK."
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    position: "Lead Visa Consultant",
-    experience: "12+ years",
-    specializations: ["Skilled Worker Visas", "Investor Visas", "Business Visas"],
-    image: "/api/placeholder/300/300",
-    description: "Michael is an expert in business immigration and has successfully processed over 1,500 work visa applications."
-  },
-  {
-    id: 3,
-    name: "Emma Williams",
-    position: "Family Immigration Specialist",
-    experience: "10+ years",
-    specializations: ["Spouse Visas", "Parent Visas", "Child Visas"],
-    image: "/api/placeholder/300/300",
-    description: "Emma focuses on family reunification cases and has a 98% success rate in family visa applications."
-  },
-  {
-    id: 4,
-    name: "David Thompson",
-    position: "Student Visa Expert",
-    experience: "8+ years",
-    specializations: ["Student Visas", "Graduate Route", "Tier 4 Applications"],
-    image: "/api/placeholder/300/300",
-    description: "David has helped over 3,000 students achieve their dreams of studying in the UK."
-  }
-]
-
 const statistics: Statistic[] = [
   {
     icon: Users,
-    number: "10,000+",
-    label: "Successful Applications",
-    description: "Visa applications processed successfully"
+    number: '15,000+',
+    label: 'Successful Applications',
+    description: 'Visa applications approved with our expert guidance'
   },
   {
     icon: Award,
-    number: "98%",
-    label: "Success Rate",
-    description: "High success rate across all visa types"
+    number: '98.5%',
+    label: 'Success Rate',
+    description: 'One of the highest approval rates in the industry'
   },
   {
     icon: Globe,
-    number: "50+",
-    label: "Countries Served",
-    description: "Clients from around the world"
+    number: '80+',
+    label: 'Countries Served',
+    description: 'Clients from around the world trust our expertise'
   },
   {
     icon: Clock,
-    number: "15+",
-    label: "Years Experience",
-    description: "Combined team experience"
+    number: '18+',
+    label: 'Years Experience',
+    description: 'Combined decades of immigration law expertise'
   }
 ]
 
-const values: Value[] = [
+const features: Feature[] = [
   {
-    icon: Heart,
-    title: "Compassionate Service",
-    description: "We understand that immigration is a life-changing journey. We treat every client with empathy and care."
+    icon: Scale,
+    title: 'Licensed Immigration Solicitors',
+    description: 'All our solicitors are fully licensed and regulated by the Solicitors Regulation Authority (SRA) and registered with the Office of the Immigration Services Commissioner (OISC).',
+    highlight: true
   },
   {
-    icon: Shield,
-    title: "Trust & Integrity",
-    description: "We maintain the highest ethical standards and provide transparent, honest advice at every step."
+    icon: FileCheck,
+    title: 'Expert Document Preparation',
+    description: 'We meticulously prepare and review all required documentation to ensure your application is submission-ready and error-free.',
+    highlight: true
   },
   {
     icon: Target,
-    title: "Results-Driven",
-    description: "Our focus is on achieving the best possible outcomes for our clients through meticulous preparation."
+    title: 'Personalized Consultation',
+    description: 'Every case is unique. We provide tailored advice based on your specific circumstances and immigration goals.',
   },
   {
-    icon: BookOpen,
-    title: "Expert Knowledge",
-    description: "Our team stays updated with the latest immigration laws and policies to provide accurate guidance."
+    icon: Zap,
+    title: 'Fast Track Services',
+    description: 'Need your visa urgently? We offer priority processing services to expedite your application timeline.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Dedicated Case Manager',
+    description: 'You\'ll have a dedicated immigration expert assigned to your case, ensuring consistent communication and support throughout the process.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Transparent Pricing',
+    description: 'No hidden fees or surprises. We provide clear, upfront pricing for all our services with complete transparency.',
   }
 ]
 
-export const AboutComponent: React.FC = () => {
+const certifications: Certification[] = [
+  {
+    icon: BadgeCheck,
+    title: 'SRA Registered',
+    description: 'Licensed by Solicitors Regulation Authority'
+  },
+  {
+    icon: BadgeCheck,
+    title: 'OISC Level 3',
+    description: 'Highest level OISC accreditation'
+  },
+  {
+    icon: BadgeCheck,
+    title: 'CILEx Accredited',
+    description: 'Chartered Institute of Legal Executives certified'
+  }
+]
+
+export const AboutComponent = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -143,37 +136,57 @@ export const AboutComponent: React.FC = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 py-20 md:py-32 overflow-hidden">
+        {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/20 rounded-full animate-pulse"></div>
-          <div className="absolute top-32 right-20 w-16 h-16 bg-indigo-500/20 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-purple-500/20 rounded-full animate-pulse delay-2000"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-                About Our
-                <span className="block bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                  UK Visa Experts
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
+                <Sparkles className="w-4 h-4 text-blue-300" />
+                <span className="text-blue-100 text-sm font-medium">UK Immigration Experts Since 2006</span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Your Trusted Partner for
+                <span className="block bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-200 bg-clip-text text-transparent mt-2">
+                  UK Visa Success
                 </span>
               </h1>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                We are a team of qualified immigration solicitors dedicated to helping you achieve your UK visa goals with confidence and success.
+              
+              <p className="text-xl sm:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                We are a team of qualified immigration solicitors dedicated to making your UK visa journey smooth, successful, and stress-free.
               </p>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-4 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg">
-                  Meet Our Team
-                </button>
-                <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-900 transition-colors duration-300">
-                  Our Success Stories
-                </button>
+                <Link
+                  href="/eligibility-check"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                >
+                  <UserCheck className="w-5 h-5 mr-2" />
+                  Check Your Eligibility
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-600/20 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-blue-600/30 transition-all duration-300"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Book Consultation
+                </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -182,225 +195,323 @@ export const AboutComponent: React.FC = () => {
       <Breadcrumb items={[{ label: 'About Us' }]} />
 
       {/* Statistics Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 md:py-24 bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {statistics.map((stat, index) => (
-              <div 
+              <motion.div
                 key={index}
-                className={`text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 200}ms` }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center p-6 md:p-8 rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 hover:shadow-xl transition-all duration-300 border border-blue-100/50 hover:border-blue-200"
               >
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <stat.icon className="w-7 h-7 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-blue-900 mb-2">{stat.number}</h3>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">{stat.label}</h4>
-                <p className="text-gray-600 text-sm">{stat.description}</p>
-              </div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-sm md:text-base font-semibold text-gray-800 mb-2">{stat.label}</div>
+                <div className="text-xs md:text-sm text-gray-600">{stat.description}</div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                  Our Story
-                </h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  Founded in 2008, we started as a small team of passionate immigration professionals who believed that everyone deserves expert guidance on their journey to the UK.
-                </p>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Over the years, we&apos;ve grown into one of the most trusted immigration consultancies, helping thousands of individuals and families achieve their UK visa goals. Our success is built on a foundation of expertise, integrity, and genuine care for our clients.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                    <span className="text-sm font-medium">Licensed Solicitors</span>
-                  </div>
-                  <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                    <span className="text-sm font-medium">OISC Registered</span>
-                  </div>
-                  <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                    <span className="text-sm font-medium">15+ Years Experience</span>
-                  </div>
-                </div>
-              </div>
-              <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white">
-                    <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                    <p className="text-blue-100 mb-6">
-                      To provide exceptional immigration services that make the UK visa process accessible, transparent, and successful for everyone.
-                    </p>
-                    <div className="flex items-center">
-                      <TrendingUp className="w-6 h-6 mr-2" />
-                      <span className="font-semibold">Growing Strong Since 2008</span>
-                    </div>
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center">
-                    <Star className="w-12 h-12 text-yellow-800" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Expert Team
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our qualified immigration solicitors bring years of experience and a personal touch to every case.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div 
-                key={member.id}
-                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 200}ms` }}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
+                transition={{ duration: 0.8 }}
               >
-                <div className="relative h-64 bg-gradient-to-br from-blue-500 to-indigo-600">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
-                      <h3 className="font-bold text-gray-900">{member.name}</h3>
-                      <p className="text-sm text-blue-600 font-medium">{member.position}</p>
-                    </div>
-                  </div>
+                <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
+                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <span className="text-blue-900 text-sm font-semibold">Our Journey</span>
                 </div>
                 
-                <div className="p-6">
-                  <div className="flex items-center mb-3">
-                    <Clock className="w-4 h-4 text-gray-500 mr-2" />
-                    <span className="text-sm text-gray-600">{member.experience}</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Leading UK Immigration
+                  <span className="block text-blue-600">Experts Since 2006</span>
+                </h2>
+                
+                <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                  <p>
+                    Founded with a mission to make UK immigration accessible to everyone, we have grown from a small team of passionate solicitors into one of the most trusted immigration consultancies in the UK.
+                  </p>
+                  <p>
+                    Over the past 18 years, we&apos;ve successfully processed over 15,000 visa applications across all categories - from student visas to skilled worker visas, family reunion to settlement applications. Our expertise spans the entire spectrum of UK immigration law.
+                  </p>
+                  <p>
+                    What sets us apart is our unwavering commitment to our clients&apos; success. We don&apos;t just file paperwork - we build relationships, understand your unique situation, and fight for your right to be in the UK.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3 mt-8">
+                  {certifications.map((cert, index) => (
+                    <div key={index} className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                      <cert.icon className="w-5 h-5 text-green-600 flex-shrink-0" />
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">{cert.title}</div>
+                        <div className="text-xs text-gray-600">{cert.description}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-xl">
+                    <Award className="w-12 h-12 text-yellow-900" />
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {member.description}
-                  </p>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-900 text-sm">Specializations:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {member.specializations.map((spec, idx) => (
-                        <span 
-                          key={idx}
-                          className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                        >
-                          {spec}
-                        </span>
-                      ))}
+                  <div className="relative z-10">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6">Our Mission</h3>
+                    <p className="text-blue-100 text-lg leading-relaxed mb-8">
+                      To provide exceptional, transparent, and accessible immigration services that empower individuals and families to achieve their dreams of living, working, or studying in the UK.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Transparency First</div>
+                          <div className="text-blue-100 text-sm">No hidden fees, clear communication at every step</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Client-Centered Approach</div>
+                          <div className="text-blue-100 text-sm">Your success is our success - we&apos;re with you every step</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Continuous Excellence</div>
+                          <div className="text-blue-100 text-sm">We stay ahead of changing immigration policies</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-8 flex items-center gap-2 text-blue-200">
+                      <TrendingUp className="w-5 h-5" />
+                      <span className="font-semibold">Growing Strong Since 2006</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Why Choose Us Section */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The principles that guide everything we do and every client we serve.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div 
-                key={index}
-                className={`group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
+                <Target className="w-4 h-4 text-blue-600" />
+                <span className="text-blue-900 text-sm font-semibold">Why Choose Us</span>
               </div>
-            ))}
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                What Makes Us Different
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                We combine legal expertise with personal care to deliver results that matter
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`group relative p-8 rounded-2xl border-2 transition-all duration-300 hover:shadow-2xl ${
+                    feature.highlight
+                      ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-400'
+                      : 'bg-white border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  {feature.highlight && (
+                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                      Premium
+                    </div>
+                  )}
+                  
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
+                    feature.highlight
+                      ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg'
+                      : 'bg-blue-100 text-blue-600'
+                  }`}>
+                    <feature.icon className="w-7 h-7" />
+                  </div>
+                  
+                  <h3 className={`text-xl font-bold mb-3 ${
+                    feature.highlight ? 'text-gray-900' : 'text-gray-800'
+                  }`}>
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
+      {/* Core Values Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-blue-200">
+                <HeartHandshake className="w-4 h-4 text-blue-600" />
+                <span className="text-blue-900 text-sm font-semibold">Our Values</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                The Principles That Guide Us
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Every decision we make and every action we take is driven by these core values
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  icon: HeartHandshake,
+                  title: 'Empathy & Care',
+                  description: 'We understand that immigration is deeply personal. Every client receives compassionate, individualized attention.',
+                  gradient: 'from-pink-500 to-rose-500'
+                },
+                {
+                  icon: Shield,
+                  title: 'Integrity & Trust',
+                  description: 'We maintain the highest ethical standards. Honest advice, transparent processes, and reliable results.',
+                  gradient: 'from-blue-500 to-cyan-500'
+                },
+                {
+                  icon: Target,
+                  title: 'Excellence',
+                  description: 'We don\'t settle for good enough. Every application is meticulously prepared to maximize your chances of success.',
+                  gradient: 'from-purple-500 to-indigo-500'
+                },
+                {
+                  icon: BookOpen,
+                  title: 'Expert Knowledge',
+                  description: 'Our team continuously updates their expertise to stay ahead of the ever-changing UK immigration landscape.',
+                  gradient: 'from-green-500 to-emerald-500'
+                }
+              ].map((value, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.9 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-br ${value.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <value.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 md:py-28 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDEwIDAgTCAwIDAgMCAxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              Ready to Start Your UK Visa Journey?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Let our expert team guide you through the process with confidence and success.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/eligibility-check"
-                className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg"
-              >
-                <UserCheck className="w-5 h-5 mr-2" />
-                Check Your Eligibility
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-300"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Contact Our Team
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                Ready to Start Your UK Visa Journey?
+              </h2>
+              <p className="text-xl text-blue-100 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Join thousands of successful applicants who trusted us with their UK immigration journey. Let our expert team guide you to success.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/eligibility-check"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1"
+                >
+                  <UserCheck className="w-5 h-5 mr-2" />
+                  Free Eligibility Check
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-700/30 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-blue-700/40 transition-all duration-300"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </div>
 
-      {/* Footer Info */}
-      <section className="py-12 bg-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="flex flex-col items-center">
-              <Phone className="w-8 h-8 text-blue-400 mb-3" />
-              <h3 className="text-white font-semibold mb-2">Call Us</h3>
-              <p className="text-gray-400">+02037288948</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <Mail className="w-8 h-8 text-blue-400 mb-3" />
-              <h3 className="text-white font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-400">info@ukvisa.com</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <MapPin className="w-8 h-8 text-blue-400 mb-3" />
-              <h3 className="text-white font-semibold mb-2">Visit Us</h3>
-              <p className="text-gray-400">London, UK</p>
-            </div>
+              <div className="mt-12 pt-8 border-t border-white/20">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                  <div>
+                    <Phone className="w-6 h-6 text-blue-200 mx-auto mb-2" />
+                    <div className="text-white font-semibold mb-1">Call Us</div>
+                    <a href="tel:02037288948" className="text-blue-100 hover:text-white transition-colors text-sm">
+                      +44 20 3728 8948
+                    </a>
+                  </div>
+                  <div>
+                    <Mail className="w-6 h-6 text-blue-200 mx-auto mb-2" />
+                    <div className="text-white font-semibold mb-1">Email Us</div>
+                    <a href="mailto:info@ukvisa.com" className="text-blue-100 hover:text-white transition-colors text-sm">
+                      info@ukvisa.com
+                    </a>
+                  </div>
+                  <div>
+                    <MapPin className="w-6 h-6 text-blue-200 mx-auto mb-2" />
+                    <div className="text-white font-semibold mb-1">Visit Us</div>
+                    <div className="text-blue-100 text-sm">London, United Kingdom</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

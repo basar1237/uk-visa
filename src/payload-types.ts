@@ -74,7 +74,6 @@ export interface Config {
     users: User;
     'contact-submissions': ContactSubmission;
     'eligibility-submissions': EligibilitySubmission;
-    'english-test-submissions': EnglishTestSubmission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -93,7 +92,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     'eligibility-submissions': EligibilitySubmissionsSelect<false> | EligibilitySubmissionsSelect<true>;
-    'english-test-submissions': EnglishTestSubmissionsSelect<false> | EnglishTestSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -1249,53 +1247,6 @@ export interface EligibilitySubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "english-test-submissions".
- */
-export interface EnglishTestSubmission {
-  id: number;
-  fullName: string;
-  email: string;
-  phone?: string | null;
-  score: number;
-  totalQuestions: number;
-  percentage: number;
-  level: string;
-  description?: string | null;
-  visaEligibility?: string | null;
-  recommendations?:
-    | {
-        recommendation: string;
-        id?: string | null;
-      }[]
-    | null;
-  correctAnswers: number;
-  wrongAnswers: number;
-  testDuration?: number | null;
-  questionDetails?:
-    | {
-        questionId: number;
-        question: string;
-        options?:
-          | {
-              option: string;
-              id?: string | null;
-            }[]
-          | null;
-        correctAnswer: number;
-        selectedAnswer?: number | null;
-        isCorrect?: boolean | null;
-        explanation?: string | null;
-        category?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  status: 'new' | 'reviewed' | 'contacted';
-  notes?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1494,10 +1445,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'eligibility-submissions';
         value: number | EligibilitySubmission;
-      } | null)
-    | ({
-        relationTo: 'english-test-submissions';
-        value: number | EnglishTestSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2138,52 +2085,6 @@ export interface EligibilitySubmissionsSelect<T extends boolean = true> {
       };
   status?: T;
   adminNotes?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "english-test-submissions_select".
- */
-export interface EnglishTestSubmissionsSelect<T extends boolean = true> {
-  fullName?: T;
-  email?: T;
-  phone?: T;
-  score?: T;
-  totalQuestions?: T;
-  percentage?: T;
-  level?: T;
-  description?: T;
-  visaEligibility?: T;
-  recommendations?:
-    | T
-    | {
-        recommendation?: T;
-        id?: T;
-      };
-  correctAnswers?: T;
-  wrongAnswers?: T;
-  testDuration?: T;
-  questionDetails?:
-    | T
-    | {
-        questionId?: T;
-        question?: T;
-        options?:
-          | T
-          | {
-              option?: T;
-              id?: T;
-            };
-        correctAnswer?: T;
-        selectedAnswer?: T;
-        isCorrect?: T;
-        explanation?: T;
-        category?: T;
-        id?: T;
-      };
-  status?: T;
-  notes?: T;
   updatedAt?: T;
   createdAt?: T;
 }

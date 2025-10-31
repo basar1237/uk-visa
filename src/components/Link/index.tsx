@@ -44,7 +44,6 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
       // Eğer reference.value bir string/id ise (unpopulated)
       if (typeof reference.value === 'string' || typeof reference.value === 'number') {
         // Bu durumda slug bilgisi yok, bu yüzden null döndür
-        console.warn('CMSLink: Reference value is not populated, cannot generate href', reference)
         return null
       }
     }
@@ -52,7 +51,6 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   })()
 
   if (!href) {
-    console.warn('CMSLink: No href generated', { type, reference, url })
     return null
   }
 

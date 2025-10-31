@@ -64,8 +64,7 @@ export async function GET() {
   try {
     const sitemap = await getPagesSitemap()
     return getServerSideSitemap(sitemap)
-  } catch (error) {
-    console.error('Sitemap generation error:', error)
+  } catch (_error) {
     // Fallback sitemap
     return getServerSideSitemap([
       {

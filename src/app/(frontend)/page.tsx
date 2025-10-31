@@ -16,8 +16,11 @@ import { WhyTrustSection } from '@/components/landing/WhyTrustSection'
 import { ExecutiveServiceSection } from '@/components/landing/ExecutiveServiceSection'
 import { SimpleSection } from '@/components/landing/SimpleSection'
 import { ContactFormSection } from '@/components/landing/ContactFormSection'
-import { ContactStrip } from '@/components/landing/ContactStrip'
+import { VisaJourneyCTA } from '@/components/landing/VisaJourneyCTA'
 import { HomeFAQ } from '@/components/landing/HomeFAQ'
+import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
+import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
+import { SuccessStories } from '@/components/landing/SuccessStories'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -46,13 +49,24 @@ export default async function HomePage() {
         <StatisticsSection />
       </div>    
       <RenderBlocks blocks={layout} />
-      <WhyTrustSection />
+      <VisaTypesShowcase />
+      <div className="hidden">
+        <WhyTrustSection />
+      </div>
+
       <FastTrackSection />
-      <ExecutiveServiceSection />
+      <div className="hidden">
+        <ExecutiveServiceSection />
+      </div>
+      <div className="hidden">
       <SimpleSection />
-      <ContactFormSection />
+      </div>
+      <SuccessStories />  
+      <ProcessTimeline />
       <HomeFAQ />
-      <ContactStrip />
+      <ContactFormSection />
+
+      <VisaJourneyCTA />
     </article>
   )
 }

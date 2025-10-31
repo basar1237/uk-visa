@@ -13,7 +13,6 @@ export async function Header() {
     })
     
     if (!headerData) {
-      console.warn('Header data is null or undefined, using default header')
       // Fallback default header
       const defaultHeader: Partial<Header> = {
         navItems: [],
@@ -23,8 +22,7 @@ export async function Header() {
     }
 
     return <HeaderClient data={headerData as Header} />
-  } catch (error) {
-    console.error('Error loading header:', error)
+  } catch (_error) {
     // Fallback on error
     const defaultHeader: Partial<Header> = {
       navItems: [],

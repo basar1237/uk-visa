@@ -70,11 +70,9 @@ export const ContactFormSection: React.FC = () => {
         })
       } else {
         setSubmitStatus('error')
-        console.error('Form submission error:', result.error)
       }
-    } catch (error) {
+    } catch (_error) {
       setSubmitStatus('error')
-      console.error('Network error:', error)
     } finally {
       setIsSubmitting(false)
     }
@@ -90,7 +88,7 @@ export const ContactFormSection: React.FC = () => {
 
             <div className="space-y-4">
               {/* Phone Support */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">☎</div>
                   <div className="flex-1">
@@ -104,7 +102,7 @@ export const ContactFormSection: React.FC = () => {
               </div>
 
               {/* Email Enquiry */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
                   <div className="flex-1">
@@ -118,7 +116,7 @@ export const ContactFormSection: React.FC = () => {
               </div>
 
               {/* Online Assessment */}
-              <div className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+              <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-xl">
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">⏱</div>
                   <div className="flex-1">
@@ -133,7 +131,7 @@ export const ContactFormSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl md:rounded-3xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15),0_12px_24px_-10px_rgba(0,0,0,0.2)] transition-all duration-300 p-4 md:p-8 lg:p-10 border border-gray-100">
+          <div className="bg-white rounded-2xl md:rounded-3xl transition-all duration-300 p-4 md:p-8 lg:p-10 border border-gray-100 shadow-xl">
             <div className="mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 md:mb-3">Send Us a Message</h2>
               <p className="text-sm md:text-base lg:text-lg text-gray-600">We&apos;ll respond within 24 hours.</p>

@@ -39,7 +39,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [isMobileMenuOpen])
 
   if (!data) {
-    console.error('HeaderClient - No data provided')
     return null
   }
 

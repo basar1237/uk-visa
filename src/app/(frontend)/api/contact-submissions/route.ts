@@ -42,19 +42,6 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Email bildirimi gönder (admin'e) - Şimdilik console.log ile test
-    console.log('=== YENİ CONTACT FORM GÖNDERİMİ ===')
-    console.log('Ad Soyad:', firstName, lastName)
-    console.log('Email:', email)
-    console.log('Telefon:', phone || 'Belirtilmemiş')
-    console.log('Visa Tipi:', visaType)
-    console.log('Konu:', subject)
-    console.log('Mesaj:', message)
-    console.log('Tercih Edilen İletişim:', preferredContact)
-    console.log('Acil Durum:', urgency)
-    console.log('Gönderim Tarihi:', new Date().toLocaleString('tr-TR'))
-    console.log('=====================================')
-
     // Email gönderme (şimdilik devre dışı - email provider konfigürasyonu gerekli)
     // try {
     //   await payload.sendEmail({
@@ -88,8 +75,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
 
-  } catch (error) {
-    console.error('Contact form submission error:', error)
+  } catch (_error) {
     return NextResponse.json(
       { error: 'Sunucu hatası' },
       { status: 500 }
@@ -127,8 +113,7 @@ export async function DELETE(request: NextRequest) {
       { status: 200 }
     )
 
-  } catch (error) {
-    console.error('Contact submission delete error:', error)
+  } catch (_error) {
     return NextResponse.json(
       { error: 'Sunucu hatası' },
       { status: 500 }
@@ -221,8 +206,7 @@ export async function GET(request: NextRequest) {
       total: contactSubmissions.totalDocs
     })
 
-  } catch (error) {
-    console.error('Contact submissions export error:', error)
+  } catch (_error) {
     return NextResponse.json(
       { error: 'Sunucu hatası' },
       { status: 500 }
