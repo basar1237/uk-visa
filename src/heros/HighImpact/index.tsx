@@ -74,7 +74,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
 
           {/* Right Side - UK Visa Eligibility Test */}
           <motion.div
-            className="hidden lg:block w-full max-h-[500px] overflow-y-auto motion-safe"
+            className="hidden lg:block w-full max-h-[700px] overflow-y-auto motion-safe"
             initial={{ opacity: 0, x: 30, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ 

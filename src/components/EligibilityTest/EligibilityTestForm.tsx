@@ -91,6 +91,78 @@ const visaSpecificQuestions: Record<string, Question[]> = {
     { id: 514, question: "What is your child's annual income?", type: 'select', options: ['£18,600 - £25,000', '£25,000 - £35,000', '£35,000 - £50,000', '£50,000+'], required: true, step: 3, category: "Child Information" },
     { id: 515, question: "Do you have evidence of your relationship?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Child Information" }
   ],
+  'Leave to Remain': [
+    { id: 701, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 702, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 703, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 704, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 705, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 706, question: "What is your contact phone number?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 707, question: "What is your current visa type?", type: 'select', options: ['Spouse Visa', 'Work Visa', 'Student Visa', 'Family Visa', 'Other'], required: true, step: 2, category: "Current Status" },
+    { id: 708, question: "When does your current visa expire?", type: 'date', required: true, step: 2, category: "Current Status" },
+    { id: 709, question: "What type of extension are you applying for?", type: 'select', options: ['Extension of current visa', 'Switch to different visa', 'Family reunion', 'Work permit extension', 'Other'], required: true, step: 3, category: "Extension Details" },
+    { id: 710, question: "How long have you been in the UK on your current visa?", type: 'select', options: ['Less than 1 year', '1-2 years', '2-5 years', '5-10 years', 'More than 10 years'], required: true, step: 3, category: "Extension Details" },
+    { id: 711, question: "Do you meet the financial requirements for your visa extension?", type: 'radio', options: ['Yes', 'No', 'Not sure'], required: true, step: 3, category: "Extension Details" },
+    { id: 712, question: "Do you have any dependents applying with you?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Extension Details" }
+  ],
+  'Indefinite Leave to Remain': [
+    { id: 801, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 802, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 803, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 804, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 805, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 806, question: "What is your contact phone number?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 807, question: "What is your current visa status?", type: 'select', options: ['Work Visa', 'Spouse Visa', 'Student Visa', 'Family Visa', 'Other'], required: true, step: 2, category: "Immigration History" },
+    { id: 808, question: "How long have you been living in the UK continuously?", type: 'select', options: ['Less than 2 years', '2-3 years', '3-5 years', '5-10 years', '10+ years'], required: true, step: 2, category: "Immigration History" },
+    { id: 809, question: "Have you spent more than 180 days outside the UK in any 12-month period?", type: 'radio', options: ['Yes', 'No'], required: true, step: 2, category: "Immigration History" },
+    { id: 810, question: "Do you have Life in the UK test certificate?", type: 'radio', options: ['Yes', 'No', 'Not yet'], required: true, step: 3, category: "ILR Requirements" },
+    { id: 811, question: "What is your English language proficiency level?", type: 'select', options: ['B1 (Intermediate)', 'B2 (Upper Intermediate)', 'C1 (Advanced)', 'C2 (Proficient)', 'Not tested yet'], required: true, step: 3, category: "ILR Requirements" },
+    { id: 812, question: "Do you have any criminal convictions in the UK or abroad?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "ILR Requirements" },
+    { id: 813, question: "Are you planning to apply for British citizenship after ILR?", type: 'radio', options: ['Yes', 'No', 'Not sure'], required: true, step: 3, category: "ILR Requirements" }
+  ],
+  'British Citizenship': [
+    { id: 901, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 902, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 903, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 904, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 905, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 906, question: "What is your contact phone number?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 907, question: "Do you have Indefinite Leave to Remain (ILR) or settled status?", type: 'radio', options: ['Yes, ILR', 'Yes, Settled Status', 'No'], required: true, step: 2, category: "Current Status" },
+    { id: 908, question: "How long have you held ILR or settled status?", type: 'select', options: ['Less than 12 months', '12-24 months', '2-5 years', '5+ years'], required: true, step: 2, category: "Current Status" },
+    { id: 909, question: "Have you spent more than 450 days outside the UK in the last 5 years?", type: 'radio', options: ['Yes', 'No'], required: true, step: 2, category: "Current Status" },
+    { id: 910, question: "Do you have Life in the UK test certificate?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Citizenship Requirements" },
+    { id: 911, question: "What is your English language proficiency level?", type: 'select', options: ['B1 (Intermediate)', 'B2 (Upper Intermediate)', 'C1 (Advanced)', 'C2 (Proficient)', 'Native speaker'], required: true, step: 3, category: "Citizenship Requirements" },
+    { id: 912, question: "Have you had any criminal convictions in the UK or abroad?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Citizenship Requirements" },
+    { id: 913, question: "Do you intend to make the UK your permanent home?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Citizenship Requirements" }
+  ],
+  'Asylum & Human rights': [
+    { id: 1001, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 1002, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 1003, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 1004, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 1005, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 1006, question: "What is your contact phone number?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 1007, question: "What type of application are you making?", type: 'select', options: ['Asylum claim', 'Human rights application (Article 8)', 'Protection claim', 'Family life application', 'Private life application', 'Other'], required: true, step: 2, category: "Application Type" },
+    { id: 1008, question: "Are you currently in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 2, category: "Application Type" },
+    { id: 1009, question: "Do you have family members (spouse/children) in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 2, category: "Application Type" },
+    { id: 1010, question: "Have you previously claimed asylum in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Claim Details" },
+    { id: 1011, question: "Do you fear persecution in your home country?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Claim Details" },
+    { id: 1012, question: "How long have you been living in the UK?", type: 'select', options: ['Less than 6 months', '6-12 months', '1-2 years', '2-5 years', '5-10 years', '10+ years'], required: true, step: 3, category: "Claim Details" }
+  ],
+  'Business Immigration': [
+    { id: 1101, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 1102, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
+    { id: 1103, question: "What is your nationality?", type: 'select', options: ['Turkish', 'English', 'Arabic', 'French', 'German', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Indian', 'Pakistani', 'Bangladeshi', 'Iranian', 'Iraqi', 'Syrian', 'Lebanese', 'Jordanian', 'Egyptian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Saudi Arabian', 'Emirati', 'Kuwaiti', 'Qatari', 'Bahraini', 'Omani', 'Yemeni', 'Afghan', 'Kazakh', 'Uzbek', 'Kyrgyz', 'Tajik', 'Turkmen', 'Azerbaijani', 'Georgian', 'Armenian', 'Ukrainian', 'Belarusian', 'Polish', 'Czech', 'Slovak', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Serbian', 'Bosnian', 'Albanian', 'Macedonian', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Finnish', 'Swedish', 'Norwegian', 'Danish', 'Icelandic', 'Dutch', 'Belgian', 'Swiss', 'Austrian', 'Greek', 'Cypriot', 'Maltese', 'Irish', 'Scottish', 'Welsh', 'Canadian', 'American', 'Mexican', 'Brazilian', 'Argentinian', 'Chilean', 'Colombian', 'Peruvian', 'Venezuelan', 'Ecuadorian', 'Uruguayan', 'Paraguayan', 'Bolivian', 'Australian', 'New Zealander', 'South African', 'Nigerian', 'Kenyan', 'Ghanaian', 'Ethiopian', 'Ugandan', 'Tanzanian', 'Moroccan', 'Algerian', 'Tunisian', 'Libyan', 'Sudanese', 'Other'], required: true, step: 1, category: "Personal Information" },
+    { id: 1104, question: "What is your gender?", type: 'radio', options: ['Male', 'Female', 'Other', 'Prefer not to say'], required: true, step: 1, category: "Personal Information" },
+    { id: 1105, question: "What is your contact email?", type: 'email', required: true, step: 1, category: "Personal Information" },
+    { id: 1106, question: "What is your contact phone number?", type: 'text', required: true, step: 1, category: "Personal Information" },
+    { id: 1107, question: "What type of business visa are you applying for?", type: 'select', options: ['Innovator Founder Visa', 'Start-up Visa', 'Investor Visa', 'Skilled Worker Visa (Business)', 'Representative of Overseas Business', 'Other'], required: true, step: 2, category: "Business Details" },
+    { id: 1108, question: "How much capital do you have available for investment?", type: 'select', options: ['Less than £50,000', '£50,000 - £200,000', '£200,000 - £500,000', '£500,000 - £1,000,000', '£1,000,000+'], required: true, step: 2, category: "Business Details" },
+    { id: 1109, question: "Do you have a business plan for your UK venture?", type: 'radio', options: ['Yes', 'No', 'In progress'], required: true, step: 2, category: "Business Details" },
+    { id: 1110, question: "Have you had a previous visa refused or cancelled?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Application History" },
+    { id: 1111, question: "Are you appealing a visa refusal decision?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Application History" },
+    { id: 1112, question: "Do you have an endorsement from an approved body?", type: 'radio', options: ['Yes', 'No', 'Applying for one'], required: true, step: 3, category: "Application History" }
+  ],
   'Other': [
     { id: 601, question: "What is your full name?", type: 'text', required: true, step: 1, category: "Personal Information" },
     { id: 602, question: "What is your date of birth?", type: 'date', required: true, step: 1, category: "Personal Information" },
@@ -135,9 +207,25 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
   const [selectedVisaType, setSelectedVisaType] = useState<string>('')
   const [showVisaTypeSelection, setShowVisaTypeSelection] = useState(true)
 
+  // Map selected visa type to questions key
+  const visaTypeMapping: Record<string, string> = {
+    'Visitor Visa Applications': 'Visitor Visa',
+    'Leave to Remain': 'Leave to Remain',
+    'Indefinite leave to remain': 'Indefinite Leave to Remain',
+    'British citizenship': 'British Citizenship',
+    'Asylum & Human rights': 'Asylum & Human rights',
+    'Refused Appeals & Business Immigration': 'Business Immigration'
+  }
+
   // Get questions based on selected visa type or default questions
-  const questions = selectedVisaType ? visaSpecificQuestions[selectedVisaType] || [] : eligibilityQuestions.slice(0, maxQuestions)
-  const totalSteps = Math.max(...questions.map(q => q.step))
+  const getMappedVisaType = (visaType: string): string => {
+    return visaTypeMapping[visaType] || visaType
+  }
+
+  const questions = selectedVisaType 
+    ? (visaSpecificQuestions[getMappedVisaType(selectedVisaType)] || visaSpecificQuestions['Visitor Visa'] || eligibilityQuestions.slice(0, maxQuestions))
+    : eligibilityQuestions.slice(0, maxQuestions)
+  const totalSteps = questions.length > 0 ? Math.max(...questions.map(q => q.step), 1) : 1
   const currentStepQuestions = questions.filter(q => q.step === currentStep)
 
   const handleAnswerChange = (questionId: number, value: string) => {
@@ -262,26 +350,50 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
 
   const currentQuestion = currentStepQuestions[currentQuestionIndex]
   const totalQuestions = questions.length
-  const currentQuestionNumber = questions.findIndex(q => q.id === currentQuestion?.id) + 1
-  const progress = (currentQuestionNumber / totalQuestions) * 100
+  const currentQuestionNumber = currentQuestion ? questions.findIndex(q => q.id === currentQuestion.id) + 1 : 0
+  const progress = totalQuestions > 0 ? (currentQuestionNumber / totalQuestions) * 100 : 0
 
   // Visa type selection screen
   if (showVisaTypeSelection) {
     return (
-      <div className={`bg-white rounded-2xl shadow-xl p-6 ${className}`}>
-        <div className="text-center mb-6">
+      <div className={`bg-white rounded-2xl shadow-xl p-3 ${className}`}>
+        <div className="text-center mb-3">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Select Your Visa Type - Start Check Eligibility</h2>
           <p className="text-gray-600 mb-6">Choose the visa type you&apos;re applying for to get personalized questions</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { type: 'Visitor Visa', description: 'Tourism, business, family visits' },
-            { type: 'Student Visa', description: 'Study at UK universities' },
-            { type: 'Skilled Worker Visa', description: 'Work in the UK' },
-            { type: 'Spouse Visa', description: 'Join family in the UK' },
-            { type: 'Parent Visa', description: 'Join children in the UK' },
-            { type: 'Other', description: 'Other visa types' }
+            { 
+              type: 'Visitor Visa Applications', 
+              description: 'Tourism, business trips, family visits. Up to 6 months stay.',
+              color: 'from-blue-500 to-indigo-600'
+            },
+            { 
+              type: 'Leave to Remain', 
+              description: 'Extend or switch your visa. Spouse, work, and family visas.',
+              color: 'from-green-500 to-emerald-600'
+            },
+            { 
+              type: 'Indefinite leave to remain', 
+              description: 'Permanent residence. No time limits, path to citizenship.',
+              color: 'from-purple-500 to-violet-600'
+            },
+            { 
+              type: 'British citizenship', 
+              description: 'Become a British citizen. Full rights, passport, voting.',
+              color: 'from-amber-500 to-orange-600'
+            },
+            { 
+              type: 'Asylum & Human rights', 
+              description: 'Protection claims, refugee status, human rights applications.',
+              color: 'from-pink-500 to-rose-600'
+            },
+            { 
+              type: 'Refused Appeals & Business Immigration', 
+              description: 'Appeal visa decisions. Business visas for entrepreneurs.',
+              color: 'from-teal-500 to-cyan-600'
+            }
           ].map((visa, index) => (
             <button
               key={index}
@@ -289,10 +401,19 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
                 setSelectedVisaType(visa.type)
                 setShowVisaTypeSelection(false)
               }}
-              className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500  transition-all text-left group bg-gray-50 hover:bg-blue-100"
+              className="relative p-2 px-5 border-2 border-gray-300 rounded-xl transition-all duration-300 text-left group bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 shadow-md hover:shadow-xl transform hover:-translate-y-1 overflow-hidden"
             >
-              <h3 className="font-semibold text-gray-900 mb-1 text-sm">{visa.type}</h3>
-              <p className="text-xs text-gray-600">{visa.description}</p>
+              {/* Gradient top border on hover */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${visa.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+              
+              <div className="relative z-10">
+                <h3 className={`font-bold mb-2 text-sm bg-gradient-to-r ${visa.color} bg-clip-text text-transparent group-hover:opacity-90 transition-all duration-300`}>
+                  {visa.type}
+                </h3>
+                <p className="text-xs text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                  {visa.description}
+                </p>
+              </div>
             </button>
           ))}
         </div>
@@ -401,6 +522,34 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
               Take Test Again
             </button>
           </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show error if no questions available
+  if (questions.length === 0 || !currentQuestion) {
+    return (
+      <div className={`bg-white rounded-2xl shadow-xl p-6 ${className}`}>
+        <div className="text-center py-8">
+          <div className="text-red-600 mb-4">
+            <FileText className="w-12 h-12 mx-auto" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">No Questions Available</h2>
+          <p className="text-gray-600 mb-6">
+            We couldn&apos;t load questions for the selected visa type. Please try selecting a different visa type.
+          </p>
+          <button
+            onClick={() => {
+              setSelectedVisaType('')
+              setShowVisaTypeSelection(true)
+              setCurrentStep(1)
+              setCurrentQuestionIndex(0)
+            }}
+            className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-300"
+          >
+            Go Back to Visa Selection
+          </button>
         </div>
       </div>
     )

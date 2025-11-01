@@ -1,55 +1,84 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
+import { motion } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
 
 import type { ServicesGridBlock } from '@/payload-types'
 
+// Gradient renkler dizisi - her servis için farklı renk
+const gradientColors = [
+  'from-blue-500 to-indigo-600',
+  'from-green-500 to-emerald-600',
+  'from-pink-500 to-rose-600',
+  'from-purple-500 to-violet-600',
+  'from-amber-500 to-orange-600',
+  'from-teal-500 to-cyan-600',
+  'from-red-500 to-rose-600',
+  'from-indigo-500 to-purple-600',
+  'from-blue-600 to-cyan-500',
+  'from-orange-500 to-red-600',
+  'from-emerald-500 to-teal-600',
+  'from-violet-500 to-fuchsia-600',
+]
 
 export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, description, services }) => {
 
   return (
-    <section className="py-5 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {title && (
-           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
             {title}
           </h2>
         )}
         
         {description && (
-          <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+          <p className="text-gray-600 mb-12 text-lg leading-relaxed text-center max-w-3xl mx-auto">
             {description}
           </p>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
           {services?.map((service, index) => {
+            const gradient = gradientColors[index % gradientColors.length]
+            
             return (
-              <div key={index} className="bg-white rounded-xl border hover:border-blue-200 transition-all duration-300 p-4 shadow-lg md:h-65 h-full flex flex-col justify-start">
-                <div className="flex flex-col">
-                  <h3 className="font-bold text-blue-800 mb-2 text-xl">
+              <div 
+                key={index} 
+                className="group relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-300 cursor-pointer flex flex-col h-full"
+              >
+                {/* Gradient overlay üst çizgi */}
+                <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gradient}`}></div>
+                
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Başlık */}
+                  <h3 className={`font-bold mb-3 text-xl bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-800 leading-relaxed mb-4 flex-1 text-sm">
+                  {/* Açıklama */}
+                  <p className="text-gray-600 leading-relaxed mb-6 flex-1 text-sm line-clamp-4">
                     {service.description}
                   </p>
                   
                   {/* Badges */}
                   {service.badges && service.badges.length > 0 && (
-                    <div className="flex flex-wrap gap-5 mt-auto  ">
+                    <div className="flex flex-wrap gap-2 mt-auto  pt-4 border-t border-gray-200">
                       {service.badges.map((badge, badgeIndex) => (
                         badge.link ? (
                           <Link
                             key={badgeIndex}
                             href={badge.link}
-                            className="flex items-center justify-center bg-blue-100 text-blue-800 px-2 py-1 rounded-full md:text-sm text-xs font-medium hover:bg-blue-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                            className={`inline-flex hover:-translate-y-[2px] transition-all duration-300 ease-in-out items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r ${gradient} text-white hover:opacity-90 shadow-sm hover:shadow-md`}
                           >
                             {badge.text}
                           </Link>
                         ) : (
                           <span
                             key={badgeIndex}
-                            className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                            className={`inline-flex hover:-translate-y-[2px] transition-all duration-300 ease-in-out items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium  bg-gradient-to-r ${gradient} bg-opacity-10 text-gray-700`}
                           >
                             {badge.text}
                           </span>
@@ -62,6 +91,31 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
             )
           })}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+             <div className="text-left">
+              <h3 className="font-bold text-gray-900 mb-1 justify-center flex">Not sure which visa is right for you?</h3>
+              <p className="text-sm text-gray-600 mb-3">Our expert team can assess your eligibility and guide you to the best visa option.</p>
+              <div className="flex items-center justify-center gap-3">
+                <Link
+                  href="/eligibility-check"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200"
+                >
+                  Check Your Eligibility Free
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
