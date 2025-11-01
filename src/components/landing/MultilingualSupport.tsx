@@ -56,7 +56,7 @@ export const MultilingualSupport: React.FC = () => {
             We Speak Your Language
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Expert immigration advice in your native language. We're here to help you succeed.
+            Expert immigration advice in your native language. We&apos;re here to help you succeed.
           </p>
         </div>
 

@@ -93,10 +93,10 @@ export const ContactFormSection: React.FC = () => {
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">☎</div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900">Phone Support</p>
-                    <p className="text-gray-900 font-medium">020 3384 4389</p>
+                    <a href="tel:+442037288948" className="text-gray-900 font-medium hover:text-blue-600 transition-colors">+44 20 3728 8948</a>
                     <p className="text-gray-600 text-sm">Speak directly with our specialists</p>
                     <p className="text-green-700 text-xs mt-1">7 days, 7am-7pm</p>
-                    <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</button>
+                    <a href="tel:+442037288948" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</a>
                   </div>
                 </div>
               </div>
@@ -107,10 +107,10 @@ export const ContactFormSection: React.FC = () => {
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900">Email Enquiry</p>
-                    <p className="text-gray-900">info@ukimmigrationsolicitors.co.uk</p>
+                    <a href="mailto:info@ukvisa.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukvisa.com</a>
                     <p className="text-gray-600 text-sm">Send your questions via email</p>
                     <p className="text-green-700 text-xs mt-1">Response within 24 hours</p>
-                    <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</button>
+                    <a href="mailto:info@ukvisa.com" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</a>
                   </div>
                 </div>
               </div>

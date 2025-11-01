@@ -36,15 +36,15 @@ export const FooterContactSection: React.FC = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Phone:</span>
-                  <span className="text-gray-900">+44 XX XXXX XXXX</span>
+                  <a href="tel:+442037288948" className="text-gray-900 hover:text-blue-600 transition-colors">+44 20 3728 8948</a>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Email:</span>
-                  <span className="text-gray-900">info@uklegalsolutions.com</span>
+                  <a href="mailto:info@ukvisa.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukvisa.com</a>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Office:</span>
-                  <span className="text-gray-900">123 Example Street, Sheffield, S1 2AB</span>
+                  <span className="text-gray-900">Sheffield, United Kingdom</span>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Hours:</span>
