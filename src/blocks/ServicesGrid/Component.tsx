@@ -10,7 +10,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
     <section className="py-5 bg-gray-50">
       <div className="container mx-auto px-4">
         {title && (
-           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 my-16 text-center">
+           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
             {title}
           </h2>
         )}

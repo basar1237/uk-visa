@@ -76,16 +76,22 @@ const processSteps: ProcessStep[] = [
 
 export const ProcessTimeline: React.FC = () => {
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
             <Award className="w-4 h-4" />
             Our Proven Process
@@ -93,109 +99,179 @@ export const ProcessTimeline: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Your Journey to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">UK Visa Success</span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
             From initial consultation to visa approval, we guide you through every step with expertise, transparency, and personalized support.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Vertical line (desktop) */}
-          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-green-500 z-0"></div>
+        {/* Grid of Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+          {processSteps.map((step, index) => {
+            const Icon = step.icon
+            
+            return (
+              <motion.div
+                key={step.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                {step.id === 2 ? (
+                  <Link href="/eligibility-check">
+                    <div className={`
+                      bg-white rounded-xl shadow-md hover:shadow-xl 
+                      p-5 border-2 border-gray-100 
+                      transition-all duration-300 h-full flex flex-col
+                      ${step.color === 'blue' ? 'hover:border-blue-300' :
+                        step.color === 'indigo' ? 'hover:border-indigo-300' :
+                        step.color === 'purple' ? 'hover:border-purple-300' :
+                        step.color === 'pink' ? 'hover:border-pink-300' :
+                        step.color === 'orange' ? 'hover:border-orange-300' :
+                        'hover:border-green-300'}
+                      cursor-pointer
+                    `}>
+                      {/* Step Number & Icon */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className={`
+                          inline-flex items-center justify-center
+                          w-10 h-10 rounded-full 
+                          bg-gradient-to-br ${
+                            step.color === 'blue' ? 'from-blue-500 to-blue-600' :
+                            step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
+                            step.color === 'purple' ? 'from-purple-500 to-purple-600' :
+                            step.color === 'pink' ? 'from-pink-500 to-pink-600' :
+                            step.color === 'orange' ? 'from-orange-500 to-orange-600' :
+                            'from-green-500 to-green-600'
+                          }
+                          text-white font-bold text-sm shadow-lg
+                        `}>
+                          {step.id}
+                        </div>
 
-          {/* Steps */}
-          <div className="space-y-12 lg:space-y-16">
-            {processSteps.map((step, index) => {
-              const Icon = step.icon
-              const isEven = index % 2 === 0
-              
-              return (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-8 ${
-                    isEven ? 'lg:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Content Card */}
+                        {/* Icon */}
+                        <div className={`
+                          inline-flex items-center justify-center
+                          w-10 h-10 rounded-lg
+                          bg-gradient-to-br ${
+                            step.color === 'blue' ? 'from-blue-100 to-blue-200' :
+                            step.color === 'indigo' ? 'from-indigo-100 to-indigo-200' :
+                            step.color === 'purple' ? 'from-purple-100 to-purple-200' :
+                            step.color === 'pink' ? 'from-pink-100 to-pink-200' :
+                            step.color === 'orange' ? 'from-orange-100 to-orange-200' :
+                            'from-green-100 to-green-200'
+                          }
+                          ${
+                            step.color === 'blue' ? 'text-blue-600' :
+                            step.color === 'indigo' ? 'text-indigo-600' :
+                            step.color === 'purple' ? 'text-purple-600' :
+                            step.color === 'pink' ? 'text-pink-600' :
+                            step.color === 'orange' ? 'text-orange-600' :
+                            'text-green-600'
+                          }
+                        `}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                        {step.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-grow line-clamp-3">
+                        {step.description}
+                      </p>
+
+                      {/* Duration */}
+                      <div className={`
+                        inline-flex items-center gap-2
+                        px-3 py-1.5 rounded-lg text-xs font-semibold
+                        ${
+                          step.color === 'blue' ? 'bg-blue-50 text-blue-700' :
+                          step.color === 'indigo' ? 'bg-indigo-50 text-indigo-700' :
+                          step.color === 'purple' ? 'bg-purple-50 text-purple-700' :
+                          step.color === 'pink' ? 'bg-pink-50 text-pink-700' :
+                          step.color === 'orange' ? 'bg-orange-50 text-orange-700' :
+                          'bg-green-50 text-green-700'
+                        }
+                      `}>
+                        <Clock className="w-3 h-3" />
+                        {step.duration}
+                      </div>
+                    </div>
+                  </Link>
+                ) : (
                   <div className={`
-                    flex-1 bg-white rounded-2xl shadow-lg hover:shadow-xl 
-                    p-6 md:p-8 border-2 border-gray-100 
-                    transition-all duration-300
+                    bg-white rounded-xl shadow-md hover:shadow-xl 
+                    p-5 border-2 border-gray-100 
+                    transition-all duration-300 h-full flex flex-col
                     ${step.color === 'blue' ? 'hover:border-blue-300' :
                       step.color === 'indigo' ? 'hover:border-indigo-300' :
                       step.color === 'purple' ? 'hover:border-purple-300' :
                       step.color === 'pink' ? 'hover:border-pink-300' :
                       step.color === 'orange' ? 'hover:border-orange-300' :
                       'hover:border-green-300'}
-                    ${isEven ? 'lg:text-right lg:pr-12' : 'lg:text-left lg:pl-12'}
                   `}>
-                    {/* Step Number */}
-                    <div className={`
-                      inline-flex items-center justify-center
-                      w-12 h-12 rounded-full 
-                      bg-gradient-to-br ${
-                        step.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                        step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
-                        step.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                        step.color === 'pink' ? 'from-pink-500 to-pink-600' :
-                        step.color === 'orange' ? 'from-orange-500 to-orange-600' :
-                        'from-green-500 to-green-600'
-                      }
-                      text-white font-bold text-lg mb-4 shadow-lg
-                    `}>
-                      {step.id}
-                    </div>
+                    {/* Step Number & Icon */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div className={`
+                        inline-flex items-center justify-center
+                        w-10 h-10 rounded-full 
+                        bg-gradient-to-br ${
+                          step.color === 'blue' ? 'from-blue-500 to-blue-600' :
+                          step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
+                          step.color === 'purple' ? 'from-purple-500 to-purple-600' :
+                          step.color === 'pink' ? 'from-pink-500 to-pink-600' :
+                          step.color === 'orange' ? 'from-orange-500 to-orange-600' :
+                          'from-green-500 to-green-600'
+                        }
+                        text-white font-bold text-sm shadow-lg
+                      `}>
+                        {step.id}
+                      </div>
 
-                    {/* Icon */}
-                    <div className={`
-                      inline-flex items-center justify-center
-                      w-14 h-14 rounded-xl mb-4
-                      bg-gradient-to-br ${
-                        step.color === 'blue' ? 'from-blue-100 to-blue-200' :
-                        step.color === 'indigo' ? 'from-indigo-100 to-indigo-200' :
-                        step.color === 'purple' ? 'from-purple-100 to-purple-200' :
-                        step.color === 'pink' ? 'from-pink-100 to-pink-200' :
-                        step.color === 'orange' ? 'from-orange-100 to-orange-200' :
-                        'from-green-100 to-green-200'
-                      }
-                      ${
-                        step.color === 'blue' ? 'text-blue-600' :
-                        step.color === 'indigo' ? 'text-indigo-600' :
-                        step.color === 'purple' ? 'text-purple-600' :
-                        step.color === 'pink' ? 'text-pink-600' :
-                        step.color === 'orange' ? 'text-orange-600' :
-                        'text-green-600'
-                      }
-                    `}>
-                      <Icon className="w-7 h-7" />
+                      {/* Icon */}
+                      <div className={`
+                        inline-flex items-center justify-center
+                        w-10 h-10 rounded-lg
+                        bg-gradient-to-br ${
+                          step.color === 'blue' ? 'from-blue-100 to-blue-200' :
+                          step.color === 'indigo' ? 'from-indigo-100 to-indigo-200' :
+                          step.color === 'purple' ? 'from-purple-100 to-purple-200' :
+                          step.color === 'pink' ? 'from-pink-100 to-pink-200' :
+                          step.color === 'orange' ? 'from-orange-100 to-orange-200' :
+                          'from-green-100 to-green-200'
+                        }
+                        ${
+                          step.color === 'blue' ? 'text-blue-600' :
+                          step.color === 'indigo' ? 'text-indigo-600' :
+                          step.color === 'purple' ? 'text-purple-600' :
+                          step.color === 'pink' ? 'text-pink-600' :
+                          step.color === 'orange' ? 'text-orange-600' :
+                          'text-green-600'
+                        }
+                      `}>
+                        <Icon className="w-5 h-5" />
+                      </div>
                     </div>
 
                     {/* Title */}
-                    {step.id === 2 ? (
-                      <Link href="/eligibility-check">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3 hover:text-indigo-600 transition-colors cursor-pointer">
-                          {step.title}
-                        </h3>
-                      </Link>
-                    ) : (
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                        {step.title}
-                      </h3>
-                    )}
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
 
                     {/* Description */}
-                    <p className="text-gray-600 mb-4 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-grow line-clamp-3">
                       {step.description}
                     </p>
 
                     {/* Duration */}
                     <div className={`
                       inline-flex items-center gap-2
-                      px-3 py-1.5 rounded-lg text-sm font-semibold
+                      px-3 py-1.5 rounded-lg text-xs font-semibold
                       ${
                         step.color === 'blue' ? 'bg-blue-50 text-blue-700' :
                         step.color === 'indigo' ? 'bg-indigo-50 text-indigo-700' :
@@ -205,55 +281,34 @@ export const ProcessTimeline: React.FC = () => {
                         'bg-green-50 text-green-700'
                       }
                     `}>
-                      <Clock className="w-4 h-4" />
+                      <Clock className="w-3 h-3" />
                       {step.duration}
                     </div>
                   </div>
-
-                  {/* Icon Circle (Desktop) */}
-                  <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-                    <div className={`
-                      w-20 h-20 rounded-full
-                      bg-gradient-to-br ${
-                        step.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                        step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
-                        step.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                        step.color === 'pink' ? 'from-pink-500 to-pink-600' :
-                        step.color === 'orange' ? 'from-orange-500 to-orange-600' :
-                        'from-green-500 to-green-600'
-                      }
-                      shadow-xl flex items-center justify-center
-                    `}>
-                      <Icon className="w-10 h-10 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Spacer (Mobile) */}
-                  <div className="lg:hidden"></div>
-                </motion.div>
-              )
-            })}
-          </div>
-
-          {/* Final CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center relative z-20"
-          >
-            <Link href="/contact">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl shadow-xl p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
-                <Plane className="w-8 h-8" />
-                <div>
-                  <h3 className="font-bold text-lg mb-1">Ready to Start Your Application?</h3>
-                  <p className="text-sm text-blue-100">Book your free consultation today and take the first step towards your UK visa.</p>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
+
+        {/* Final CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <Link href="/contact">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+              <Plane className="w-6 h-6" />
+              <div className="text-left">
+                <h3 className="font-bold text-base">Ready to Start Your Application?</h3>
+                <p className="text-sm text-blue-100">Book your free consultation today and take the first step towards your UK visa.</p>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

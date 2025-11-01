@@ -193,6 +193,7 @@ export const EligibilityCheckComponent: React.FC = () => {
   const [showResult, setShowResult] = useState(false)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showVisaTypeSelection, setShowVisaTypeSelection] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleAnswerChange = (questionId: number, value: string) => {
     setAnswers(prev => ({
@@ -219,8 +220,63 @@ export const EligibilityCheckComponent: React.FC = () => {
     setAnswers(defaultAnswers[visaType] || {})
   }
 
-  const handleSubmit = () => {
-    setShowResult(true)
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    const result = getEligibilityResult(answers, selectedVisaType)
+    
+    try {
+      // Prepare submission data
+      const allQuestions = Object.values(visaSpecificQuestions[selectedVisaType] || {}).flat()
+      const nationality = answers[allQuestions.find(q => q.question === "Nationality")?.id || 0] || 'Unknown'
+      const age = answers[allQuestions.find(q => q.question === "Age")?.id || 0] || 'Unknown'
+      
+      const submissionData = {
+        fullName: `User - ${selectedVisaType}`,
+        dateOfBirth: new Date().toISOString().split('T')[0],
+        nationality: nationality,
+        gender: age,
+        email: 'temp@example.com',
+        phone: '',
+        passportNumber: '',
+        passportExpiry: new Date().toISOString().split('T')[0],
+        passportIssuedBy: '',
+        visaType: selectedVisaType,
+        applicationFor: 'myself',
+        visitPurpose: allQuestions.find(q => q.question.includes("Purpose")) ? answers[allQuestions.find(q => q.question.includes("Purpose"))?.id || 0] : '',
+        previousUKVisa: 'no',
+        visaRefusal: 'no',
+        criminalConvictions: 'no',
+        sufficientFunds: 'yes',
+        familyInUK: 'no',
+        familyRelationship: '',
+        ukSponsor: 'no',
+        additionalInfo: JSON.stringify(answers),
+        eligible: result.eligible,
+        score: result.score,
+        level: result.level,
+        description: result.description,
+        recommendations: result.recommendations.map(rec => ({ recommendation: rec })),
+        nextSteps: result.nextSteps.map(step => ({ step: step })),
+        status: 'new',
+      }
+
+      const response = await fetch('/api/eligibility-submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      })
+
+      if (!response.ok) {
+        console.error('Failed to save eligibility submission')
+      }
+    } catch (error) {
+      console.error('Error saving eligibility submission:', error)
+    } finally {
+      setIsSubmitting(false)
+      setShowResult(true)
+    }
   }
 
   const handleBackToSelection = () => {
@@ -452,9 +508,10 @@ export const EligibilityCheckComponent: React.FC = () => {
                   </button>
                   <button
                     onClick={handleSubmit}
-                    className="w-full sm:w-auto px-6 md:px-8 py-2 md:py-3 text-sm md:text-base bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto px-6 md:px-8 py-2 md:py-3 text-sm md:text-base bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Assess routes
+                    {isSubmitting ? 'Processing...' : 'Assess routes'}
                   </button>
                 </div>
               </div>

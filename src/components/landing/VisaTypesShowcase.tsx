@@ -146,7 +146,7 @@ export const VisaTypesShowcase: React.FC = () => {
         </motion.div>
 
         {/* Visa Type Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6 mb-12 auto-rows-fr">
           {visaTypes.map((visa, index) => {
             const Icon = visa.icon
             
@@ -157,71 +157,65 @@ export const VisaTypesShowcase: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="group"
               >
-                <div className="relative bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border-2 border-gray-100 flex flex-col h-full">
-                  {/* Gradient overlay */}
-                  <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${visa.gradient}`}></div>
-                  
-                  <div className="p-5 md:p-6 flex flex-col flex-grow">
-                    {/* Icon and Badge */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${visa.gradient} flex items-center justify-center shadow-lg`}>
-                        <Icon className="w-8 h-8 text-white" />
-                      </div>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
-                        {visa.popularity}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {visa.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-600 mb-6 leading-relaxed text-sm flex-grow">
-                      {visa.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="space-y-2 mb-6">
-                      {visa.features.slice(0, 2).map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-sm text-gray-700">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                          <span>{feature}</span>
+                <Link href={`/${visa.id}`} className="block">
+                  <div className="relative bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border-2 border-gray-100 flex flex-col h-full hover:border-blue-300 cursor-pointer">
+                    {/* Gradient overlay */}
+                    <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${visa.gradient}`}></div>
+                    
+                    <div className="p-5 md:p-6 flex flex-col flex-grow">
+                      {/* Icon and Badge */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${visa.gradient} flex items-center justify-center shadow-lg`}>
+                          <Icon className="w-8 h-8 text-white" />
                         </div>
-                      ))}
-                      {visa.features.length > 2 && (
-                        <div className="text-sm text-blue-600 font-medium">
-                          +{visa.features.length - 2} more options
-                        </div>
-                      )}
-                    </div>
+                        <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
+                          {visa.popularity}
+                        </span>
+                      </div>
 
-                    {/* Processing Time */}
-                    <div className="flex items-center mb-6 pb-6 border-b border-gray-200">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Clock className="w-4 h-4 mr-2 text-blue-600" />
-                        <span>Processing: <strong>{visa.processingTime}</strong></span>
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 h-[28px] line-clamp-2">
+                        {visa.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-600 mb-6 leading-relaxed text-sm flex-grow min-h-[60px] line-clamp-3">
+                        {visa.description}
+                      </p>
+
+                      {/* Features */}
+                      <div className="space-y-2 mb-6 min-h-[60px]">
+                        {visa.features.slice(0, 2).map((feature, idx) => (
+                          <div key={idx} className="flex items-center text-sm text-gray-700 line-clamp-1">
+                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                        {visa.features.length > 2 && (
+                          <div className="text-sm text-blue-600 font-medium">
+                            +{visa.features.length - 2} more options
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Processing Time */}
+                      <div className="flex items-center mb-6 pb-6 border-b border-gray-200">
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Clock className="w-4 h-4 mr-2 text-blue-600" />
+                          <span>Processing: <strong>{visa.processingTime}</strong></span>
+                        </div>
+                      </div>
+
+                      {/* CTA Button */}
+                      <div className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r ${visa.gradient} text-white hover:opacity-90 transition-opacity duration-200 group-hover:scale-105 h-[48px]`}>
+                        Get Started
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
-
-                    {/* CTA Button */}
-                    <Link
-                      href={`/${visa.id}`}
-                      className={`
-                        w-full flex items-center justify-center gap-2
-                        px-4 py-3 rounded-xl font-semibold text-sm
-                        bg-gradient-to-r ${visa.gradient}
-                        text-white
-                        hover:opacity-90 transition-opacity duration-200
-                      `}
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             )
           })}

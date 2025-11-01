@@ -21,6 +21,8 @@ import { HomeFAQ } from '@/components/landing/HomeFAQ'
 import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
 import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
 import { SuccessStories } from '@/components/landing/SuccessStories'
+import { TrustBadges } from '@/components/landing/TrustBadges'
+import { MultilingualSupport } from '@/components/landing/MultilingualSupport'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -63,9 +65,11 @@ export default async function HomePage() {
       </div>
       <SuccessStories />  
       <ProcessTimeline />
+     
+      <MultilingualSupport />
       <HomeFAQ />
       <ContactFormSection />
-
+      <TrustBadges />
       <VisaJourneyCTA />
     </article>
   )

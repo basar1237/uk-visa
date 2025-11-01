@@ -80,13 +80,12 @@ const faqs = [
 
 export const HomeFAQ: React.FC = () => {
   return (
-    <section className="pt-8 md:pt-10">
-      <div className="container mx-auto px-4 sm:px-4 md:px-6 lg:px-8 max-w-5xl">
+    <section className="pt-8 md:pt-10 bg-gradient-to-tr from-blue-50 to-indigo-50">
+      <div className="container mx-auto px-4 sm:px-4 md:px-6 lg:px-8 max-w-5xl ">
         <div className="text-center">
-          <h2 className="text-blue-900 mb-3 text-4xl md:text-5xl font-extrabold leading-tight">
+          <h2 className="text-blue-900 text-4xl md:text-5xl font-extrabold leading-tight">
             Frequently Asked Questions
           </h2>
-          <div className="h-1 w-28 bg-[#17174B] rounded-full opacity-80 mx-auto"></div>
         </div>
 
         <FAQBlockClient
