@@ -1,7 +1,7 @@
 'use client'
 import { motion } from "motion/react"
 import { useHeaderTheme } from '@/providers/HeaderTheme'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ArrowDownRight } from "lucide-react"
 
 import type { Page } from '@/payload-types'

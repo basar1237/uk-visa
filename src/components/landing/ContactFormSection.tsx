@@ -53,8 +53,6 @@ export const ContactFormSection: React.FC = () => {
         body: JSON.stringify(formData),
       })
 
-      const result = await response.json()
-
       if (response.ok) {
         setSubmitStatus('success')
         setFormData({

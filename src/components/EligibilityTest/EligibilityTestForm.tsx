@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { CheckCircle, Clock, Award, FileText, Globe, Users, TrendingUp, Star, ArrowRight, ArrowLeft } from 'lucide-react'
+import { CheckCircle, Clock, Award, FileText, ArrowRight, ArrowLeft } from 'lucide-react'
 import { eligibilityQuestions, getEligibilityResult, type Question, type EligibilityResult } from './EligibilityTestQuestions'
 
 // Import visa-specific questions from eligibility-check page
@@ -289,14 +289,9 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
 
 
       if (response.ok) {
-        const data = await response.json()
         setSaveStatus('success')
-      } else {
-        const errorData = await response.json()
-        setSaveStatus('error')
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Bilinmeyen hata'
       setSaveStatus('error')
     } finally {
       setIsSaving(false)

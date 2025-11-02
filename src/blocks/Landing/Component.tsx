@@ -77,8 +77,9 @@ type LandingBlockExtended = LandingBlockProps & {
           columns.map((col, index) => {
             if (!col) return null
             
-            const { links, richText, size, badges, media } = col
-            const greenSectionContent = (col as any).greenSectionContent
+            // Type-safe column extraction
+            const column = col as Column
+            const { links, richText, size, badges, media, greenSectionContent } = column
             const colSize = size || 'full'
             const colSpanClass = colsSpanClasses[colSize as keyof typeof colsSpanClasses] || '12'
             const hasMedia = media && typeof media === 'object'

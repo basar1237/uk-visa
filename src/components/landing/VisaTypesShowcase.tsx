@@ -12,7 +12,6 @@ import {
   ArrowRight,
   CheckCircle,
   Clock,
-  FileText,
   Building2,
   Route,
   Shield

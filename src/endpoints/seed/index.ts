@@ -14,8 +14,6 @@ const collections: CollectionSlug[] = [
   'search',
 ]
 
-const globals: GlobalSlug[] = ['header', 'footer']
-
 const categories = ['Technology', 'News', 'Finance', 'Design', 'Software', 'Engineering']
 
 // Next.js revalidation errors are normal when seeding the database without a server running
@@ -78,7 +76,7 @@ export const seed = async ({
 
   // Demo resimler kaldırıldı - sadece contact form ve sayfa oluşturulacak
 
-  const [demoAuthor] = await Promise.all([
+  await Promise.all([
     payload.create({
       collection: 'users',
       data: {

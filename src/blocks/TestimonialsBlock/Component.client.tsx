@@ -4,13 +4,16 @@ import { useCallback, useEffect, useState } from "react"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
+import type { Media } from "@/payload-types"
+
+type AvatarType = string | number | Media | { url?: string } | null | undefined
 
 interface Testimonial {
   id: string
   name: string
   role: string
   content: string
-  avatar?: any
+  avatar?: AvatarType
   rating: number
 }
 
@@ -48,9 +51,13 @@ export function TestimonialsClient({
     }
   }, [autoplay, handleNext])
 
-  const getAvatarUrl = (avatar: any, size: number = 64) => {
-    if (!avatar || typeof avatar === 'string') return avatar
-    if (avatar.url) return avatar.url
+  const getAvatarUrl = (avatar: AvatarType): string | null => {
+    if (!avatar) return null
+    if (typeof avatar === 'string') return avatar
+    if (typeof avatar === 'number') return null // Media ID, populate edilmesi gerekir
+    if (typeof avatar === 'object' && 'url' in avatar && avatar.url) {
+      return typeof avatar.url === 'string' ? avatar.url : null
+    }
     return null
   }
 

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowDownRight, Star, Phone, CheckCircle } from "lucide-react"
+import { ArrowDownRight, Star } from "lucide-react"
 import { motion } from "motion/react"
 
 import { Button } from "@/components/ui/button"

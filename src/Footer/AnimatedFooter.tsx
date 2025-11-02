@@ -12,7 +12,7 @@ interface AnimatedFooterProps {
   companyDescription: string
 }
 
-export function AnimatedFooter({ columns, companyName, companyDescription }: AnimatedFooterProps) {
+export function AnimatedFooter({ columns }: AnimatedFooterProps) {
   const safeColumns = columns || []
 
   return (

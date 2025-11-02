@@ -81,8 +81,6 @@ const stats = [
 ]
 
 export const SuccessStories: React.FC = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0)
-
   return (
     <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
       {/* Background decoration */}
