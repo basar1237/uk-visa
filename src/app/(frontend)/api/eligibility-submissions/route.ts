@@ -53,21 +53,43 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Date validation and defaults
+    const today = new Date()
+    const validDateOfBirth = dateOfBirth || new Date(today.getFullYear() - 30, 0, 1).toISOString().split('T')[0]
+    const validPassportExpiry = passportExpiry || new Date(today.getFullYear() + 5, 11, 31).toISOString().split('T')[0]
+    
+    // Validate passportExpiry is a valid date
+    if (!passportExpiry || passportExpiry.trim() === '') {
+      return NextResponse.json(
+        { error: 'Passport Expiry Date gerekli ve geçerli bir tarih olmalı' },
+        { status: 400 }
+      )
+    }
+
+    // Try to parse the date to ensure it's valid
+    const passportExpiryDate = new Date(validPassportExpiry)
+    if (isNaN(passportExpiryDate.getTime())) {
+      return NextResponse.json(
+        { error: 'Passport Expiry Date geçerli bir tarih formatı olmalı (YYYY-MM-DD)' },
+        { status: 400 }
+      )
+    }
+
     const eligibilitySubmission = await payload.create({
       collection: 'eligibility-submissions',
       data: {
         fullName,
-        dateOfBirth,
+        dateOfBirth: validDateOfBirth,
         nationality,
         gender,
         email,
-        phone: phone || '',
-        passportNumber: passportNumber || '',
-        passportExpiry,
-        passportIssuedBy: passportIssuedBy || '',
+        phone: phone || 'Not provided',
+        passportNumber: passportNumber || 'Not provided',
+        passportExpiry: validPassportExpiry,
+        passportIssuedBy: passportIssuedBy || 'Not provided',
         visaType,
         applicationFor: applicationFor || 'myself',
-        visitPurpose: visitPurpose || '',
+        visitPurpose: visitPurpose || 'Other',
         previousUKVisa: previousUKVisa || 'no',
         visaRefusal: visaRefusal || 'no',
         criminalConvictions: criminalConvictions || 'no',

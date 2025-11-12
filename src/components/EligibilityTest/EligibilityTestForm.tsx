@@ -245,37 +245,58 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
       setIsSaving(true)
       setSaveStatus('idle')
 
+      // Helper function to find answer by question text pattern
+      const findAnswerByQuestion = (pattern: string): string => {
+        const question = questions.find(q => 
+          q.question.toLowerCase().includes(pattern.toLowerCase())
+        )
+        return question ? (answers[question.id] || '') : ''
+      }
 
-      // Get the first question ID for the selected visa type
-      const firstQuestionId = questions[0]?.id || 1
+      // Find answers by question text patterns instead of ID offsets
+      const fullName = findAnswerByQuestion('full name') || findAnswerByQuestion('name') || 'Unknown'
+      const dateOfBirth = findAnswerByQuestion('date of birth') || findAnswerByQuestion('birth') || new Date().toISOString().split('T')[0]
+      const nationality = findAnswerByQuestion('nationality') || 'Unknown'
+      const gender = findAnswerByQuestion('gender') || 'Prefer not to say'
+      const email = findAnswerByQuestion('email') || 'noreply@example.com'
+      const phone = findAnswerByQuestion('phone') || findAnswerByQuestion('contact') || ''
+      const passportNumber = findAnswerByQuestion('passport number') || ''
+      const passportExpiry = findAnswerByQuestion('passport expire') || findAnswerByQuestion('expire') || ''
+      const passportIssuedBy = findAnswerByQuestion('passport issued') || findAnswerByQuestion('issued') || ''
+      const visitPurpose = findAnswerByQuestion('purpose') || findAnswerByQuestion('visit') || 'Other'
+      
+      // Validate required fields and provide defaults
+      const validDateOfBirth = dateOfBirth || new Date(Date.now() - 30 * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      const validPassportExpiry = passportExpiry || new Date(Date.now() + 5 * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
       
       // Form verilerini collection'a gönder
       const submissionData = {
-        fullName: answers[firstQuestionId] || '',
-        dateOfBirth: answers[firstQuestionId + 1] || '',
-        nationality: answers[firstQuestionId + 2] || '',
-        gender: answers[firstQuestionId + 3] || '',
-        email: answers[firstQuestionId + 4] || '',
-        phone: answers[firstQuestionId + 5] || '',
-        passportNumber: answers[firstQuestionId + 6] || '',
-        passportExpiry: answers[firstQuestionId + 7] || '',
-        passportIssuedBy: answers[firstQuestionId + 8] || '',
-        visaType: selectedVisaType,
+        fullName,
+        dateOfBirth: validDateOfBirth,
+        nationality,
+        gender,
+        email,
+        phone: phone || 'Not provided',
+        passportNumber: passportNumber || 'Not provided',
+        passportExpiry: validPassportExpiry,
+        passportIssuedBy: passportIssuedBy || 'Not provided',
+        visaType: selectedVisaType || 'Visitor Visa',
         applicationFor: 'myself',
-        visitPurpose: answers[firstQuestionId + 9] || '',
-        previousUKVisa: 'no',
-        visaRefusal: 'no',
-        criminalConvictions: 'no',
-        sufficientFunds: 'yes',
-        familyInUK: 'no',
-        familyRelationship: '',
-        ukSponsor: 'no',
-        additionalInfo: '',
+        visitPurpose: visitPurpose || 'Other',
+        previousUKVisa: findAnswerByQuestion('visited') || findAnswerByQuestion('before') || 'no',
+        visaRefusal: findAnswerByQuestion('refusal') || 'no',
+        criminalConvictions: findAnswerByQuestion('criminal') || findAnswerByQuestion('conviction') || 'no',
+        sufficientFunds: findAnswerByQuestion('fund') || findAnswerByQuestion('money') || 'yes',
+        familyInUK: findAnswerByQuestion('family') || findAnswerByQuestion('friends') || 'no',
+        familyRelationship: findAnswerByQuestion('relationship') || '',
+        ukSponsor: findAnswerByQuestion('sponsor') || 'no',
+        additionalInfo: JSON.stringify(answers),
         eligible: result.eligible,
         score: result.score,
         level: result.level,
         description: result.description,
-        recommendations: result.recommendations.map(rec => ({ recommendation: rec }))
+        recommendations: result.recommendations.map(rec => ({ recommendation: rec })),
+        nextSteps: (result as any).nextSteps?.map((step: string) => ({ step })) || []
       }
 
 
@@ -287,12 +308,22 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
         body: JSON.stringify(submissionData),
       })
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        console.error('Form submission error:', errorData)
+        throw new Error(errorData.details || errorData.error || 'Form gönderilemedi')
+      }
 
       if (response.ok) {
         setSaveStatus('success')
       }
     } catch (error) {
+      console.error('Eligibility submission save error:', error)
       setSaveStatus('error')
+      // Kullanıcıya hata mesajı göster
+      if (error instanceof Error) {
+        alert(`Form gönderilirken hata oluştu: ${error.message}`)
+      }
     } finally {
       setIsSaving(false)
     }
@@ -362,32 +393,26 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             { 
               type: 'Visitor Visa Applications', 
               description: 'Tourism, business trips, family visits. Up to 6 months stay.',
-              color: 'from-blue-500 to-indigo-600'
-            },
+             },
             { 
               type: 'Leave to Remain', 
               description: 'Extend or switch your visa. Spouse, work, and family visas.',
-              color: 'from-green-500 to-emerald-600'
-            },
+             },
             { 
               type: 'Indefinite leave to remain', 
               description: 'Permanent residence. No time limits, path to citizenship.',
-              color: 'from-purple-500 to-violet-600'
             },
             { 
               type: 'British citizenship', 
               description: 'Become a British citizen. Full rights, passport, voting.',
-              color: 'from-amber-500 to-orange-600'
             },
             { 
               type: 'Asylum & Human rights', 
               description: 'Protection claims, refugee status, human rights applications.',
-              color: 'from-pink-500 to-rose-600'
             },
             { 
               type: 'Refused Appeals & Business Immigration', 
               description: 'Appeal visa decisions. Business visas for entrepreneurs.',
-              color: 'from-teal-500 to-cyan-600'
             }
           ].map((visa, index) => (
             <button
@@ -398,11 +423,10 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
               }}
               className="relative p-2 px-5 border-2 border-gray-300 rounded-xl transition-all duration-300 text-left group bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 shadow-md hover:shadow-xl transform hover:-translate-y-1 overflow-hidden"
             >
-              {/* Gradient top border on hover */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${visa.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+               <div className={`absolute top-0 left-0 right-0 h-1 from-blue-500 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
               
               <div className="relative z-10">
-                <h3 className={`font-bold mb-2 text-sm bg-gradient-to-r ${visa.color} bg-clip-text text-transparent group-hover:opacity-90 transition-all duration-300`}>
+                <h3 className={`font-bold mb-2 text-sm   from-blue-800   bg-clip-text group-hover:opacity-90 transition-all duration-300`}>
                   {visa.type}
                 </h3>
                 <p className="text-xs text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">

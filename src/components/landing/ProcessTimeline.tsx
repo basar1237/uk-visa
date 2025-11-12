@@ -20,7 +20,6 @@ interface ProcessStep {
   description: string
   icon: React.ComponentType<{ className?: string }>
   duration: string
-  color: string
 }
 
 const processSteps: ProcessStep[] = [
@@ -30,7 +29,6 @@ const processSteps: ProcessStep[] = [
     description: 'Speak with our immigration experts about your goals, circumstances, and visa options. We\'ll assess your eligibility and recommend the best path forward.',
     icon: MessageSquare,
     duration: '30 minutes',
-    color: 'blue'
   },
   {
     id: 2,
@@ -38,7 +36,6 @@ const processSteps: ProcessStep[] = [
     description: 'Take our free online eligibility test in just minutes. Our comprehensive assessment analyzes your qualifications, circumstances, and visa options to determine your best pathway to the UK.',
     icon: FileSearch,
     duration: '5-10 minutes',
-    color: 'indigo'
   },
   {
     id: 3,
@@ -46,7 +43,6 @@ const processSteps: ProcessStep[] = [
     description: 'Our team will guide you through gathering all necessary documents. We\'ll help organize, translate, and certify everything you need for your application.',
     icon: FileCheck,
     duration: '1-2 weeks',
-    color: 'purple'
   },
   {
     id: 4,
@@ -54,7 +50,6 @@ const processSteps: ProcessStep[] = [
     description: 'We\'ll complete and submit your visa application with precision and attention to detail. All forms are double-checked to avoid delays or rejections.',
     icon: Send,
     duration: 'Same day',
-    color: 'pink'
   },
   {
     id: 5,
@@ -62,7 +57,6 @@ const processSteps: ProcessStep[] = [
     description: 'We monitor your application status closely and keep you informed at every stage. Our team responds promptly to any requests from UKVI.',
     icon: Clock,
     duration: 'Varies by visa',
-    color: 'orange'
   },
   {
     id: 6,
@@ -70,22 +64,19 @@ const processSteps: ProcessStep[] = [
     description: 'Congratulations! Once approved, we\'ll help you understand your visa conditions, rights, and next steps for entering or remaining in the UK.',
     icon: CheckCircle2,
     duration: 'Celebrate!',
-    color: 'green'
   }
 ]
 
 export const ProcessTimeline: React.FC = () => {
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full">
+       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
+         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -104,7 +95,6 @@ export const ProcessTimeline: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Grid of Steps */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
           {processSteps.map((step, index) => {
             const Icon = step.icon
@@ -121,31 +111,15 @@ export const ProcessTimeline: React.FC = () => {
                 {step.id === 2 ? (
                   <Link href="/eligibility-check">
                     <div className={`
-                      bg-white rounded-xl shadow-md hover:shadow-xl 
-                      p-5 border-2 border-gray-100 
-                      transition-all duration-300 h-full flex flex-col
-                      ${step.color === 'blue' ? 'hover:border-blue-300' :
-                        step.color === 'indigo' ? 'hover:border-indigo-300' :
-                        step.color === 'purple' ? 'hover:border-purple-300' :
-                        step.color === 'pink' ? 'hover:border-pink-300' :
-                        step.color === 'orange' ? 'hover:border-orange-300' :
-                        'hover:border-green-300'}
-                      cursor-pointer
+                      from-blue-500 to-indigo-50 rounded-xl shadow-md hover:shadow-xl border-2 border-gray-100 
+                      p-5 transition-all duration-300 h-full flex flex-col cursor-pointer
                     `}>
-                      {/* Step Number & Icon */}
                       <div className="flex items-start justify-between mb-3">
                         <div className={`
                           inline-flex items-center justify-center
                           w-10 h-10 rounded-full 
-                          bg-gradient-to-br ${
-                            step.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                            step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
-                            step.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                            step.color === 'pink' ? 'from-pink-500 to-pink-600' :
-                            step.color === 'orange' ? 'from-orange-500 to-orange-600' :
-                            'from-green-500 to-green-600'
-                          }
-                          text-white font-bold text-sm shadow-lg
+                          from-blue-500 to-indigo-50
+                          bg-blue-800 text-white font-bold text-sm shadow-lg
                         `}>
                           {step.id}
                         </div>
@@ -154,22 +128,8 @@ export const ProcessTimeline: React.FC = () => {
                         <div className={`
                           inline-flex items-center justify-center
                           w-10 h-10 rounded-lg
-                          bg-gradient-to-br ${
-                            step.color === 'blue' ? 'from-blue-100 to-blue-200' :
-                            step.color === 'indigo' ? 'from-indigo-100 to-indigo-200' :
-                            step.color === 'purple' ? 'from-purple-100 to-purple-200' :
-                            step.color === 'pink' ? 'from-pink-100 to-pink-200' :
-                            step.color === 'orange' ? 'from-orange-100 to-orange-200' :
-                            'from-green-100 to-green-200'
-                          }
-                          ${
-                            step.color === 'blue' ? 'text-blue-600' :
-                            step.color === 'indigo' ? 'text-indigo-600' :
-                            step.color === 'purple' ? 'text-purple-600' :
-                            step.color === 'pink' ? 'text-pink-600' :
-                            step.color === 'orange' ? 'text-orange-600' :
-                            'text-green-600'
-                          }
+                          from-blue-100 to-indigo-100
+                          text-blue-600
                         `}>
                           <Icon className="w-5 h-5" />
                         </div>
@@ -189,14 +149,7 @@ export const ProcessTimeline: React.FC = () => {
                       <div className={`
                         inline-flex items-center gap-2
                         px-3 py-1.5 rounded-lg text-xs font-semibold
-                        ${
-                          step.color === 'blue' ? 'bg-blue-50 text-blue-700' :
-                          step.color === 'indigo' ? 'bg-indigo-50 text-indigo-700' :
-                          step.color === 'purple' ? 'bg-purple-50 text-purple-700' :
-                          step.color === 'pink' ? 'bg-pink-50 text-pink-700' :
-                          step.color === 'orange' ? 'bg-orange-50 text-orange-700' :
-                          'bg-green-50 text-green-700'
-                        }
+                        bg-blue-50 text-blue-700
                       `}>
                         <Clock className="w-3 h-3" />
                         {step.duration}
@@ -208,27 +161,14 @@ export const ProcessTimeline: React.FC = () => {
                     bg-white rounded-xl shadow-md hover:shadow-xl 
                     p-5 border-2 border-gray-100 
                     transition-all duration-300 h-full flex flex-col
-                    ${step.color === 'blue' ? 'hover:border-blue-300' :
-                      step.color === 'indigo' ? 'hover:border-indigo-300' :
-                      step.color === 'purple' ? 'hover:border-purple-300' :
-                      step.color === 'pink' ? 'hover:border-pink-300' :
-                      step.color === 'orange' ? 'hover:border-orange-300' :
-                      'hover:border-green-300'}
                   `}>
                     {/* Step Number & Icon */}
                     <div className="flex items-start justify-between mb-3">
                       <div className={`
                         inline-flex items-center justify-center
                         w-10 h-10 rounded-full 
-                        bg-gradient-to-br ${
-                          step.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                          step.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
-                          step.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                          step.color === 'pink' ? 'from-pink-500 to-pink-600' :
-                          step.color === 'orange' ? 'from-orange-500 to-orange-600' :
-                          'from-green-500 to-green-600'
-                        }
-                        text-white font-bold text-sm shadow-lg
+                        from-blue-500 to-indigo-50
+                        bg-blue-800 text-white font-bold text-sm shadow-lg
                       `}>
                         {step.id}
                       </div>
@@ -237,22 +177,8 @@ export const ProcessTimeline: React.FC = () => {
                       <div className={`
                         inline-flex items-center justify-center
                         w-10 h-10 rounded-lg
-                        bg-gradient-to-br ${
-                          step.color === 'blue' ? 'from-blue-100 to-blue-200' :
-                          step.color === 'indigo' ? 'from-indigo-100 to-indigo-200' :
-                          step.color === 'purple' ? 'from-purple-100 to-purple-200' :
-                          step.color === 'pink' ? 'from-pink-100 to-pink-200' :
-                          step.color === 'orange' ? 'from-orange-100 to-orange-200' :
-                          'from-green-100 to-green-200'
-                        }
-                        ${
-                          step.color === 'blue' ? 'text-blue-600' :
-                          step.color === 'indigo' ? 'text-indigo-600' :
-                          step.color === 'purple' ? 'text-purple-600' :
-                          step.color === 'pink' ? 'text-pink-600' :
-                          step.color === 'orange' ? 'text-orange-600' :
-                          'text-green-600'
-                        }
+                        from-blue-100 to-indigo-100
+                        text-blue-600
                       `}>
                         <Icon className="w-5 h-5" />
                       </div>
@@ -268,18 +194,10 @@ export const ProcessTimeline: React.FC = () => {
                       {step.description}
                     </p>
 
-                    {/* Duration */}
                     <div className={`
                       inline-flex items-center gap-2
                       px-3 py-1.5 rounded-lg text-xs font-semibold
-                      ${
-                        step.color === 'blue' ? 'bg-blue-50 text-blue-700' :
-                        step.color === 'indigo' ? 'bg-indigo-50 text-indigo-700' :
-                        step.color === 'purple' ? 'bg-purple-50 text-purple-700' :
-                        step.color === 'pink' ? 'bg-pink-50 text-pink-700' :
-                        step.color === 'orange' ? 'bg-orange-50 text-orange-700' :
-                        'bg-green-50 text-green-700'
-                      }
+                      bg-blue-50 text-blue-700
                     `}>
                       <Clock className="w-3 h-3" />
                       {step.duration}
@@ -290,8 +208,6 @@ export const ProcessTimeline: React.FC = () => {
             )
           })}
         </div>
-
-        {/* Final CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

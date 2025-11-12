@@ -49,22 +49,18 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
                 key={index} 
                 className="group relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-300 cursor-pointer flex flex-col h-full"
               >
-                {/* Gradient overlay üst çizgi */}
-                <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gradient}`}></div>
+                 <div className={`absolute top-0 left-0 right-0 h-1.5 from-blue-500 to-indigo-50`}></div>
                 
                 <div className="p-6 flex flex-col flex-grow">
-                  {/* Başlık */}
-                  <h3 className={`font-bold mb-3 text-xl bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                   <h3 className={`font-bold mb-3 text-xl from-blue-800 bg-clip-text`}>
                     {service.title}
                   </h3>
                   
-                  {/* Açıklama */}
                   <p className="text-gray-600 leading-relaxed mb-6 flex-1 text-sm line-clamp-4">
                     {service.description}
                   </p>
                   
-                  {/* Badges */}
-                  {service.badges && service.badges.length > 0 && (
+                   {service.badges && service.badges.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto  pt-4 border-t border-gray-200">
                       {service.badges.map((badge, badgeIndex) => (
                         badge.link ? (
