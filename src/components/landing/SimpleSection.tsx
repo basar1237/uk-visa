@@ -8,8 +8,8 @@ import Link from 'next/link'
 export const SimpleSection: React.FC = () => {
   const features = [
     "Answer a few quick questions about your situation.",
-    "Get matched with the most appropriate visa or immigration route.",
-    "Customise your package by choosing the level of service and time schedule that suits you."
+    "Get matched with the most appropriate visa or immigration route for you.",
+    "Customise your package by choose the level of service and time schedule that suits you."
   ]
 
   return (
