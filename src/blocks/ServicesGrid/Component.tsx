@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 import type { ServicesGridBlock } from '@/payload-types'
 
@@ -24,6 +25,8 @@ const gradientColors = [
 ]
 
 export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, description, services }) => {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden">
@@ -88,30 +91,32 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
-             <div className="text-left">
-              <h3 className="font-bold text-gray-900 mb-1 justify-center flex">Not sure which visa is right for you?</h3>
-              <p className="text-sm text-gray-600 mb-3">Our expert team can assess your eligibility and guide you to the best visa option.</p>
-              <div className="flex items-center justify-center gap-3">
-                <Link
-                  href="/eligibility-check"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200"
-                >
-                  Check Your Eligibility Free
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+        {/* Bottom CTA - Sadece ana sayfada göster */}
+        {isHomePage && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+               <div className="text-left">
+                <h3 className="font-bold text-gray-900 mb-1 justify-center flex">Not sure which visa is right for you?</h3>
+                <p className="text-sm text-gray-600 mb-3">Our expert team can assess your eligibility and guide you to the best visa option.</p>
+                <div className="flex items-center justify-center gap-3">
+                  <Link
+                    href="/eligibility-check"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200"
+                  >
+                    Check Your Eligibility Free
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   )
