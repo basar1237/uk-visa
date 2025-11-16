@@ -160,20 +160,23 @@ export const EligibilitySubmissions: CollectionConfig = {
     {
       name: 'score',
       type: 'number',
-      required: true,
+      required: false,
       label: 'Eligibility Score',
+      defaultValue: 0,
     },
     {
       name: 'level',
       type: 'text',
-      required: true,
+      required: false,
       label: 'Eligibility Level',
+      defaultValue: 'pending',
     },
     {
       name: 'description',
       type: 'textarea',
-      required: true,
+      required: false,
       label: 'Eligibility Description',
+      defaultValue: '',
     },
     {
       name: 'recommendations',

@@ -1225,9 +1225,9 @@ export interface EligibilitySubmission {
   ukSponsor: string;
   additionalInfo?: string | null;
   eligible: boolean;
-  score: number;
-  level: string;
-  description: string;
+  score?: number | null;
+  level?: string | null;
+  description?: string | null;
   recommendations?:
     | {
         recommendation: string;

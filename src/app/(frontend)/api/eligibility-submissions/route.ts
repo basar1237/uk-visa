@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const payload = await getPayloadInstance()
     const body = await request.json()
 
-    // Form verilerini doğrula
+    // Form verilerini doğrula (sonuç hesaplama alanları artık gönderilmiyor)
     const {
       fullName,
       dateOfBirth,
@@ -27,13 +27,7 @@ export async function POST(request: NextRequest) {
       familyInUK,
       familyRelationship,
       ukSponsor,
-      additionalInfo,
-      eligible,
-      score,
-      level,
-      description,
-      recommendations,
-      nextSteps
+      additionalInfo
     } = body
 
     // Gerekli alanları kontrol et
@@ -98,12 +92,13 @@ export async function POST(request: NextRequest) {
         familyRelationship: familyRelationship || '',
         ukSponsor: ukSponsor || 'no',
         additionalInfo: additionalInfo || '',
-        eligible: eligible || false,
-        score: score || 0,
-        level: level || 'not-eligible',
-        description: description || '',
-        recommendations: recommendations || [],
-        nextSteps: nextSteps || [],
+        // Sonuç hesaplama alanları artık gönderilmiyor, varsayılan değerler
+        eligible: false,
+        score: 0,
+        level: 'pending',
+        description: '',
+        recommendations: [],
+        nextSteps: [],
         status: 'new',
       },
     })
@@ -268,7 +263,7 @@ export async function GET(request: NextRequest) {
         submission.eligible ? 'Evet' : 'Hayır',
         submission.score,
         submission.level,
-        submission.description.replace(/\n/g, ' ').replace(/,/g, ';'),
+        submission.description?.replace(/\n/g, ' ').replace(/,/g, ';') || '',
         submission.recommendations?.map(r => r.recommendation).join('; ') || '',
         submission.nextSteps?.map(s => s.step).join('; ') || '',
         submission.status,
