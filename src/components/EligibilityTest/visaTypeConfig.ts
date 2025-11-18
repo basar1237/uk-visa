@@ -67,19 +67,19 @@ export const VISA_TYPE_MAPPING: Record<string, string> = {
 
   // Sub-types under Visa Applications menu
   'Spouse Visa': 'Spouse Visa',
-  'Fiancé Visa': 'Spouse Visa',
-  'Visitors Visa': 'Visitor Visa',
+  'Fiancé Visa': 'Fiancé Visa',
+  'Visitors Visa': 'Visitors Visa',
   'Student Visa': 'Student Visa',
-  'UK Ancestors Visa': 'Leave to Remain',
+  'UK Ancestors Visa': 'UK Ancestors Visa',
   'Skilled Worker Visa': 'Skilled Worker Visa',
 
   // Sub-types under Leave to Remain menu
-  'Fee Waiver': 'Leave to Remain',
-  'Spouse Route': 'Leave to Remain',
-  'Parent Route': 'Parent Visa',
-  'Family & Private Life (10 Year Route)': 'Leave to Remain',
-  'Skilled Worker Route': 'Skilled Worker Visa',
-  'Graduate Visa': 'Student Visa',
+  'Fee Waiver': 'Fee Waiver',
+  'Spouse Route': 'Spouse Route',
+  'Parent Route': 'Parent Route',
+  'Family & Private Life (10 Year Route)': 'Family & Private Life (10 Year Route)',
+  'Skilled Worker Route': 'Skilled Worker Route',
+  'Graduate Visa': 'Graduate Visa',
 
   // Sub-types under Indefinite Leave to Remain menu
   'Family & Private Life ILR': 'Indefinite Leave to Remain',
@@ -87,17 +87,20 @@ export const VISA_TYPE_MAPPING: Record<string, string> = {
   'Domestic Violence': 'Leave to Remain',
 
   // Sub-types under British citizenship menu
-  'Naturalisation': 'British Citizenship',
-  'Children Registration': 'British Citizenship',
+  'Naturalisation': 'Naturalisation',
+  'Children Registration': 'Children Registration',
 
   // Sub-types under Refused Appeals menu
-  'First-tier Tribunal Appeals': 'Refused Appeals',
-  'Upper Tribunal Appeals': 'Refused Appeals',
-  'Administrative Reviews': 'Refused Appeals',
+  'First-tier Tribunal Appeals': 'First-tier Tribunal Appeals',
+  'Upper Tribunal Appeals': 'Upper Tribunal Appeals',
+  'Administrative Reviews': 'Administrative Reviews',
 
   // Sub-types under Business Immigration menu
-  'Sponsor Licence': 'Business Immigration',
-  'Civil Penalty Fine': 'Business Immigration',
+  'Sponsor Licence': 'Sponsor Licence',
+  'Civil Penalty Fine': 'Civil Penalty Fine',
+  
+  // Immigration Bail
+  'Immigration Bail': 'Immigration Bail',
 }
 
 

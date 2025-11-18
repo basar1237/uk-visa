@@ -650,6 +650,13 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
         </div>
       )}
 
+      {/* Form Başlığı - Asylum için özel başlık */}
+      {selectedVisaType === 'Asylum & Human rights' && (
+        <div className="mb-6 text-center border-b border-gray-200 pb-4">
+          <h2 className="text-2xl font-bold text-gray-900">UK Asylum / Protection Claim Form</h2>
+        </div>
+      )}
+
       {/* Başlangıca geri dön butonu */}
       <div className="mb-4 flex justify-between items-center">
         <button

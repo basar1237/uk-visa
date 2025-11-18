@@ -78,8 +78,8 @@ const statistics: Statistic[] = [
 const features: Feature[] = [
   {
     icon: Scale,
-    title: 'Licensed Immigration Solicitors',
-    description: 'All our solicitors are fully licensed and regulated by the Solicitors Regulation Authority (SRA) and registered with the Office of the Immigration Services Commissioner (OISC).',
+    title: 'Licensed Immigration Lawyers',
+    description: 'At UK Legal Solutions, we only work with fully licensed and regulated UK immigration professionals. This includes OISC-regulated advisers, qualified solicitors and specialist barristers. Our network ensures you are always connected with genuine, experienced immigration lawyers who can handle your case with confidence and professionalism.',
     highlight: true
   },
   {
@@ -107,24 +107,6 @@ const features: Feature[] = [
     icon: Sparkles,
     title: 'Transparent Pricing',
     description: 'No hidden fees or surprises. We provide clear, upfront pricing for all our services with complete transparency.',
-  }
-]
-
-const certifications: Certification[] = [
-  {
-    icon: BadgeCheck,
-    title: 'SRA Registered',
-    description: 'Licensed by Solicitors Regulation Authority'
-  },
-  {
-    icon: BadgeCheck,
-    title: 'OISC Level 3',
-    description: 'Highest level OISC accreditation'
-  },
-  {
-    icon: BadgeCheck,
-    title: 'CILEx Accredited',
-    description: 'Chartered Institute of Legal Executives certified'
   }
 ]
 
@@ -230,36 +212,102 @@ export const AboutComponent = () => {
               >
                 <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
                   <Sparkles className="w-4 h-4 text-blue-600" />
-                  <span className="text-blue-900 text-sm font-semibold">Our Journey</span>
+                  <span className="text-blue-900 text-base font-semibold">Our Journey</span>
                 </div>
                 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Leading UK Immigration
-                  <span className="block text-blue-600">Experts Since 2006</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                  UK Immigration Specialists
                 </h2>
                 
-                <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
-                  <p>
-                    Founded with a mission to make UK immigration accessible to everyone, we have grown from a small team of passionate solicitors into one of the most trusted immigration consultancies in the UK.
+                <div className="space-y-8 text-lg text-gray-600 leading-relaxed">
+                  <p className="text-md text-gray-700 font-medium">
+                    UK Legal Solutions is a trusted online platform dedicated to connecting individuals, families and businesses with leading UK immigration lawyers. We understand that navigating the UK immigration system can be overwhelming, time-consuming and emotionally demanding. Our mission is to make the process clearer, faster and more accessible by linking you with qualified, experienced and regulated immigration professionals who can provide tailored advice and effective representation.
                   </p>
-                  <p>
-                    Over the past 18 years, we&apos;ve successfully processed over 15,000 visa applications across all categories - from student visas to skilled worker visas, family reunion to settlement applications. Our expertise spans the entire spectrum of UK immigration law.
-                  </p>
-                  <p>
-                    What sets us apart is our unwavering commitment to our clients&apos; success. We don&apos;t just file paperwork - we build relationships, understand your unique situation, and fight for your right to be in the UK.
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap gap-3 mt-8">
-                  {certifications.map((cert, index) => (
-                    <div key={index} className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                      <cert.icon className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <div>
-                        <div className="text-sm font-semibold text-gray-900">{cert.title}</div>
-                        <div className="text-xs text-gray-600">{cert.description}</div>
-                      </div>
-                    </div>
-                  ))}
+                  <div className="space-y-2 pt-1 border-t border-gray-200">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Who We Are</h3>
+                    <p className="mb-4 text-md text-gray-700 font-medium">
+                      UK Legal Solutions was established to bridge the gap between people seeking reliable immigration support and the legal experts best equipped to help. We work exclusively with reputable OISC-regulated advisers, solicitors and barristers with proven expertise across all areas of UK immigration law.
+                    </p>
+                    <p className="text-md text-gray-700 font-medium">
+                      We are proudly based at the Firvale Community Hub in Sheffield, serving clients across the UK and worldwide through our digital platform. If you wish to meet us in person, we can arrange an appointment at the centre or with the law firm that will handle your case. Alternatively, all work can be undertaken remotely, allowing you to receive expert immigration support from the comfort of your own home or office.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 pt-1 border-t border-gray-200">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">What We Do</h3>
+                    <p className="mb-4 text-md text-gray-700 font-medium">
+                      We offer a simple, user-friendly way for clients to access the right help from the right lawyer. Our platform:
+                    </p>
+                    <ul className="space-y-3 ml-6 list-none">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Assesses your needs through smart eligibility tools and tailored enquiry forms</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Matches you with specialists experienced in your specific immigration category</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Connects you instantly with trusted legal professionals for consultations, case preparation or ongoing support</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Ensures transparency with clear information, straightforward pricing and reliable partners</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-2 pt-1 border-t border-gray-200">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Commitment</h3>
+                    <p className="mb-4">
+                      We are dedicated to providing:
+                    </p>
+                    <ul className="space-y-3 ml-6 list-none text-md text-gray-700 font-medium mb-4">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Accurate and reliable immigration service</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>High-quality, ethical and client-focused support</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>A seamless digital experience for fast and stress-free access to expert help</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Confidentiality and professionalism at all times</span>
+                      </li>
+                    </ul>
+                    <p className="text-md text-gray-700 font-medium">
+                      At UK Legal Solutions, we believe everyone deserves fair, accessible and expert advice—no matter how complex their case may be.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 pt-1 border-t border-gray-200">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Why Choose Us?</h3>
+                    <ul className="space-y-3 ml-6 list-none text-md text-gray-700 font-medium">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Access to vetted immigration lawyers with proven expertise</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Fast, easy and secure matching based on your needs</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Comprehensive support for individuals, families and businesses</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Clear, honest and trustworthy information at every stage</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
 
@@ -285,7 +333,7 @@ export const AboutComponent = () => {
                         <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
                         <div>
                           <div className="font-semibold mb-1">Transparency First</div>
-                          <div className="text-blue-100 text-sm">No hidden fees, clear communication at every step</div>
+                          <div className=" text-md text-gray-700 font-medium">No hidden fees, clear communication at every step</div>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -302,11 +350,6 @@ export const AboutComponent = () => {
                           <div className="text-blue-100 text-sm">We stay ahead of changing immigration policies</div>
                         </div>
                       </div>
-                    </div>
-                    
-                    <div className="mt-8 flex items-center gap-2 text-blue-200">
-                      <TrendingUp className="w-5 h-5" />
-                      <span className="font-semibold">Growing Strong Since 2006</span>
                     </div>
                   </div>
                 </div>
@@ -345,7 +388,7 @@ export const AboutComponent = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`group relative p-8 rounded-2xl border-2 transition-all duration-300 hover:shadow-2xl ${
+                  className={`group relative p-8 text-sm rounded-2xl border-2 transition-all duration-300 hover:shadow-2xl ${
                     feature.highlight
                       ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-400'
                       : 'bg-white border-gray-200 hover:border-gray-300'
