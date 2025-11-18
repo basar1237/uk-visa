@@ -135,20 +135,15 @@ export const AboutComponent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
-                <Sparkles className="w-4 h-4 text-blue-300" />
-                <span className="text-blue-100 text-sm font-medium">UK Immigration Experts Since 2006</span>
-              </div>
               
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 Your Trusted Partner for
                 <span className="block bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-200 bg-clip-text text-transparent mt-2">
-                  UK Visa Success
-                </span>
+                UK Immigration Services                </span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-                We are a team of qualified immigration solicitors dedicated to making your UK visa journey smooth, successful, and stress-free.
+              Our team is here to guide you through every step of your UK visa and immigration process, making it as smooth, successful and stress-free as possible
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

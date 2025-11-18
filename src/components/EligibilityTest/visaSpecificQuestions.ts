@@ -41,15 +41,11 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 4. Financial Requirement
     { id: 1812, question: "What is your combined annual income (Applicant + Sponsor)?", type: 'text', required: true, step: 4, category: "Financial Requirement" },
     { id: 1813, question: "Do you have savings?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Requirement" },
-    { id: 1814, question: "If yes, please specify the total amount", type: 'text', required: false, step: 4, category: "Financial Requirement" },
     { id: 1815, question: "Do you or your sponsor have any additional sources of income?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Requirement" },
-    { id: 1816, question: "If yes, please provide details", type: 'textarea', required: false, step: 4, category: "Financial Requirement" },
     
     // 5. English Language Requirement (Applicant)
     { id: 1817, question: "Have you passed an approved English language test?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language Requirement (Applicant)" },
-    { id: 1818, question: "If yes, please indicate level (A1 / A2 / B1)", type: 'select', options: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'], required: false, step: 5, category: "English Language Requirement (Applicant)" },
     { id: 1819, question: "Are you exempt from the English language requirement? (e.g., nationality, degree taught in English, disability)", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language Requirement (Applicant)" },
-    { id: 1820, question: "If yes, please specify reason", type: 'textarea', required: false, step: 5, category: "English Language Requirement (Applicant)" },
   ],
   'Fiancé Visa': [
     // 1. Applicant Personal Details
@@ -72,15 +68,11 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 4. Financial Requirement
     { id: 1912, question: "What is your combined annual income (Applicant + Sponsor)?", type: 'text', required: true, step: 4, category: "Financial Requirement" },
     { id: 1913, question: "Do you have savings?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Requirement" },
-    { id: 1914, question: "If yes, please specify the total amount", type: 'text', required: false, step: 4, category: "Financial Requirement" },
     { id: 1915, question: "Do you or your sponsor have any additional sources of income?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Requirement" },
-    { id: 1916, question: "If yes, please provide details", type: 'textarea', required: false, step: 4, category: "Financial Requirement" },
     
     // 5. English Language Requirement (Applicant)
     { id: 1917, question: "Have you passed an approved English language test?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language Requirement (Applicant)" },
-    { id: 1918, question: "If yes, please indicate level (A1 / A2 / B1)", type: 'select', options: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'], required: false, step: 5, category: "English Language Requirement (Applicant)" },
     { id: 1919, question: "Are you exempt from the English language requirement? (e.g., nationality, degree taught in English, disability)", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language Requirement (Applicant)" },
-    { id: 1920, question: "If yes, please specify reason", type: 'textarea', required: false, step: 5, category: "English Language Requirement (Applicant)" },
   ],
   'Student Visa': [
     // 1. Personal Details
@@ -225,9 +217,7 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     
     // 3. Income & Savings
     { id: 310, question: "Do you receive any income?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Income & Savings" },
-    { id: 311, question: "If yes, what is your total monthly amount?", type: 'text', required: false, step: 3, category: "Income & Savings" },
     { id: 312, question: "Do you have any savings?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Income & Savings" },
-    { id: 313, question: "If yes, what is the amount?", type: 'text', required: false, step: 3, category: "Income & Savings" },
     
     // 4. Monthly Expenses
     { id: 314, question: "What is your rent/mortgage amount?", type: 'text', required: true, step: 4, category: "Monthly Expenses" },
@@ -260,15 +250,11 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 4. Financial Information
     { id: 413, question: "What is your combined annual income (applicant + partner)?", type: 'text', required: true, step: 4, category: "Financial Information" },
     { id: 414, question: "Do you have savings?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Information" },
-    { id: 415, question: "If yes, what is the total amount?", type: 'text', required: false, step: 4, category: "Financial Information" },
     { id: 416, question: "Any other sources of income?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Information" },
-    { id: 417, question: "If yes, provide details", type: 'textarea', required: false, step: 4, category: "Financial Information" },
     
     // 5. English Language (Applicant)
     { id: 418, question: "Have you passed an approved English test?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language (Applicant)" },
-    { id: 419, question: "If yes, what level? (A1/A2/B1)", type: 'select', options: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'], required: false, step: 5, category: "English Language (Applicant)" },
     { id: 420, question: "Are you exempt from English requirement?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language (Applicant)" },
-    { id: 421, question: "If yes, what is the reason? (nationality, degree in English, disability)", type: 'textarea', required: false, step: 5, category: "English Language (Applicant)" },
     
     // 7. Immigration History
     { id: 422, question: "Previous UK visas?", type: 'radio', options: ['Yes', 'No'], required: true, step: 7, category: "Immigration History" },
@@ -295,16 +281,13 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     { id: 511, question: "Are you the parent or legal guardian?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Relationship to Child" },
     { id: 512, question: "Do you live with the child in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Relationship to Child" },
     { id: 513, question: "Does the child live with another parent?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Relationship to Child" },
-    { id: 514, question: "If yes, provide details", type: 'textarea', required: false, step: 3, category: "Relationship to Child" },
     
     // 4. Financial Information
     { id: 515, question: "Do you have income in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Financial Information" },
     
     // 5. English Language (Applicant)
     { id: 516, question: "Have you passed an approved English test?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language (Applicant)" },
-    { id: 517, question: "If yes, what level? (A1/A2/B1)", type: 'select', options: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'], required: false, step: 5, category: "English Language (Applicant)" },
     { id: 518, question: "Are you exempt from English requirement?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "English Language (Applicant)" },
-    { id: 519, question: "If yes, what is the reason? (nationality, degree in English, disability)", type: 'textarea', required: false, step: 5, category: "English Language (Applicant)" },
   ],
   'Family & Private Life (10 Year Route)': [
     // 1. Applicant Details
@@ -349,9 +332,7 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     
     // 4. English Language Requirement
     { id: 710, question: "Have you passed an approved English test?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "English Language Requirement" },
-    { id: 711, question: "If yes, what is the test type and score?", type: 'text', required: false, step: 4, category: "English Language Requirement" },
     { id: 712, question: "Are you exempt from the English requirement?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "English Language Requirement" },
-    { id: 713, question: "If yes, what is the reason? (nationality, degree taught in English, previous UK study)", type: 'textarea', required: false, step: 4, category: "English Language Requirement" },
     
     // 5. Dependents
     { id: 714, question: "Are dependants applying with you?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "Dependents" },
@@ -481,7 +462,6 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     { id: 1112, question: "What type of appeal are you making?", type: 'select', options: ['First-tier Tribunal Appeals', 'Upper Tribunal Appeals', 'Administrative Reviews'], required: true, step: 4, category: "Appeal Details" },
     { id: 1113, question: "What are your grounds for appeal? (Please explain why you believe the decision was wrong)", type: 'textarea', required: true, step: 4, category: "Appeal Details" },
     { id: 1114, question: "Do you have new evidence to support your appeal?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Appeal Details" },
-    { id: 1115, question: "If yes, please describe the new evidence", type: 'textarea', required: false, step: 4, category: "Appeal Details" },
     
     // 5. Immigration History
     { id: 1116, question: "Previous UK visas?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "Immigration History" },
@@ -494,7 +474,6 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 6. Current Status
     { id: 1122, question: "What is your current immigration status in the UK?", type: 'text', required: true, step: 6, category: "Current Status" },
     { id: 1123, question: "Are you currently in the UK?", type: 'radio', options: ['Yes', 'No'], required: true, step: 6, category: "Current Status" },
-    { id: 1124, question: "If yes, when did you last enter the UK?", type: 'date', required: false, step: 6, category: "Current Status" },
   ],
   'First-tier Tribunal Appeals': [
     // 1. Applicant Details
@@ -517,7 +496,6 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 4. Appeal Grounds
     { id: 1212, question: "What are your grounds for appeal? (Please explain why you believe the decision was wrong)", type: 'textarea', required: true, step: 4, category: "Appeal Grounds" },
     { id: 1213, question: "Do you have new evidence to support your appeal?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Appeal Grounds" },
-    { id: 1214, question: "If yes, please describe the new evidence", type: 'textarea', required: false, step: 4, category: "Appeal Grounds" },
     
     // 5. Immigration History
     { id: 1215, question: "Previous UK visas?", type: 'radio', options: ['Yes', 'No'], required: true, step: 5, category: "Immigration History" },
@@ -576,7 +554,6 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 3. Administrative Review Grounds
     { id: 1410, question: "What are the specific caseworking errors you believe were made? (Administrative reviews can only challenge caseworking errors, not the decision itself)", type: 'textarea', required: true, step: 3, category: "Administrative Review Grounds" },
     { id: 1411, question: "Do you have evidence of the caseworking error?", type: 'radio', options: ['Yes', 'No'], required: true, step: 3, category: "Administrative Review Grounds" },
-    { id: 1412, question: "If yes, please describe the evidence", type: 'textarea', required: false, step: 3, category: "Administrative Review Grounds" },
     
     // 4. Immigration History
     { id: 1413, question: "Previous UK visas?", type: 'radio', options: ['Yes', 'No'], required: true, step: 4, category: "Immigration History" },
@@ -669,7 +646,6 @@ export const visaSpecificQuestions: Record<string, Question[]> = {
     // 6. Dispute / Representation
     { id: 1720, question: "Are you disputing the penalty?", type: 'radio', options: ['Yes', 'No'], required: true, step: 6, category: "Dispute / Representation" },
     { id: 1721, question: "Any additional evidence or information to support your case?", type: 'radio', options: ['Yes', 'No'], required: true, step: 6, category: "Dispute / Representation" },
-    { id: 1722, question: "If yes, please provide details", type: 'textarea', required: false, step: 6, category: "Dispute / Representation" },
   ],
   // Diğer tüm visa tipleri EligibilityTestForm.tsx içindekiyle birebir aynı şekilde buraya taşındı
   // (Student Visa, Skilled Worker Visa, Spouse Visa, Parent Visa, Indefinite Leave to Remain,
