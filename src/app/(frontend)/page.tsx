@@ -22,6 +22,7 @@ import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
 import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
 import { SuccessStories } from '@/components/landing/SuccessStories'
 import { TrustBadges } from '@/components/landing/TrustBadges'
+import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
@@ -62,7 +63,10 @@ export default async function HomePage() {
       <div className="hidden">
       <SimpleSection />
       </div>
+      <TestimonialsCarousel />
+      <div className="hidden">
       <SuccessStories />  
+      </div>
       <ProcessTimeline />
       <HomeFAQ />
       <ContactFormSection />

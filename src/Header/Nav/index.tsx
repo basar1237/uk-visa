@@ -110,14 +110,14 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
 
   // Desktop version
   return (
-    <nav className="flex gap-3 items-center">
+    <nav className="flex gap-1 xl:gap-2 2xl:gap-3 items-center overflow-hidden justify-center">
       {navItems.map((navItem, i) => {
         const { link, hasDropdown, dropdownItems } = navItem
 
         return (
           <div 
             key={i}
-            className="relative"
+            className="relative flex-shrink-0"
             onMouseEnter={() => {
               if (hoverTimeout) {
                 clearTimeout(hoverTimeout)
@@ -134,16 +134,16 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
               setHoverTimeout(timeout)
             }}
           >
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center gap-0.5">
               {link && (
                 <CMSLink 
                   {...link} 
                   appearance="link"
-                  className="transition-colors text-gray-900 hover:text-blue-600"
+                  className="transition-colors text-gray-900 hover:shadow-xl hover:text-blue-800 text-xs xl:text-sm 2xl:text-base whitespace-nowrap px-1 xl:px-1.5"
                 />
               )}
               {hasDropdown && (
-                <ChevronDown className="w-4 h-4 text-gray-900" />
+                <ChevronDown className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-gray-900 flex-shrink-0" />
               )}
             </div>
             {hasDropdown && dropdownItems && activeDropdown === i && (

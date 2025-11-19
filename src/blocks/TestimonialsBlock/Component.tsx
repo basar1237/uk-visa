@@ -19,6 +19,7 @@ export const TestimonialsBlockComponent: React.FC<TestimonialsBlock> = async (pr
     content: testimonial.content,
     avatar: testimonial.avatar,
     rating: testimonial.rating || 5,
+    visaType: testimonial.visaType || null,
   }))
 
   if (!formattedTestimonials || formattedTestimonials.length === 0) {
@@ -30,7 +31,7 @@ export const TestimonialsBlockComponent: React.FC<TestimonialsBlock> = async (pr
       title={title}
       description={description}
       testimonials={formattedTestimonials}
-      autoplay={autoplay || false}
+      autoplay={autoplay ?? true}
     />
   )
 }

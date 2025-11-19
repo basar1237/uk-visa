@@ -82,7 +82,7 @@ const stats = [
 
 export const SuccessStories: React.FC = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+    <section className="py-20 md:py-15 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-20"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full blur-3xl opacity-20"></div>
@@ -96,7 +96,7 @@ export const SuccessStories: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-2">
             <CheckCircle2 className="w-4 h-4" />
             Real Client Success Stories
           </div>
@@ -121,7 +121,7 @@ export const SuccessStories: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 text-center border-2 border-gray-100 hover:border-blue-300 transition-colors"
+                className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-gray-100 hover:border-blue-300 transition-colors"
               >
                 <Icon className="w-8 h-8 text-blue-600 mx-auto mb-3" />
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.value}</div>
@@ -140,15 +140,15 @@ export const SuccessStories: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl p-6 md:p-8 border-2 border-gray-100 hover:border-blue-300 transition-all duration-300"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl p-6 md:p-4 border-2 border-gray-100 hover:border-blue-300 transition-all duration-300"
             >
               {/* Quote Icon */}
-              <div className="mb-4">
-                <Quote className="w-8 h-8 text-blue-200" />
+              <div className="mb-2">
+                <Quote className="w-4 h-4 text-blue-200" />
               </div>
 
               {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
+              <div className="flex items-center gap-1 mb-2">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}

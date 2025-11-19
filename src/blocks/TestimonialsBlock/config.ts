@@ -63,6 +63,15 @@ export const TestimonialsBlock: Block = {
           defaultValue: 5,
           required: false,
         },
+        {
+          name: 'visaType',
+          type: 'text',
+          label: 'Visa Tipi',
+          required: false,
+          admin: {
+            description: 'Bu yorumun hangi visa tipiyle ilgili olduğunu belirtin (örn: Spouse Visa, Student Visa)',
+          },
+        },
       ],
       minRows: 1,
       maxRows: 10,
@@ -71,7 +80,7 @@ export const TestimonialsBlock: Block = {
       name: 'autoplay',
       type: 'checkbox',
       label: 'Otomatik Oynatma',
-      defaultValue: false,
+      defaultValue: true,
     },
   ],
   labels: {

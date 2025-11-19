@@ -1101,6 +1101,10 @@ export interface TestimonialsBlock {
         content: string;
         avatar?: (number | null) | Media;
         rating?: number | null;
+        /**
+         * Bu yorumun hangi visa tipiyle ilgili olduğunu belirtin (örn: Spouse Visa, Student Visa)
+         */
+        visaType?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1817,6 +1821,7 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         content?: T;
         avatar?: T;
         rating?: T;
+        visaType?: T;
         id?: T;
       };
   autoplay?: T;
