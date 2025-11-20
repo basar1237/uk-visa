@@ -21,7 +21,6 @@ import { HomeFAQ } from '@/components/landing/HomeFAQ'
 import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
 import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
 import { SuccessStories } from '@/components/landing/SuccessStories'
-import { TrustBadges } from '@/components/landing/TrustBadges'
 import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
 
 export default async function HomePage() {
@@ -70,7 +69,6 @@ export default async function HomePage() {
       <ProcessTimeline />
       <HomeFAQ />
       <ContactFormSection />
-      <TrustBadges />
       <VisaJourneyCTA />
     </article>
   )

@@ -25,42 +25,42 @@ const processSteps: ProcessStep[] = [
   {
     id: 1,
     title: 'Free Consultation',
-    description: 'Speak with our immigration experts about your goals, circumstances, and visa options. We\'ll assess your eligibility and recommend the best path forward.',
+    description: 'Speak with our immigration experts about your circumstances and the options available to you. We will assess your eligibility and outline the most appropriate immigration routes based on your situation. Our team operates ethically and will ensure you fully understand the merits and potential outcomes of your case before proceeding.',
     icon: MessageSquare,
-    duration: '30 minutes',
+    duration: '6-10 minutes',
   },
   {
     id: 2,
     title: 'Eligibility Assessment',
-    description: 'Take our free online eligibility test in just minutes. Our comprehensive assessment analyzes your qualifications, circumstances, and visa options to determine your best pathway to the UK.',
+    description: 'Take our free online eligibility assessment. This comprehensive tool reviews your circumstances and provides an overview of whether you may meet the requirements for your chosen immigration route.',
     icon: FileSearch,
     duration: '5-10 minutes',
   },
   {
     id: 3,
     title: 'Document Preparation',
-    description: 'Our team will guide you through gathering all necessary documents. We\'ll help organize, translate, and certify everything you need for your application.',
+    description: 'Our team will guide you through gathering all the required documents for your application. We will assist with organising, translating, and certifying your documents to ensure they meet Home Office standards.',
     icon: FileCheck,
     duration: '1-2 weeks',
   },
   {
     id: 4,
     title: 'Application Submission',
-    description: 'We\'ll complete and submit your visa application with precision and attention to detail. All forms are double-checked to avoid delays or rejections.',
+    description: 'We will complete and submit your immigration application with accuracy, care, and attention to detail, ensuring it is presented clearly and in line with Home Office requirements.',
     icon: Send,
     duration: 'Same day',
   },
   {
     id: 5,
     title: 'Processing & Updates',
-    description: 'We monitor your application status closely and keep you informed at every stage. Our team responds promptly to any requests from UKVI.',
+    description: 'We closely monitor the progress of your application and keep you informed at every stage. Our team also responds promptly to any correspondence or additional information requests from Home Office.',
     icon: Clock,
     duration: 'Varies by visa',
   },
   {
     id: 6,
-    title: 'Visa Approval',
-    description: 'Congratulations! Once approved, we\'ll help you understand your visa conditions, rights, and next steps for entering or remaining in the UK.',
+    title: 'Decision & Next Steps',
+    description: 'Once a decision has been made on your application, we will guide you through the outcome and explain any visa conditions, rights, or follow-up steps. Whether your application is granted or requires further action, our team will ensure you understand what to do next.',
     icon: CheckCircle2,
     duration: 'Celebrate!',
   }
@@ -84,7 +84,7 @@ export const ProcessTimeline: React.FC = () => {
             Your Journey to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">UK Visa Success</span>
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            From initial consultation to visa approval, we guide you through every step with expertise, transparency, and personalized support.
+            From initial consultation to approval, we guide you through every step with expertise, transparency, and personalized support.
           </p>
         </div>
 
@@ -179,7 +179,7 @@ export const ProcessTimeline: React.FC = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-grow line-clamp-3">
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-grow line-clamp-7">
                       {step.description}
                     </p>
 

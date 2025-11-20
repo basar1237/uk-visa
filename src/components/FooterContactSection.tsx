@@ -40,7 +40,7 @@ export const FooterContactSection: React.FC = () => {
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Email:</span>
-                  <a href="mailto:info@ukvisa.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukvisa.com</a>
+                  <a href="mailto:info@uklegalsolutions.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@uklegalsolutions.com</a>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Office:</span>

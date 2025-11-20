@@ -93,11 +93,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
 
         {/* Bottom CTA - Sadece ana sayfada göster */}
         {isHomePage && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
+          <div
             className="text-center mt-12"
           >
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
@@ -115,7 +111,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

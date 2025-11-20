@@ -369,7 +369,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             >
               <option value="normal">Normal</option>
               <option value="urgent">Urgent</option>
-              <option value="very-urgent">Very Urgent</option>
             </select>
           </div>
         </div>

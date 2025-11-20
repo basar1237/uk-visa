@@ -38,7 +38,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           >
             <AnimatedText
               as="h1"
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-pretty md:mb-10"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-pretty my-10"
             >
               {richText ? (
                 <div className="hero-content">
@@ -55,18 +55,18 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
             </AnimatedText>
             <AnimatedGroup
               preset="slide"
-              className="flex w-full flex-col items-center justify-center gap-2 sm:gap-3 sm:flex-row sm:items-start lg:justify-start"
+              className="flex w-full flex-col items-center justify-center gap-2 sm:gap-3 sm:flex-row mx-4 sm:items-start lg:justify-start"
             >
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-4 md:py-6">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-3 md:py-6">
                 <Link href="/contact">Book Free Consultation</Link>
               </Button>
-              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-sm sm:text-base md:text-base hover:translate-y-[-3px] transition-all duration-200 py-3 sm:py-4 md:py-6">
+              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-sm sm:text-base md:text-base hover:translate-y-[-3px] transition-all duration-200 py-3 sm:py-3 md:py-6">
                 <Link href="/eligibility-check">
                   Check Eligibility
                   <ArrowDownRight className="size-4 sm:size-5" />
                 </Link>
               </Button>
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-4 md:py-6">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-3 md:py-6">
                 <Link href="tel: 02037288948">☎ Urgent Help: 02037288948</Link>
               </Button>
             </AnimatedGroup>

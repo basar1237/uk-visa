@@ -34,10 +34,10 @@ export const ContactFormSection: React.FC = () => {
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900">Email Enquiry</p>
-                    <a href="mailto:info@ukvisa.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukvisa.com</a>
+                    <a href="mailto:info@uklegalsolutions.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@uklegalsolutions.com</a>
                     <p className="text-gray-600 text-sm">Send your questions via email</p>
                     <p className="text-green-700 text-xs mt-1">Response within 24 hours</p>
-                    <a href="mailto:info@ukvisa.com" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</a>
+                    <a href="mailto:info@uklegalsolutions.com" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</a>
                   </div>
                 </div>
               </div>
