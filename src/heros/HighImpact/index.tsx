@@ -29,9 +29,9 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           {media && typeof media === 'object' && (
             <Media fill imgClassName="object-cover blur-[2px]" priority resource={media} />
           )}
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
-        <div className="mx-auto grid max-w-7xl items-start gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
+        <div className="mx-auto py-5 grid max-w-7xl items-start gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[550px] md:min-h-[500px]">
           <AnimatedGroup
             preset="blur-slide"
             className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
@@ -78,8 +78,8 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
             initial={{ opacity: 0, x: 30, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ 
-              delay: 0.8, 
-              duration: 0.8,
+              delay: 0.3, 
+              duration: 0.3,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           >

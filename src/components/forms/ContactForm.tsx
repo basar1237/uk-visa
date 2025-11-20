@@ -190,7 +190,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const isCompact = variant === 'compact'
   const containerClass = isCompact 
     ? "bg-white rounded-2xl p-8 !shadow-none"
-    : "bg-white rounded-2xl md:rounded-3xl transition-all duration-300 p-4 md:p-8 lg:p-10 border border-gray-100 shadow-xl"
+    : "bg-white rounded-2xl md:rounded-3xl  p-4 md:p-8 lg:p-10 border border-gray-100 shadow-xl"
 
   return (
     <div className={containerClass + " " + className}>
@@ -238,7 +238,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               value={formData.firstName}
               onChange={handleInputChange}
               required
-              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               placeholder="Enter your first name"
             />
           </div>
@@ -253,7 +253,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               value={formData.lastName}
               onChange={handleInputChange}
               required
-              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               placeholder="Enter your last name"
             />
           </div>
@@ -272,7 +272,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               value={formData.email}
               onChange={handleInputChange}
               required
-              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               placeholder="Enter your email address"
             />
           </div>
@@ -286,7 +286,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               placeholder="Enter your phone number"
             />
           </div>
@@ -305,7 +305,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 value={selectedVisaCategory}
                 onChange={handleInputChange}
                 required
-                className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+                className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               >
                 <option value="">Select visa category</option>
                 {MAIN_VISA_CATEGORIES.map((category) => (
@@ -344,7 +344,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 value={formData.visaType}
                 onChange={handleInputChange}
                 required
-                className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+                className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
               >
                 <option value="">Select {selectedVisaCategory} type</option>
                 {getSubTypeOptions().map((option) => (
@@ -365,7 +365,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               name="urgency"
               value={formData.urgency}
               onChange={handleInputChange}
-              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+              className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
             >
               <option value="normal">Normal</option>
               <option value="urgent">Urgent</option>
@@ -386,7 +386,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             value={formData.subject}
             onChange={handleInputChange}
             required
-            className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+            className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
             placeholder="What is your inquiry about?"
           />
         </div>
@@ -403,7 +403,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             onChange={handleInputChange}
             required
             rows={isCompact ? 6 : 5}
-            className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} transition-all ${isCompact ? '' : 'hover:border-gray-300'}`}
+            className={`w-full ${isCompact ? 'px-4 py-3' : 'px-3 md:px-4 py-2 md:py-3'} ${isCompact ? 'text-base' : 'text-sm md:text-base'} ${isCompact ? 'border-gray-300' : 'bg-gray-50 border-gray-200'} border rounded-lg ${isCompact ? '' : 'md:rounded-xl'} text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 ${isCompact ? 'focus:border-transparent' : 'focus:border-blue-500 focus:bg-white'} ${isCompact ? '' : 'hover:border-gray-300'}`}
             placeholder="Please provide details about your visa application or inquiry..."
           />
         </div>
@@ -455,7 +455,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`inline-flex items-center ${isCompact ? 'px-8 py-4 bg-blue-600 hover:bg-blue-700' : 'px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'} text-white font-semibold rounded-lg ${isCompact ? '' : 'md:rounded-xl'} transition-all ${isCompact ? '' : 'disabled:transform-none'} disabled:opacity-50 disabled:cursor-not-allowed ${isCompact ? 'w-full sm:w-auto' : 'w-full sm:w-auto'}`}
+            className={`inline-flex items-center ${isCompact ? 'px-8 py-4 bg-blue-600 hover:bg-blue-700' : 'px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl '} text-white font-semibold rounded-lg ${isCompact ? '' : 'md:rounded-xl'} ${isCompact ? '' : ''} disabled:opacity-50 disabled:cursor-not-allowed ${isCompact ? 'w-full sm:w-auto' : 'w-full sm:w-auto'}`}
           >
             {isSubmitting ? (
               <>

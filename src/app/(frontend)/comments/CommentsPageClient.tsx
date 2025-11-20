@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react'
 import { Star, Filter, X, Quote } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import type { Media } from '@/payload-types'
 
@@ -88,18 +87,14 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 Customer Reviews
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
                 Discover our clients&apos; experiences with UK visa applications
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -111,7 +106,7 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
           <div className="md:hidden mb-6">
             <button
               onClick={() => setShowFilter(!showFilter)}
-              className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all"
+              className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-md"
             >
               <Filter className="w-5 h-5" />
               <span className="font-medium">Filter</span>
@@ -124,14 +119,8 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
           </div>
 
           {/* Desktop & Mobile Filter */}
-          <AnimatePresence>
             {(showFilter || !isMobile) && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="mb-8"
-              >
+              <div className="mb-8">
                 <div className="bg-white rounded-xl shadow-lg p-4 md:p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="text-lg font-semibold text-gray-900">Filter by Visa Type</h2>
@@ -145,7 +134,7 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
                   <div className="flex flex-wrap gap-2 md:gap-3">
                     <button
                       onClick={() => setSelectedVisaType('all')}
-                      className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                      className={`px-4 py-2 rounded-lg font-medium ${
                         selectedVisaType === 'all'
                           ? 'bg-blue-600 text-white shadow-md'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -159,7 +148,7 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
                         <button
                           key={visaType}
                           onClick={() => setSelectedVisaType(visaType)}
-                          className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                          className={`px-4 py-2 rounded-lg font-medium ${
                             selectedVisaType === visaType
                               ? 'bg-blue-600 text-white shadow-md'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -171,9 +160,8 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
                     })}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
 
           {/* Testimonials Grid */}
           {filteredTestimonials.length === 0 ? (
@@ -183,12 +171,9 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
               {filteredTestimonials.map((testimonial, index) => (
-                <motion.div
+                <div
                   key={testimonial.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-3xl shadow-xl hover:shadow-2xl p-8 md:p-10 border-2 border-gray-100 hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-2"
+                  className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-2 border-gray-100"
                 >
                   {/* Quote Icon */}
                   <div className="mb-4">
@@ -252,7 +237,7 @@ export const CommentsPageClient: React.FC<CommentsPageClientProps> = ({ testimon
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           )}

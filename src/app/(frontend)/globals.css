@@ -83,21 +83,6 @@
 
  
 
-/* Basit animasyon */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out;
-}
 
 /* Hero section responsive styles */
 @media (max-width: 768px) {
@@ -215,12 +200,7 @@
 }
 
 /* Touch feedback */
-.touch-feedback {
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
 .touch-feedback:active {
-  transform: scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -233,28 +213,10 @@
   user-select: none;
 }
 
-/* Mobile-specific animations */
-@media (prefers-reduced-motion: no-preference) {
-  .mobile-fade-in {
-    animation: mobileFadeIn 0.3s ease-out;
-  }
-}
 
-@keyframes mobileFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Accordion animations */
+/* Accordion */
 .accordion-content {
   overflow: hidden;
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .accordion-content.closed {
@@ -268,53 +230,6 @@
 }
 
 /* LongGrids mobile accordion specific styles */
-.longgrid-accordion-header {
-  transition: all 0.2s ease;
-}
-
 .longgrid-accordion-header:active {
-  transform: scale(0.98);
-}
-
-.longgrid-accordion-content {
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Blob animation for background effects */
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
+  /* No animation */
 }

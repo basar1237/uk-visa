@@ -110,7 +110,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
 
   // Desktop version
   return (
-    <nav className="flex gap-1 xl:gap-2 2xl:gap-3 items-center overflow-hidden justify-center">
+    <nav className="flex gap-1 xl:gap-2 2xl:gap-3 items-center justify-center" style={{ overflow: 'visible' }}>
       {navItems.map((navItem, i) => {
         const { link, hasDropdown, dropdownItems } = navItem
 
@@ -118,6 +118,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
           <div 
             key={i}
             className="relative flex-shrink-0"
+            style={{ overflow: 'visible' }}
             onMouseEnter={() => {
               if (hoverTimeout) {
                 clearTimeout(hoverTimeout)
@@ -130,25 +131,48 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
             onMouseLeave={() => {
               const timeout = setTimeout(() => {
                 setActiveDropdown(null)
-              }, 150)
+              }, 200)
               setHoverTimeout(timeout)
             }}
           >
-            <div className="flex items-center gap-0.5">
+            <div 
+              className="flex items-center gap-0.5 cursor-pointer"
+              onClick={() => {
+                if (hasDropdown) {
+                  if (activeDropdown === i) {
+                    setActiveDropdown(null)
+                  } else {
+                    setActiveDropdown(i)
+                  }
+                }
+              }}
+            >
               {link && (
                 <CMSLink 
                   {...link} 
                   appearance="link"
-                  className="transition-colors text-gray-900 hover:shadow-xl hover:text-blue-800 text-xs xl:text-sm 2xl:text-base whitespace-nowrap px-1 xl:px-1.5"
+                  className="transition-colors text-gray-900  text-xs xl:text-sm 2xl:text-base whitespace-nowrap px-1 xl:px-1.5"
+                  onClick={(e) => {
+                    if (hasDropdown) {
+                      e?.preventDefault()
+                      e?.stopPropagation()
+                      if (activeDropdown === i) {
+                        setActiveDropdown(null)
+                      } else {
+                        setActiveDropdown(i)
+                      }
+                    }
+                  }}
                 />
               )}
               {hasDropdown && (
-                <ChevronDown className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-gray-900 flex-shrink-0" />
+                <ChevronDown className={`w-3 h-3 xl:w-3.5 xl:h-3.5 text-gray-900 flex-shrink-0 transition-transform ${activeDropdown === i ? 'rotate-180' : ''}`} />
               )}
             </div>
             {hasDropdown && dropdownItems && activeDropdown === i && (
                 <div 
-                  className="absolute top-full left-0 min-w-56 w-auto bg-gray-600 rounded-lg shadow-xl z-50"
+                  className="absolute top-full left-0 mt-2 min-w-56 w-auto bg-gray-600 rounded-lg shadow-xl z-[10000]"
+                  style={{ position: 'absolute', top: '100%', left: 0 }}
                 onMouseEnter={() => {
                   if (hoverTimeout) {
                     clearTimeout(hoverTimeout)
@@ -159,10 +183,9 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
                 onMouseLeave={() => {
                   const timeout = setTimeout(() => {
                     setActiveDropdown(null)
-                  }, 150)
+                  }, 200)
                   setHoverTimeout(timeout)
                 }}
-                style={{ marginTop: '0px', paddingTop: '8px' }}
               >
                 <div className="p-4">
                   {dropdownItems.map((dropdownItem, j) => (
@@ -179,7 +202,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
                         </div>
                       )}
                       {dropdownItem.hasSubDropdown && dropdownItem.items && (
-                        <div className="absolute top-0 left-full ml-2 bg-gray-700 rounded-lg shadow-lg p-3 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="absolute top-0 left-full ml-2 bg-gray-700 rounded-lg shadow-lg p-3 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[10001]">
                           <ul className="space-y-2">
                             {dropdownItem.items.map((item, k) => {
                               if (!item.link) return null

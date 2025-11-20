@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'motion/react'
 import { Gauge, Rocket, Zap } from 'lucide-react'
 
 export const FastTrackSection: React.FC = () => {
@@ -26,40 +25,24 @@ export const FastTrackSection: React.FC = () => {
   return (
     <section className="relative py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-8 text-center"
-        >
+         <div className="mb-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mb-6">
             Fast-Track Your UK Visa Application
           </h2>
-        </motion.div>
+        </div>
 
-         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="mb-12 text-center"
-        >
+         <div className="mb-12 text-center">
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
             Accelerate the process with our expert support. At UK Legal Solutions, we offer{' '}
             <strong>Super Premium</strong> and <strong>Priority</strong> visa services for clients who need to submit and process their UK visa applications urgently. While these services do not affect the outcome of your application, they can significantly reduce processing times, helping you meet tight deadlines with confidence.
           </p>
-        </motion.div>
+        </div>
 
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
+              className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg"
             >
                <div className="text-blue-700 mb-4">
                 {service.icon}
@@ -82,7 +65,7 @@ export const FastTrackSection: React.FC = () => {
                   service.description
                 )}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

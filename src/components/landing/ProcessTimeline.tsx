@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { 
   FileSearch, 
@@ -76,13 +75,7 @@ export const ProcessTimeline: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
+         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
             <Award className="w-4 h-4" />
             Our Proven Process
@@ -93,19 +86,15 @@ export const ProcessTimeline: React.FC = () => {
           <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
             From initial consultation to visa approval, we guide you through every step with expertise, transparency, and personalized support.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
           {processSteps.map((step, index) => {
             const Icon = step.icon
             
             return (
-              <motion.div
+              <div
                 key={step.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="group"
               >
                 {step.id === 2 ? (
@@ -204,17 +193,11 @@ export const ProcessTimeline: React.FC = () => {
                     </div>
                   </div>
                 )}
-              </motion.div>
+              </div>
             )
           })}
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <Link href="/contact">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
               <Plane className="w-6 h-6" />
@@ -224,7 +207,7 @@ export const ProcessTimeline: React.FC = () => {
               </div>
             </div>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

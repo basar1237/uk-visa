@@ -44,13 +44,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <motion.header 
-      className="fixed top-0 left-0 right-0 z-50 bg-white/40 backdrop-blur-xl py-2 sm:py-3"
+      className="fixed top-0 left-0 right-0 z-[9998] bg-white/40 backdrop-blur-xl py-2 sm:py-3"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
-        <div className="flex items-center justify-between h-12 sm:h-14 gap-1 sm:gap-2 overflow-hidden">
+      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3 overflow-visible">
+        <div className="flex items-center justify-between h-12 sm:h-14 gap-1 sm:gap-2 overflow-visible">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -66,6 +66,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           {/* Desktop Navigation */}
           <motion.div 
             className="hidden lg:block flex-1 min-w-0 mx-2 xl:mx-4"
+            style={{ overflow: 'visible' }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.3, ease: "easeOut" }}
@@ -82,14 +83,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           >
             <Link 
               href="tel:02037288948"
-              className="flex items-center gap-1 bg-blue-700 text-white py-1.5 px-2 xl:px-2.5 rounded-xl shadow-xl hover:bg-blue-800 transition-colors h-9 xl:h-10 whitespace-nowrap"
+              className="flex items-center gap-1 bg-blue-700 text-white py-1.5 px-2 xl:px-2.5 rounded-xl shadow-xl hover:bg-blue-800 h-9 xl:h-10 whitespace-nowrap"
             >
               <Phone className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
               <span className="text-[10px] xl:text-xs font-medium 2xl:inline">+44 203 728 8948</span>
             </Link>
             <Link 
               href="/consultation"
-              className="flex items-center gap-1.5 bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white py-2 px-3 xl:px-4 rounded-xl shadow-lg hover:shadow-xl hover:from-green-600 hover:via-green-700 hover:to-green-800 transition-all duration-300 h-9 xl:h-10 whitespace-nowrap font-semibold transform hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white py-2 px-3 xl:px-4 rounded-xl shadow-lg hover:shadow-xl hover:from-green-600 hover:via-green-700 hover:to-green-800 h-9 xl:h-10 whitespace-nowrap font-semibold"
             >
               <Check className="w-4 h-4 xl:w-4 xl:h-4 flex-shrink-0" />
               <span className="text-xs xl:text-sm font-semibold">Free Assessment</span>
@@ -122,7 +123,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               <a 
                 href={`tel:${data?.phoneNumber || '02037288948'}`}
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]"
+                className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 min-h-[44px]"
               >
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">{data?.phoneNumber || '02037288948'}</span>
@@ -130,7 +131,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               <Link 
                 href="/consultation"
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition-colors min-h-[44px]"
+                className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 min-h-[44px]"
               >
                 <Check className="w-4 h-4" />
                 <span className="text-sm font-medium">Free Assessment</span>

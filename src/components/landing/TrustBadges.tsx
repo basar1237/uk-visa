@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'motion/react'
 import { BadgeCheck, ShieldCheck, Award } from 'lucide-react'
 
 export const TrustBadges: React.FC = () => {
@@ -40,13 +39,9 @@ export const TrustBadges: React.FC = () => {
 
         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           {certifications.map((cert, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 p-4 md:p-5 shadow-sm hover:shadow-md flex items-center gap-3 md:gap-4 flex-1 md:flex-none min-w-[280px] max-w-[350px]"
+              className="bg-white rounded-xl border border-gray-200 hover:border-gray-300 p-4 md:p-5 shadow-sm hover:shadow-md flex items-center gap-3 md:gap-4 flex-1 md:flex-none min-w-[280px] max-w-[350px]"
             >
               <div className={`bg-gradient-to-br ${cert.color} p-3 rounded-lg flex-shrink-0`}>
                 <cert.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -59,7 +54,7 @@ export const TrustBadges: React.FC = () => {
                   {cert.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
