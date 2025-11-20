@@ -31,14 +31,14 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           )}
           <div className="absolute inset-0 bg-black/20" />
         </div>
-        <div className="mx-auto py-5 grid max-w-7xl items-start gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 lg:gap-20 relative z-10 justify-between min-h-[550px] md:min-h-[500px]">
+        <div className="mx-auto py-5 grid max-w-7xl items-start gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 relative z-10 justify-between min-h-[550px] md:min-h-[500px] grid-cols-1 px-4 sm:px-6 md:px-8">
           <AnimatedGroup
             preset="blur-slide"
-            className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
+            className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl col-span-1 lg:items-start lg:text-left w-full"
           >
             <AnimatedText
               as="h1"
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-pretty my-10"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-pretty mb-4 sm:mb-6 md:mb-8"
             >
               {richText ? (
                 <div className="hero-content">
@@ -55,18 +55,18 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
             </AnimatedText>
             <AnimatedGroup
               preset="slide"
-              className="flex w-full flex-col items-center justify-center gap-2 sm:gap-3 sm:flex-row mx-4 sm:items-start lg:justify-start"
+              className="flex w-full flex-col items-center justify-center gap-2 sm:gap-2 sm:flex-row mx-4 sm:items-start lg:justify-start"
             >
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-3 md:py-6">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
                 <Link href="/contact">Book Free Consultation</Link>
               </Button>
-              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-sm sm:text-base md:text-base hover:translate-y-[-3px] transition-all duration-200 py-3 sm:py-3 md:py-6">
+              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm md:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
                 <Link href="/eligibility-check">
                   Check Eligibility
-                  <ArrowDownRight className="size-4 sm:size-5" />
+                  <ArrowDownRight className="size-3 sm:size-4" />
                 </Link>
               </Button>
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-sm sm:text-base md:text-base py-3 sm:py-3 md:py-6">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
                 <Link href="tel: 02037288948">☎ Urgent Help: 02037288948</Link>
               </Button>
             </AnimatedGroup>
@@ -74,7 +74,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
 
           {/* Right Side - UK Visa Eligibility Test */}
           <motion.div
-            className="hidden lg:block w-full max-h-[700px] overflow-y-auto motion-safe"
+            className="hidden lg:block w-full max-h-[700px] overflow-y-auto motion-safe col-span-1 relative z-10"
             initial={{ opacity: 0, x: 30, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ 
@@ -85,7 +85,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           >
             <EligibilityTestForm 
               showProgress={true}
-              className="bg-white/90 backdrop-blur-sm shadow-2xl"
+              className="bg-white/90 backdrop-blur-sm shadow-2xl rounded-xl"
             />
           </motion.div>
            

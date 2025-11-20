@@ -34,7 +34,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   if (effectiveStyle === 'accordion') {
     return (
       <section className='pb-40'>
-        <div className="mx-auto max-w-4xl px-4 md:px-6">
+        <div className="mx-auto max-w-4xl md:px-6">
           <div className="text-center mb-16">
             {title && (
               <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">
@@ -131,7 +131,7 @@ export const FAQBlockClient: React.FC<Props> = ({
   // List style
   return (
     <section className="">
-      <div className="mx-auto max-w-4xl px-4 md:px-6">
+      <div className="mx-auto max-w-4xl md:px-6">
         <div className="text-center mb-16">
           {title && (
             <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">
