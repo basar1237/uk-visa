@@ -7,7 +7,6 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { link } from '@/fields/link'
 import { blockToggleField } from '@/fields/blockToggle'
 
 const columnFields: Field[] = [
@@ -54,13 +53,12 @@ const columnFields: Field[] = [
     type: 'array',
     label: 'Badges',
     required: false,
-    defaultValue: [],
     fields: [
       {
         name: 'text',
         type: 'text',
         label: 'Badge Text',
-        required: true,
+        required: false,
       },
     ],
   },
@@ -91,9 +89,78 @@ const columnFields: Field[] = [
     type: 'array',
     label: 'Links',
     required: false,
-    defaultValue: [],
     fields: [
-      link(),
+      {
+        name: 'link',
+        type: 'group',
+        admin: {
+          hideGutter: true,
+        },
+        fields: [
+          {
+            type: 'row',
+            fields: [
+              {
+                name: 'type',
+                type: 'radio',
+                admin: {
+                  layout: 'horizontal',
+                  width: '50%',
+                },
+                options: [
+                  {
+                    label: 'Internal link',
+                    value: 'reference',
+                  },
+                  {
+                    label: 'Custom URL',
+                    value: 'custom',
+                  },
+                ],
+              },
+              {
+                name: 'newTab',
+                type: 'checkbox',
+                admin: {
+                  style: {
+                    alignSelf: 'flex-end',
+                  },
+                  width: '50%',
+                },
+                label: 'Open in new tab',
+              },
+            ],
+          },
+          {
+            name: 'reference',
+            type: 'relationship',
+            admin: {
+              condition: (_, siblingData) => siblingData?.type === 'reference',
+            },
+            label: 'Document to link to',
+            relationTo: ['pages', 'posts'],
+            required: false,
+          },
+          {
+            name: 'url',
+            type: 'text',
+            admin: {
+              condition: (_, siblingData) => siblingData?.type === 'custom',
+            },
+            label: 'Custom URL',
+            required: false,
+          },
+          {
+            name: 'label',
+            type: 'text',
+            admin: {
+              width: '50%',
+            },
+            label: 'Label',
+            required: false,
+          },
+        ],
+      },
     ],
   },
   {
@@ -145,7 +212,6 @@ export const LandingBlock: Block = {
     {
       name: 'columns',
       type: 'array',
-      defaultValue: [],
       admin: {
         initCollapsed: true,
       },

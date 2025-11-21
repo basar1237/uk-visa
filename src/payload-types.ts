@@ -936,7 +936,7 @@ export interface LandingBlock {
         media?: (number | null) | Media;
         badges?:
           | {
-              text: string;
+              text?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -958,7 +958,7 @@ export interface LandingBlock {
         } | null;
         links?:
           | {
-              link: {
+              link?: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
                 reference?:
@@ -971,11 +971,7 @@ export interface LandingBlock {
                       value: number | Post;
                     } | null);
                 url?: string | null;
-                label: string;
-                /**
-                 * Choose how the link should be rendered.
-                 */
-                appearance?: ('default' | 'outline' | 'red' | 'blue' | 'green') | null;
+                label?: string | null;
               };
               id?: string | null;
             }[]
@@ -1733,7 +1729,6 @@ export interface LandingBlockSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
-                    appearance?: T;
                   };
               id?: T;
             };

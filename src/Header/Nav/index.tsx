@@ -71,34 +71,49 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
               
               {hasDropdown && dropdownItems && isDropdownOpen && (
                 <div className="mt-4 ml-4 space-y-4">
-                  {dropdownItems.map((dropdownItem, j) => (
-                    <div key={j}>
-                      {dropdownItem.titleLink?.link && (
-                        <div className="mb-2">
-                          <CMSLink
-                            {...dropdownItem.titleLink.link}
-                            className="text-gray-700 font-medium text-base block py-2"
-                            onClick={onLinkClick}
-                          />
-                        </div>
-                      )}
-                      {dropdownItem.hasSubDropdown && dropdownItem.items && (
-                        <div className="ml-4 space-y-2">
-                          {dropdownItem.items.map((item, k) => {
-                            if (!item.link) return null
-                            return (
-                              <CMSLink
-                                key={k}
-                                {...item.link}
-                                className="text-gray-600 hover:text-blue-600 transition-colors text-sm block py-1"
-                                onClick={onLinkClick}
-                              />
-                            )
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                  {dropdownItems.map((dropdownItem, j) => {
+                    // Unique key için reference value veya index kullan
+                    const uniqueKey = dropdownItem.titleLink?.link?.reference?.value 
+                      ? (typeof dropdownItem.titleLink.link.reference.value === 'object' 
+                          ? dropdownItem.titleLink.link.reference.value.id 
+                          : dropdownItem.titleLink.link.reference.value)
+                      : `mobile-dropdown-item-${j}`
+                    
+                    return (
+                      <div key={uniqueKey}>
+                        {dropdownItem.titleLink?.link && (
+                          <div className="mb-2">
+                            <CMSLink
+                              {...dropdownItem.titleLink.link}
+                              className="text-gray-700 font-medium text-base block py-2"
+                              onClick={onLinkClick}
+                            />
+                          </div>
+                        )}
+                        {dropdownItem.hasSubDropdown && dropdownItem.items && (
+                          <div className="ml-4 space-y-2">
+                            {dropdownItem.items.map((item, k) => {
+                              if (!item.link) return null
+                              // Unique key için reference value veya index kullan
+                              const itemUniqueKey = item.link?.reference?.value
+                                ? (typeof item.link.reference.value === 'object'
+                                    ? item.link.reference.value.id
+                                    : item.link.reference.value)
+                                : `mobile-dropdown-sub-item-${j}-${k}`
+                              return (
+                                <CMSLink
+                                  key={itemUniqueKey}
+                                  {...item.link}
+                                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm block py-1"
+                                  onClick={onLinkClick}
+                                />
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -188,38 +203,53 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
                 }}
               >
                 <div className="p-4">
-                  {dropdownItems.map((dropdownItem, j) => (
-                    <div key={j} className="relative group mb-3 last:mb-0">
-                      {dropdownItem.titleLink?.link && (
-                        <div className="flex items-center justify-between gap-4 px-3 py-2 rounded-md hover:bg-gray-500 transition-colors cursor-pointer">
-                          <CMSLink
-                            {...dropdownItem.titleLink.link}
-                            className="text-white font-medium text-sm block whitespace-nowrap"
-                          />
-                          {dropdownItem.hasSubDropdown && (
-                            <ChevronRight className="w-4 h-4 text-white flex-shrink-0" />
-                          )}
-                        </div>
-                      )}
-                      {dropdownItem.hasSubDropdown && dropdownItem.items && (
-                        <div className="absolute top-0 left-full ml-2 bg-gray-700 rounded-lg shadow-lg p-3 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[10001]">
-                          <ul className="space-y-2">
-                            {dropdownItem.items.map((item, k) => {
-                              if (!item.link) return null
-                              return (
-                                <li key={k}>
-                                  <CMSLink
-                                    {...item.link}
-                                    className="text-gray-300 hover:text-white transition-colors text-sm block py-1"
-                                  />
-                                </li>
-                              )
-                            })}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                  {dropdownItems.map((dropdownItem, j) => {
+                    // Unique key için reference value veya index kullan
+                    const uniqueKey = dropdownItem.titleLink?.link?.reference?.value 
+                      ? (typeof dropdownItem.titleLink.link.reference.value === 'object' 
+                          ? dropdownItem.titleLink.link.reference.value.id 
+                          : dropdownItem.titleLink.link.reference.value)
+                      : `dropdown-item-${j}`
+                    
+                    return (
+                      <div key={uniqueKey} className="relative group mb-3 last:mb-0">
+                        {dropdownItem.titleLink?.link && (
+                          <div className="flex items-center justify-between gap-4 px-3 py-2 rounded-md hover:bg-gray-500 transition-colors cursor-pointer">
+                            <CMSLink
+                              {...dropdownItem.titleLink.link}
+                              className="text-white font-medium text-sm block whitespace-nowrap"
+                            />
+                            {dropdownItem.hasSubDropdown && (
+                              <ChevronRight className="w-4 h-4 text-white flex-shrink-0" />
+                            )}
+                          </div>
+                        )}
+                        {dropdownItem.hasSubDropdown && dropdownItem.items && (
+                          <div className="absolute top-0 left-full ml-2 bg-gray-700 rounded-lg shadow-lg p-3 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[10001]">
+                            <ul className="space-y-2">
+                              {dropdownItem.items.map((item, k) => {
+                                if (!item.link) return null
+                                // Unique key için reference value veya index kullan
+                                const itemUniqueKey = item.link?.reference?.value
+                                  ? (typeof item.link.reference.value === 'object'
+                                      ? item.link.reference.value.id
+                                      : item.link.reference.value)
+                                  : `dropdown-sub-item-${j}-${k}`
+                                return (
+                                  <li key={itemUniqueKey}>
+                                    <CMSLink
+                                      {...item.link}
+                                      className="text-gray-300 hover:text-white transition-colors text-sm block py-1"
+                                    />
+                                  </li>
+                                )
+                              })}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}
