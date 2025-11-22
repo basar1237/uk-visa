@@ -16,8 +16,8 @@ export const ContactStrip: React.FC = () => {
             <div className="space-y-3">
               <Phone className="mx-auto h-9 w-9 text-green-600" />
               <p className="font-semibold">Call Us</p>
-              <a href="tel:+442037288948" className="text-green-700 hover:text-green-800 transition-colors">
-                +44 20 3728 8948
+              <a href="tel:01143214047" className="text-green-700 hover:text-green-800 transition-colors">
+                01143214047
               </a>
             </div>
 

@@ -26,7 +26,7 @@ export const ContactComponent: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <Phone className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Phone</h3>
-                <a href="tel:+442037288948" className="text-blue-100 hover:text-white transition-colors">+44 20 3728 8948</a>
+                <a href="tel:01143214047" className="text-blue-100 hover:text-white transition-colors">01143214047</a>
                 <p className="text-blue-200 text-sm">Mon-Fri 9AM-6PM</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -94,7 +94,7 @@ export const ContactComponent: React.FC = () => {
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                       <Phone className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                       <h4 className="font-semibold text-gray-900">Phone</h4>
-                      <a href="tel:+442037288948" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">+44 20 3728 8948</a>
+                      <a href="tel:01143214047" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">01143214047</a>
                     </div>
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                       <Mail className="w-6 h-6 text-blue-600 mx-auto mb-2" />
@@ -113,9 +113,9 @@ export const ContactComponent: React.FC = () => {
                 <p className="text-gray-600 mb-4">
                   For urgent visa matters outside office hours, please call our emergency line.
                 </p>
-                <a href="tel:02037288948" className="flex items-center hover:text-blue-600 transition-colors">
+                <a href="tel:01143214047" className="flex items-center hover:text-blue-600 transition-colors">
                   <Phone className="w-5 h-5 text-red-600 mr-2" />
-                  <span className="font-semibold text-gray-900">02037288948</span>
+                  <span className="font-semibold text-gray-900">01143214047</span>
                 </a>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-lg">

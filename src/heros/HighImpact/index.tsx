@@ -67,7 +67,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 </Link>
               </Button>
               <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
-                <Link href="tel: 02037288948">☎ Urgent Help: 02037288948</Link>
+                <Link href="tel: 01143214047">☎ Urgent Help: 01143214047</Link>
               </Button>
             </AnimatedGroup>
           </AnimatedGroup>

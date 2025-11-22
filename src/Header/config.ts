@@ -76,7 +76,7 @@ export const Header: GlobalConfig = {
       name: 'phoneNumber',
       type: 'text',
       label: 'Telefon Numarası',
-      defaultValue: ' 02037288948',
+      defaultValue: ' 01143214047',
     },
   ],
   hooks: {
