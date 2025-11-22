@@ -14,6 +14,7 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
 
 export const dynamicParams = true
+// ISR: Revalidation hook'ları sayfayı yeniden oluşturacak
 
 export async function generateStaticParams() {
   // Build sırasında veritabanı bağlantısı yoksa atla

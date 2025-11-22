@@ -23,6 +23,8 @@ import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
 import { SuccessStories } from '@/components/landing/SuccessStories'
 import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
 
+// ISR: Revalidation hook'ları sayfayı yeniden oluşturacak
+
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
   const slug = 'home'

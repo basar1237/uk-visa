@@ -1,16 +1,13 @@
 import { HeaderClient } from './Component.client'
-import { getPayloadInstance } from '@/utilities/getPayloadInstance'
+import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 
 import type { Header } from '@/payload-types'
 
 export async function Header() {
   try {
-    const payload = await getPayloadInstance()
-    const headerData = await payload.findGlobal({
-      slug: 'header',
-      depth: 2, // Reference'ları populate etmek için depth artırıldı
-    })
+    const getCachedHeader = getCachedGlobal('header', 2)
+    const headerData = await getCachedHeader()
     
     if (!headerData) {
       // Fallback default header
