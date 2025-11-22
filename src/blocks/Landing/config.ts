@@ -107,6 +107,7 @@ const columnFields: Field[] = [
                   layout: 'horizontal',
                   width: '50%',
                 },
+                defaultValue: 'reference',
                 options: [
                   {
                     label: 'Internal link',

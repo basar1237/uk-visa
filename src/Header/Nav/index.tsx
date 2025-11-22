@@ -72,12 +72,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
               {hasDropdown && dropdownItems && isDropdownOpen && (
                 <div className="mt-4 ml-4 space-y-4">
                   {dropdownItems.map((dropdownItem, j) => {
-                    // Unique key için reference value veya index kullan
-                    const uniqueKey = dropdownItem.titleLink?.link?.reference?.value 
+                    // Unique key için reference value + index kullan (aynı sayfa birden fazla yerde olabilir)
+                    const referenceId = dropdownItem.titleLink?.link?.reference?.value 
                       ? (typeof dropdownItem.titleLink.link.reference.value === 'object' 
                           ? dropdownItem.titleLink.link.reference.value.id 
                           : dropdownItem.titleLink.link.reference.value)
-                      : `mobile-dropdown-item-${j}`
+                      : null
+                    const uniqueKey = referenceId
+                      ? `mobile-dropdown-item-${i}-${j}-${referenceId}`
+                      : `mobile-dropdown-item-${i}-${j}`
                     
                     return (
                       <div key={uniqueKey}>
@@ -94,12 +97,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
                           <div className="ml-4 space-y-2">
                             {dropdownItem.items.map((item, k) => {
                               if (!item.link) return null
-                              // Unique key için reference value veya index kullan
-                              const itemUniqueKey = item.link?.reference?.value
+                              // Unique key için reference value + index kullan (aynı sayfa birden fazla yerde olabilir)
+                              const itemReferenceId = item.link?.reference?.value
                                 ? (typeof item.link.reference.value === 'object'
                                     ? item.link.reference.value.id
                                     : item.link.reference.value)
-                                : `mobile-dropdown-sub-item-${j}-${k}`
+                                : null
+                              const itemUniqueKey = itemReferenceId
+                                ? `mobile-dropdown-sub-item-${i}-${j}-${k}-${itemReferenceId}`
+                                : `mobile-dropdown-sub-item-${i}-${j}-${k}`
                               return (
                                 <CMSLink
                                   key={itemUniqueKey}
@@ -204,12 +210,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
               >
                 <div className="p-4">
                   {dropdownItems.map((dropdownItem, j) => {
-                    // Unique key için reference value veya index kullan
-                    const uniqueKey = dropdownItem.titleLink?.link?.reference?.value 
+                    // Unique key için reference value + index kullan (aynı sayfa birden fazla yerde olabilir)
+                    const referenceId = dropdownItem.titleLink?.link?.reference?.value 
                       ? (typeof dropdownItem.titleLink.link.reference.value === 'object' 
                           ? dropdownItem.titleLink.link.reference.value.id 
                           : dropdownItem.titleLink.link.reference.value)
-                      : `dropdown-item-${j}`
+                      : null
+                    const uniqueKey = referenceId 
+                      ? `dropdown-item-${i}-${j}-${referenceId}` 
+                      : `dropdown-item-${i}-${j}`
                     
                     return (
                       <div key={uniqueKey} className="relative group mb-3 last:mb-0">
@@ -229,12 +238,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ data, isMobile = false, on
                             <ul className="space-y-2">
                               {dropdownItem.items.map((item, k) => {
                                 if (!item.link) return null
-                                // Unique key için reference value veya index kullan
-                                const itemUniqueKey = item.link?.reference?.value
+                                // Unique key için reference value + index kullan (aynı sayfa birden fazla yerde olabilir)
+                                const itemReferenceId = item.link?.reference?.value
                                   ? (typeof item.link.reference.value === 'object'
                                       ? item.link.reference.value.id
                                       : item.link.reference.value)
-                                  : `dropdown-sub-item-${j}-${k}`
+                                  : null
+                                const itemUniqueKey = itemReferenceId
+                                  ? `dropdown-sub-item-${i}-${j}-${k}-${itemReferenceId}`
+                                  : `dropdown-sub-item-${i}-${j}-${k}`
                                 return (
                                   <li key={itemUniqueKey}>
                                     <CMSLink
