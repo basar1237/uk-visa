@@ -34,7 +34,7 @@ export const ContactStrip: React.FC = () => {
             <div className="space-y-3">
               <MapPin className="mx-auto h-9 w-9 text-green-600" />
               <p className="font-semibold">Visit Us</p>
-              <p className="text-green-700">London, United Kingdom</p>
+              <p className="text-green-700">Sheffield, United Kingdom</p>
             </div>
           </div>
         </div>

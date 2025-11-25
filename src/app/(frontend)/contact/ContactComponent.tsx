@@ -38,7 +38,7 @@ export const ContactComponent: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <MapPin className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Office</h3>
-                <p className="text-blue-100">London, United Kingdom</p>
+                <p className="text-blue-100">Sheffield, United Kingdom</p>
                 <p className="text-blue-200 text-sm">By Appointment</p>
               </div>
             </div>
@@ -70,7 +70,7 @@ export const ContactComponent: React.FC = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Location</h2>
               <p className="text-lg text-gray-600">
-                Visit our office in London for in-person consultations
+                Visit our office in Sheffield for in-person consultations
               </p>
             </div>
 
@@ -80,9 +80,9 @@ export const ContactComponent: React.FC = () => {
                 {/* UK Map Placeholder */}
                 <div className="text-center">
                   <MapPin className="w-16 h-16 text-blue-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">London, United Kingdom</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Sheffield, United Kingdom</h3>
                   <p className="text-gray-600 mb-4">
-                    123 Visa Street, London SW1A 1AA
+                    Firvale Community Hub, Sheffield
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">

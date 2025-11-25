@@ -72,22 +72,42 @@ export const FooterContactSection: React.FC = () => {
             <div className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 shadow-sm">
               <div className="flex items-center text-gray-700 text-sm mb-4">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span>Open map to our Sheffield office</span>
+                <span>Our Sheffield office location</span>
               </div>
               
               {/* Map Links */}
               <div className="flex flex-col space-y-2 mb-4">
-                <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline text-sm">
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Sheffield+United+Kingdom" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 hover:underline text-sm"
+                >
                   Open in Google Maps
                 </a>
-                <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline text-sm">
-                  Directions & Parking
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Sheffield+United+Kingdom" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 hover:underline text-sm"
+                >
+                  Get Directions
                 </a>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="h-48 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Map will be embedded here</span>
+              {/* Google Maps Embed */}
+              <div className="h-64 md:h-80 rounded-lg overflow-hidden border border-gray-200">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190028.25709892247!2d-1.564227!3d53.381129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48790aa9fae9be51%3A0x51eeb6c15e5b3b2d!2sSheffield%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890123!5m2!1sen!2suk"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                  title="Sheffield Office Location"
+                />
               </div>
             </div>
           </div>

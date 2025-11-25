@@ -58,7 +58,7 @@ export const VisaJourneyCTA = () => {
                 <div>
                   <MapPin className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                   <div className="text-white font-semibold mb-1">Visit Us</div>
-                  <div className="text-blue-100 text-sm">London, United Kingdom</div>
+                  <div className="text-blue-100 text-sm">Sheffield, United Kingdom</div>
                 </div>
               </div>
             </div>
