@@ -42,29 +42,130 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Email gönderme (şimdilik devre dışı - email provider konfigürasyonu gerekli)
-    // try {
-    //   await payload.sendEmail({
-    //     to: process.env.ADMIN_EMAIL || 'basaryldrm1237@gmail.com',
-    //     from: process.env.FROM_EMAIL || 'noreply@ukvisa.com',
-    //     subject: `Yeni Contact Form Gönderimi - ${subject}`,
-    //     html: `
-    //       <h2>Yeni Contact Form Gönderimi</h2>
-    //       <p><strong>Ad Soyad:</strong> ${firstName} ${lastName}</p>
-    //       <p><strong>Email:</strong> ${email}</p>
-    //       <p><strong>Telefon:</strong> ${phone || 'Belirtilmemiş'}</p>
-    //       <p><strong>Visa Tipi:</strong> ${visaType}</p>
-    //       <p><strong>Konu:</strong> ${subject}</p>
-    //       <p><strong>Mesaj:</strong></p>
-    //       <p>${message}</p>
-    //       <p><strong>Tercih Edilen İletişim:</strong> ${preferredContact}</p>
-    //       <p><strong>Acil Durum:</strong> ${urgency}</p>
-    //       <p><strong>Gönderim Tarihi:</strong> ${new Date().toLocaleString('tr-TR')}</p>
-    //     `,
-    //   })
-    // } catch (emailError) {
-    //   console.error('Email gönderim hatası:', emailError)
-    // }
+    // Gmail Apps Script ile email gönderme
+    const appsScriptUrl = process.env.GMAIL_APPS_SCRIPT_URL
+    const appsScriptSecret = process.env.GMAIL_APPS_SCRIPT_SECRET
+    const adminEmail = process.env.ADMIN_EMAIL || 'savash12@hotmail.co.uk'
+    const fromEmail = process.env.FROM_EMAIL || 'basaryldrm1237@gmail.com'
+
+    if (appsScriptUrl) {
+      try {
+        // XSS koruması için HTML escape
+        const escapeHtml = (text: string) => {
+          const map: Record<string, string> = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;',
+          }
+          return text.replace(/[&<>"']/g, (m) => map[m])
+        }
+
+        // Değerleri önce escape et
+        const safeFirstName = escapeHtml(firstName)
+        const safeLastName = escapeHtml(lastName)
+        const safeEmail = escapeHtml(email)
+        const safePhone = phone ? escapeHtml(phone) : 'Not provided'
+        const safeVisaType = escapeHtml(visaType)
+        const safeSubject = escapeHtml(subject)
+        const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
+        const safePreferredContact = escapeHtml(preferredContact)
+        const safeUrgency = escapeHtml(urgency)
+
+        const emailHtml = `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+                .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
+                .field { margin-bottom: 15px; }
+                .label { font-weight: bold; color: #667eea; }
+                .value { margin-top: 5px; padding: 10px; background: white; border-radius: 4px; }
+                .message-box { padding: 15px; background: white; border-left: 4px solid #667eea; margin-top: 10px; }
+                .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h2 style="margin: 0;">New Contact Form Submission</h2>
+                </div>
+                <div class="content">
+                  <div class="field">
+                    <div class="label">Full Name:</div>
+                    <div class="value">${safeFirstName} ${safeLastName}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Email:</div>
+                    <div class="value"><a href="mailto:${safeEmail}">${safeEmail}</a></div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Phone:</div>
+                    <div class="value">${safePhone}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Visa Type:</div>
+                    <div class="value">${safeVisaType}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Subject:</div>
+                    <div class="value">${safeSubject}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Message:</div>
+                    <div class="message-box">${safeMessage}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Preferred Contact Method:</div>
+                    <div class="value">${safePreferredContact}</div>
+                  </div>
+                  <div class="field">
+                    <div class="label">Urgency Level:</div>
+                    <div class="value">${safeUrgency}</div>
+                  </div>
+                  <div class="footer">
+                    <p><strong>Submission Date:</strong> ${new Date().toLocaleString('en-US')}</p>
+                    <p><strong>Submission ID:</strong> ${contactSubmission.id}</p>
+                  </div>
+                </div>
+              </div>
+            </body>
+          </html>
+        `
+        const response = await fetch(appsScriptUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: adminEmail,
+            from: fromEmail,
+            subject: `New Contact Form Submission - ${safeSubject}`,
+            html: emailHtml,
+            ...(appsScriptSecret && { secret: appsScriptSecret }),
+          }),
+        })
+        const responseText = await response.text()
+
+        let result
+        try {
+          result = JSON.parse(responseText)
+        } catch (parseError) {
+         
+          throw new Error(`Apps Script returned non-JSON response (Status: ${response.status}). Check deployment settings.`)
+        }
+
+        if (result.success) {
+        } 
+      } catch (error) {
+        console.error('Email sending error:', error)
+      }
+    } 
 
     return NextResponse.json(
       { 
@@ -75,9 +176,13 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
 
-  } catch (_error) {
+  } catch (error) {
+    console.error('Contact submission error:', error)
     return NextResponse.json(
-      { error: 'Sunucu hatası' },
+      { 
+        error: 'Sunucu hatası',
+        details: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.message : String(error)) : undefined
+      },
       { status: 500 }
     )
   }

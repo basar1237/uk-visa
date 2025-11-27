@@ -46,17 +46,9 @@ export const ContactSubmissions: CollectionConfig = {
     },
     {
       name: 'visaType',
-      type: 'select',
+      type: 'text',
       required: true,
       label: 'Visa Type',
-      options: [
-        { label: 'Visitor Visa', value: 'visitor' },
-        { label: 'Student Visa', value: 'student' },
-        { label: 'Skilled Worker Visa', value: 'work' },
-        { label: 'Spouse Visa', value: 'spouse' },
-        { label: 'Parent Visa', value: 'parent' },
-        { label: 'Other', value: 'other' },
-      ],
     },
     {
       name: 'subject',

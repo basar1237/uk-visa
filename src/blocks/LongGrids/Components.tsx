@@ -53,7 +53,7 @@ export const LongGridsBlock: React.FC<LongGridsBlockType> = ({ title, descriptio
                   <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10">
                     <div className="w-30 h-34 bg-white rounded-xl shadow-xl flex items-center justify-center py-8 px-2">
                       <Image 
-                        src="/uk-logo.webp" 
+                        src="/new-logo.png" 
                         alt="UK Logo" 
                         width={80}
                         height={80}

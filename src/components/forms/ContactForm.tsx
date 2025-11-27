@@ -130,12 +130,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     // Validation: Visa category seçilmemişse hata ver
     if (!selectedVisaCategory) {
       setSubmitStatus('error')
+      alert('Lütfen bir visa kategorisi seçin.')
       return
     }
     
     // Validation: Eğer alt tip seçimi gerekiyorsa ve seçilmemişse hata ver
     if (showSubTypeSelect && !formData.visaType) {
       setSubmitStatus('error')
+      alert('Lütfen bir visa tipi seçin.')
       return
     }
     
@@ -143,6 +145,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     const finalVisaType = showSubTypeSelect 
       ? formData.visaType 
       : (formData.visaType || selectedVisaCategory)
+    
+    // Final validation: visaType boş olamaz
+    if (!finalVisaType || finalVisaType.trim() === '') {
+      setSubmitStatus('error')
+      alert('Visa tipi seçimi gereklidir.')
+      return
+    }
     
     // Final form data
     const submitData = {

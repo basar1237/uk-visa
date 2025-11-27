@@ -8,21 +8,6 @@ import { usePathname } from 'next/navigation'
 
 import type { ServicesGridBlock } from '@/payload-types'
 
-// Gradient renkler dizisi - her servis için farklı renk
-const gradientColors = [
-  'from-blue-500 to-indigo-600',
-  'from-green-500 to-emerald-600',
-  'from-pink-500 to-rose-600',
-  'from-purple-500 to-violet-600',
-  'from-amber-500 to-orange-600',
-  'from-teal-500 to-cyan-600',
-  'from-red-500 to-rose-600',
-  'from-indigo-500 to-purple-600',
-  'from-blue-600 to-cyan-500',
-  'from-orange-500 to-red-600',
-  'from-emerald-500 to-teal-600',
-  'from-violet-500 to-fuchsia-600',
-]
 
 export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, description, services }) => {
   const pathname = usePathname()
@@ -45,12 +30,12 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
           {services?.map((service, index) => {
-            const gradient = gradientColors[index % gradientColors.length]
+            const gradient = 'from-blue-500 to-indigo-500'
             
             return (
               <div 
                 key={index} 
-                className="group relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-300 cursor-pointer flex flex-col h-full"
+                className="group relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-300 flex flex-col h-full"
               >
                  <div className={`absolute top-0 left-0 right-0 h-1.5 from-blue-500 to-indigo-50`}></div>
                 
@@ -59,9 +44,13 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-600 leading-relaxed mb-6 flex-1 text-sm line-clamp-4">
-                    {service.description}
-                  </p>
+                  <div className="text-gray-600 leading-relaxed mb-6 flex-1 text-sm">
+                    <ul className="list-disc list-inside space-y-1 line-clamp-4">
+                      {service.description?.split('\n').filter(line => line.trim()).map((line, lineIndex) => (
+                        <li key={lineIndex} className="whitespace-normal">{line.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
                   
                    {service.badges && service.badges.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto  pt-4 border-t border-gray-200">
@@ -70,7 +59,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
                           <Link
                             key={badgeIndex}
                             href={badge.link}
-                            className={`inline-flex hover:-translate-y-[2px] transition-all duration-300 ease-in-out items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r ${gradient} text-white hover:opacity-90 shadow-sm hover:shadow-md`}
+                            className={`inline-flex hover:-translate-y-[2px] transition-all duration-300 ease-in-out items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-500 text-white hover:opacity-90 shadow-sm hover:shadow-md`}
                           >
                             {badge.text}
                           </Link>
@@ -92,7 +81,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
         </div>
 
         {/* Bottom CTA - Sadece ana sayfada göster */}
-        {isHomePage && (
+        {/* {isHomePage && (
           <div
             className="text-center mt-12"
           >
@@ -112,7 +101,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   )

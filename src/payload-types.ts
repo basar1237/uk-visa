@@ -1188,7 +1188,7 @@ export interface ContactSubmission {
   lastName: string;
   email: string;
   phone?: string | null;
-  visaType: 'visitor' | 'student' | 'work' | 'spouse' | 'parent' | 'other';
+  visaType: string;
   subject: string;
   message: string;
   preferredContact: 'email' | 'phone' | 'both';
