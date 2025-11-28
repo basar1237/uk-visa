@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { ContactForm } from '@/components/forms/ContactForm'
+import Link from 'next/link'
 
 export const ContactFormSection: React.FC = () => {
 
@@ -22,7 +23,7 @@ export const ContactFormSection: React.FC = () => {
                     <p className="text-sm font-semibold text-gray-900">Phone Support</p>
                     <a href="tel:01143214047" className="text-gray-900 font-medium hover:text-blue-600 transition-colors">01143214047</a>
                     <p className="text-gray-600 text-sm">Speak directly with our specialists</p>
-                    <p className="text-green-700 text-xs mt-1">7 days, 7am-7pm</p>
+                    <p className="text-green-700 text-xs mt-1">24 / 7 helpline </p>
                     <a href="tel:01143214047" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</a>
                   </div>
                 </div>
@@ -34,26 +35,27 @@ export const ContactFormSection: React.FC = () => {
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">✉</div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900">Email Enquiry</p>
-                    <a href="mailto:info@uklegalsolutions.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@uklegalsolutions.com</a>
+                    <a href="mailto:info@ukimmigrationhelpline.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukimmigrationhelpline.com</a>
                     <p className="text-gray-600 text-sm">Send your questions via email</p>
                     <p className="text-green-700 text-xs mt-1">Response within 24 hours</p>
-                    <a href="mailto:info@uklegalsolutions.com" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</a>
+                    <a href="mailto:info@ukimmigrationhelpline.com" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Send email →</a>
                   </div>
                 </div>
               </div>
 
               {/* Online Assessment */}
               <div className="bg-white border  border-gray-200 rounded-2xl p-5 md:p-6 shadow-md">
+              <Link href="/eligibility-check" >
                 <div className="flex items-start gap-4">
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">⏱</div>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-gray-900">Online Assessment</p>
-                    <p className="text-gray-900">Free consultation</p>
-                    <p className="text-gray-600 text-sm">Get started with our online form</p>
+                    <p className="text-sm font-semibold text-gray-900">Online Assessment to Eligibility Check</p>
+                     <p className="text-gray-600 text-sm">Get started with our online form</p>
                     <p className="text-green-700 text-xs mt-1">Available 24/7</p>
                     <button type="button" className="mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Start assessment →</button>
                   </div>
                 </div>
+              </Link>
               </div>
             </div>
           </div>

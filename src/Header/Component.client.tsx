@@ -113,7 +113,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div 
-            className="lg:hidden border-t border-gray-200 py-4 max-h-[calc(100vh-80px)] overflow-y-auto"
+            className="lg:hidden border-gray-200 py-5 max-h-[calc(100vh-80px)] overflow-y-auto"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -129,12 +129,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 <span className="text-sm font-medium">{data?.phoneNumber || '01143214047'}</span>
               </a>
               <Link 
-                href="/consultation"
+                href="/contact"
                 onClick={closeMobileMenu}
                 className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 min-h-[44px]"
               >
                 <Check className="w-4 h-4" />
-                <span className="text-sm font-medium">Free Assessment</span>
+                <span className="text-sm font-medium">Free Consultation</span>
               </Link>
             </div>
             <HeaderNav data={data} isMobile={true} onLinkClick={closeMobileMenu} />

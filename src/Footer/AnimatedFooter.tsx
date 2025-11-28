@@ -73,17 +73,13 @@ export function AnimatedFooter({ columns }: AnimatedFooterProps) {
         viewport={{ once: true }}
         className="bg-[#0a1b3d] border-t border-transparent py-6 text-center text-white/70"
       >
-        © 2025 UK Legal Solutions. UK Legal Solutions is a network of independent solicitors and law firms operating across England and Wales. Each participating firm is authorised and regulated by the Solicitors Regulation Authority (SRA) and adheres to the SRA Standards and Regulations governing professional conduct, ethics, and client care.
+       UK Immigration Helpline is a trading name of UK Legal Solutions Ltd, operating as a trading style of Haleys Solicitors, which is regulated by the Bar Standards Board (BSB) Ref: ER164151.
 
-UK Legal Solutions is not itself a law firm but operates as a collective trading and marketing platform connecting clients with regulated legal professionals.
+UK Legal Solutions Ltd collaborates with a network of independent regulated immigration advisors, solicitors and barristers across England and Wales.
 
-By submitting an enquiry through this website, you consent to your details being securely shared with one or more participating firms for the purpose of responding to your enquiry. Each firm is individually responsible for compliance with the UK General Data Protection Regulation (UK GDPR) and applicable data protection laws. UK Legal Solutions Ltd does not retain or process your personal data beyond what is necessary to facilitate initial contact.
+By submitting an enquiry through this website, you provide consent for your information to be securely shared with one or more participating advisors or firms for the sole purpose of responding to your enquiry.
 
-Please note that any legal services provided — and any contractual relationships formed — are strictly between you and the individual law firm(s) that engage with you. UK Legal Solutions Ltd accepts no responsibility or liability for any legal advice or services delivered by member firms.
-
-All logos, names, and associated branding (including “UK Legal Solutions”) are registered trademarks. All rights reserved. VAT numbers and SRA registration details for participating firms are available upon request. We do not accept service of legal documents by email or fax.
-
-Designed and maintained by UK Legal Solutions Ltd.
+This website is designed, developed and maintained by UK Legal Solutions Ltd.
       </motion.div>
       {/* Copyright */}
       <motion.div

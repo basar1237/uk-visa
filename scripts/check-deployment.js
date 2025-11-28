@@ -64,8 +64,9 @@ async function runChecks() {
   // 3. API endpoints
   console.log('\n3️⃣  API Kontrolü')
   console.log('─────────────────────────')
-  checks.push(await checkEndpoint('/api/pages', 'Pages API'))
-  checks.push(await checkEndpoint('/api/posts', 'Posts API'))
+  checks.push(await checkEndpoint('/api/contact-submissions', 'Contact Submissions API'))
+  checks.push(await checkEndpoint('/api/eligibility-submissions', 'Eligibility Submissions API'))
+  checks.push(await checkEndpoint('/api/graphql', 'GraphQL API'))
   
   // 4. Static assets
   console.log('\n4️⃣  Static Assets Kontrolü')

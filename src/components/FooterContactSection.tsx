@@ -3,7 +3,6 @@
 import React from 'react'
 import { motion } from 'motion/react'
 import { MapPin } from 'lucide-react'
-import Link from 'next/link'
 
 export const FooterContactSection: React.FC = () => {
   return (
@@ -20,51 +19,44 @@ export const FooterContactSection: React.FC = () => {
             Contact & Location
           </h2>
           
-          {/* Subtitle */}
-          <p className="text-white/80 text-sm md:text-base mb-8">
-            Based in Sheffield — assisting clients across the UK and overseas. Remote and in-person appointments available.
-          </p>
-
           {/* Two Panel Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left Panel: Get in touch */}
+            {/* Left Panel: Contact Info */}
             <div className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 shadow-sm">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-5">
-                Get in touch
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
+                Get in Touch
               </h3>
               
+              <p className="text-gray-700 mb-6">
+                We offer in-person consultations at our UK offices, available by appointment only.
+              </p>
+
+              <h4 className="text-base md:text-lg font-bold text-gray-900 mb-3">
+                UK Offices
+              </h4>
+              <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">
+                <li>Sheffield</li>
+                <li>Birmingham</li>
+                <li>Bradford</li>
+              </ul>
+
+              <p className="text-gray-700 mb-6">
+                To schedule your consultation or ask a question, please contact us:
+              </p>
+
               <div className="space-y-3 mb-6">
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Phone:</span>
-                  <a href="tel:01143214047" className="text-gray-900 hover:text-blue-600 transition-colors">01143214047</a>
+                  <a href="tel:01143214047" className="text-gray-900 hover:text-blue-600 transition-colors">0114 321 4047</a>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Email:</span>
-                  <a href="mailto:info@uklegalsolutions.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@uklegalsolutions.com</a>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-gray-600 font-medium min-w-[60px]">Office:</span>
-                  <span className="text-gray-900">Sheffield, United Kingdom</span>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-gray-600 font-medium min-w-[60px]">Hours:</span>
-                  <span className="text-gray-900">Mon-Fri: 9:00-17:30 • Sat (by appointment)</span>
+                  <a href="mailto:info@ukimmigrationhelpline.com" className="text-gray-900 hover:text-blue-600 transition-colors">info@ukimmigrationhelpline.com</a>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                <Link href="/contact" className="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm flex-1 sm:flex-none text-center">
-                  Book a Consultation
-                </Link>
-                <Link href="/eligibility-check" className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm flex-1 sm:flex-none text-center">
-                  Check Eligibility
-                </Link>
-              </div>
-
-              {/* Urgent Case Info */}
-              <p className="text-xs md:text-sm text-gray-600">
-                Urgent case? Priority services available for tight deadlines — tell us your timeframe.
+              <p className="text-gray-700">
+                Book your consultation today for expert guidance on all your immigration matters.
               </p>
             </div>
 
@@ -72,7 +64,7 @@ export const FooterContactSection: React.FC = () => {
             <div className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 shadow-sm">
               <div className="flex items-center text-gray-700 text-sm mb-4">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span>Our Sheffield office location</span>
+                <span>Our UK office locations</span>
               </div>
               
               {/* Map Links */}
@@ -106,7 +98,7 @@ export const FooterContactSection: React.FC = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
-                  title="Sheffield Office Location"
+                  title="UK Office Locations"
                 />
               </div>
             </div>

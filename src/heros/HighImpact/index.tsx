@@ -31,7 +31,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
           )}
           <div className="absolute inset-0 bg-black/20" />
         </div>
-        <div className="mx-auto py-5 grid max-w-7xl items-start gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 relative z-10 justify-between min-h-[550px] md:min-h-[500px] grid-cols-1 px-4 sm:px-6 md:px-8">
+        <div className="mx-auto py-5 grid max-w-7xl gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-12 md:mt-16 pt-20 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 lg:grid-cols-2 relative z-10 justify-between min-h-[550px] md:min-h-[500px] grid-cols-1 px-4 sm:px-6 md:px-8">
           <AnimatedGroup
             preset="blur-slide"
             className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl col-span-1 lg:items-start lg:text-left w-full"
@@ -57,16 +57,16 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
               preset="slide"
               className="flex w-full flex-col items-center justify-center gap-2 sm:gap-2 sm:flex-row mx-4 sm:items-start lg:justify-start"
             >
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-700 hover:bg-blue-800 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-800 hover:bg-blue-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3">
                 <Link href="/contact">Book Free Consultation</Link>
               </Button>
-              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm md:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
+              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm md:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 md:py-3 px-4 sm:px-3">
                 <Link href="/eligibility-check">
                   Check Eligibility
                   <ArrowDownRight className="size-3 sm:size-4" />
                 </Link>
               </Button>
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-4 md:px-5">
+              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3">
                 <Link href="tel: 01143214047">☎ Urgent Help: 01143214047</Link>
               </Button>
             </AnimatedGroup>

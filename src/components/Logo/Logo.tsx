@@ -18,11 +18,11 @@ export const Logo = (props: Props) => {
     <img
       alt="UK Visa Logo"
       width={277}
-      height={44}
+      height={10}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('md:w-[300px] w-[227px] h-auto px-0 mx-0 mt-3', className)}
+      className={clsx('w-[227px] h-auto pb-3 px-0 mx-0 mt-3', className)}
       src="/new-logo.png"
     />
   )
