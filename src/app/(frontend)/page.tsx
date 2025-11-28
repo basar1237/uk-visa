@@ -22,6 +22,7 @@ import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
 import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
 import { SuccessStories } from '@/components/landing/SuccessStories'
 import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
+import { StructuredData } from '@/components/SEO/StructuredData'
 
 // ISR: Revalidation hook'ları sayfayı yeniden oluşturacak
 
@@ -43,7 +44,8 @@ export default async function HomePage() {
 
   return (
     <article>
-       <PayloadRedirects disableNotFound url={url} />
+      <StructuredData type="Organization" />
+      <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 

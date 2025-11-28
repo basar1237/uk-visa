@@ -562,8 +562,8 @@ export const AboutComponent = () => {
                   <div>
                     <Mail className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                     <div className="text-white font-semibold mb-1">Email Us</div>
-                    <a href="mailto:info@uklegalsolutions.com" className="text-blue-100 hover:text-white transition-colors text-sm">
-                      info@uklegalsolutions.com
+                    <a href="mailto:info@ukimmigrationhelpline.com" className="text-blue-100 hover:text-white transition-colors text-sm">
+                      info@ukimmigrationhelpline.com
                     </a>
                   </div>
                   <div>

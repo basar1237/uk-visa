@@ -27,23 +27,32 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | UK Solutions'
-    : 'UK Solutions'
+    ? doc?.meta?.title + ' | UK Immigration Helpline'
+    : 'UK Immigration Helpline - Expert Visa & Immigration Services'
+
+  const serverUrl = getServerSideURL()
+  const slug = Array.isArray(doc?.slug) ? doc?.slug.join('/') : (doc?.slug || '/')
+  const canonicalUrl = slug === 'home' ? serverUrl : `${serverUrl}/${slug}`
 
   return {
-    description: doc?.meta?.description,
+    description: doc?.meta?.description || 'Expert UK immigration and visa services. Professional advice from regulated immigration lawyers.',
     openGraph: mergeOpenGraph({
       description: doc?.meta?.description || '',
       images: ogImage
         ? [
             {
               url: ogImage,
+              width: 1200,
+              height: 630,
             },
           ]
         : undefined,
       title,
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      url: canonicalUrl,
     }),
     title,
+    alternates: {
+      canonical: canonicalUrl,
+    },
   }
 }

@@ -25,8 +25,8 @@ export const ContactStrip: React.FC = () => {
             <div className="space-y-3">
               <Mail className="mx-auto h-9 w-9 text-green-600" />
               <p className="font-semibold">Email Us</p>
-              <a href="mailto:info@uklegalsolutions.com" className="text-green-700 hover:text-green-800 transition-colors">
-                info@uklegalsolutions.com
+              <a href="mailto:info@ukimmigrationhelpline.com" className="text-green-700 hover:text-green-800 transition-colors">
+                info@ukimmigrationhelpline.com
               </a>
             </div>
 

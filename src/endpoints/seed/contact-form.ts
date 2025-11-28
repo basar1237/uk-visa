@@ -35,8 +35,8 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
   createdAt: '2023-01-12T21:47:41.374Z',
   emails: [
     {
-      emailFrom: '"Payload" \u003Cdemo@payloadcms.com\u003E',
-      emailTo: 'basaryldrm1237@gmail.com',
+      emailFrom: '"UK Immigration Helpline" \u003Cinfo@ukimmigrationhelpline.com\u003E',
+      emailTo: 'info@ukimmigrationhelpline.com',
       message: {
         root: {
           type: 'root',

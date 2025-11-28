@@ -37,7 +37,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      titleSuffix: '- UK Visa Services',
+      titleSuffix: '- UK Immigration Helpline',
     },
     user: Users.slug,
     livePreview: {

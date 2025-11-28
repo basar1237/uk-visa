@@ -67,7 +67,7 @@ export const seed = async ({
     depth: 0,
     where: {
       email: {
-        equals: 'demo-author@example.com',
+        equals: 'info@ukimmigrationhelpline.com',
       },
     },
   })
@@ -81,7 +81,7 @@ export const seed = async ({
       collection: 'users',
       data: {
         name: 'Demo Author',
-        email: 'demo-author@example.com',
+        email: 'info@ukimmigrationhelpline.com',
         password: 'password',
       },
     }),

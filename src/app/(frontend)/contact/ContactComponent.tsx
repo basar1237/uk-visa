@@ -32,7 +32,7 @@ export const ContactComponent: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <Mail className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Email</h3>
-                <a href="mailto:info@uklegalsolutions.com" className="text-blue-100 hover:text-white transition-colors">info@uklegalsolutions.com</a>
+                <a href="mailto:info@ukimmigrationhelpline.com" className="text-blue-100 hover:text-white transition-colors">info@ukimmigrationhelpline.com</a>
                 <p className="text-blue-200 text-sm">24/7 Support</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -99,7 +99,7 @@ export const ContactComponent: React.FC = () => {
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                       <Mail className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                       <h4 className="font-semibold text-gray-900">Email</h4>
-                      <a href="mailto:info@uklegalsolutions.com" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">info@uklegalsolutions.com</a>
+                      <a href="mailto:info@ukimmigrationhelpline.com" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">info@ukimmigrationhelpline.com</a>
                     </div>
                   </div>
                 </div>

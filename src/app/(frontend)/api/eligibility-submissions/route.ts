@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     const appsScriptUrl = process.env.GMAIL_APPS_SCRIPT_URL
     const appsScriptSecret = process.env.GMAIL_APPS_SCRIPT_SECRET
     const adminEmail = process.env.ADMIN_EMAIL || 'savash12@hotmail.co.uk'
-    const fromEmail = process.env.FROM_EMAIL || 'basaryldrm1237@gmail.com'
+    const fromEmail = process.env.FROM_EMAIL || 'info@ukimmigrationhelpline.com'
 
     if (appsScriptUrl) {
       try {
