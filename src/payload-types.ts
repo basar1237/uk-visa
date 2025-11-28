@@ -205,7 +205,6 @@ export interface Page {
     | ServicesGridBlock
     | LandingBlock
     | FAQBlock
-    | LongGridsBlock
     | StatsBoxesBlock
     | TestimonialsBlock
     | KnowledgeBaseBlock
@@ -1029,29 +1028,6 @@ export interface FAQBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LongGridsBlock".
- */
-export interface LongGridsBlock {
-  title?: string | null;
-  description?: string | null;
-  gridItems?:
-    | {
-        title: string;
-        description: string;
-        item?: string | null;
-        link?: {
-          url?: string | null;
-          label?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'longGrids';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StatsBoxesBlock".
  */
 export interface StatsBoxesBlock {
@@ -1548,7 +1524,6 @@ export interface PagesSelect<T extends boolean = true> {
         servicesGrid?: T | ServicesGridBlockSelect<T>;
         landingBlock?: T | LandingBlockSelect<T>;
         faqBlock?: T | FAQBlockSelect<T>;
-        longGrids?: T | LongGridsBlockSelect<T>;
         statsBoxesBlock?: T | StatsBoxesBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         knowledgeBase?: T | KnowledgeBaseBlockSelect<T>;
@@ -1754,30 +1729,6 @@ export interface FAQBlockSelect<T extends boolean = true> {
         id?: T;
       };
   displayStyle?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LongGridsBlock_select".
- */
-export interface LongGridsBlockSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  gridItems?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        item?: T;
-        link?:
-          | T
-          | {
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }

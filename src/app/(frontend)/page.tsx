@@ -10,17 +10,12 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
-import { StatisticsSection } from '@/components/landing/StatisticsSection'
 import { FastTrackSection } from '@/components/landing/FastTrackSection'
-import { WhyTrustSection } from '@/components/landing/WhyTrustSection'
 import { ExecutiveServiceSection } from '@/components/landing/ExecutiveServiceSection'
-import { SimpleSection } from '@/components/landing/SimpleSection'
 import { ContactFormSection } from '@/components/landing/ContactFormSection'
 import { VisaJourneyCTA } from '@/components/landing/VisaJourneyCTA'
 import { HomeFAQ } from '@/components/landing/HomeFAQ'
-import { VisaTypesShowcase } from '@/components/landing/VisaTypesShowcase'
 import { ProcessTimeline } from '@/components/landing/ProcessTimeline'
-import { SuccessStories } from '@/components/landing/SuccessStories'
 import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
 import { StructuredData } from '@/components/SEO/StructuredData'
 
@@ -49,27 +44,11 @@ export default async function HomePage() {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <div className="hidden">
-        <StatisticsSection />
-      </div>    
+      <RenderHero {...hero} />  
       <RenderBlocks blocks={layout} />
-      <div className="hidden">
-      <VisaTypesShowcase />
-      </div>
-      <div className="hidden">
-        <WhyTrustSection />
-      </div>
-
       <FastTrackSection />
       <ExecutiveServiceSection />
-      <div className="hidden">
-      <SimpleSection />
-      </div>
       <TestimonialsCarousel />
-      <div className="hidden">
-      <SuccessStories />  
-      </div>
       <ProcessTimeline />
       <HomeFAQ />
       <ContactFormSection />

@@ -11,7 +11,6 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { LandingBlock } from '@/blocks/Landing/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
-import { LongGridsBlock } from '@/blocks/LongGrids/Components'
 import { StatsBoxesBlockComponent } from '@/blocks/StatsBoxesBlock/Component'
 import { TestimonialsBlockComponent } from '@/blocks/TestimonialsBlock/Component'
 import { KnowledgeBaseComponent } from '@/blocks/KnowledgeBase/Component'
@@ -26,7 +25,6 @@ const blockComponents = {
   knowledgeBase: KnowledgeBaseComponent,
   landingBlock: LandingBlock,
   mediaBlock: MediaBlock,
-  longGrids: LongGridsBlock,
   servicesGrid: ServicesGridComponent,
   statsBoxesBlock: StatsBoxesBlockComponent,
   testimonialsBlock: TestimonialsBlockComponent,
@@ -44,25 +42,18 @@ export const RenderBlocks: React.FC<{
       <Fragment>
         {blocks.map((block, index) => {
           const { blockType } = block
-
-          // isActive field'ını kontrol et - eğer false ise bloğu render etme
           if (block && 'isActive' in block && block.isActive === false) {
             return null
           }
 
           if (blockType && blockType in blockComponents) {
-            // LongGrid'i gizle
-            if (blockType === 'longGrids') {
-              return null
-            }
-
             const Block = blockComponents[blockType]
 
             if (Block) {
               return (
                 <div className="my-5" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                  {/* @ts-expect-error - Block component types have conflicting union types */}
+                  <Block {...block} />
                 </div>
               )
             }

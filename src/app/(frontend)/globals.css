@@ -228,8 +228,3 @@
   max-height: 500px;
   opacity: 1;
 }
-
-/* LongGrids mobile accordion specific styles */
-.longgrid-accordion-header:active {
-  /* No animation */
-}
