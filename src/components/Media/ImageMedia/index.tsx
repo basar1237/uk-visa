@@ -47,6 +47,10 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     src = getMediaUrl(url, cacheTag)
   }
 
+  // Check if URL is an internal API route - disable optimization for these
+  const isInternalApiRoute = typeof src === 'string' && (src.includes('/api/media/') || src.includes('/api/'))
+  const shouldOptimize = !isInternalApiRoute
+
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
@@ -55,6 +59,29 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     : Object.entries(breakpoints)
         .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
         .join(', ')
+
+  // Use unoptimized for internal API routes to avoid Next.js Image Optimization issues
+  if (isInternalApiRoute) {
+    return (
+      <picture className={cn(pictureClassName)}>
+        <NextImage
+          alt={alt || ''}
+          className={cn(imgClassName)}
+          fill={fill}
+          height={!fill ? height : undefined}
+          placeholder="blur"
+          blurDataURL={placeholderBlur}
+          priority={priority}
+          quality={100}
+          loading={loading}
+          sizes={sizes}
+          src={src}
+          width={!fill ? width : undefined}
+          unoptimized={true}
+        />
+      </picture>
+    )
+  }
 
   return (
     <picture className={cn(pictureClassName)}>

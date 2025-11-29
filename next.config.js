@@ -20,6 +20,7 @@ const nextConfig = {
         return {
           hostname: url.hostname,
           protocol: url.protocol.replace(':', ''),
+          pathname: '/**', // Allow all paths including /api/media/
         }
       }),
     ],
