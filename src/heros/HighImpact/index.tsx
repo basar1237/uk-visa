@@ -20,7 +20,6 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
     setHeaderTheme('dark')
   }, [setHeaderTheme])
 
-
   return (
     <main>
       <section className="relative overflow-hidden">

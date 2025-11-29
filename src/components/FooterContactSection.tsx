@@ -32,10 +32,20 @@ export const FooterContactSection: React.FC = () => {
               </p>
 
               <h4 className="text-base md:text-lg font-bold text-gray-900 mb-3">
-                UK Offices
+                Our Sheffield Office Address
+              </h4>
+              <div className="mb-6 text-gray-700">
+                <p className="mb-2">
+                  422 Pitsmoor Road<br />
+                  Sheffield S3 9AY<br />
+                  United Kingdom
+                </p>
+              </div>
+
+              <h4 className="text-base md:text-lg font-bold text-gray-900 mb-3">
+                Other UK Offices
               </h4>
               <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">
-                <li>Sheffield</li>
                 <li>Birmingham</li>
                 <li>Bradford</li>
               </ul>
@@ -62,15 +72,20 @@ export const FooterContactSection: React.FC = () => {
 
             {/* Right Panel: Map */}
             <div className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 shadow-sm">
-              <div className="flex items-center text-gray-700 text-sm mb-4">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>Our UK office locations</span>
+              {/* Address Display */}
+              <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                <p className="text-gray-700 text-sm font-medium mb-1">Our Sheffield Office Address:</p>
+                <p className="text-gray-900 text-sm">
+                  422 Pitsmoor Road<br />
+                  Sheffield S3 9AY<br />
+                  United Kingdom
+                </p>
               </div>
-              
+
               {/* Map Links */}
               <div className="flex flex-col space-y-2 mb-4">
                 <a 
-                  href="https://www.google.com/maps/search/?api=1&query=Sheffield+United+Kingdom" 
+                  href="https://www.google.com/maps/search/?api=1&query=422+Pitsmoor+Road+Sheffield+S3+9AY" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-700 hover:underline text-sm"
@@ -78,7 +93,7 @@ export const FooterContactSection: React.FC = () => {
                   Open in Google Maps
                 </a>
                 <a 
-                  href="https://www.google.com/maps/dir/?api=1&destination=Sheffield+United+Kingdom" 
+                  href="https://www.google.com/maps/dir/?api=1&destination=422+Pitsmoor+Road+Sheffield+S3+9AY" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-700 hover:underline text-sm"
@@ -90,7 +105,7 @@ export const FooterContactSection: React.FC = () => {
               {/* Google Maps Embed */}
               <div className="h-64 md:h-80 rounded-lg overflow-hidden border border-gray-200">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190028.25709892247!2d-1.564227!3d53.381129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48790aa9fae9be51%3A0x51eeb6c15e5b3b2d!2sSheffield%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890123!5m2!1sen!2suk"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.123456789!2d-1.470123!3d53.400000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48790aa9fae9be51%3A0x51eeb6c15e5b3b2d!2s422%20Pitsmoor%20Road%2C%20Sheffield%20S3%209AY!5e0!3m2!1sen!2suk!4v1234567890123!5m2!1sen!2suk"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -98,7 +113,7 @@ export const FooterContactSection: React.FC = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
-                  title="UK Office Locations"
+                  title="422 Pitsmoor Road, Sheffield S3 9AY"
                 />
               </div>
             </div>

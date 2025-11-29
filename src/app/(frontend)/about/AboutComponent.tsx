@@ -28,52 +28,12 @@ import {
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { motion } from 'motion/react'
 
-interface Statistic {
-  icon: typeof Award
-  number: string
-  label: string
-  description: string
-}
-
 interface Feature {
   icon: typeof Shield
   title: string
   description: string
   highlight?: boolean
 }
-
-interface Certification {
-  icon: typeof BadgeCheck
-  title: string
-  description: string
-}
-
-const statistics: Statistic[] = [
-  {
-    icon: Users,
-    number: '15,000+',
-    label: 'Successful Applications',
-    description: 'Visa applications approved with our expert guidance'
-  },
-  {
-    icon: Award,
-    number: '98.5%',
-    label: 'Success Rate',
-    description: 'One of the highest approval rates in the industry'
-  },
-  {
-    icon: Globe,
-    number: '80+',
-    label: 'Countries Served',
-    description: 'Clients from around the world trust our expertise'
-  },
-  {
-    icon: Clock,
-    number: '18+',
-    label: 'Years Experience',
-    description: 'Combined decades of immigration law expertise'
-  }
-]
 
 const features: Feature[] = [
   {
@@ -167,39 +127,11 @@ export const AboutComponent = () => {
           </div>
         </div>
       </section>
-
-      {/* Breadcrumb */}
-      <Breadcrumb items={[{ label: 'About Us' }]} />
-
-      {/* Statistics Section */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {statistics.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-6 md:p-8 rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 hover:shadow-xl transition-all duration-300 border border-blue-100/50 hover:border-blue-200"
-              >
-                <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <stat.icon className="w-7 h-7 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-sm md:text-base font-semibold text-gray-800 mb-2">{stat.label}</div>
-                <div className="text-xs md:text-sm text-gray-600">{stat.description}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Our Story Section */}
       <section className="py-20 md:py-28 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
@@ -246,7 +178,49 @@ export const AboutComponent = () => {
                       Whether you choose to meet in person or remotely, our goal is to provide seamless, professional, and personalized immigration support every step of the way.
                     </p>
                   </div>
-
+                  <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-xl">
+                    <Award className="w-12 h-12 text-yellow-900" />
+                  </div>
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6">Our Mission</h3>
+                    <p className="text-blue-100 text-lg leading-relaxed mb-8">
+                      To provide exceptional, transparent, and accessible immigration services that empower individuals and families to achieve their dreams of living, working, or studying in the UK.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Transparency First</div>
+                          <div className=" text-md text-blue-100 font-medium">No hidden fees, clear communication at every step</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Client-Centered Approach</div>
+                          <div className="text-blue-100 text-sm">Your success is our success - we&apos;re with you every step</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold mb-1">Continuous Excellence</div>
+                          <div className="text-blue-100 text-sm">We stay ahead of changing immigration policies</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
                   <div className="space-y-2 pt-1 border-t border-gray-200">
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">What We Do</h3>
                     <p className="mb-4 text-md text-gray-700 font-medium">
@@ -330,49 +304,7 @@ export const AboutComponent = () => {
                 </div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative"
-              >
-                <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-xl">
-                    <Award className="w-12 h-12 text-yellow-900" />
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-6">Our Mission</h3>
-                    <p className="text-blue-100 text-lg leading-relaxed mb-8">
-                      To provide exceptional, transparent, and accessible immigration services that empower individuals and families to achieve their dreams of living, working, or studying in the UK.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <div className="font-semibold mb-1">Transparency First</div>
-                          <div className=" text-md text-blue-100 font-medium">No hidden fees, clear communication at every step</div>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <div className="font-semibold mb-1">Client-Centered Approach</div>
-                          <div className="text-blue-100 text-sm">Your success is our success - we&apos;re with you every step</div>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <div className="font-semibold mb-1">Continuous Excellence</div>
-                          <div className="text-blue-100 text-sm">We stay ahead of changing immigration policies</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+             
             </div>
           </div>
         </div>
@@ -551,7 +483,7 @@ export const AboutComponent = () => {
               </div>
 
               <div className="mt-12 pt-8 border-t border-white/20">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
                   <div>
                     <Phone className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                     <div className="text-white font-semibold mb-1">Call Us</div>
@@ -565,11 +497,6 @@ export const AboutComponent = () => {
                     <a href="mailto:info@ukimmigrationhelpline.com" className="text-blue-100 hover:text-white transition-colors text-sm">
                       info@ukimmigrationhelpline.com
                     </a>
-                  </div>
-                  <div>
-                    <MapPin className="w-6 h-6 text-blue-200 mx-auto mb-2" />
-                    <div className="text-white font-semibold mb-1">Visit Us</div>
-                    <div className="text-blue-100 text-sm">Sheffield, United Kingdom</div>
                   </div>
                 </div>
               </div>

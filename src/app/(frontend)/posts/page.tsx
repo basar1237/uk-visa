@@ -57,6 +57,6 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `UK Solutions Posts`,
+    title: `Posts | UK Immigration Helpline`,
   }
 }
