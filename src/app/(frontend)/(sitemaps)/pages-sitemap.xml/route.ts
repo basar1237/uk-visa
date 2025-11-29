@@ -8,7 +8,7 @@ const getPagesSitemap = unstable_cache(
     const SITE_URL =
       process.env.NEXT_PUBLIC_SERVER_URL ||
       process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      'https://example.com'
+      'https://www.ukimmigrationhelpline.com'
 
     const results = await payload.find({
       collection: 'pages',
@@ -68,7 +68,7 @@ export async function GET() {
     // Fallback sitemap
     return getServerSideSitemap([
       {
-        loc: process.env.NEXT_PUBLIC_SERVER_URL || 'https://example.com',
+        loc: process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.ukimmigrationhelpline.com',
         lastmod: new Date().toISOString(),
       },
     ])

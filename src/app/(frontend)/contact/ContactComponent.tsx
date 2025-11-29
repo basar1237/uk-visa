@@ -40,7 +40,7 @@ export const ContactComponent: React.FC = () => {
                 <h3 className="text-white font-semibold mb-2">Office</h3>
                 <p className="text-blue-100">Sheffield</p>
                 <p className="text-blue-100">Birminghsm</p>
-                <p className="text-blue-100">bradford</p>
+                <p className="text-blue-100">Bradford</p>
               </div>
             </div>
           </div>
