@@ -200,7 +200,7 @@ export const AboutComponent = () => {
                         <CheckCircle2 className="w-6 h-6 text-blue-200 flex-shrink-0 mt-0.5" />
                         <div>
                           <div className="font-semibold mb-1">Transparency First</div>
-                          <div className=" text-md text-blue-100 font-medium">No hidden fees, clear communication at every step</div>
+                          <div className=" text-sm text-blue-100 font-medium">No hidden fees, clear communication at every step</div>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -276,7 +276,7 @@ export const AboutComponent = () => {
                       </li>
                     </ul>
                     <p className="text-md text-gray-700 font-medium">
-                      At UK Immigration Helpline, we believe everyone deserves fair, accessible and expert advice—no matter how complex their case may be.
+                      At UK Immigration Helpline, we believe everyone deserves fair, accessible and expert advice - no matter how complex their case may be.
                     </p>
                   </div>
 

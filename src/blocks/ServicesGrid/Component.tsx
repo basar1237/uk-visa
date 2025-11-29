@@ -11,7 +11,7 @@ import type { ServicesGridBlock } from '@/payload-types'
 
 export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, description, services }) => {
   const pathname = usePathname()
-  const isHomePage = pathname === '/'
+  const isHomePage = pathname === '/' || pathname === '/home' || pathname === '/homepage'
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden">
