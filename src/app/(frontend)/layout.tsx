@@ -12,6 +12,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { TawkToWidget } from '@/components/TawkToWidget'
 import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { MicrosoftClarity } from '@/components/MicrosoftClarity'
 import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <GoogleAnalytics />
+        <MicrosoftClarity />
         <Analytics />
         <Providers>
           <Header />
