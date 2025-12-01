@@ -39,7 +39,7 @@ export const ContactComponent: React.FC = () => {
                 <MapPin className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Office</h3>
                 <p className="text-blue-100">Sheffield</p>
-                <p className="text-blue-100">Birminghsm</p>
+                <p className="text-blue-100">Birmingham</p>
                 <p className="text-blue-100">Bradford</p>
               </div>
             </div>

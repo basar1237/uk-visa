@@ -148,16 +148,16 @@ export const AboutComponent = () => {
                 
                 <div className="space-y-8 text-lg text-gray-600 leading-relaxed">
                   <p className="text-md text-gray-700 font-medium">
-                    At UK Immigration Helpline, a trading style of Haleys Solicitors regulated under the Bar Standards Board, we connect individuals, families, and businesses with leading UK immigration lawyers.
+                  At UK Immigration Helpline, a trading style of Haleys Solicitors regulated under the Bar Standards Board, we connect individuals, families, and businesses with leading UK immigration lawyers.
                   </p>
                   <p className="text-md text-gray-700 font-medium">
-                    Navigating the UK immigration system can be complex, time-consuming, and emotionally challenging. That&apos;s where we come in. Our mission is simple: to make the immigration process clearer, faster, and more accessible.
+                  Navigating the UK immigration system can be complex, time consuming and emotionally challenging. That's where we come in. Our mission is simple, to make the immigration process clearer, faster and more accessible.
                   </p>
                   <p className="text-md text-gray-700 font-medium">
-                    We do this by linking you with qualified, experienced, and regulated immigration professionals who provide tailored advice and effective representation. Whether you&apos;re applying for a visa, seeking settlement, or dealing with complex immigration issues, our experts are here to guide you every step of the way.
+                  We do this by linking you with qualified, experienced and regulated immigration professionals who provide tailored advice and effective representation. Whether you are applying for a visa, seeking settlement or dealing with complex immigration issues, our experts are here to guide you every step of the way.
                   </p>
                   <p className="text-md text-gray-700 font-medium">
-                    With UK Immigration Helpline, you don&apos;t just get legal assistance—you get a dedicated partner committed to helping you achieve your goals with confidence and peace of mind.
+                  With UK Immigration Helpline, you dont just get legal assistance, you get a dedicated partner committed to helping you achieve your goals with confidence and peace of mind.
                   </p>
 
                   <div className="space-y-2 pt-1 border-t border-gray-200">

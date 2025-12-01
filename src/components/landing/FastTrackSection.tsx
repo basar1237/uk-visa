@@ -13,12 +13,12 @@ export const FastTrackSection: React.FC = () => {
     {
       icon: <Rocket className="w-12 h-12" />,
       title: "Premium Service",
-      description: "Guaranteed next-day application submission from the day you contact us — perfect for time-sensitive cases."
+      description: "Guaranteed next day application submission from the day you contact us, perfect for time sensitive cases."
     },
     {
       icon: <Zap className="w-12 h-12" />,
       title: "Super Premium Service",
-      description: "Our fastest route – the same day submission guaranteed. Ideal for urgent travel, employment or status confirmation. Suitable for submissions outside standard office hours."
+      description: "Our fastest route guarantees same day submission. Ideal for urgent travel, employment or status confirmation. Suitable for submissions outside standard office hours."
     }
   ]
 
