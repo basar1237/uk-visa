@@ -59,23 +59,23 @@ export const EligibilitySubmissions: CollectionConfig = {
       label: 'Phone Number',
     },
 
-    // Passport Information
+    // Passport Information (not required for eligibility test)
     {
       name: 'passportNumber',
       type: 'text',
-      required: true,
+      required: false,
       label: 'Passport Number',
     },
     {
       name: 'passportExpiry',
       type: 'date',
-      required: true,
+      required: false,
       label: 'Passport Expiry Date',
     },
     {
       name: 'passportIssuedBy',
       type: 'text',
-      required: true,
+      required: false,
       label: 'Passport Issued By',
     },
 

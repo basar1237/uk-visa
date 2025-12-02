@@ -1186,9 +1186,9 @@ export interface EligibilitySubmission {
   gender: string;
   email: string;
   phone: string;
-  passportNumber: string;
-  passportExpiry: string;
-  passportIssuedBy: string;
+  passportNumber?: string | null;
+  passportExpiry?: string | null;
+  passportIssuedBy?: string | null;
   visaType: string;
   applicationFor: string;
   visitPurpose: string;

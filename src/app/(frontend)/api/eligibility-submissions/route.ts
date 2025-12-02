@@ -14,9 +14,6 @@ export async function POST(request: NextRequest) {
       gender,
       email,
       phone,
-      passportNumber,
-      passportExpiry,
-      passportIssuedBy,
       visaType,
       applicationFor,
       visitPurpose,
@@ -27,7 +24,8 @@ export async function POST(request: NextRequest) {
       familyInUK,
       familyRelationship,
       ukSponsor,
-      additionalInfo
+      additionalInfo,
+      rawAnswers: _rawAnswers // Keep for potential future use
     } = body
 
     // Gerekli alanları kontrol et
@@ -50,24 +48,6 @@ export async function POST(request: NextRequest) {
     // Date validation and defaults
     const today = new Date()
     const validDateOfBirth = dateOfBirth || new Date(today.getFullYear() - 30, 0, 1).toISOString().split('T')[0]
-    const validPassportExpiry = passportExpiry || new Date(today.getFullYear() + 5, 11, 31).toISOString().split('T')[0]
-    
-    // Validate passportExpiry is a valid date
-    if (!passportExpiry || passportExpiry.trim() === '') {
-      return NextResponse.json(
-        { error: 'Passport Expiry Date gerekli ve geçerli bir tarih olmalı' },
-        { status: 400 }
-      )
-    }
-
-    // Try to parse the date to ensure it's valid
-    const passportExpiryDate = new Date(validPassportExpiry)
-    if (isNaN(passportExpiryDate.getTime())) {
-      return NextResponse.json(
-        { error: 'Passport Expiry Date geçerli bir tarih formatı olmalı (YYYY-MM-DD)' },
-        { status: 400 }
-      )
-    }
 
     const eligibilitySubmission = await payload.create({
       collection: 'eligibility-submissions',
@@ -78,9 +58,9 @@ export async function POST(request: NextRequest) {
         gender,
         email,
         phone: phone || 'Not provided',
-        passportNumber: passportNumber || 'Not provided',
-        passportExpiry: validPassportExpiry,
-        passportIssuedBy: passportIssuedBy || 'Not provided',
+        passportNumber: null, 
+        passportExpiry: null, 
+        passportIssuedBy: null, 
         visaType,
         applicationFor: applicationFor || 'myself',
         visitPurpose: visitPurpose || 'Other',
@@ -92,7 +72,6 @@ export async function POST(request: NextRequest) {
         familyRelationship: familyRelationship || '',
         ukSponsor: ukSponsor || 'no',
         additionalInfo: additionalInfo || '',
-        // Sonuç hesaplama alanları artık gönderilmiyor, varsayılan değerler
         eligible: false,
         score: 0,
         level: 'pending',
@@ -103,10 +82,10 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Gmail Apps Script ile email gönderme
+    
     const appsScriptUrl = process.env.GMAIL_APPS_SCRIPT_URL
     const appsScriptSecret = process.env.GMAIL_APPS_SCRIPT_SECRET
-    const adminEmail = process.env.ADMIN_EMAIL || 'savash12@hotmail.co.uk'
+    const adminEmail = process.env.ADMIN_EMAIL || 'info@ukimmigrationhelpline.com'
     const fromEmail = process.env.FROM_EMAIL || 'info@ukimmigrationhelpline.com'
 
     if (appsScriptUrl) {
@@ -122,18 +101,13 @@ export async function POST(request: NextRequest) {
           }
           return text.replace(/[&<>"']/g, (m) => map[m])
         }
-
-        // Değerleri önce escape et
         const safeFullName = escapeHtml(fullName)
         const safeEmail = escapeHtml(email)
         const safePhone = phone ? escapeHtml(phone) : 'Not provided'
         const safeNationality = escapeHtml(nationality)
         const safeGender = gender ? escapeHtml(gender) : 'Not provided'
         const safeDateOfBirth = validDateOfBirth ? new Date(validDateOfBirth).toLocaleDateString('en-US') : 'Not provided'
-        const safePassportNumber = passportNumber ? escapeHtml(passportNumber) : 'Not provided'
-        const safePassportExpiry = validPassportExpiry ? new Date(validPassportExpiry).toLocaleDateString('en-US') : 'Not provided'
-        const safePassportIssuedBy = passportIssuedBy ? escapeHtml(passportIssuedBy) : 'Not provided'
-        const safeVisaType = escapeHtml(visaType)
+         const safeVisaType = escapeHtml(visaType)
         const safeApplicationFor = escapeHtml(applicationFor || 'myself')
         const safeVisitPurpose = escapeHtml(visitPurpose || 'Other')
         const safePreviousUKVisa = escapeHtml(previousUKVisa || 'no')
@@ -143,7 +117,45 @@ export async function POST(request: NextRequest) {
         const safeFamilyInUK = escapeHtml(familyInUK || 'no')
         const safeFamilyRelationship = familyRelationship ? escapeHtml(familyRelationship) : 'Not provided'
         const safeUkSponsor = escapeHtml(ukSponsor || 'no')
-        const safeAdditionalInfo = additionalInfo ? escapeHtml(additionalInfo).replace(/\n/g, '<br>') : 'Not provided'
+        let formattedAdditionalInfo = 'Not provided'
+        if (additionalInfo) {
+          if (typeof additionalInfo === 'string' && additionalInfo.includes(':')) {
+            const qaPairs = additionalInfo.split('\n\n').filter(pair => pair.trim())
+            formattedAdditionalInfo = qaPairs.map((pair, index) => {
+              const [question, ...answerParts] = pair.split(':')
+              const answer = answerParts.join(':').trim() || 'Not answered'
+              const safeQuestion = escapeHtml(question.trim())
+              const safeAnswer = escapeHtml(answer)
+              return `
+                <div class="qa-item" style="margin-bottom: ${index === qaPairs.length - 1 ? '0' : '15px'}; padding: 12px; background: ${index % 2 === 0 ? '#f9f9f9' : '#ffffff'}; border-left: 3px solid #667eea; border-radius: 4px;">
+                  <div style="font-weight: bold; color: #667eea; margin-bottom: 5px;">${safeQuestion}</div>
+                  <div style="color: #333; padding-left: 10px;">${safeAnswer}</div>
+                </div>
+              `
+            }).join('')
+          } else {
+            try {
+              const parsed = typeof additionalInfo === 'string' ? JSON.parse(additionalInfo) : additionalInfo
+              if (typeof parsed === 'object' && parsed !== null) {
+                formattedAdditionalInfo = Object.entries(parsed)
+                  .map(([key, value], index, entries) => {
+                    const safeValue = escapeHtml(String(value || 'Not answered'))
+                    return `
+                      <div class="qa-item" style="margin-bottom: ${index === entries.length - 1 ? '0' : '15px'}; padding: 12px; background: ${index % 2 === 0 ? '#f9f9f9' : '#ffffff'}; border-left: 3px solid #667eea; border-radius: 4px;">
+                        <div style="font-weight: bold; color: #667eea; margin-bottom: 5px;">Question ID ${escapeHtml(key)}</div>
+                        <div style="color: #333; padding-left: 10px;">${safeValue}</div>
+                      </div>
+                    `
+                  }).join('')
+              } else {
+                formattedAdditionalInfo = escapeHtml(String(additionalInfo)).replace(/\n/g, '<br>')
+              }
+            } catch {
+              formattedAdditionalInfo = escapeHtml(String(additionalInfo)).replace(/\n/g, '<br>')
+            }
+          }
+        }
+        const safeAdditionalInfo = formattedAdditionalInfo
 
         const emailHtml = `
           <!DOCTYPE html>
@@ -194,22 +206,6 @@ export async function POST(request: NextRequest) {
                     <div class="field">
                       <div class="label">Gender:</div>
                       <div class="value">${safeGender}</div>
-                    </div>
-                  </div>
-
-                  <div class="section">
-                    <div class="section-title">Passport Information</div>
-                    <div class="field">
-                      <div class="label">Passport Number:</div>
-                      <div class="value">${safePassportNumber}</div>
-                    </div>
-                    <div class="field">
-                      <div class="label">Passport Expiry Date:</div>
-                      <div class="value">${safePassportExpiry}</div>
-                    </div>
-                    <div class="field">
-                      <div class="label">Passport Issued By:</div>
-                      <div class="value">${safePassportIssuedBy}</div>
                     </div>
                   </div>
 
@@ -265,9 +261,11 @@ export async function POST(request: NextRequest) {
 
                   ${safeAdditionalInfo !== 'Not provided' ? `
                   <div class="section">
-                    <div class="section-title">Additional Information</div>
+                    <div class="section-title">All Questions & Answers (${visaType})</div>
                     <div class="field">
-                      <div class="value" style="padding: 15px; background: white; border-left: 4px solid #667eea;">${safeAdditionalInfo}</div>
+                      <div class="qa-container" style="padding: 15px; background: white; border-radius: 4px;">
+                        ${safeAdditionalInfo}
+                      </div>
                     </div>
                   </div>
                   ` : ''}
@@ -343,7 +341,6 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-
 export async function DELETE(request: NextRequest) {
   try {
     const payload = await getPayloadInstance()
@@ -382,7 +379,6 @@ export async function DELETE(request: NextRequest) {
     )
   }
 }
-
 export async function GET(request: NextRequest) {
   try {
     const payload = await getPayloadInstance()

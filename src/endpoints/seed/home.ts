@@ -38,7 +38,7 @@ export const home: () => RequiredDataFromCollectionSlug<'pages'> = () => {
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: 'UK Solutions',
+                  text: 'UK Immigration Helpline',
                   version: 1,
                 },
               ],
@@ -655,7 +655,7 @@ export const home: () => RequiredDataFromCollectionSlug<'pages'> = () => {
     meta: {
       description: 'Professional UK Immigration Service and Advice.',
       // image: heroImage.id, // Demo resim kaldırıldı
-      title: 'UK Solutions',
+      title: 'UK Immigration Helpline',
     },
     title: 'Home',
   }

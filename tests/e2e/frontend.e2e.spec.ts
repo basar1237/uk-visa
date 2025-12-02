@@ -11,8 +11,8 @@ test.describe('Frontend', () => {
   test('can go on homepage', async ({ page }) => {
     await page.goto('http://localhost:3000')
 
-    // UK Solutions projesi için doğru title'ı kontrol et
-    await expect(page).toHaveTitle(/UK Solutions/)
+    // UK Immigration Helpline projesi için doğru title'ı kontrol et
+    await expect(page).toHaveTitle(/UK Immigration Helpline/)
 
     // Sayfa yüklendiğini kontrol et
     await expect(page).toHaveURL('http://localhost:3000/')

@@ -34,14 +34,39 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
 
   // Get questions based on selected visa type or default questions
   const getMappedVisaType = (visaType: string): string => {
-    return VISA_TYPE_MAPPING[visaType] || visaType
+    try {
+      return VISA_TYPE_MAPPING[visaType] || visaType
+    } catch (error) {
+      console.error('Error in getMappedVisaType:', error)
+      return visaType || 'Visitor Visa'
+    }
   }
 
-  const questions = selectedVisaType 
-    ? (visaSpecificQuestions[getMappedVisaType(selectedVisaType)] || visaSpecificQuestions['Visitor Visa'] || eligibilityQuestions.slice(0, maxQuestions))
-    : eligibilityQuestions.slice(0, maxQuestions)
-  const totalSteps = questions.length > 0 ? Math.max(...questions.map(q => q.step), 1) : 1
-  const currentStepQuestions = questions.filter(q => q.step === currentStep)
+  // Safe questions retrieval with error handling
+  let questions: typeof eligibilityQuestions = []
+  try {
+    if (selectedVisaType) {
+      const mappedType = getMappedVisaType(selectedVisaType)
+      questions = visaSpecificQuestions[mappedType] || 
+                  visaSpecificQuestions['Visitor Visa'] || 
+                  (Array.isArray(eligibilityQuestions) ? eligibilityQuestions.slice(0, maxQuestions) : [])
+    } else {
+      questions = Array.isArray(eligibilityQuestions) ? eligibilityQuestions.slice(0, maxQuestions) : []
+    }
+  } catch (error) {
+    console.error('Error loading questions:', error)
+    questions = Array.isArray(eligibilityQuestions) ? eligibilityQuestions.slice(0, maxQuestions) : []
+  }
+
+  // Safe totalSteps calculation
+  const totalSteps = questions.length > 0 && questions.every(q => q && typeof q.step === 'number')
+    ? Math.max(...questions.map(q => q.step || 1), 1)
+    : 1
+  
+  // Safe currentStepQuestions filter
+  const currentStepQuestions = Array.isArray(questions) 
+    ? questions.filter(q => q && q.step === currentStep)
+    : []
 
   const handleAnswerChange = (questionId: number, value: string) => {
     setAnswers(prev => ({
@@ -60,12 +85,21 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
       setIsSaving(true)
       setSaveStatus('idle')
 
-      // Helper function to find answer by question text pattern
+      // Helper function to find answer by question text pattern with error handling
       const findAnswerByQuestion = (pattern: string): string => {
-        const question = questions.find(q => 
-          q.question.toLowerCase().includes(pattern.toLowerCase())
-        )
-        return question ? (answers[question.id] || '') : ''
+        try {
+          if (!Array.isArray(questions) || questions.length === 0) {
+            return ''
+          }
+          const question = questions.find(q => 
+            q && q.question && typeof q.question === 'string' && 
+            q.question.toLowerCase().includes(pattern.toLowerCase())
+          )
+          return question && question.id ? (answers[question.id] || '') : ''
+        } catch (error) {
+          console.error('Error in findAnswerByQuestion:', error)
+          return ''
+        }
       }
 
       // Find answers by question text patterns instead of ID offsets
@@ -75,15 +109,42 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
       const gender = findAnswerByQuestion('gender') || 'Prefer not to say'
       const email = findAnswerByQuestion('email') || 'info@ukimmigrationhelpline.com'
       const phone = findAnswerByQuestion('phone') || findAnswerByQuestion('contact') || ''
-      const passportNumber = findAnswerByQuestion('passport number') || ''
-      const passportExpiry = findAnswerByQuestion('passport expire') || findAnswerByQuestion('expire') || ''
-      const passportIssuedBy = findAnswerByQuestion('passport issued') || findAnswerByQuestion('issued') || ''
       const visitPurpose = findAnswerByQuestion('purpose') || findAnswerByQuestion('visit') || 'Other'
       
       // Validate required fields and provide defaults
       const validDateOfBirth = dateOfBirth || new Date(Date.now() - 30 * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-      const validPassportExpiry = passportExpiry || new Date(Date.now() + 5 * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
       
+      // Format all questions and answers for readable display
+      const formatQuestionsAndAnswers = (): string => {
+        try {
+          if (!Array.isArray(questions) || questions.length === 0) {
+            return JSON.stringify(answers)
+          }
+          
+          const qaPairs: string[] = []
+          questions.forEach((q) => {
+            if (q && q.id && q.question) {
+              const answer = answers[q.id] || 'Not answered'
+              qaPairs.push(`${q.question}: ${answer}`)
+            }
+          })
+          
+          // Also include any answers that don't match questions (fallback)
+          Object.keys(answers).forEach((id) => {
+            const questionId = parseInt(id)
+            const questionExists = questions.some(q => q && q.id === questionId)
+            if (!questionExists && answers[questionId]) {
+              qaPairs.push(`Question ID ${questionId}: ${answers[questionId]}`)
+            }
+          })
+          
+          return qaPairs.join('\n\n')
+        } catch (error) {
+          console.error('Error formatting questions and answers:', error)
+          return JSON.stringify(answers)
+        }
+      }
+
       // Form verilerini collection'a gönder (sadece form verileri, sonuç hesaplama yok)
       const submissionData = {
         fullName,
@@ -92,9 +153,6 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
         gender,
         email,
         phone: phone || 'Not provided',
-        passportNumber: passportNumber || 'Not provided',
-        passportExpiry: validPassportExpiry,
-        passportIssuedBy: passportIssuedBy || 'Not provided',
         visaType: selectedVisaType || 'Visitor Visa',
         applicationFor: 'myself',
         visitPurpose: visitPurpose || 'Other',
@@ -105,7 +163,8 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
         familyInUK: findAnswerByQuestion('family') || findAnswerByQuestion('friends') || 'no',
         familyRelationship: findAnswerByQuestion('relationship') || '',
         ukSponsor: findAnswerByQuestion('sponsor') || 'no',
-        additionalInfo: JSON.stringify(answers)
+        additionalInfo: formatQuestionsAndAnswers(),
+        rawAnswers: JSON.stringify(answers) // Keep raw JSON for backup
       }
 
 
@@ -139,45 +198,74 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
   }
 
   const handleNext = async () => {
-    // Email validation for email type questions
-    const currentQuestion = currentStepQuestions[currentQuestionIndex]
-    if (currentQuestion?.type === 'email' && answers[currentQuestion.id]) {
-      if (!isValidEmail(answers[currentQuestion.id])) {
-        alert('Please enter a valid email address')
+    try {
+      // Email validation for email type questions
+      const currentQuestion = Array.isArray(currentStepQuestions) && 
+                              currentQuestionIndex >= 0 && 
+                              currentQuestionIndex < currentStepQuestions.length
+        ? currentStepQuestions[currentQuestionIndex]
+        : null
+
+      if (currentQuestion?.type === 'email' && currentQuestion.id && answers[currentQuestion.id]) {
+        if (!isValidEmail(answers[currentQuestion.id])) {
+          alert('Please enter a valid email address')
+          return
+        }
+      }
+
+      // Test mode için hızlı gönderim
+      if (testMode && currentQuestionIndex >= 1) {
+        await saveEligibilitySubmission(answers)
         return
       }
-    }
 
-    // Test mode için hızlı gönderim
-    if (testMode && currentQuestionIndex >= 1) {
-      await saveEligibilitySubmission(answers)
-      return
-    }
+      if (!Array.isArray(currentStepQuestions) || currentStepQuestions.length === 0) {
+        console.error('No questions available in current step')
+        return
+      }
 
-    if (currentQuestionIndex < currentStepQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
-    } else if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1)
-      setCurrentQuestionIndex(0)
-    } else {
-      // Test completed - save to database (sonuç hesaplama yok)
-      await saveEligibilitySubmission(answers)
+      if (currentQuestionIndex < currentStepQuestions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1)
+      } else if (currentStep < totalSteps) {
+        setCurrentStep(currentStep + 1)
+        setCurrentQuestionIndex(0)
+      } else {
+        // Test completed - save to database (sonuç hesaplama yok)
+        await saveEligibilitySubmission(answers)
+      }
+    } catch (error) {
+      console.error('Error in handleNext:', error)
+      alert('An error occurred while processing your answer. Please try again.')
     }
   }
 
   const handlePrevious = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1)
-    } else if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-      const prevStepQuestions = questions.filter(q => q.step === currentStep - 1)
-      setCurrentQuestionIndex(prevStepQuestions.length - 1)
+    try {
+      if (currentQuestionIndex > 0) {
+        setCurrentQuestionIndex(currentQuestionIndex - 1)
+      } else if (currentStep > 1) {
+        setCurrentStep(currentStep - 1)
+        const prevStepQuestions = Array.isArray(questions) 
+          ? questions.filter(q => q && q.step === currentStep - 1)
+          : []
+        setCurrentQuestionIndex(Math.max(0, prevStepQuestions.length - 1))
+      }
+    } catch (error) {
+      console.error('Error in handlePrevious:', error)
     }
   }
 
-  const currentQuestion = currentStepQuestions[currentQuestionIndex]
-  const totalQuestions = questions.length
-  const currentQuestionNumber = currentQuestion ? questions.findIndex(q => q.id === currentQuestion.id) + 1 : 0
+  // Safe currentQuestion retrieval
+  const currentQuestion = Array.isArray(currentStepQuestions) && 
+                          currentQuestionIndex >= 0 && 
+                          currentQuestionIndex < currentStepQuestions.length
+    ? currentStepQuestions[currentQuestionIndex]
+    : null
+  
+  const totalQuestions = Array.isArray(questions) ? questions.length : 0
+  const currentQuestionNumber = currentQuestion && Array.isArray(questions)
+    ? questions.findIndex(q => q && q.id === currentQuestion.id) + 1
+    : 0
   const progress = totalQuestions > 0 ? (currentQuestionNumber / totalQuestions) * 100 : 0
 
   // Visa type selection screen
@@ -702,28 +790,33 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
       )}
 
       {/* Question */}
-      <div className={`mb-6 ${isSaving ? 'opacity-50 pointer-events-none' : ''}`}>
-        <div className="mb-4">
-          <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full mb-3">
-            {currentQuestion?.category}
-          </span>
-          <h2 className="text-lg font-bold text-gray-900 mb-4">{currentQuestion?.question}</h2>
+      {!currentQuestion ? (
+        <div className="mb-6 text-center py-8">
+          <p className="text-gray-600">Loading question...</p>
         </div>
+      ) : (
+        <div className={`mb-6 ${isSaving ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className="mb-4">
+            <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full mb-3">
+              {currentQuestion?.category || 'Question'}
+            </span>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">{currentQuestion?.question || 'No question available'}</h2>
+          </div>
 
-        {/* Answer Options */}
-        <div className="space-y-3 mb-6">
-          {currentQuestion?.type === 'text' && (
-            <input
-              type="text"
-              value={answers[currentQuestion.id] || ''}
-              onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
+          {/* Answer Options */}
+          <div className="space-y-3 mb-6">
+            {currentQuestion?.type === 'text' && currentQuestion.id && (
+              <input
+                type="text"
+                value={answers[currentQuestion.id] || ''}
+                onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
               disabled={isSaving}
               className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Enter your answer..."
             />
           )}
 
-          {currentQuestion?.type === 'email' && (
+          {currentQuestion?.type === 'email' && currentQuestion.id && (
             <input
               type="email"
               value={answers[currentQuestion.id] || ''}
@@ -735,7 +828,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             />
           )}
 
-          {currentQuestion?.type === 'date' && (
+          {currentQuestion?.type === 'date' && currentQuestion.id && (
             <input
               type="date"
               value={answers[currentQuestion.id] || ''}
@@ -745,7 +838,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             />
           )}
 
-          {currentQuestion?.type === 'textarea' && (
+          {currentQuestion?.type === 'textarea' && currentQuestion.id && (
             <textarea
               value={answers[currentQuestion.id] || ''}
               onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
@@ -755,7 +848,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             />
           )}
 
-          {currentQuestion?.type === 'select' && (
+          {currentQuestion?.type === 'select' && currentQuestion.id && (
             <select
               value={answers[currentQuestion.id] || ''}
               onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
@@ -771,7 +864,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             </select>
           )}
 
-          {currentQuestion?.type === 'radio' && (
+          {currentQuestion?.type === 'radio' && currentQuestion.id && (
             <div className="space-y-2">
               {currentQuestion.options?.map((option, index) => (
                 <label key={index} className={`flex items-center p-2 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer ${isSaving ? 'opacity-50 pointer-events-none' : ''}`}>
@@ -790,7 +883,8 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             </div>
           )}
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Navigation */}
       <div className="flex justify-between">
@@ -805,7 +899,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
 
         <button
           onClick={handleNext}
-          disabled={!answers[currentQuestion?.id || 0] || isSaving}
+          disabled={!currentQuestion || !currentQuestion.id || !answers[currentQuestion.id] || isSaving}
           className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
         >
           {isSaving ? (
@@ -815,7 +909,7 @@ export const EligibilityTestForm: React.FC<EligibilityTestFormProps> = ({
             </>
           ) : (
             <>
-              {currentStep === totalSteps && currentQuestionIndex === currentStepQuestions.length - 1 ? 'Complete Test' : 'Next'}
+              {currentStep === totalSteps && Array.isArray(currentStepQuestions) && currentQuestionIndex === currentStepQuestions.length - 1 ? 'Complete Test' : 'Next'}
               <ArrowRight className="w-4 h-4 ml-1" />
             </>
           )}

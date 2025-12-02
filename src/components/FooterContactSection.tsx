@@ -32,7 +32,7 @@ export const FooterContactSection: React.FC = () => {
               </p>
 
               <h4 className="text-base md:text-lg font-bold text-gray-900 mb-3">
-                Our Sheffield Office Address
+                Sheffield Office Address
               </h4>
               <div className="mb-6 text-gray-700">
                 <p className="mb-2">
@@ -74,7 +74,7 @@ export const FooterContactSection: React.FC = () => {
             <div className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 shadow-sm">
               {/* Address Display */}
               <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                <p className="text-gray-700 text-sm font-medium mb-1">Our Sheffield Office Address:</p>
+                <p className="text-gray-700 text-sm font-medium mb-1">Sheffield Office:</p>
                 <p className="text-gray-900 text-sm">
                   422 Pitsmoor Road<br />
                   Sheffield S3 9AY<br />
