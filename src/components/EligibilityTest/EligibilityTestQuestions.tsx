@@ -168,23 +168,7 @@ export const eligibilityQuestions: Question[] = [
     type: 'text',
     required: true,
     step: 2,
-    category: "Passport Information"
-  },
-  {
-    id: 8,
-    question: "When does your passport expire?",
-    type: 'date',
-    required: true,
-    step: 2,
-    category: "Passport Information"
-  },
-  {
-    id: 9,
-    question: "Where was your passport issued?",
-    type: 'text',
-    required: true,
-    step: 2,
-    category: "Passport Information"
+    category: "Personal Information"
   },
   {
     id: 10,
