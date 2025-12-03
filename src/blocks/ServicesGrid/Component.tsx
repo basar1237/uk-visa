@@ -45,7 +45,7 @@ export const ServicesGridComponent: React.FC<ServicesGridBlock> = ({ title, desc
                   </h3>
                   
                   <div className="text-gray-600 leading-relaxed mb-6 flex-1 text-sm">
-                    <ul className={`${isHomePage ? 'list-none' : 'list-disc'} list-inside space-y-1 line-clamp-4`}>
+                    <ul className={`${isHomePage ? 'list-none' : 'list-disc'} list-inside space-y-1`}>
                       {service.description?.split('\n').filter(line => line.trim()).map((line, lineIndex) => (
                         <li key={lineIndex} className="whitespace-normal">{line.trim()}</li>
                       ))}

@@ -30,9 +30,10 @@ export const generateMeta = async (args: {
     ? doc?.meta?.title + ' | UK Immigration Helpline'
     : 'UK Immigration Helpline - Expert Visa & Immigration Services'
 
-  const serverUrl = getServerSideURL()
+  // Canonical URL sabit olarak ayarlandı
+  const CANONICAL_BASE_URL = 'https://www.ukimmigrationhelpline.com'
   const slug = Array.isArray(doc?.slug) ? doc?.slug.join('/') : (doc?.slug || '/')
-  const canonicalUrl = slug === 'home' ? serverUrl : `${serverUrl}/${slug}`
+  const canonicalUrl = slug === 'home' ? CANONICAL_BASE_URL : `${CANONICAL_BASE_URL}/${slug}`
 
   return {
     description: doc?.meta?.description || 'Expert UK immigration and visa services. Professional advice from regulated immigration lawyers.',

@@ -16,7 +16,9 @@ import { MicrosoftClarity } from '@/components/MicrosoftClarity'
 import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
-import { getServerSideURL } from '@/utilities/getURL'
+
+// Canonical URL sabit olarak ayarlandı
+const CANONICAL_BASE_URL = 'https://www.ukimmigrationhelpline.com'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -43,7 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(getServerSideURL()),
+  metadataBase: new URL(CANONICAL_BASE_URL),
   title: {
     default: 'UK Immigration Helpline - Expert Visa & Immigration Services',
     template: '%s | UK Immigration Helpline',
