@@ -102,18 +102,17 @@ export const FooterContactSection: React.FC = () => {
                 </a>
               </div>
 
-              {/* Google Maps Embed */}
+              {/* Google Maps Embed - Using standard embed format without API key */}
               <div className="h-64 md:h-80 rounded-lg overflow-hidden border border-gray-200">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.123456789!2d-1.470123!3d53.400000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48790aa9fae9be51%3A0x51eeb6c15e5b3b2d!2s422%20Pitsmoor%20Road%2C%20Sheffield%20S3%209AY!5e0!3m2!1sen!2suk!4v1234567890123!5m2!1sen!2suk"
+                  src="https://www.google.com/maps?q=422+Pitsmoor+Road,+Sheffield+S3+9AY,+UK&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
-                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
-                  title="422 Pitsmoor Road, Sheffield S3 9AY"
+                  title="UK Immigration Helpline - 422 Pitsmoor Road, Sheffield S3 9AY"
                 />
               </div>
             </div>
