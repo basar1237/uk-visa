@@ -11,7 +11,7 @@ export const FeaturesGrid: Block = {
       type: 'text',
       required: false,
       admin: {
-        description: 'Ana başlık (opsiyonel, örn: "Why Choose UK Legal Solutions?")',
+        description: 'Ana başlık (opsiyonel, örn: "Why Choose UK Immigration Helpline?")',
       },
     },
     {

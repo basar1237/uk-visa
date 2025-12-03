@@ -21,7 +21,7 @@ const testimonials: Testimonial[] = [
     visaType: 'Skilled Worker Visa',
     country: 'Turkey',
     rating: 5,
-    comment: 'UK Legal Solutions made my dream of working in London come true. Their team was professional, responsive, and guided me through every step. My visa was approved in just 4 weeks!',
+    comment: 'UK Immigration Helpline made my dream of working in London come true. Their team was professional, responsive, and guided me through every step. My visa was approved in just 4 weeks!',
     timeline: 'Approved in 4 weeks'
   },
   {
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     visaType: 'Student Visa',
     country: 'Spain',
     rating: 5,
-    comment: 'I was nervous about applying for my student visa, but the team at UK Legal Solutions made everything so easy. They answered all my questions and helped me prepare perfect documentation.',
+    comment: 'I was nervous about applying for my student visa, but the team at UK Immigration Helpline made everything so easy. They answered all my questions and helped me prepare perfect documentation.',
     timeline: 'Approved in 3 weeks'
   },
   {
@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
     visaType: 'Spouse Visa',
     country: 'China',
     rating: 5,
-    comment: 'The best decision we made was hiring UK Legal Solutions for our spouse visa. They handled everything professionally and kept us updated throughout. We\'re now happily living together in London!',
+    comment: 'The best decision we made was hiring UK Immigration Helpline for our spouse visa. They handled everything professionally and kept us updated throughout. We\'re now happily living together in London!',
     timeline: 'Approved in 5 months'
   },
   {
@@ -66,7 +66,7 @@ const testimonials: Testimonial[] = [
     visaType: 'Health & Care Worker Visa',
     country: 'Poland',
     rating: 5,
-    comment: 'As a healthcare professional, I needed expert guidance for my visa application. UK Legal Solutions understood my situation perfectly and helped me secure my visa to work in the NHS.',
+    comment: 'As a healthcare professional, I needed expert guidance for my visa application. UK Immigration Helpline understood my situation perfectly and helped me secure my visa to work in the NHS.',
     timeline: 'Approved in 5 weeks'
   }
 ]

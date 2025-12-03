@@ -786,7 +786,7 @@ export interface FeaturesGridBlock {
    */
   isActive?: boolean | null;
   /**
-   * Ana başlık (opsiyonel, örn: "Why Choose UK Legal Solutions?")
+   * Ana başlık (opsiyonel, örn: "Why Choose UK Immigration Helpline?")
    */
   title?: string | null;
   features?:

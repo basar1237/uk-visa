@@ -161,13 +161,13 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
         <div className="flex flex-nowrap gap-3 md:gap-4 lg:gap-6 overflow-x-auto pb-2 md:pb-0">
           {features?.map((feature, index) => {
             const IconComponent = feature.icon ? iconMap[feature.icon] : null
-            const isUKLegalSolutions = feature.title?.toLowerCase().includes('uk legal solutions') || feature.description?.toLowerCase().includes('uk legal solutions')
+            const isUKImmigrationHelpline = feature.title?.toLowerCase().includes('uk immigration helpline') || feature.description?.toLowerCase().includes('uk immigration helpline')
             
             return (
               <div 
                 key={index} 
                 className={`min-w-[280px] md:min-w-0 md:flex-1 transition-all duration-300 flex flex-col p-4 md:p-5 lg:p-6 rounded-xl shadow-lg hover:shadow-xl flex-shrink-0 ${
-                  isUKLegalSolutions 
+                  isUKImmigrationHelpline 
                     ? 'bg-gradient-to-br from-blue-600 to-indigo-600 border-2 border-blue-700 hover:border-blue-500' 
                     : 'bg-white border hover:border-blue-200'
                 }`}
@@ -175,23 +175,23 @@ export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, feat
                 {IconComponent && (
                   <div className="flex justify-center mb-3 md:mb-4">
                     <div className={`p-2 sm:p-3 lg:p-4 rounded-full ${
-                      isUKLegalSolutions ? 'bg-white/20' : 'bg-blue-100'
+                      isUKImmigrationHelpline ? 'bg-white/20' : 'bg-blue-100'
                     }`}>
                       <IconComponent className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 ${
-                        isUKLegalSolutions ? 'text-white' : 'text-blue-800'
+                        isUKImmigrationHelpline ? 'text-white' : 'text-blue-800'
                       }`} />
                     </div>
                   </div>
                 )}
                 
                 <h3 className={`text-sm sm:text-base lg:text-lg font-bold mb-2 sm:mb-3 text-center ${
-                  isUKLegalSolutions ? 'text-white' : 'text-blue-800'
+                  isUKImmigrationHelpline ? 'text-white' : 'text-blue-800'
                 }`}>
                   {feature.title}
                 </h3>
                 
                 <p className={`text-xs sm:text-sm text-center flex-1 ${
-                  isUKLegalSolutions ? 'text-white/90' : 'text-gray-800'
+                  isUKImmigrationHelpline ? 'text-white/90' : 'text-gray-800'
                 }`}>
                   {feature.description}
                 </p>

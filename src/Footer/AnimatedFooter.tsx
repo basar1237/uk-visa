@@ -90,7 +90,7 @@ This website is designed, developed and maintained by UK Legal Solutions Ltd.
         className="bg-[#0a1b3d] border-t border-transparent py-6 text-center text-white/70"
       >
         <p className="text-white/70 text-sm">
-          © 2024 UK Legal Solutions. All rights reserved.
+          © 2024 UK Immigration Helpline. All rights reserved.
         </p>
       </motion.div>
     </>

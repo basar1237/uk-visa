@@ -12,7 +12,7 @@ export async function Footer() {
 
   // Get the first column for company info (if available)
   const companyColumn = columns[0]
-  const companyName = companyColumn?.title || "UK Legal Solutions"
+  const companyName = companyColumn?.title || "UK Immigration Helpline"
   const companyDescription = "Professional legal services for UK visa applications and immigration matters."
 
   return (
