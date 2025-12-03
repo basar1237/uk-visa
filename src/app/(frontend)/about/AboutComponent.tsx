@@ -483,12 +483,12 @@ export const AboutComponent = () => {
               </div>
 
               <div className="mt-12 pt-8 border-t border-white/20">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                   <div>
                     <Phone className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                     <div className="text-white font-semibold mb-1">Call Us</div>
                     <a href="tel:01143214047" className="text-blue-100 hover:text-white transition-colors text-sm">
-                      01143214047
+                      0114 321 4047
                     </a>
                   </div>
                   <div>
@@ -497,6 +497,15 @@ export const AboutComponent = () => {
                     <a href="mailto:info@ukimmigrationhelpline.com" className="text-blue-100 hover:text-white transition-colors text-sm">
                       info@ukimmigrationhelpline.com
                     </a>
+                  </div>
+                  <div>
+                    <MapPin className="w-6 h-6 text-blue-200 mx-auto mb-2" />
+                    <div className="text-white font-semibold mb-1">Visit Us</div>
+                    <div className="text-blue-100 text-sm">
+                      422 Pitsmoor Road<br />
+                      Sheffield S3 9AY<br />
+                      United Kingdom
+                    </div>
                   </div>
                 </div>
               </div>

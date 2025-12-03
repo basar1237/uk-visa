@@ -26,7 +26,7 @@ export const ContactComponent: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <Phone className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Phone</h3>
-                <a href="tel:01143214047" className="text-blue-100 hover:text-white transition-colors">01143214047</a>
+                <a href="tel:01143214047" className="text-blue-100 hover:text-white transition-colors">0114 321 4047</a>
                 <p className="text-blue-200 text-sm">24/7 Helpline</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -37,10 +37,14 @@ export const ContactComponent: React.FC = () => {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <MapPin className="w-8 h-8 text-white mx-auto mb-4" />
-                <h3 className="text-white font-semibold mb-2">Office</h3>
-                <p className="text-blue-100">Sheffield</p>
-                <p className="text-blue-100">Birmingham</p>
-                <p className="text-blue-100">Bradford</p>
+                <h3 className="text-white font-semibold mb-2">Office Address</h3>
+                <div className="text-blue-100 text-sm">
+                  <p className="font-semibold mb-1">UK Immigration Helpline</p>
+                  <p>422 Pitsmoor Road</p>
+                  <p>Sheffield S3 9AY</p>
+                  <p>United Kingdom</p>
+                </div>
+                <p className="text-blue-200 text-xs mt-2">Also in Birmingham & Bradford</p>
               </div>
             </div>
           </div>
@@ -74,7 +78,7 @@ export const ContactComponent: React.FC = () => {
                 </p>
                 <a href="tel:01143214047" className="flex items-center hover:text-blue-600 transition-colors">
                   <Phone className="w-5 h-5 text-red-600 mr-2" />
-                  <span className="font-semibold text-gray-900">01143214047</span>
+                  <span className="font-semibold text-gray-900">0114 321 4047</span>
                 </a>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-lg">

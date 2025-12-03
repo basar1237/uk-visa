@@ -28,9 +28,11 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     description: 'Expert UK immigration and visa services. Professional advice from regulated immigration lawyers.',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'GB',
+      streetAddress: '422 Pitsmoor Road',
       addressLocality: 'Sheffield',
       addressRegion: 'South Yorkshire',
+      postalCode: 'S3 9AY',
+      addressCountry: 'GB',
     },
     contactPoint: {
       '@type': 'ContactPoint',
@@ -55,10 +57,10 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     email: 'info@ukimmigrationhelpline.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Firvale Community Hub',
+      streetAddress: '422 Pitsmoor Road',
       addressLocality: 'Sheffield',
       addressRegion: 'South Yorkshire',
-      postalCode: '',
+      postalCode: 'S3 9AY',
       addressCountry: 'GB',
     },
     geo: {
