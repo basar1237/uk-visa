@@ -36,6 +36,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  turbopack: {},
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

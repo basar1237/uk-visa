@@ -20,8 +20,8 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
         revalidatePath(path)
         revalidatePath(path, 'layout')
         revalidatePath(path, 'page')
-        revalidateTag('pages-sitemap')
-        
+        revalidateTag('pages-sitemap', 'max')
+
         payload.logger.info(`[REVALIDATION] Successfully revalidated page: ${path}`)
       } catch (error) {
         payload.logger.error(`[REVALIDATION] Error revalidating page ${path}:`, error)
@@ -38,8 +38,8 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
         revalidatePath(oldPath)
         revalidatePath(oldPath, 'layout')
         revalidatePath(oldPath, 'page')
-        revalidateTag('pages-sitemap')
-        
+        revalidateTag('pages-sitemap', 'max')
+
         payload.logger.info(`[REVALIDATION] Successfully revalidated old page: ${oldPath}`)
       } catch (error) {
         payload.logger.error(`[REVALIDATION] Error revalidating old page ${oldPath}:`, error)
@@ -55,7 +55,7 @@ export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { 
   if (!context.disableRevalidate) {
     const path = doc?.slug === 'home' ? '/' : `/${doc?.slug}`
     revalidatePath(path)
-    revalidateTag('pages-sitemap')
+    revalidateTag('pages-sitemap', 'max')
   }
 
   return doc

@@ -8,7 +8,7 @@ export const revalidateFooter: GlobalAfterChangeHook = ({ doc, req: { payload, c
 
     // Footer her sayfada göründüğü için tüm sayfaları revalidate et
     revalidatePath('/', 'layout')
-    revalidateTag('global_footer')
+    revalidateTag('global_footer', 'max')
   }
 
   return doc

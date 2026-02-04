@@ -1,8 +1,8 @@
 'use client'
-import { motion } from "motion/react"
+import { motion } from 'motion/react'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
-import { ArrowDownRight } from "lucide-react"
+import { ArrowDownRight } from 'lucide-react'
 
 import type { Page } from '@/payload-types'
 import { Media } from '@/components/Media'
@@ -45,10 +45,16 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 </div>
               ) : (
                 <>
-                  Welcome to <span className="font-bold">First Migration</span>, a Sheffield<br />
-                  Based Immigration Consultancy. We<br />
-                  Specialise in <span className="font-bold">UK Work and Family<br />
-                  Visas.</span>
+                  Welcome to <span className="font-bold">First Migration</span>, a Sheffield
+                  <br />
+                  Based Immigration Consultancy. We
+                  <br />
+                  Specialise in{' '}
+                  <span className="font-bold">
+                    UK Work and Family
+                    <br />
+                    Visas.
+                  </span>
                 </>
               )}
             </AnimatedText>
@@ -56,16 +62,26 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
               preset="slide"
               className="flex w-full flex-col items-center justify-center gap-2 sm:gap-2 sm:flex-row mx-4 sm:items-start lg:justify-start"
             >
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-blue-800 hover:bg-blue-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3">
+              <Button
+                asChild
+                className="w-3/4 sm:w-auto shadow-xl bg-blue-800 hover:bg-blue-700 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3"
+              >
                 <Link href="/contact">Book Free Consultation</Link>
               </Button>
-              <Button asChild variant="outline" className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm md:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 md:py-3 px-4 sm:px-3">
+              <Button
+                asChild
+                variant="outline"
+                className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm md:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 md:py-3 px-4 sm:px-3"
+              >
                 <Link href="/eligibility-check">
                   Check Eligibility
                   <ArrowDownRight className="size-3 sm:size-4" />
                 </Link>
               </Button>
-              <Button asChild className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3">
+              <Button
+                asChild
+                className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3"
+              >
                 <Link href="tel:+447858780841">☎ Urgent Help: +44 7858 780841</Link>
               </Button>
             </AnimatedGroup>
@@ -76,18 +92,17 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
             className="hidden lg:block w-full max-h-[700px] overflow-y-auto motion-safe col-span-1 relative z-10"
             initial={{ opacity: 0, x: 30, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ 
-              delay: 0.3, 
+            transition={{
+              delay: 0.3,
               duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <EligibilityTestForm 
+            <EligibilityTestForm
               showProgress={true}
               className="bg-white/90 backdrop-blur-sm shadow-2xl rounded-xl"
             />
           </motion.div>
-           
         </div>
       </section>
     </main>

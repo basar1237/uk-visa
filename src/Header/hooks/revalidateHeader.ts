@@ -10,8 +10,8 @@ export const revalidateHeader: GlobalAfterChangeHook = ({ doc, req: { payload, c
       // Header her sayfada göründüğü için tüm sayfaları revalidate et
       revalidatePath('/', 'layout')
       revalidatePath('/', 'page') // Tüm sayfaları da revalidate et
-      revalidateTag('global_header')
-      
+      revalidateTag('global_header', 'max')
+
       payload.logger.info(`[REVALIDATION] Successfully revalidated header`)
     } catch (error) {
       payload.logger.error(`[REVALIDATION] Error revalidating header:`, error)
