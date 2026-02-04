@@ -57,7 +57,7 @@ export const FooterContactSection: React.FC = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Phone:</span>
-                  <a href="tel:01143214047" className="text-gray-900 hover:text-blue-600 transition-colors">0114 321 4047</a>
+                  <a href="tel:+447858780841" className="text-gray-900 hover:text-blue-600 transition-colors">+44 7858 780841</a>
                 </div>
                 <div className="flex items-start">
                   <span className="text-gray-600 font-medium min-w-[60px]">Email:</span>

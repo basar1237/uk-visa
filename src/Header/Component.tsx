@@ -8,12 +8,12 @@ export async function Header() {
   try {
     const getCachedHeader = getCachedGlobal('header', 2)
     const headerData = await getCachedHeader()
-    
+
     if (!headerData) {
       // Fallback default header
       const defaultHeader: Partial<Header> = {
         navItems: [],
-        phoneNumber: ' 01143214047',
+        phoneNumber: '+44 7858 780841',
       }
       return <HeaderClient data={defaultHeader as Header} />
     }
@@ -23,7 +23,7 @@ export async function Header() {
     // Fallback on error
     const defaultHeader: Partial<Header> = {
       navItems: [],
-      phoneNumber: ' 01143214047',
+      phoneNumber: '+44 7858 780841',
     }
     return <HeaderClient data={defaultHeader as Header} />
   }

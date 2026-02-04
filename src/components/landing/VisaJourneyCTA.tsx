@@ -44,8 +44,8 @@ export const VisaJourneyCTA = () => {
                 <div>
                   <Phone className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                   <div className="text-white font-semibold mb-1">Call Us</div>
-                  <a href="tel:01143214047" className="text-blue-100 hover:text-white text-sm">
-                    01143214047
+                  <a href="tel:+447858780841" className="text-blue-100 hover:text-white text-sm">
+                    +44 7858 780841
                   </a>
                 </div>
                 <div>

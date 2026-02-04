@@ -76,7 +76,7 @@ export const Header: GlobalConfig = {
       name: 'phoneNumber',
       type: 'text',
       label: 'Telefon Numarası',
-      defaultValue: ' 01143214047',
+      defaultValue: '+44 7858 780841',
     },
   ],
   hooks: {

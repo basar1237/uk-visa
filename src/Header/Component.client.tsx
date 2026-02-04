@@ -82,11 +82,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
           >
             <Link 
-              href="tel:01143214047"
+              href="tel:+447858780841"
               className="flex items-center gap-1 bg-blue-700 text-white py-1.5 px-2 xl:px-2.5 rounded-xl shadow-xl hover:bg-blue-800 h-9 xl:h-10 whitespace-nowrap"
             >
               <Phone className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
-              <span className="text-[10px] xl:text-xs font-medium 2xl:inline">01143214047</span>
+              <span className="text-[10px] xl:text-xs font-medium 2xl:inline">+44 7858 780841</span>
             </Link>
             <Link 
               href="/contact"
@@ -121,12 +121,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           >
             <div className="flex flex-col space-y-3 mb-4">
               <a 
-                href={`tel:${data?.phoneNumber || '01143214047'}`}
+                href={`tel:${data?.phoneNumber || '+447858780841'}`}
                 onClick={closeMobileMenu}
                 className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 min-h-[44px]"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">{data?.phoneNumber || '01143214047'}</span>
+                <span className="text-sm font-medium">{data?.phoneNumber || '+44 7858 780841'}</span>
               </a>
               <Link 
                 href="/contact"
