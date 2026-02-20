@@ -109,8 +109,7 @@ export const AboutComponent = () => {
               </h1>
 
               <p className="text-xl sm:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-                At UK Immigration Helpline, a trading style of Haleys Solicitors regulated under the
-                Bar Standards Board, we connect individuals, families, and businesses with leading
+                At UK Immigration Helpline,we connect individuals, families, and businesses with leading
                 UK immigration lawyers.
               </p>
 
