@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { motion } from 'motion/react'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
@@ -82,7 +82,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ media, richText }) => {
                 asChild
                 className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3"
               >
-                <Link href="tel:+447858780841">☎ Urgent Help: +44 7858 780841</Link>
+                <Link href="tel:01143214047">☎ Urgent Help: 01143214047</Link>
               </Button>
             </AnimatedGroup>
           </AnimatedGroup>

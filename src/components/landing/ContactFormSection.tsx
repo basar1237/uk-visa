@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React from 'react'
 import { ContactForm } from '@/components/forms/ContactForm'
@@ -21,10 +21,10 @@ export const ContactFormSection: React.FC = () => {
                   <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-semibold">☎</div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900">Phone Support</p>
-                    <a href="tel:+447858780841" className="text-gray-900 font-medium hover:text-blue-600 transition-colors">+44 7858 780841</a>
+                    <a href="tel:01143214047" className="text-gray-900 font-medium hover:text-blue-600 transition-colors">01143214047</a>
                     <p className="text-gray-600 text-sm">Speak directly with our specialists</p>
                     <p className="text-green-700 text-xs mt-1">24 / 7 helpline </p>
-                    <a href="tel:+447858780841" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</a>
+                    <a href="tel:01143214047" className="inline-block mt-2 text-sm text-blue-700 hover:text-blue-800 font-medium">Call now →</a>
                   </div>
                 </div>
               </div>

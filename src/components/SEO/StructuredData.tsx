@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React from 'react'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -36,7 +36,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+44 7858 780841',
+      telephone: '01143214047',
       contactType: 'Customer Service',
       areaServed: 'GB',
       availableLanguage: ['en'],
@@ -53,7 +53,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     image: `${baseUrl}/new-logo.png`,
     '@id': currentUrl,
     url: baseUrl,
-    telephone: '+44 7858 780841',
+    telephone: '01143214047',
     email: 'info@ukimmigrationhelpline.com',
     address: {
       '@type': 'PostalAddress',

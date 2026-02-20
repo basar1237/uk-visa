@@ -1,4 +1,4 @@
-import type { GlobalConfig } from 'payload'
+﻿import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
@@ -76,7 +76,7 @@ export const Header: GlobalConfig = {
       name: 'phoneNumber',
       type: 'text',
       label: 'Telefon Numarası',
-      defaultValue: '+44 7858 780841',
+      defaultValue: '01143214047',
     },
   ],
   hooks: {

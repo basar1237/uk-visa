@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React from 'react'
 import { Phone, Mail, MapPin } from 'lucide-react'
@@ -16,8 +16,8 @@ export const ContactStrip: React.FC = () => {
             <div className="space-y-3">
               <Phone className="mx-auto h-9 w-9 text-green-600" />
               <p className="font-semibold">Call Us</p>
-              <a href="tel:+447858780841" className="text-green-700 hover:text-green-800 transition-colors">
-                +44 7858 780841
+              <a href="tel:01143214047" className="text-green-700 hover:text-green-800 transition-colors">
+                01143214047
               </a>
             </div>
 

@@ -1,4 +1,4 @@
-import { HeaderClient } from './Component.client'
+﻿import { HeaderClient } from './Component.client'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 
@@ -13,7 +13,7 @@ export async function Header() {
       // Fallback default header
       const defaultHeader: Partial<Header> = {
         navItems: [],
-        phoneNumber: '+44 7858 780841',
+        phoneNumber: '01143214047',
       }
       return <HeaderClient data={defaultHeader as Header} />
     }
@@ -23,7 +23,7 @@ export async function Header() {
     // Fallback on error
     const defaultHeader: Partial<Header> = {
       navItems: [],
-      phoneNumber: '+44 7858 780841',
+      phoneNumber: '01143214047',
     }
     return <HeaderClient data={defaultHeader as Header} />
   }

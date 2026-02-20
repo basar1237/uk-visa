@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -554,10 +554,10 @@ export const AboutComponent = () => {
                     <Phone className="w-6 h-6 text-blue-200 mx-auto mb-2" />
                     <div className="text-white font-semibold mb-1">Call Us</div>
                     <a
-                      href="tel:+447858780841"
+                      href="tel:01143214047"
                       className="text-blue-100 hover:text-white transition-colors text-sm"
                     >
-                      +44 7858 780841
+                      01143214047
                     </a>
                   </div>
                   <div>

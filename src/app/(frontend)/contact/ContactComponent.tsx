@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React from 'react'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
@@ -23,13 +23,13 @@ export const ContactComponent: React.FC = () => {
             {/* Contact Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               <a
-                href="tel:+447858780841"
+                href="tel:01143214047"
                 className="bg-white/10 backdrop-blur-sm rounded-lg p-6 block hover:bg-white/15 transition-colors"
               >
                 <Phone className="w-8 h-8 text-white mx-auto mb-4" />
                 <h3 className="text-white font-semibold mb-2">Phone</h3>
                 <span className="text-blue-100 hover:text-white transition-colors">
-                  +44 7858 780841
+                  01143214047
                 </span>
                 <p className="text-blue-200 text-sm">24/7 Helpline</p>
               </a>
@@ -91,11 +91,11 @@ export const ContactComponent: React.FC = () => {
                   For urgent visa matters outside office hours, please call our emergency line.
                 </p>
                 <a
-                  href="tel:+447858780841"
+                  href="tel:01143214047"
                   className="flex items-center hover:text-blue-600 transition-colors"
                 >
                   <Phone className="w-5 h-5 text-red-600 mr-2" />
-                  <span className="font-semibold text-gray-900">+44 7858 780841</span>
+                  <span className="font-semibold text-gray-900">01143214047</span>
                 </a>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-lg">
