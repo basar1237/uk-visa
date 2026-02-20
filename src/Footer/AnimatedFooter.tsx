@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
 import React from 'react'
-import { motion } from "motion/react"
+import { motion } from 'motion/react'
 import { CMSLink } from '@/components/Link'
 import type { Footer } from '@/payload-types'
 import { FooterContactSection } from '@/components/FooterContactSection'
@@ -63,7 +63,7 @@ export function AnimatedFooter({ columns }: AnimatedFooterProps) {
 
         </div>
       </footer> */}
-      
+
       {/* Contact & Location Section */}
       <FooterContactSection />
       <motion.div
@@ -73,13 +73,12 @@ export function AnimatedFooter({ columns }: AnimatedFooterProps) {
         viewport={{ once: true }}
         className="bg-[#0a1b3d] border-t border-transparent py-6 text-center text-white/70"
       >
-       UK Immigration Helpline is a trading name of UK Legal Solutions Ltd, operating as a trading style of Haleys Solicitors, which is regulated by the Bar Standards Board (BSB) Ref: ER164151.
-
-UK Legal Solutions Ltd collaborates with a network of independent regulated immigration advisors, solicitors and barristers across England and Wales.
-
-By submitting an enquiry through this website, you provide consent for your information to be securely shared with one or more participating advisors or firms for the sole purpose of responding to your enquiry.
-
-This website is designed, developed and maintained by UK Legal Solutions Ltd.
+        UK Immigration Helpline is a trading name of UK Legal Solutions Ltd, UK Legal Solutions Ltd
+        collaborates with a network of independent regulated immigration advisors, solicitors and
+        barristers across England and Wales. By submitting an enquiry through this website, you
+        provide consent for your information to be securely shared with one or more participating
+        advisors or firms for the sole purpose of responding to your enquiry. This website is
+        designed, developed and maintained by UK Legal Solutions Ltd.
       </motion.div>
       {/* Copyright */}
       <motion.div
