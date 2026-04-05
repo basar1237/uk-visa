@@ -4,21 +4,19 @@ import type { KnowledgeBaseBlock } from '@/payload-types'
 import { Media } from '@/components/Media'
 import Link from 'next/link'
 
-export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({ 
-  title, 
-  description, 
-  knowledgeItems, 
+export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
+  title,
+  description,
+  knowledgeItems,
   eligibilityTest,
-  ctaButton: _ctaButton 
+  ctaButton: _ctaButton,
 }) => {
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Ana Başlık ve Açıklama */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-900 mb-6">
-            {title}
-          </h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-900 mb-6">{title}</h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             {description}
           </p>
@@ -46,7 +44,7 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  
+
                   {/* Explore Button */}
                   <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300 ms-auto">
                     <span className="mr-2">Explore</span>
@@ -97,15 +95,13 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
                     </h3>
                     <div className="flex items-center text-green-600 text-sm font-semibold">
                       <Users className="w-4 h-4 mr-1" />
-                      <span>Free Assessment</span>
+                      <span>Assessments</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Açıklama */}
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {eligibilityTest.description}
-                </p>
+                <p className="text-gray-600 mb-6 leading-relaxed">{eligibilityTest.description}</p>
 
                 {/* Özellikler */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
@@ -143,9 +139,7 @@ export const KnowledgeBaseComponent: React.FC<KnowledgeBaseBlock> = ({
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>
           )}
-
         </div>
-
       </div>
     </section>
   )

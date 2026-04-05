@@ -87,7 +87,7 @@ export function HeroHeader() {
               className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               <Check className="w-4 h-4" />
-              <span className="text-sm font-medium">Free Assessment</span>
+              <span className="text-sm font-medium">Assessment Today</span>
             </Link>
           </motion.div>
 
@@ -148,7 +148,7 @@ export function HeroHeader() {
                   className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
                 >
                   <Check className="w-4 h-4" />
-                  <span className="text-sm font-medium">Free Assessment</span>
+                  <span className="text-sm font-medium">Assessment Today</span>
                 </Link>
               </div>
             </nav>

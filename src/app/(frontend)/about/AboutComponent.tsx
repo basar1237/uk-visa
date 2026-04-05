@@ -109,8 +109,8 @@ export const AboutComponent = () => {
               </h1>
 
               <p className="text-xl sm:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-                At UK Immigration Helpline,we connect individuals, families, and businesses with leading
-                UK immigration lawyers.
+                At UK Immigration Helpline,we connect individuals, families, and businesses with
+                leading UK immigration lawyers.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -535,14 +535,6 @@ export const AboutComponent = () => {
                 >
                   <UserCheck className="w-5 h-5 mr-2" />
                   Free Eligibility Check
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-700/30 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-blue-700/40 transition-all duration-300"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Book Free Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </div>

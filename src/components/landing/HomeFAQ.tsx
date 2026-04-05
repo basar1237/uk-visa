@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     id: 'faq-4',
-    question: 'Do you offer a free initial consultation?',
+    question: 'Do you offer a initial consultation?',
     answer:
       'Yes. A brief assessment helps us understand your situation and outline next steps, timelines, and fees before you decide.'
   },

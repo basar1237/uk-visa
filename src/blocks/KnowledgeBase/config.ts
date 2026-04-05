@@ -72,7 +72,8 @@ export const KnowledgeBase: Block = {
           name: 'description',
           type: 'textarea',
           required: true,
-          defaultValue: 'Complete our comprehensive 20-question assessment to check your eligibility for UK visa applications.',
+          defaultValue:
+            'Complete our comprehensive 20-question assessment to check your eligibility for UK visa applications.',
           admin: {
             description: 'Eligibility test açıklaması',
           },
@@ -81,7 +82,7 @@ export const KnowledgeBase: Block = {
           name: 'buttonText',
           type: 'text',
           required: true,
-          defaultValue: 'Start Free Assessment',
+          defaultValue: 'Start Assessment Today',
           admin: {
             description: 'Buton metni',
           },
@@ -129,5 +130,3 @@ export const KnowledgeBase: Block = {
     singular: 'Knowledge Base Block',
   },
 }
-
-

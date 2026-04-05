@@ -3,7 +3,8 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'Expert UK immigration and visa services. Get professional advice from regulated immigration lawyers. Fast-track services available. Book your free consultation today.',
+  description:
+    'Expert UK immigration and visa services. Get professional advice from regulated immigration lawyers. Fast-track services available. Book your consultation today.',
   images: [
     {
       url: `${getServerSideURL()}/website-template-OG.webp`,

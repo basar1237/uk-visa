@@ -1,5 +1,5 @@
 ﻿'use client'
-import { motion } from "motion/react"
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { Phone, Check, Menu, X } from 'lucide-react'
@@ -43,7 +43,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }
 
   return (
-    <motion.header 
+    <motion.header
       className="fixed top-0 left-0 right-0 z-[9998] bg-white/40 backdrop-blur-xl py-2 sm:py-3"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -55,7 +55,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.1, duration: 0.3, ease: 'easeOut' }}
             className="flex-shrink-0"
           >
             <Link href="/">
@@ -64,36 +64,29 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <motion.div 
+          <motion.div
             className="hidden lg:block flex-1 min-w-0 mx-2 xl:mx-4"
             style={{ overflow: 'visible' }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.15, duration: 0.3, ease: 'easeOut' }}
           >
             <HeaderNav data={data} />
           </motion.div>
 
           {/* Desktop CTA Buttons */}
-          <motion.div 
+          <motion.div
             className="hidden lg:flex items-center gap-1.5 xl:gap-2 flex-shrink-0"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.2, duration: 0.3, ease: 'easeOut' }}
           >
-            <Link 
+            <Link
               href="tel:01143214047"
-              className="flex items-center gap-1 bg-blue-700 text-white py-1.5 px-2 xl:px-2.5 rounded-xl shadow-xl hover:bg-blue-800 h-9 xl:h-10 whitespace-nowrap"
+              className="flex items-center gap-1 bg-blue-700 text-white py-2 px-2 xl:px-4 rounded-xl shadow-xl hover:bg-blue-800 h-9 xl:h-10 whitespace-nowrap"
             >
               <Phone className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
               <span className="text-[10px] xl:text-xs font-medium 2xl:inline">01143214047</span>
-            </Link>
-            <Link 
-              href="/contact"
-              className="flex items-center gap-1.5 bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white py-2 px-3 xl:px-4 rounded-xl shadow-lg hover:shadow-xl hover:from-green-600 hover:via-green-700 hover:to-green-800 h-9 xl:h-10 whitespace-nowrap font-semibold"
-            >
-              <Check className="w-4 h-4 xl:w-4 xl:h-4 flex-shrink-0" />
-              <span className="text-xs xl:text-sm font-semibold">Free Assessment</span>
             </Link>
           </motion.div>
 
@@ -103,8 +96,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             onClick={toggleMobileMenu}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            transition={{ delay: 0.2, duration: 0.3, ease: 'easeOut' }}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -112,15 +105,15 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="lg:hidden border-gray-200 py-5 max-h-[calc(100vh-80px)] overflow-y-auto"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col space-y-3 mb-4">
-              <a 
+              <a
                 href={`tel:${data?.phoneNumber || '01143214047'}`}
                 onClick={closeMobileMenu}
                 className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 min-h-[44px]"
@@ -128,14 +121,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">{data?.phoneNumber || '01143214047'}</span>
               </a>
-              <Link 
-                href="/contact"
-                onClick={closeMobileMenu}
-                className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 min-h-[44px]"
-              >
-                <Check className="w-4 h-4" />
-                <span className="text-sm font-medium">Free Consultation</span>
-              </Link>
             </div>
             <HeaderNav data={data} isMobile={true} onLinkClick={closeMobileMenu} />
           </motion.div>
