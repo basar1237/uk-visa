@@ -40,6 +40,7 @@ export default async function HomePage() {
   return (
     <article>
       <StructuredData type="Organization" />
+      <StructuredData type="LocalBusiness" pageUrl="https://www.ukimmigrationhelpline.com/" />
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}

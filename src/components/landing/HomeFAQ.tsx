@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { FAQBlockClient } from '@/blocks/FAQBlock/Component.client'
+import { StructuredData } from '@/components/SEO/StructuredData'
 
 const faqs = [
   {
@@ -81,6 +82,10 @@ const faqs = [
 export const HomeFAQ: React.FC = () => {
   return (
     <section className="pt-8 md:pt-10 bg-gradient-to-tr from-blue-50 to-indigo-50">
+      <StructuredData
+        type="FAQPage"
+        faqs={faqs.map(({ question, answer }) => ({ question, answer }))}
+      />
       <div className="container mx-auto px-4 sm:px-4 md:px-6 lg:px-8 max-w-5xl ">
         <div className="text-center">
           <h2 className="text-blue-900 text-4xl md:text-5xl font-extrabold leading-tight">

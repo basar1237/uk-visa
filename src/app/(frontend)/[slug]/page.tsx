@@ -12,6 +12,8 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getPayloadInstance } from '@/utilities/getPayloadInstance'
+import { Breadcrumb } from '@/components/SEO/Breadcrumb'
+import { StructuredData } from '@/components/SEO/StructuredData'
 
 export const dynamicParams = true
 // ISR: Revalidation hook'ları sayfayı yeniden oluşturacak
@@ -73,6 +75,9 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
 
+  const pageTitle = (page as { title?: string }).title || slug
+  const canonicalUrl = `https://www.ukimmigrationhelpline.com${url}`
+
   return (
     <article className="">
       <PageClient />
@@ -80,6 +85,18 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
+
+      <StructuredData
+        type="LegalService"
+        serviceName={pageTitle}
+        description={(page as { meta?: { description?: string } }).meta?.description}
+        pageUrl={canonicalUrl}
+      />
+
+      <Breadcrumb
+        items={[{ name: pageTitle, url }]}
+        pageUrl={canonicalUrl}
+      />
 
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
