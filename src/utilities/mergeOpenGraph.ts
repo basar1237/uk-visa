@@ -14,7 +14,7 @@ const defaultOpenGraph: Metadata['openGraph'] = {
     },
   ],
   siteName: 'UK Immigration Helpline',
-  title: 'UK Immigration Helpline - Expert Visa & Immigration Services',
+  title: 'UK Visa & Immigration Services | Expert Immigration Lawyers',
   locale: 'en_GB',
 }
 

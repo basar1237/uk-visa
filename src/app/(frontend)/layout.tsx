@@ -24,7 +24,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
+        />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
@@ -47,9 +50,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 export const metadata: Metadata = {
   metadataBase: new URL(CANONICAL_BASE_URL),
   title: {
-    default: 'UK Immigration Helpline - Expert Visa & Immigration Services',
+    default: 'UK Visa & Immigration Services | Expert Immigration Lawyers',
     template: '%s | UK Immigration Helpline',
   },
+  description:
+    'Expert UK immigration and visa services from regulated lawyers. Visa applications, appeals, settlement, citizenship and sponsor licences. Free initial consultation.',
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
