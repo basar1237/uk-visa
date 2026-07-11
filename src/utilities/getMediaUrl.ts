@@ -1,10 +1,13 @@
-import { getClientSideURL } from '@/utilities/getURL'
-
 /**
  * Processes media resource URL to ensure proper formatting
  * @param url The original URL from the resource
  * @param cacheTag Optional cache tag to append to the URL
  * @returns Properly formatted URL with cache tag if provided
+ *
+ * NOTE: Relative URLs are returned as-is (without prepending a base URL).
+ * Prepending an origin resolved differently on the server (NEXT_PUBLIC_SERVER_URL)
+ * and the client (window.location) causes React hydration mismatches whenever the
+ * dev/prod port or host differs. A relative `src` renders identically on both sides.
  */
 export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | null): string => {
   if (!url) return ''
@@ -22,24 +25,11 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
     decodedUrl = url
   }
 
-  // Handle cache tag
+  // Append cache tag if provided (works for both absolute and relative URLs)
   if (cacheTag && cacheTag !== '') {
     const encodedCacheTag = encodeURIComponent(cacheTag)
-    // Check if URL already has http/https protocol
-    if (decodedUrl.startsWith('http://') || decodedUrl.startsWith('https://')) {
-      return `${decodedUrl}?${encodedCacheTag}`
-    }
-    // Otherwise prepend client-side URL
-    const baseUrl = getClientSideURL()
-    return `${baseUrl}${decodedUrl}?${encodedCacheTag}`
+    return `${decodedUrl}?${encodedCacheTag}`
   }
 
-  // Check if URL already has http/https protocol
-  if (decodedUrl.startsWith('http://') || decodedUrl.startsWith('https://')) {
-    return decodedUrl
-  }
-
-  // Otherwise prepend client-side URL
-  const baseUrl = getClientSideURL()
-  return `${baseUrl}${decodedUrl}`
+  return decodedUrl
 }

@@ -7,7 +7,7 @@ export const FastTrackSection: React.FC = () => {
   const services = [
     {
       icon: <Gauge className="w-12 h-12" />,
-      title: "Accelerated Processing",
+      title: "Standard Service",
       description: "Choose from 7 days to 14 days turnaround options, depending on your case type and urgency."
     },
     {
@@ -33,7 +33,7 @@ export const FastTrackSection: React.FC = () => {
 
          <div className="mb-12 text-center">
           <p className="text-gray-700 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
-            At UK Immigration Helpline, we provide <strong>Accelerated</strong>, <strong>Premium</strong>, <strong>Super Premium</strong> and <strong>Executive</strong> UK Visa & Immigration services for clients who need to submit and process their UK visa applications urgently. While these services do not influence the Home Office&apos;s decision, they significantly reduce processing times, allowing clients to meet tight deadlines with confidence and peace of mind.
+            At UK Immigration Helpline, we provide <strong>Standard</strong>, <strong>Premium</strong>, <strong>Super Premium</strong> and <strong>Executive</strong> UK Visa & Immigration services for clients who need to submit and process their UK visa applications urgently. While these services do not influence the Home Office&apos;s decision, they significantly reduce processing times, allowing clients to meet tight deadlines with confidence and peace of mind.
           </p>
         </div>
 

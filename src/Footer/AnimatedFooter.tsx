@@ -73,12 +73,11 @@ export function AnimatedFooter({ columns }: AnimatedFooterProps) {
         viewport={{ once: true }}
         className="bg-[#0a1b3d] border-t border-transparent py-6 text-center text-white/70"
       >
-        UK Immigration Helpline is a trading name of UK Legal Solutions Ltd, UK Legal Solutions Ltd
-        collaborates with a network of independent regulated immigration advisors, solicitors and
-        barristers across England and Wales. By submitting an enquiry through this website, you
-        provide consent for your information to be securely shared with one or more participating
-        advisors or firms for the sole purpose of responding to your enquiry. This website is
-        designed, developed and maintained by UK Legal Solutions Ltd.
+        UK Immigration Helpline is a trading name of UK Legal Solutions Ltd, which is regulated by
+        the Immigration Advice Authority (IAA) under Registration Number F202639854. UK Legal
+        Solutions Ltd collaborates with a network of independent IAA-regulated immigration advisers,
+        solicitors and barristers across England and Wales to provide immigration advice and legal
+        services.
       </motion.div>
       {/* Copyright */}
       <motion.div
