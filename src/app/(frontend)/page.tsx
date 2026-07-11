@@ -45,7 +45,7 @@ export default async function HomePage() {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />  
+      <RenderHero {...hero} staticContent />
       <RenderBlocks blocks={layout} />
       <FastTrackSection />
       <ExecutiveServiceSection />

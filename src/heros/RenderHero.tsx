@@ -12,7 +12,7 @@ const heroes = {
   mediumImpact: MediumImpactHero,
 }
 
-export const RenderHero: React.FC<Page['hero']> = (props) => {
+export const RenderHero: React.FC<Page['hero'] & { staticContent?: boolean }> = (props) => {
   const { type } = props || {}
 
   if (!type || type === 'none') return null
