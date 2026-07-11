@@ -74,7 +74,7 @@ export default buildConfig({
       connectionTimeoutMillis: 20000, // 20 saniye (Supabase için daha uzun)
       allowExitOnIdle: true, // Boşta kalan bağlantıları kapat
     },
-    push: true, // Schema değişikliklerini otomatik push et (dev mode)
+    push: false, // Otomatik şema push kapalı: dev'de veri kaybına yol açan sütun silme uyarısını engeller (mevcut DB şeması olduğu gibi kullanılır)
   }),
   collections: [Pages, Posts, Media, Categories, Users, ContactSubmissions, EligibilitySubmissions],
   cors: [getServerSideURL()].filter(Boolean),
