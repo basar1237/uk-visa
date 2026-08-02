@@ -14,17 +14,23 @@ import { ServicesGridComponent } from '@/blocks/ServicesGrid/Component'
 import { StatsBoxesBlockComponent } from '@/blocks/StatsBoxesBlock/Component'
 import { TestimonialsBlockComponent } from '@/blocks/TestimonialsBlock/Component'
 import { KnowledgeBaseComponent } from '@/blocks/KnowledgeBase/Component'
+import { ProcessStepsComponent } from '@/blocks/ProcessSteps/Component'
+import { FinancialRequirementsComponent } from '@/blocks/FinancialRequirements/Component'
+import { ChecklistCardsComponent } from '@/blocks/ChecklistCards/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
+  checklistCards: ChecklistCardsComponent,
   content: ContentBlock,
   cta: CallToActionBlock,
   faqBlock: FAQBlockComponent,
   featuresGrid: FeaturesGridComponent,
+  financialRequirements: FinancialRequirementsComponent,
   formBlock: FormBlock,
   knowledgeBase: KnowledgeBaseComponent,
   landingBlock: LandingBlock,
   mediaBlock: MediaBlock,
+  processSteps: ProcessStepsComponent,
   servicesGrid: ServicesGridComponent,
   statsBoxesBlock: StatsBoxesBlockComponent,
   testimonialsBlock: TestimonialsBlockComponent,

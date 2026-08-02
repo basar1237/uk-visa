@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { ArrowDownRight } from 'lucide-react'
 
 import type { Page } from '@/payload-types'
+import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
@@ -20,7 +21,13 @@ type HighImpactHeroProps = Page['hero'] & {
   staticContent?: boolean
 }
 
-export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ media, richText, staticContent }) => {
+export const HighImpactHero: React.FC<HighImpactHeroProps> = ({
+  media,
+  richText,
+  links,
+  badges,
+  staticContent,
+}) => {
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
@@ -66,26 +73,51 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ media, richText,
               </p>
             )}
 
+            {badges && badges.length > 0 && (
+              <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:mb-8">
+                {badges.map((badge, i) => (
+                  <span
+                    key={badge.id ?? i}
+                    className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:text-sm"
+                  >
+                    {badge.text}
+                  </span>
+                ))}
+              </div>
+            )}
+
             <AnimatedGroup
               preset="slide"
               className="flex w-full flex-col items-center justify-center gap-2 sm:gap-2 sm:flex-row sm:items-start lg:justify-center"
             >
-              <Button
-                asChild
-                variant="outline"
-                className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 px-4 sm:px-8"
-              >
-                <Link href="/eligibility-check">
-                  Check Eligibility
-                  <ArrowDownRight className="size-3 sm:size-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3"
-              >
-                <Link href="tel:01143214047">☎ Urgent Help: 01143214047</Link>
-              </Button>
+              {links && links.length > 0 ? (
+                links.map(({ link }, i) => (
+                  <CMSLink
+                    key={i}
+                    {...link}
+                    className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 px-4 sm:px-8"
+                  />
+                ))
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-3/4 sm:w-auto rounded-xl text-xs sm:text-sm hover:translate-y-[-3px] transition-all duration-200 py-2 sm:py-2 px-4 sm:px-8"
+                  >
+                    <Link href="/eligibility-check">
+                      Check Eligibility
+                      <ArrowDownRight className="size-3 sm:size-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="w-3/4 sm:w-auto shadow-xl bg-red-600 hover:bg-red-500 rounded-xl hover:translate-y-[-3px] text-xs sm:text-sm md:text-sm py-2 sm:py-2 md:py-3 px-4 sm:px-3"
+                  >
+                    <Link href="tel:01143214047">☎ Urgent Help: 01143214047</Link>
+                  </Button>
+                </>
+              )}
             </AnimatedGroup>
           </AnimatedGroup>
         </div>

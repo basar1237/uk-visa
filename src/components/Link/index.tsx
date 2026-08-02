@@ -77,10 +77,14 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     }
   }
 
+  // onClick sadece verildiğinde iletilir: server component'ten render edilirken
+  // Client Component'e fonksiyon prop geçmek prerender'ı kırar.
+  const clickProps = onClick ? { onClick } : {}
+
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link className={cn(className)} href={href || url || ''} onClick={(e) => onClick?.(e)} {...newTabProps}>
+      <Link className={cn(className)} href={href || url || ''} {...clickProps} {...newTabProps}>
         {label && label}
         {children && children}
       </Link>
@@ -89,7 +93,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   return (
     <Button asChild className={className} size={size} variant={getButtonVariant(appearance)}>
-      <Link className={cn(className)} href={href || url || ''} onClick={(e) => onClick?.(e)} {...newTabProps}>
+      <Link className={cn(className)} href={href || url || ''} {...clickProps} {...newTabProps}>
         {label && label}
         {children && children}
       </Link>

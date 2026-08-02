@@ -169,6 +169,15 @@ export interface Page {
       };
       [k: string]: unknown;
     } | null;
+    /**
+     * Başlık altında gösterilen küçük rozetler (örn: "Fixed-fee advice") — sadece High Impact
+     */
+    badges?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
     links?:
       | {
           link: {
@@ -208,6 +217,9 @@ export interface Page {
     | StatsBoxesBlock
     | TestimonialsBlock
     | KnowledgeBaseBlock
+    | ProcessStepsBlock
+    | FinancialRequirementsBlock
+    | ChecklistCardsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1156,6 +1168,192 @@ export interface KnowledgeBaseBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessStepsBlock".
+ */
+export interface ProcessStepsBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
+  /**
+   * Başlık üstündeki küçük etiket (örn: "APPLICATION PROCESS")
+   */
+  eyebrow?: string | null;
+  /**
+   * Bölüm başlığı (örn: "Your route from eligibility to decision")
+   */
+  title: string;
+  /**
+   * Başlık altı açıklama (opsiyonel)
+   */
+  description?: string | null;
+  /**
+   * Görünüm: grid (gereklilik kartları), compact (süreç özeti), timeline (başvuru yolculuğu)
+   */
+  style: 'grid' | 'compact' | 'timeline';
+  steps: {
+    title: string;
+    /**
+     * Compact stilde gösterilmez
+     */
+    description?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processSteps';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FinancialRequirementsBlock".
+ */
+export interface FinancialRequirementsBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
+  /**
+   * Başlık üstündeki küçük etiket (örn: "FINANCIAL REQUIREMENTS")
+   */
+  eyebrow?: string | null;
+  /**
+   * Bölüm başlığı (örn: "Understand which financial rules apply to you")
+   */
+  title: string;
+  description?: string | null;
+  highlight?: {
+    /**
+     * örn: "Usual minimum income requirement"
+     */
+    label?: string | null;
+    /**
+     * örn: "£29,000"
+     */
+    value?: string | null;
+    /**
+     * örn: "combined gross annual income"
+     */
+    suffix?: string | null;
+    /**
+     * Kutunun altındaki küçük açıklama
+     */
+    note?: string | null;
+  };
+  /**
+   * örn: "Which situation best describes you?"
+   */
+  situationsTitle?: string | null;
+  /**
+   * Tıklanabilir durum kartları; seçilen kartın sonuç metni altta gösterilir
+   */
+  situations?:
+    | {
+        title: string;
+        description?: string | null;
+        /**
+         * Seçilince altta çıkan kutunun başlığı (örn: "Likely starting point: £29,000")
+         */
+        resultTitle?: string | null;
+        /**
+         * Seçilince altta çıkan kutunun metni
+         */
+        resultText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * örn: "What will you rely upon?"
+   */
+  categoriesTitle?: string | null;
+  categoriesDescription?: string | null;
+  /**
+   * Gelir kategorisi kartları (Employment Income, Self-employment vb.)
+   */
+  categories?:
+    | {
+        /**
+         * Emoji ikon (örn: 💼 📈 🏦 👴 🏠 🛡️)
+         */
+        icon?: string | null;
+        title: string;
+        description?: string | null;
+        /**
+         * Kart üstündeki küçük rozet (örn: "Best for employed sponsors")
+         */
+        badge?: string | null;
+        items?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Kart butonu metni (boşsa buton gösterilmez, örn: "View requirements")
+         */
+        buttonText?: string | null;
+        /**
+         * Kart butonu linki (örn: /eligibility-check)
+         */
+        buttonLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  bottomCta?: {
+    /**
+     * örn: "Not sure which category applies?"
+     */
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+    /**
+     * örn: /eligibility-check
+     */
+    buttonLink?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'financialRequirements';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChecklistCardsBlock".
+ */
+export interface ChecklistCardsBlock {
+  /**
+   * aktive/deactive
+   */
+  isActive?: boolean | null;
+  /**
+   * Başlık üstündeki küçük etiket (opsiyonel)
+   */
+  eyebrow?: string | null;
+  /**
+   * Bölüm başlığı (örn: "Everything you need for a successful UK Spouse Visa application")
+   */
+  title: string;
+  /**
+   * Başlık altı açıklama (opsiyonel)
+   */
+  description?: string | null;
+  cards: {
+    /**
+     * Emoji ikon (örn: 🪪 ❤️ 💷 🏠 🗣️ 📄)
+     */
+    icon?: string | null;
+    title: string;
+    description?: string | null;
+    items: {
+      text: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'checklistCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-submissions".
  */
 export interface ContactSubmission {
@@ -1495,6 +1693,12 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         type?: T;
         richText?: T;
+        badges?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
         links?:
           | T
           | {
@@ -1527,6 +1731,9 @@ export interface PagesSelect<T extends boolean = true> {
         statsBoxesBlock?: T | StatsBoxesBlockSelect<T>;
         testimonialsBlock?: T | TestimonialsBlockSelect<T>;
         knowledgeBase?: T | KnowledgeBaseBlockSelect<T>;
+        processSteps?: T | ProcessStepsBlockSelect<T>;
+        financialRequirements?: T | FinancialRequirementsBlockSelect<T>;
+        checklistCards?: T | ChecklistCardsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1803,6 +2010,109 @@ export interface KnowledgeBaseBlockSelect<T extends boolean = true> {
     | {
         text?: T;
         link?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessStepsBlock_select".
+ */
+export interface ProcessStepsBlockSelect<T extends boolean = true> {
+  isActive?: T;
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  style?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FinancialRequirementsBlock_select".
+ */
+export interface FinancialRequirementsBlockSelect<T extends boolean = true> {
+  isActive?: T;
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  highlight?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        suffix?: T;
+        note?: T;
+      };
+  situationsTitle?: T;
+  situations?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        resultTitle?: T;
+        resultText?: T;
+        id?: T;
+      };
+  categoriesTitle?: T;
+  categoriesDescription?: T;
+  categories?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        badge?: T;
+        items?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        buttonText?: T;
+        buttonLink?: T;
+        id?: T;
+      };
+  bottomCta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        buttonLink?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChecklistCardsBlock_select".
+ */
+export interface ChecklistCardsBlockSelect<T extends boolean = true> {
+  isActive?: T;
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  cards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
       };
   id?: T;
   blockName?: T;

@@ -53,6 +53,22 @@ export const hero: Field = {
       }),
       label: false,
     },
+    {
+      name: 'badges',
+      type: 'array',
+      maxRows: 6,
+      admin: {
+        description: 'Başlık altında gösterilen küçük rozetler (örn: "Fixed-fee advice") — sadece High Impact',
+        condition: (_, { type } = {}) => type === 'highImpact',
+      },
+      fields: [
+        {
+          name: 'text',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
     linkGroup({
       overrides: {
         maxRows: 2,

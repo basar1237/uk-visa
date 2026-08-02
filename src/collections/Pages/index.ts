@@ -14,6 +14,9 @@ import { ServicesGrid } from '../../blocks/ServicesGrid/config'
 import { StatsBoxesBlock } from '../../blocks/StatsBoxesBlock/config'
 import { TestimonialsBlock } from '../../blocks/TestimonialsBlock/config'
 import { KnowledgeBase } from '../../blocks/KnowledgeBase/config'
+import { ProcessSteps } from '../../blocks/ProcessSteps/config'
+import { FinancialRequirements } from '../../blocks/FinancialRequirements/config'
+import { ChecklistCards } from '../../blocks/ChecklistCards/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -79,7 +82,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeaturesGrid, ServicesGrid, LandingBlock, FAQBlock, StatsBoxesBlock, TestimonialsBlock, KnowledgeBase],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FeaturesGrid, ServicesGrid, LandingBlock, FAQBlock, StatsBoxesBlock, TestimonialsBlock, KnowledgeBase, ProcessSteps, FinancialRequirements, ChecklistCards],
               required: true,
               admin: {
                 initCollapsed: true,
