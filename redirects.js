@@ -12,7 +12,14 @@ const redirects = async () => {
     source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
   }
 
-  const redirects = [internetExplorerRedirect]
+  // Eski yazım hatalı URL kalıcı olarak doğru adrese yönlensin
+  const hrBusinessRedirect = {
+    source: '/hr-bussiness',
+    destination: '/hr-business',
+    permanent: true,
+  }
+
+  const redirects = [internetExplorerRedirect, hrBusinessRedirect]
 
   return redirects
 }
