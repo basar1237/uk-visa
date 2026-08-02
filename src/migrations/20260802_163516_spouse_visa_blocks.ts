@@ -352,6 +352,18 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_checklist_cards_order_idx" ON "_pages_v_blocks_checklist_cards" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_checklist_cards_parent_id_idx" ON "_pages_v_blocks_checklist_cards" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_checklist_cards_path_idx" ON "_pages_v_blocks_checklist_cards" USING btree ("_path");
+
+  -- checklistCards.bottomCta grubu (sonradan eklendi — "Need guidance?" koyu CTA kartı)
+  ALTER TABLE "pages_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_icon" varchar;
+  ALTER TABLE "pages_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_title" varchar;
+  ALTER TABLE "pages_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_description" varchar;
+  ALTER TABLE "pages_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_text" varchar;
+  ALTER TABLE "pages_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_link" varchar;
+  ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_icon" varchar;
+  ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_title" varchar;
+  ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_description" varchar;
+  ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_text" varchar;
+  ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_link" varchar;
   `)
 }
 

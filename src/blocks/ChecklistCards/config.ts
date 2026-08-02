@@ -54,9 +54,10 @@ export const ChecklistCards: Block = {
         {
           name: 'items',
           type: 'array',
-          minRows: 1,
           maxRows: 10,
-          required: true,
+          admin: {
+            description: 'Boş bırakılırsa kart, ✓ işaretli kompakt rozet olarak gösterilir',
+          },
           fields: [
             {
               name: 'text',
@@ -65,6 +66,22 @@ export const ChecklistCards: Block = {
             },
           ],
         },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'bottomCta',
+      label: 'Alt CTA kartı (koyu lacivert kutu, opsiyonel)',
+      fields: [
+        {
+          name: 'icon',
+          type: 'text',
+          admin: { description: 'Emoji ikon (örn: 🧭)' },
+        },
+        { name: 'title', type: 'text', admin: { description: 'örn: "Need guidance?"' } },
+        { name: 'description', type: 'textarea' },
+        { name: 'buttonText', type: 'text' },
+        { name: 'buttonLink', type: 'text', admin: { description: 'örn: /contact' } },
       ],
     },
   ],

@@ -416,12 +416,34 @@ const whyUsBlock = {
   ],
 }
 
+// PDF sf.8: "Supporting you at every stage" — 4 kompakt ✓ rozet + koyu "Need guidance?" kartı
 const supportBlock = {
   blockType: 'checklistCards',
   isActive: true,
   title: 'Supporting you at every stage',
   description:
     'Whether you need a full application service or assistance with specific stages, our advisers are here to help throughout the process.',
+  cards: [
+    { title: 'Eligibility assessment' },
+    { title: 'Document review' },
+    { title: 'Application preparation' },
+    { title: 'Ongoing support' },
+  ],
+  bottomCta: {
+    icon: '🧭',
+    title: 'Need guidance?',
+    description:
+      'Book a consultation with one of our IAA-regulated immigration advisers and receive tailored advice for your circumstances.',
+    buttonText: 'Book a consultation',
+    buttonLink: '/contact',
+  },
+}
+
+// PDF sf.9-10: "What you can expect" + "Our commitment"
+const expectBlock = {
+  blockType: 'checklistCards',
+  isActive: true,
+  title: 'What you can expect',
   cards: [
     {
       icon: '✅',
@@ -500,6 +522,7 @@ async function main() {
   // Mevcut FAQ bloğunu koru (id'ler dahil aynen taşınır)
   const existingFaq = (page.layout || []).find((b: any) => b.blockType === 'faqBlock')
 
+  // Kapanış CTA'sı ("Ready to begin your application?") istek üzerine kaldırıldı
   const newLayout: any[] = [
     introContentBlock,
     requirementsBlock,
@@ -507,11 +530,11 @@ async function main() {
     financialBlock,
     documentsBlock,
     journeyBlock,
-    whyUsBlock,
     supportBlock,
+    whyUsBlock,
+    expectBlock,
   ]
   if (existingFaq) newLayout.push(existingFaq)
-  newLayout.push(closingCtaBlock)
 
   const data: any = {
     title: 'UK Spouse Visa (Partner Visa)',

@@ -1342,12 +1342,33 @@ export interface ChecklistCardsBlock {
     icon?: string | null;
     title: string;
     description?: string | null;
-    items: {
-      text: string;
-      id?: string | null;
-    }[];
+    /**
+     * Boş bırakılırsa kart, ✓ işaretli kompakt rozet olarak gösterilir
+     */
+    items?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
+  bottomCta?: {
+    /**
+     * Emoji ikon (örn: 🧭)
+     */
+    icon?: string | null;
+    /**
+     * örn: "Need guidance?"
+     */
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+    /**
+     * örn: /contact
+     */
+    buttonLink?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'checklistCards';
@@ -2113,6 +2134,15 @@ export interface ChecklistCardsBlockSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  bottomCta?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        buttonLink?: T;
       };
   id?: T;
   blockName?: T;
