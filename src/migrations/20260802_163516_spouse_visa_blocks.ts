@@ -364,6 +364,24 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_description" varchar;
   ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_text" varchar;
   ALTER TABLE "_pages_v_blocks_checklist_cards" ADD COLUMN IF NOT EXISTS "bottom_cta_button_link" varchar;
+
+  -- hero.eyebrow (sonradan eklendi — "UK SPOUSE VISA SUPPORT" etiketi)
+  ALTER TABLE "pages" ADD COLUMN IF NOT EXISTS "hero_eyebrow" varchar;
+  ALTER TABLE "_pages_v" ADD COLUMN IF NOT EXISTS "version_hero_eyebrow" varchar;
+
+  -- featuresGrid.eyebrow/description/style (sonradan eklendi — "WHY CHOOSE US" banner görünümü)
+  DO $$ BEGIN
+    CREATE TYPE "public"."enum_pages_blocks_features_grid_style" AS ENUM('cards', 'banners');
+  EXCEPTION WHEN duplicate_object THEN null; END $$;
+  DO $$ BEGIN
+    CREATE TYPE "public"."enum__pages_v_blocks_features_grid_style" AS ENUM('cards', 'banners');
+  EXCEPTION WHEN duplicate_object THEN null; END $$;
+  ALTER TABLE "pages_blocks_features_grid" ADD COLUMN IF NOT EXISTS "eyebrow" varchar;
+  ALTER TABLE "pages_blocks_features_grid" ADD COLUMN IF NOT EXISTS "description" varchar;
+  ALTER TABLE "pages_blocks_features_grid" ADD COLUMN IF NOT EXISTS "style" "enum_pages_blocks_features_grid_style" DEFAULT 'cards';
+  ALTER TABLE "_pages_v_blocks_features_grid" ADD COLUMN IF NOT EXISTS "eyebrow" varchar;
+  ALTER TABLE "_pages_v_blocks_features_grid" ADD COLUMN IF NOT EXISTS "description" varchar;
+  ALTER TABLE "_pages_v_blocks_features_grid" ADD COLUMN IF NOT EXISTS "style" "enum__pages_v_blocks_features_grid_style" DEFAULT 'cards';
   `)
 }
 

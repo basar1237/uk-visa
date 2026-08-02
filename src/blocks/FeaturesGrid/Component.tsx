@@ -147,17 +147,75 @@ const iconMap: Record<string, LucideIcon> = {
   languages: Languages,
 }
 
-export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({ title, features }) => {
+export const FeaturesGridComponent: React.FC<FeaturesGridBlock> = ({
+  eyebrow,
+  title,
+  description,
+  style,
+  features,
+}) => {
+  if (style === 'banners') {
+    return (
+      <section className="py-6 sm:py-8 lg:py-10 bg-white">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <div className="mb-8 text-center">
+            {eyebrow && (
+              <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#2160b1]">
+                {eyebrow}
+              </p>
+            )}
+            {title && (
+              <h2 className="mb-3 text-3xl font-bold text-[#1e3a8a] lg:text-4xl">{title}</h2>
+            )}
+            {description && (
+              <p className="mx-auto max-w-2xl text-base text-gray-600">{description}</p>
+            )}
+          </div>
+          <div className="flex flex-col gap-4">
+            {features?.map((feature, index) => {
+              const IconComponent = feature.icon ? iconMap[feature.icon] : null
+              return (
+                <div
+                  key={index}
+                  className="rounded-xl bg-gradient-to-r from-[#0f2a5c] to-[#2160b1] p-6 text-center text-white shadow-lg transition-all hover:shadow-xl sm:p-7"
+                >
+                  {IconComponent && (
+                    <div className="mb-3 flex justify-center">
+                      <div className="rounded-full bg-white/15 p-3">
+                        <IconComponent className="h-6 w-6 text-white" />
+                      </div>
+                    </div>
+                  )}
+                  <h3 className="mb-1 text-lg font-bold">{feature.title}</h3>
+                  <p className="text-sm text-white/85">{feature.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="py-6 sm:py-8 lg:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
+        {eyebrow && (
+          <p className="mb-2 text-center text-xs font-bold uppercase tracking-widest text-[#2160b1]">
+            {eyebrow}
+          </p>
+        )}
         {title && (
            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 text-center mb-6">
             {title}
           </h2>
         )}
-        
+        {description && (
+          <p className="mx-auto -mt-2 mb-6 max-w-2xl text-center text-base text-gray-600">
+            {description}
+          </p>
+        )}
+
         <div className="flex flex-nowrap gap-3 md:gap-4 lg:gap-6 overflow-x-auto pb-2 md:pb-0">
           {features?.map((feature, index) => {
             const IconComponent = feature.icon ? iconMap[feature.icon] : null

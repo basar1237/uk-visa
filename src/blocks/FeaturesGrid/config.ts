@@ -7,11 +7,39 @@ export const FeaturesGrid: Block = {
   fields: [
     blockToggleField,
     {
+      name: 'eyebrow',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Başlık üstündeki küçük etiket (opsiyonel, örn: "WHY CHOOSE US")',
+      },
+    },
+    {
       name: 'title',
       type: 'text',
       required: false,
       admin: {
         description: 'Ana başlık (opsiyonel, örn: "Why Choose UK Immigration Helpline?")',
+      },
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      required: false,
+      admin: {
+        description: 'Başlık altı açıklama (opsiyonel)',
+      },
+    },
+    {
+      name: 'style',
+      type: 'select',
+      defaultValue: 'cards',
+      options: [
+        { label: 'Cards — yatay açık renkli kartlar', value: 'cards' },
+        { label: 'Banners — alt alta koyu mavi gradyan şeritler', value: 'banners' },
+      ],
+      admin: {
+        description: 'Görünüm stili',
       },
     },
     {

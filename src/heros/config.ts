@@ -39,6 +39,14 @@ export const hero: Field = {
       required: true,
     },
     {
+      name: 'eyebrow',
+      type: 'text',
+      admin: {
+        description: 'Başlığın üstündeki küçük etiket (örn: "UK SPOUSE VISA SUPPORT") — sadece High Impact',
+        condition: (_, { type } = {}) => type === 'highImpact',
+      },
+    },
+    {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({

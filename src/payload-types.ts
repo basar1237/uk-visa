@@ -154,6 +154,10 @@ export interface Page {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    /**
+     * Başlığın üstündeki küçük etiket (örn: "UK SPOUSE VISA SUPPORT") — sadece High Impact
+     */
+    eyebrow?: string | null;
     richText?: {
       root: {
         type: string;
@@ -798,9 +802,21 @@ export interface FeaturesGridBlock {
    */
   isActive?: boolean | null;
   /**
+   * Başlık üstündeki küçük etiket (opsiyonel, örn: "WHY CHOOSE US")
+   */
+  eyebrow?: string | null;
+  /**
    * Ana başlık (opsiyonel, örn: "Why Choose UK Immigration Helpline?")
    */
   title?: string | null;
+  /**
+   * Başlık altı açıklama (opsiyonel)
+   */
+  description?: string | null;
+  /**
+   * Görünüm stili
+   */
+  style?: ('cards' | 'banners') | null;
   features?:
     | {
         /**
@@ -1713,6 +1729,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        eyebrow?: T;
         richText?: T;
         badges?:
           | T
@@ -1864,7 +1881,10 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface FeaturesGridBlockSelect<T extends boolean = true> {
   isActive?: T;
+  eyebrow?: T;
   title?: T;
+  description?: T;
+  style?: T;
   features?:
     | T
     | {

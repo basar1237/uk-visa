@@ -26,6 +26,7 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({
   richText,
   links,
   badges,
+  eyebrow,
   staticContent,
 }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -50,6 +51,11 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({
             preset="blur-slide"
             className="mx-auto flex flex-col items-center text-center w-full"
           >
+            {eyebrow && (
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-white/85 sm:text-sm">
+                {eyebrow}
+              </p>
+            )}
             <AnimatedText
               as="h1"
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-pretty mb-4 sm:mb-6 md:mb-8 text-white"

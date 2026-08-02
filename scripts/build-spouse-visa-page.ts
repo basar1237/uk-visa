@@ -48,10 +48,33 @@ function richTextRoot(children: any[]) {
   }
 }
 
+function bulletList(items: string[]) {
+  return {
+    type: 'list',
+    listType: 'bullet',
+    tag: 'ul',
+    start: 1,
+    format: '',
+    indent: 0,
+    version: 1,
+    direction: null,
+    children: items.map((t, i) => ({
+      type: 'listitem',
+      value: i + 1,
+      format: '',
+      indent: 0,
+      version: 1,
+      direction: null,
+      children: [text(t)],
+    })),
+  }
+}
+
 /* ---------- İçerik ---------- */
 
 const hero = {
   type: 'highImpact' as const,
+  eyebrow: 'UK SPOUSE VISA SUPPORT',
   richText: richTextRoot([
     heading('h1', [text('UK Spouse Visa – Bring Your Husband, Wife or Partner to the UK')], 'center'),
     paragraph(
@@ -391,7 +414,11 @@ const journeyBlock = {
 const whyUsBlock = {
   blockType: 'featuresGrid',
   isActive: true,
+  eyebrow: 'WHY CHOOSE US',
   title: 'Trusted guidance for your UK Spouse Visa application',
+  description:
+    'Applying for a UK Spouse Visa can feel overwhelming. Our role is to provide clear advice, prepare a well-organised application and support you throughout the process.',
+  style: 'banners',
   features: [
     {
       icon: 'shield',
@@ -439,32 +466,54 @@ const supportBlock = {
   },
 }
 
-// PDF sf.9-10: "What you can expect" + "Our commitment"
+// PDF sf.9: "What you can expect" — kalın başlık + açıklama satırları
 const expectBlock = {
   blockType: 'checklistCards',
   isActive: true,
   title: 'What you can expect',
   cards: [
     {
-      icon: '✅',
-      title: 'What you can expect',
-      items: [
-        { text: 'Thorough eligibility assessment — we assess your circumstances before preparing your application' },
-        { text: 'Personalised document checklist — know exactly which documents are required for your case' },
-        { text: 'Clear communication — straightforward advice without unnecessary legal jargon' },
-        { text: 'Support throughout your application — from your first enquiry until submission' },
-      ],
+      title: 'Thorough eligibility assessment',
+      description: 'We assess your circumstances before preparing your application.',
     },
     {
-      icon: '🤝',
-      title: 'Our commitment',
-      items: [
-        { text: 'Advice based on the current Immigration Rules' },
-        { text: 'Applications prepared carefully and thoroughly' },
-        { text: 'Honest guidance about your available options' },
-        { text: 'Professional and confidential service' },
-        { text: 'Support for clients in the UK and overseas' },
-      ],
+      title: 'Personalised document checklist',
+      description: 'Know exactly which documents are required for your case.',
+    },
+    {
+      title: 'Clear communication',
+      description: 'Straightforward advice without unnecessary legal jargon.',
+    },
+    {
+      title: 'Support throughout your application',
+      description: 'From your first enquiry until your application has been submitted.',
+    },
+  ],
+}
+
+// PDF sf.10: "Our commitment" — açık mavi kutu + liste + "Book a consultation" butonu
+const commitmentBlock = {
+  blockType: 'cta',
+  isActive: true,
+  richText: richTextRoot([
+    heading('h3', [text('Our commitment', 1)]),
+    bulletList([
+      'Advice based on the current Immigration Rules.',
+      'Applications prepared carefully and thoroughly.',
+      'Honest guidance about your available options.',
+      'Professional and confidential service.',
+      'Support for clients in the UK and overseas.',
+    ]),
+  ]),
+  links: [
+    {
+      link: {
+        type: 'custom',
+        url: '/contact',
+        label: 'Book a consultation',
+        appearance: 'default',
+        newTab: false,
+      },
     },
   ],
 }
@@ -533,6 +582,7 @@ async function main() {
     supportBlock,
     whyUsBlock,
     expectBlock,
+    commitmentBlock,
   ]
   if (existingFaq) newLayout.push(existingFaq)
 
