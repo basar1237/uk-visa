@@ -233,8 +233,6 @@ const financialBlock = {
       description: 'For salaried and non-salaried employees.',
       badge: 'Best for employed sponsors',
       items: [{ text: 'Payslips' }, { text: 'Bank statements' }, { text: 'Employer’s letter' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
     {
       icon: '📈',
@@ -242,8 +240,6 @@ const financialBlock = {
       description: 'For sole traders, partnerships and company directors.',
       badge: 'Business income',
       items: [{ text: 'Tax returns' }, { text: 'Company accounts' }, { text: 'Business statements' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
     {
       icon: '🏦',
@@ -251,8 +247,6 @@ const financialBlock = {
       description: 'Savings held for the required qualifying period.',
       badge: 'Savings route',
       items: [{ text: 'Bank statements' }, { text: 'Savings evidence' }, { text: 'Source of funds' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
     {
       icon: '👴',
@@ -260,8 +254,6 @@ const financialBlock = {
       description: 'State, occupational or private pension income.',
       badge: 'Retired sponsors',
       items: [{ text: 'Pension award' }, { text: 'Payment statements' }, { text: 'Bank statements' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
     {
       icon: '🏠',
@@ -269,8 +261,6 @@ const financialBlock = {
       description: 'Rental or other permitted non-employment income.',
       badge: 'Landlords',
       items: [{ text: 'Tenancy agreements' }, { text: 'Rental statements' }, { text: 'Bank statements' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
     {
       icon: '🛡️',
@@ -278,8 +268,6 @@ const financialBlock = {
       description: 'For sponsors receiving qualifying benefits.',
       badge: 'Exempt route',
       items: [{ text: 'Benefit letters' }, { text: 'Household finances' }, { text: 'Housing costs' }],
-      buttonText: 'View requirements',
-      buttonLink: '/eligibility-check',
     },
   ],
   bottomCta: {

@@ -23,7 +23,7 @@ const trustBadges = [
   { icon: ShieldCheck, title: 'IAA Regulated', subtitle: 'Immigration Adviser' },
   { icon: Star, title: '5-Star Rated', subtitle: 'By Our Clients' },
   { icon: Lock, title: 'Confidential', subtitle: 'Professional Advice' },
-  { icon: Globe, title: 'UK & Overseas', subtitle: 'Clients Welcomed' },
+  { icon: Globe, title: 'UK & Overseas', subtitle: 'Clients Welcome' },
 ]
 
 const consultationOptions = [
@@ -43,7 +43,11 @@ const consultationOptions = [
     icon: User,
     title: 'In-Person Consultation',
     description: 'Available by appointment at various meeting locations across the UK.',
-    points: ['Appointment Only', 'Location Confirmed After Booking', 'Private & Comfortable Environment'],
+    points: [
+      'Appointment Only',
+      'Location Confirmed After Booking',
+      'Private & Comfortable Environment',
+    ],
   },
 ]
 
@@ -66,8 +70,8 @@ export const FooterContactSection: React.FC = () => {
               Speak to an <span className="text-blue-400">IAA Regulated</span> Immigration Adviser
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              Whether you are in the UK or overseas, we provide expert immigration advice tailored to
-              your circumstances.
+              Whether you are in the UK or overseas, we provide expert immigration advice tailored
+              to your circumstances.
             </p>
           </div>
 
@@ -130,7 +134,9 @@ export const FooterContactSection: React.FC = () => {
                     >
                       info@ukimmigrationhelpline.com
                     </a>
-                    <p className="text-gray-500 text-sm">We aim to respond within 1 business hour.</p>
+                    <p className="text-gray-500 text-sm">
+                      We aim to respond within 1 business hour.
+                    </p>
                   </div>
                 </div>
 
@@ -159,10 +165,12 @@ export const FooterContactSection: React.FC = () => {
                     <CalendarDays className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">Consultations by Appointment Only</p>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Consultations by Appointment Only
+                    </p>
                     <p className="text-gray-500 text-sm">
-                      In-person consultations are available by appointment at various meeting locations
-                      across the UK. Location details will be provided when you book.
+                      In-person consultations are available by appointment at various meeting
+                      locations across the UK. Location details will be provided when you book.
                     </p>
                   </div>
                 </div>
@@ -171,7 +179,9 @@ export const FooterContactSection: React.FC = () => {
 
             {/* Right Panel: Consultation Options */}
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm flex flex-col">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Consultation Options</h3>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
+                Consultation Options
+              </h3>
 
               <div className="space-y-4 flex-grow">
                 {consultationOptions.map((option) => {
@@ -189,7 +199,10 @@ export const FooterContactSection: React.FC = () => {
                         <p className="text-gray-500 text-sm mb-2">{option.description}</p>
                         <ul className="space-y-1">
                           {option.points.map((point) => (
-                            <li key={point} className="flex items-center gap-1.5 text-xs text-gray-600">
+                            <li
+                              key={point}
+                              className="flex items-center gap-1.5 text-xs text-gray-600"
+                            >
                               <Check className="w-3.5 h-3.5 text-green-600 shrink-0" />
                               {point}
                             </li>
@@ -206,7 +219,8 @@ export const FooterContactSection: React.FC = () => {
                 <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
                   <Clock className="w-4 h-4 text-blue-600" />
                   <span>
-                    Average response time <strong className="text-gray-900">within 1 business hour</strong>
+                    Average response time{' '}
+                    <strong className="text-gray-900">within 1 business hour</strong>
                   </span>
                 </div>
                 <Link
@@ -228,20 +242,21 @@ export const FooterContactSection: React.FC = () => {
                 <div>
                   <p className="text-sm font-bold text-white">IAA Regulated Immigration Adviser</p>
                   <p className="text-xs text-white/60 max-w-xl">
-                    We provide regulated UK immigration advice in accordance with the Immigration and
-                    Asylum Act 1999.
+                    We provide regulated UK immigration advice in accordance with the Immigration
+                    and Asylum Act 1999.
                   </p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/70">
                 <span className="inline-flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-green-400" /> Fixed Fee &amp; Transparent Pricing
+                  <Check className="w-3.5 h-3.5 text-green-400" /> Fixed Fee &amp; Transparent
+                  Pricing
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Lock className="w-3.5 h-3.5 text-green-400" /> Ethical &amp; Confidential
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-green-400" /> UK &amp; Overseas Clients Welcomed
+                  <Globe className="w-3.5 h-3.5 text-green-400" /> UK &amp; Overseas Clients Welcome
                 </span>
               </div>
             </div>

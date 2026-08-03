@@ -174,13 +174,6 @@ export const HrBusinessComponent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
-                <Scale className="w-4 h-4 text-cyan-300" />
-                <span className="text-blue-100 text-sm font-semibold">
-                  Regulated by the Immigration Advice Authority (IAA)
-                </span>
-              </div>
-
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 HR Immigration
                 <span className="block bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent mt-2">
